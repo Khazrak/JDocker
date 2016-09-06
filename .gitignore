@@ -1,0 +1,12 @@
+.idea
+*~
+*.log
+*.log.*
+target
+build
+delivery
+*.ipr
+*.iml
+*.class
+*.jar
+
