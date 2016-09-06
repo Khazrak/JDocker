@@ -7,5 +7,5 @@ public interface DockerClient {
 
     void close();
 
-    ContainerCreation containerBuilder();
+
 }

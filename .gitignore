@@ -9,4 +9,6 @@ delivery
 *.iml
 *.class
 *.jar
-
+generated
+.gradle
+generated_test

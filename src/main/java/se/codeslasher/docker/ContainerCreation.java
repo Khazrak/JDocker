@@ -1,7 +1,6 @@
 package se.codeslasher.docker;
 
 import com.google.gson.annotations.SerializedName;
-import com.sun.org.apache.xpath.internal.operations.String;
 
 import java.util.List;
 import java.util.Map;
@@ -46,11 +45,11 @@ public class ContainerCreation {
 
     @Singular
     @SerializedName(value = "Env")
-    private List<String> env;
+    private List<String> environmentVariables;
 
     @Singular
     @SerializedName(value = "Cmd")
-    private List<String> cmd;
+    private List<String> commands;
 
     @SerializedName(value = "Entrypoint")
     private String entrypoint;
@@ -63,6 +62,6 @@ public class ContainerCreation {
     private Map<String,String> labels;
 
 
-    
+
 
 }
