@@ -12,7 +12,9 @@ public class ContainerCreate {
     public void createContainer() {
         DockerClient client = new DefaultDockerClient();
 
-        ContainerCreation test =ContainerCreation.builder().name("Test_Container").image("ubuntu:14.04").build();
+        HostConfig hostConfig = HostConfig.builder().build();
+
+        ContainerCreation test = ContainerCreation.builder().name("Test_Container").image("ubuntu:14.04").hostConfig(hostConfig).build();
 
         GsonBuilder builder = new GsonBuilder();
 

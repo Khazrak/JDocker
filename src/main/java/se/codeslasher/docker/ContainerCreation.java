@@ -14,7 +14,8 @@ import lombok.Singular;
 @Builder
 public class ContainerCreation {
 
-    private String name;
+
+    private transient String name;
 
     @SerializedName(value = "Hostname")
     private String hostname;
@@ -61,7 +62,28 @@ public class ContainerCreation {
     @SerializedName(value = "Labels")
     private Map<String,String> labels;
 
+    //volumes map
 
+    @SerializedName(value = "WorkingDir")
+    private String workingDir;
 
+    @SerializedName(value = "NetworkDisabled")
+    private boolean networkDisabled;
+
+    @SerializedName(value = "MacAddress")
+    private String macAddress;
+
+    @Singular
+    @SerializedName(value = "ExposedPorts")
+    private Map<String,Object> exposedPorts;
+
+    @SerializedName(value = "StopSignal")
+    private String stopSignal;
+
+    @SerializedName(value = "HostConfig")
+    private HostConfig hostConfig;
+
+    @SerializedName(value = "NetworkingConfig")
+    private NetworkingConfig networkingConfig;
 
 }
