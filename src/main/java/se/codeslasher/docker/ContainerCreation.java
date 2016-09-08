@@ -7,6 +7,7 @@ import java.util.Map;
 
 import lombok.Builder;
 import lombok.Singular;
+import okhttp3.MediaType;
 
 /**
  * Created by karl on 9/6/16.
@@ -14,11 +15,13 @@ import lombok.Singular;
 @Builder
 public class ContainerCreation {
 
+    public transient static final String PATH="/v1.24/containers/create";
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private transient String name;
 
     @SerializedName(value = "Hostname")
-    private String hostname;
+    private String hostname = new String("");
 
     @SerializedName(value = "Domainname")
     private String Domainname;

@@ -7,5 +7,5 @@ public interface DockerClient {
 
     void close();
 
-
+    String createContainer(ContainerCreation spec);
 }
