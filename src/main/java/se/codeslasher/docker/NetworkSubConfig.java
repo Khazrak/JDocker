@@ -1,6 +1,6 @@
 package se.codeslasher.docker;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Singular;
 
@@ -12,15 +12,15 @@ import java.util.List;
 @Builder
 public class NetworkSubConfig {
 
-    @SerializedName(value = "IPAMConfig")
+    @JsonProperty("IPAMConfig")
     private IPAMConfig ipamConfig;
 
     @Singular
-    @SerializedName(value = "Links")
+    @JsonProperty("Links")
     private List<String> links;
 
     @Singular
-    @SerializedName(value = "Aliases")
+    @JsonProperty("Aliases")
     private List<String> aliases;
 
 }

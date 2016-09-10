@@ -1,20 +1,18 @@
 package se.codeslasher.docker;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import se.codeslasher.docker.exception.DockerServerException;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import static org.assertj.core.api.Assertions.assertThat;
-
 
 /**
- * Created by karl on 9/5/16.
+ * Created by karl on 9/10/16.
  */
-public class ContainerCreate {
+public class ContainerStart {
 
     private DockerClient client;
 
@@ -32,15 +30,13 @@ public class ContainerCreate {
     }
 
     @Test
-    public void createContainer() throws JsonProcessingException {
+    public void start() {
+        client.start("f2aca7ccb724d73aad6e4f6");
+    }
 
-        HostConfig hostConfig = HostConfig.builder().build();
-
-        ContainerCreation test = ContainerCreation.builder().name("test_container").image("ubuntu:14.04").hostConfig(hostConfig).build();
-
-        String id = client.createContainer(test);
-
-        assertThat(id).isEqualTo("f2aca7ccb724d73aad6e4f6adc75fc3c8792df31ac5ec459cb857c0ca6f60d2c");
+   // @Test(expected = DockerServerException.class)
+    public void startNoneExisting() {
+        client.start("none_existing");
     }
 
 }

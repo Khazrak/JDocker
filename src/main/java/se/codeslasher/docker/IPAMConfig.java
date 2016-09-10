@@ -1,6 +1,6 @@
 package se.codeslasher.docker;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Singular;
 
@@ -12,14 +12,14 @@ import java.util.List;
 @Builder
 public class IPAMConfig {
 
-    @SerializedName(value = "IPv4Address")
+    @JsonProperty("IPv4Address")
     private String ipv4Address;
 
-    @SerializedName(value = "IPv6Address")
+    @JsonProperty("IPv6Address")
     private String ipv6Address;
 
     @Singular
-    @SerializedName(value = "LinkLocalIPs")
+    @JsonProperty("LinkLocalIPs")
     private List<String> linkLocalIps;
 
 }

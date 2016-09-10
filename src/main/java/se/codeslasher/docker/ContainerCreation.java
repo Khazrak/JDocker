@@ -1,17 +1,39 @@
 package se.codeslasher.docker;
 
-import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-import java.util.Map;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Builder;
 import lombok.Singular;
 import okhttp3.MediaType;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by karl on 9/6/16.
  */
+@JsonPropertyOrder({
+        "Hostname",
+        "Domainname",
+        "User",
+        "AttachStdin",
+        "AttachStdout",
+        "AttachStderr",
+        "Tty",
+        "OpenStdin",
+        "StdinOnce",
+        "Env",
+        "Cmd",
+        "Image",
+        "Volumes",
+        "WorkingDir",
+        "Entrypoint",
+        "OnBuild",
+        "Labels",
+        "HostConfig",
+        "NetworkingConfig"
+})
 @Builder
 public class ContainerCreation {
 
@@ -20,73 +42,85 @@ public class ContainerCreation {
 
     private transient String name;
 
-    @SerializedName(value = "Hostname")
-    private String hostname = new String("");
+    @JsonProperty(value = "Hostname")
+    private String hostname;
 
-    @SerializedName(value = "Domainname")
-    private String Domainname;
+    @JsonProperty(value = "Domainname")
+    private String domainname;
 
-    @SerializedName(value = "User")
+    @JsonProperty("User")
     private String user;
 
-    @SerializedName(value = "AttachStdin")
+    @JsonProperty("AttachStdin")
     private boolean attachStdin;
 
-    @SerializedName(value = "AttachStdout")
+    @JsonProperty("AttachStdout")
     private boolean attachStdout;
 
-    @SerializedName(value = "AttachStderr")
+    @JsonProperty("AttachStderr")
     private boolean attachStderr;
 
-    @SerializedName(value = "Tty")
+    @JsonProperty("Tty")
     private boolean tty;
 
-    @SerializedName(value = "OpenStdin")
+    @JsonProperty("OpenStdin")
     private boolean openStdin;
 
-    @SerializedName(value = "StdinOnce")
+    @JsonProperty("StdinOnce")
     private boolean stdinOnce;
 
     @Singular
-    @SerializedName(value = "Env")
+    @JsonProperty("Env")
     private List<String> environmentVariables;
 
-    @Singular
-    @SerializedName(value = "Cmd")
+    @JsonProperty("Cmd")
     private List<String> commands;
 
-    @SerializedName(value = "Entrypoint")
+    @JsonProperty("Entrypoint")
     private String entrypoint;
 
-    @SerializedName(value = "Image")
+    @JsonProperty("Image")
     private String image;
 
     @Singular
-    @SerializedName(value = "Labels")
+    @JsonProperty("Labels")
     private Map<String,String> labels;
 
     //volumes map
+    @Singular()
+    @JsonProperty("Volumes")
+    private Map<String,Object> volumes;
 
-    @SerializedName(value = "WorkingDir")
+    @JsonProperty("WorkingDir")
     private String workingDir;
 
-    @SerializedName(value = "NetworkDisabled")
+    @JsonProperty("NetworkDisabled")
     private boolean networkDisabled;
 
-    @SerializedName(value = "MacAddress")
+    @JsonProperty("MacAddress")
     private String macAddress;
 
     @Singular
-    @SerializedName(value = "ExposedPorts")
+    @JsonProperty("ExposedPorts")
     private Map<String,Object> exposedPorts;
 
-    @SerializedName(value = "StopSignal")
+    @JsonProperty("StopSignal")
     private String stopSignal;
 
-    @SerializedName(value = "HostConfig")
+    @JsonProperty("HostConfig")
     private HostConfig hostConfig;
 
-    @SerializedName(value = "NetworkingConfig")
+    @JsonProperty("NetworkingConfig")
     private NetworkingConfig networkingConfig;
+
+    //Made to give default values to variables, Lombok replaces the "normal" ones
+    public static class ContainerCreationBuilder {
+        private String hostname = "";
+        private String domainname = "";
+        private String user = "";
+        private String workingDir = "";
+        private String stopSignal = "SIGTERM";
+        private NetworkingConfig networkingConfig = new NetworkingConfig();
+    }
 
 }

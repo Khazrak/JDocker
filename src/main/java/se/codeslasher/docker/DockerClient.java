@@ -8,4 +8,5 @@ public interface DockerClient {
     void close();
 
     String createContainer(ContainerCreation spec);
+    void start(String id);
 }

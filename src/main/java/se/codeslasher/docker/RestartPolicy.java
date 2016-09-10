@@ -1,6 +1,7 @@
 package se.codeslasher.docker;
 
-import com.google.gson.annotations.SerializedName;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by karl on 9/7/16.
@@ -14,10 +15,10 @@ public class RestartPolicy {
         this.maximumRetryCount = maximumRetryCount;
     }
 
-    @SerializedName(value = "Name")
+    @JsonProperty("Name")
     private String name;
 
-    @SerializedName(value = "MaximumRetryCount")
+    @JsonProperty("MaximumRetryCount")
     private int maximumRetryCount;
 
 }

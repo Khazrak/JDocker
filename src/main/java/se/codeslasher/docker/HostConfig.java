@@ -1,181 +1,240 @@
 package se.codeslasher.docker;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Builder;
 import lombok.Singular;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by karl on 9/7/16.
  */
+@JsonPropertyOrder({
+        "Binds",
+        "ContainerIDFile",
+        "LogConfig",
+        "NetworkMode",
+        "PortBindings",
+        "RestartPolicy",
+        "AutoRemove",
+        "VolumeDriver",
+        "VolumesFrom",
+        "CapAdd",
+        "CapDrop",
+        "Dns",
+        "DnsOptions",
+        "DnsSearch",
+        "ExtraHosts",
+        "GroupAdd",
+        "IpcMode",
+        "Cgroup",
+        "Links",
+        "OomScoreAdj",
+        "PidMode",
+        "Privileged",
+        "PublishAllPorts",
+        "ReadonlyRootfs",
+        "SecurityOpt",
+        "UTSMode",
+        "UsernsMode",
+        "ShmSize",
+        "ConsoleSize",
+        "Isolation",
+        "CpuShares",
+        "Memory",
+        "CgroupParent",
+        "BlkioWeight",
+        "BlkioWeightDevice",
+        "BlkioDeviceReadBps",
+        "BlkioDeviceWriteBps",
+        "BlkioDeviceReadIOps",
+        "BlkioDeviceWriteIOps",
+        "CpuPeriod",
+        "CpuQuota",
+        "CpusetCpus",
+        "CpusetMems",
+        "Devices",
+        "DiskQuota",
+        "KernelMemory",
+        "MemoryReservation",
+        "MemorySwap",
+        "MemorySwappiness",
+        "OomKillDisable",
+        "PidsLimit",
+        "Ulimits",
+        "CpuCount",
+        "CpuPercent",
+        "IOMaximumIOps",
+        "IOMaximumBandwidth"
+})
 @Builder
 public class HostConfig {
 
-    @Singular
-    @SerializedName(value = "Binds")
+    @JsonProperty("Binds")
     private List<String> binds;
 
-    @Singular
-    @SerializedName(value = "Links")
+    @JsonProperty("Links")
     private List<String> links;
 
-    @SerializedName(value = "Memory")
+    @JsonProperty("Memory")
     private int memory;
 
-    @SerializedName(value = "MemorySwap")
+    @JsonProperty("MemorySwap")
     private int memorySwap;
 
-    @SerializedName(value = "MemoryReservation")
+    @JsonProperty("MemoryReservation")
     private int memoryReservation;
 
-    @SerializedName(value = "KernelMemory")
+    @JsonProperty("KernelMemory")
     private int kernelMemory;
 
-    @SerializedName(value = "CpuPercent")
+    @JsonProperty("CpuPercent")
     private int cpuPercent;
 
-    @SerializedName(value = "CpuShares")
+    @JsonProperty("CpuShares")
     private int cpuShares;
 
-    @SerializedName(value = "CpuPeriod")
+    @JsonProperty("CpuPeriod")
     private int cpuPeriod;
 
-    @SerializedName(value = "CpuQuota")
+    @JsonProperty("CpuQuota")
     private int cpuQuota;
 
-    @SerializedName(value = "CpusetCpus")
+    @JsonProperty("CpusetCpus")
     private String cpuSetCpus;
 
-    @SerializedName(value = "CpusetMems")
+    @JsonProperty("CpusetMems")
     private String cpuSetMems;
 
-    @SerializedName(value = "MaximumIOps")
-    private int maximumIops;
+    @JsonProperty("IOMaximumIOps")
+    private int ioMaximumIOps;
 
-    @SerializedName(value = "MaximumIOBps")
-    private int maximumIobps;
+    @JsonProperty("IOMaximumBandwidth")
+    private int ioMaximumBandwidth;
 
-    @SerializedName(value = "BlkioWeight")
+    @JsonProperty("BlkioWeight")
     private int blkioWeight;
 
     //TODO: Replace Object with other
-    @Singular("BlkioWeightDevice")
-    @SerializedName(value = "BlkioWeightDevice")
+    @JsonProperty("BlkioWeightDevice")
     private List <Object> blkioWeightDevice;
 
-    @Singular
-    @SerializedName(value = "BlkioDeviceReadBps")
+    @JsonProperty("BlkioDeviceReadBps")
     private List <Object> blkioDeviceReadBps;
 
-    @Singular
-    @SerializedName(value = "BlkioDeviceReadIOps")
+    @JsonProperty("BlkioDeviceReadIOps")
     private List <Object> blkioDeviceReadIops;
 
-    @Singular
-    @SerializedName(value = "BlkioDeviceWriteBps")
+    @JsonProperty("BlkioDeviceWriteBps")
     private List <Object> blkioDeviceWriteBps;
 
-    @Singular
-    @SerializedName(value = "BlkioDeviceWriteIOps")
+    @JsonProperty("BlkioDeviceWriteIOps")
     private List <Object> blkioDeviceWriteIops;
 
-
-    @SerializedName(value = "MemorySwappiness")
+    @JsonProperty("MemorySwappiness")
     private int memorySwappiness;
 
-    @SerializedName(value = "OomKillDisable")
+    @JsonProperty("OomKillDisable")
     private boolean oomKillDisable;
 
-    @SerializedName(value = "OomScoreAdj")
+    @JsonProperty("OomScoreAdj")
     private int oomScoreAdj;
 
-    @SerializedName(value = "PidMode")
+    @JsonProperty("PidMode")
     private String pidMode;
 
-    @SerializedName(value = "PidsLimit")
+    @JsonProperty("PidsLimit")
     private int pidsLimit;
 
     @Singular
-    @SerializedName(value = "PortBindings")
+    @JsonProperty("PortBindings")
     private Map<String, List<HostPort>> portBindings;
 
-    @SerializedName(value = "PublishAllPorts")
+    @JsonProperty("PublishAllPorts")
     private boolean publishAllPorts;
 
-    @SerializedName(value = "Privileged")
+    @JsonProperty("Privileged")
     private boolean privileged;
 
-    @SerializedName(value = "ReadonlyRootfs")
+    @JsonProperty("ReadonlyRootfs")
     private boolean readOnlyRootfs;
 
-    @Singular("Dns")
-    @SerializedName(value = "Dns")
+    @Singular
+    @JsonProperty("Dns")
     private List<String> dns;
 
-    @Singular("DnsOptions")
-    @SerializedName(value = "DnsOptions")
+    @Singular
+    @JsonProperty("DnsOptions")
     private List<String> dnsOptions;
 
     @Singular("DnsSearch")
-    @SerializedName(value = "DnsSearch")
+    @JsonProperty("DnsSearch")
     private List<String> dnsSearch;
 
     //TODO: replace with something better, list of strings?
-    @SerializedName(value = "ExtraHosts")
+    @JsonProperty("ExtraHosts")
     private Object extraHosts;
 
-    @Singular("VolumesFrom")
-    @SerializedName(value = "VolumesFrom")
+
+    @JsonProperty("VolumesFrom")
     private List<String> volumesFrom;
 
-    @Singular("CapAdd")
-    @SerializedName(value = "CapAdd")
+    @JsonProperty("CapAdd")
     private List<String> capAdd;
 
-    @Singular("CapDrop")
-    @SerializedName(value = "CapDrop")
+    @JsonProperty("CapDrop")
     private List<String> capDrop;
 
-    @Singular("GroupAdd")
-    @SerializedName(value = "GroupAdd")
+    @JsonProperty("GroupAdd")
     private List<String> groupAdd;
 
-    @SerializedName(value = "RestartPolicy")
+    @JsonProperty("RestartPolicy")
     private RestartPolicy restartPolicy;
 
-    @SerializedName(value = "NetworkMode")
+    @JsonProperty("NetworkMode")
     private String networkMode;
 
-    @SerializedName(value = "Devices")
+    @Singular
+    @JsonProperty("Devices")
     private List<String> devices;
 
-    @Singular
-    @SerializedName(value = "Sysctls")
+    @JsonProperty("Sysctls")
     private Map<String,String> sysCtls;
 
-    @SerializedName(value = "Ulimits")
+    @JsonProperty("Ulimits")
     private List<Object> uLimits;
 
-    @SerializedName(value = "LogConfig")
+    @JsonProperty("LogConfig")
     private LogConfig logConfig;
 
-    @Singular("SecurityOpt")
-    @SerializedName(value = "SecurityOpt")
+    @JsonProperty("SecurityOpt")
     private List<String> securityOpt;
 
-    @SerializedName(value = "StorageOpt")
+    @JsonProperty("StorageOpt")
     private Object storageOpt;
 
-    @SerializedName(value = "CgroupParent")
+    @JsonProperty("CgroupParent")
     private String cgroupParent;
 
-    @SerializedName(value = "VolumeDriver")
+    @JsonProperty("VolumeDriver")
     private String volumeDriver;
 
-    @SerializedName(value = "ShmSize")
+    @JsonProperty("ShmSize")
     private int shmSize;
 
+    public static class HostConfigBuilder {
+        LogConfig logConfig = new LogConfig("",new TreeMap<String,String>());
+        String networkMode = "default";
+        RestartPolicy restartPolicy = new RestartPolicy("no",0);
+        String volumeDriver = "";
+        String pidMode = "";
+        String cgroupParent = "";
+        String cpuSetCpus = "";
+        String cpuSetMems = "";
+        int memorySwappiness = -1;
 
+    }
 }

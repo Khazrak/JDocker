@@ -1,0 +1,14 @@
+{
+  "request" : {
+    "url" : "/v1.24/containers/f2aca7ccb724d73aad6e4f6/start",
+    "method" : "POST"
+  },
+  "response" : {
+    "status" : 204,
+    "headers" : {
+      "Content-Type" : "text/plain",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Thu, 08 Sep 2016 15:56:33 GMT"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 package se.codeslasher.docker;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,7 +14,7 @@ public class NetworkingConfig {
         endpointConfig = new TreeMap<>();
     }
 
-    @SerializedName(value = "EndpointsConfig")
+    @JsonProperty("EndpointsConfig")
     private Map<String,NetworkSubConfig> endpointConfig;
 
     public void addEndpointConfig(String networkName, NetworkSubConfig config) {

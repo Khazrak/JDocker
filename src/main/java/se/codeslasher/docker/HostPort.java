@@ -1,6 +1,6 @@
 package se.codeslasher.docker;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by karl on 9/7/16.
@@ -11,7 +11,7 @@ public class HostPort {
         this.hostPort = hostPort;
     }
 
-    @SerializedName(value = "HostPort")
+    @JsonProperty("HostPort")
     private String hostPort;
 
 }
