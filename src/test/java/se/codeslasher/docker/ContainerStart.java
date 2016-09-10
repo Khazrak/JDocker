@@ -34,7 +34,7 @@ public class ContainerStart {
         client.start("f2aca7ccb724d73aad6e4f6");
     }
 
-   // @Test(expected = DockerServerException.class)
+    @Test(expected = DockerServerException.class)
     public void startNoneExisting() {
         client.start("none_existing");
     }
