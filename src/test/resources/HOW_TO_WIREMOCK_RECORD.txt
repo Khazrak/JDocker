@@ -1,0 +1,14 @@
+## HOW TO RECORD DOCKER COMMANDS WITH WIREMOCK ##
+
+Step 1: Enable remote api for you docker server (google it if you don't know how and don't forget to restart docker service)
+
+Step 2: Download Wiremock
+
+Step 3: Start Wiremock with recording enabled
+java -jar wiremock-standalone-2.1.12.jar --port 9779 -v --preserve-host-header --https-port 9778 --record-mappings --proxy-all="http://127.0.0.1:4243"
+
+Step 4: Run docker cli-commands via Wiremock
+docker -H 127.0.0.1:9779 <DOCKER COMMANDS>
+
+# Problems
+Some commands like start gives error on recording. maybe due to empty body (204)

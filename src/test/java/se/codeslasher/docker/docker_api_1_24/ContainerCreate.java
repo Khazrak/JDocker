@@ -1,4 +1,4 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.docker_api_1_24;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -6,6 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import se.codeslasher.docker.ContainerCreation;
+import se.codeslasher.docker.DefaultDockerClient;
+import se.codeslasher.docker.DockerClient;
+import se.codeslasher.docker.HostConfig;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;

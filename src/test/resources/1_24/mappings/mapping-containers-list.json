@@ -1,0 +1,17 @@
+{
+  "uuid" : "730c81dc-390d-34d1-b13e-ad7808f5ecf6",
+  "request" : {
+    "url" : "/v1.24/containers/json",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-containers-json-o4F2V.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sun, 11 Sep 2016 12:15:32 GMT",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}

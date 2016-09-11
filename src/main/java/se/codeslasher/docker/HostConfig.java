@@ -2,6 +2,8 @@ package se.codeslasher.docker;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Singular;
 
@@ -71,6 +73,7 @@ import java.util.TreeMap;
         "IOMaximumBandwidth"
 })
 @Builder
+@JsonDeserialize(builder = HostConfig.HostConfigBuilder.class)
 public class HostConfig {
 
     @JsonProperty("Binds")
@@ -225,8 +228,10 @@ public class HostConfig {
     @JsonProperty("ShmSize")
     private int shmSize;
 
+    @JsonPOJOBuilder(withPrefix = "")
     public static class HostConfigBuilder {
         LogConfig logConfig = new LogConfig("",new TreeMap<String,String>());
+        @JsonProperty("NetworkMode")
         String networkMode = "default";
         RestartPolicy restartPolicy = new RestartPolicy("no",0);
         String volumeDriver = "";
