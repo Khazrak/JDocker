@@ -1,0 +1,17 @@
+{
+  "uuid" : "c1b2865f-652f-30da-8288-ba3dcd5dee99",
+  "request" : {
+    "url" : "/v1.24/containers/mongo/logs?stderr=1&stdout=1&tail=all",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-mongo-logs-all.txt",
+    "headers" : {
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Mon, 12 Sep 2016 16:55:59 GMT",
+      "Content-Type" : "text/plain; charset=utf-8",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}

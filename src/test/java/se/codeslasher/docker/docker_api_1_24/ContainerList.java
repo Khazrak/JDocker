@@ -36,7 +36,6 @@ public class ContainerList {
     public void list() {
         List<Container> containerList = client.list();
 
-
         assertThat(containerList.size()).isEqualTo(2);
 
         DockerImageName mongo = new DockerImageName("mongo");
@@ -46,13 +45,6 @@ public class ContainerList {
 
         assertThat(one.getImage()).isEqualTo(mongo);
         assertThat(two.getImage()).isEqualTo(mongo);
-
-        System.out.println(new DockerImageName(one.getImage().toString()));
-
-        for(Container c : containerList) {
-            System.out.println(c);
-        }
-
 
         UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json", null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -64,7 +56,6 @@ public class ContainerList {
     public void listAll() {
         ContainerListRequest request = ContainerListRequest.builder().all(true).build();
         List<Container> containerList = client.list(request);
-
 
         assertThat(containerList.size()).isEqualTo(3);
 
@@ -78,13 +69,6 @@ public class ContainerList {
         assertThat(one.getImage()).isEqualTo(mongo);
         assertThat(two.getImage()).isEqualTo(mongo);
         assertThat(three.getImage()).isEqualTo(ubuntu);
-
-        System.out.println(new DockerImageName(one.getImage().toString()));
-
-        for(Container c : containerList) {
-            System.out.println(c);
-        }
-
 
         UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json?all=true", null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -102,20 +86,45 @@ public class ContainerList {
         Assert.fail("Not implemented yet");
     }
 
-
-    @Test
-    public void listBeforeSince() {
-        Assert.fail("Not implemented yet");
-    }
-
     @Test
     public void listLimit() {
-        Assert.fail("Not implemented yet");
+        ContainerListRequest request = ContainerListRequest.builder().limit(1).build();
+        List<Container> containerList = client.list(request);
+
+
+        assertThat(containerList.size()).isEqualTo(1);
+
+        DockerImageName mongo = new DockerImageName("mongo");
+
+        Container one = containerList.get(0);
+
+        assertThat(one.getImage()).isEqualTo(mongo);
+
+        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json?limit=1", null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
     public void listSize() {
-        Assert.fail("Not implemented yet");
+        ContainerListRequest request = ContainerListRequest.builder().size(true).build();
+        List<Container> containerList = client.list(request);
+
+        assertThat(containerList.size()).isEqualTo(2);
+
+        DockerImageName mongo = new DockerImageName("mongo");
+
+        Container one = containerList.get(0);
+        Container two = containerList.get(1);
+
+        assertThat(one.getImage()).isEqualTo(mongo);
+        assertThat(two.getImage()).isEqualTo(mongo);
+
+        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json?size=true", null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test

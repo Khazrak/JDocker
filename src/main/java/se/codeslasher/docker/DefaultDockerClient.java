@@ -10,7 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.exception.DockerServerException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
@@ -158,10 +161,80 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public List<Container> list(ContainerListRequest listRequest) {
 
-        boolean all = listRequest.isAll();
-        final String path = "/v1.24/containers/json?all="+all;
-        return runListCommand(path);
+        String params = listRequest.toString();
+        if(params.length() > 0) {
+            return runListCommand("/v1.24/containers/json?"+params);
+        }
+        else {
+            return list();
+        }
+    }
 
+    @Override
+    public void logs(String id) {
+        final String path = "/v1.24/containers/"+id+"/logs?stdout=true";
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            System.out.println(response.code());
+            //System.out.println(response.body().string());
+
+            try(BufferedReader reader = new BufferedReader(new InputStreamReader(response.body().byteStream()))) {
+
+                String line = "";
+                while((line = reader.readLine()) != null) {
+                    if(line.charAt(0) <= 1) {
+                        System.out.println(line.substring(8));
+                    } else if(line.charAt(0) == 2) {
+                        System.err.println(line.substring(8));
+                    }
+                }
+
+            }
+
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    public InputStream logsStream(String id) {
+        final String path = "/v1.24/containers/"+id+"/logs?stdout=true";
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            System.out.println(response.code());
+            //System.out.println(response.body().string());
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+            return response.body().byteStream();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private List<Container> runListCommand(String path) {

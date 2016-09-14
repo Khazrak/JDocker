@@ -27,4 +27,38 @@ public class ContainerListRequest {
     @Getter
     private String filters;
 
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        if(all) {
+            sb.append("all=true");
+        }
+        if(limit > 0) {
+            append("limit="+limit,sb);
+        }
+        if(since != null) {
+            append("since="+since,sb);
+        }
+        if(before != null) {
+            append("before="+before,sb);
+        }
+        if(size) {
+            append("size=true",sb);
+        }
+        if(filters != null) {
+            append("filters="+filters,sb);
+        }
+
+        return sb.toString();
+    }
+
+    private void append(String ap, StringBuilder sb) {
+        if(sb.length() > 0) {
+            sb.append('&');
+        }
+        sb.append(ap);
+    }
+
+
 }

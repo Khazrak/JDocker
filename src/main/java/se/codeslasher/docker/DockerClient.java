@@ -1,5 +1,6 @@
 package se.codeslasher.docker;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -19,4 +20,7 @@ public interface DockerClient {
     void kill(String id, String signal);
     List<Container> list();
     List<Container> list(ContainerListRequest listRequest);
+
+    void logs(String id);
+    InputStream logsStream(String id);
 }
