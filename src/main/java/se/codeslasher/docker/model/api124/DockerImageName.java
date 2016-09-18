@@ -1,6 +1,5 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.model.api124;
 
-import lombok.Getter;
 import se.codeslasher.docker.exception.DockerClientException;
 
 import java.util.Optional;

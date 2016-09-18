@@ -6,6 +6,8 @@ import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.junit.*;
 import se.codeslasher.docker.*;
+import se.codeslasher.docker.model.api124.Container;
+import se.codeslasher.docker.model.api124.DockerImageName;
 
 import java.util.List;
 

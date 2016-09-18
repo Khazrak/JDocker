@@ -1,10 +1,11 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.model.api124;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.Singular;
 import lombok.ToString;
+import se.codeslasher.docker.model.api124.*;
 
 import java.util.List;
 import java.util.Map;

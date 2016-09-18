@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.DockerLogsLineReader;
-import se.codeslasher.docker.DockerLogsParameters;
+import se.codeslasher.docker.handlers.DockerLogsLineReader;
+import se.codeslasher.docker.model.api124.DockerLogsParameters;
 
 import java.io.BufferedReader;
 import java.io.IOException;

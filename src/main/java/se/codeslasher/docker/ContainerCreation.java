@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Builder;
 import lombok.Singular;
 import okhttp3.MediaType;
+import se.codeslasher.docker.model.api124.HostConfig;
+import se.codeslasher.docker.model.api124.NetworkingConfig;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.handlers;
 
 import org.slf4j.Logger;
 

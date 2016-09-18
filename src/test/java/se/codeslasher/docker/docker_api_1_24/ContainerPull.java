@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.DockerImageName;
+import se.codeslasher.docker.model.api124.DockerImageName;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,6 +65,21 @@ public class ContainerPull {
     //@Test
     public void pullToken() {
         //TODO: private Registry with token
+    }
+
+    @Test
+    public void pullUbuntu() {
+        DockerImageName image = new DockerImageName("ubuntu:16.04");
+        String response = client.pull(image);
+
+        logger.info(response);
+
+        assertThat(response).contains("{\"status\":\"Status: Downloaded newer image for ubuntu:16.04\"}");
+
+        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/images/create?fromImage=ubuntu&tag=16.04", null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
 }

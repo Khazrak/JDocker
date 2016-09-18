@@ -1,4 +1,4 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.model.api124;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

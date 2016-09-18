@@ -7,6 +7,14 @@ import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.exception.DockerServerException;
+import se.codeslasher.docker.handlers.DockerLogsHandler;
+import se.codeslasher.docker.handlers.DockerLogsInputStream;
+import se.codeslasher.docker.handlers.DockerLogsLineReader;
+import se.codeslasher.docker.handlers.DockerPullHandler;
+import se.codeslasher.docker.model.api124.AuthConfig;
+import se.codeslasher.docker.model.api124.Container;
+import se.codeslasher.docker.model.api124.DockerImageName;
+import se.codeslasher.docker.model.api124.DockerLogsParameters;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,18 +33,27 @@ public class DefaultDockerClient implements DockerClient {
 
     private final String URL;
 
+    private DockerLogsHandler logsHandler;
+    private DockerPullHandler pullHandler;
+
     private ObjectMapper mapper;
 
     public DefaultDockerClient() {
         httpClient = new OkHttpClient();
         URL = "http://127.0.0.1:9779";
         mapper = new ObjectMapper();
+
+        logsHandler = new DockerLogsHandler(httpClient, URL);
+        pullHandler = new DockerPullHandler(httpClient, mapper, URL);
     }
 
     public DefaultDockerClient(String host) {
         httpClient = new OkHttpClient();
         URL = host;
         mapper = new ObjectMapper();
+
+        logsHandler = new DockerLogsHandler(httpClient, URL);
+        pullHandler = new DockerPullHandler(httpClient, mapper, URL);
     }
 
     public void close()  {
@@ -170,174 +187,32 @@ public class DefaultDockerClient implements DockerClient {
 
     @Override
     public List<String> logs(String id, DockerLogsParameters params) {
-        List<String> logLines = null;
-        final String path = "/v1.24/containers/"+id+"/logs"+params.toString();
-        logger.info((path));
-        Response response;
-        Request request = new Request.Builder()
-                .url(URL+path)
-                .get()
-                .build();
-
-        try {
-            response = httpClient.newCall(request).execute();
-            System.out.println(response.code());
-            //System.out.println(response.body().string());
-
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(response.body().byteStream()))) {
-                logLines = new ArrayList<>();
-                String line = "";
-                while((line = reader.readLine()) != null) {
-                    logLines.add(line);
-                }
-
-            }
-
-            if(response.code() != 200 ) {
-                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
-                        +"\nHTTP-Code: "+response.code());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return logLines;
+        return logsHandler.logs(id, params);
     }
 
     @Override
     public DockerLogsLineReader logsSpecial(String id, DockerLogsParameters params) {
-        final String path = "/v1.24/containers/"+id+"/logs"+params.toString();
-        Response response;
-        Request request = new Request.Builder()
-                .url(URL+path)
-                .get()
-                .build();
-
-        try {
-            response = httpClient.newCall(request).execute();
-            System.out.println(response.code());
-            //System.out.println(response.body().string());
-            if(response.code() != 200 ) {
-                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
-                        +"\nHTTP-Code: "+response.code());
-            }
-            return new DockerLogsLineReader(response.body().byteStream());
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    @Override
-    public String pull(DockerImageName image) {
-        final String path = "/v1.24/images/create?fromImage="+image.toStringWithoutTag() + "&tag=" + image.getTag();
-        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
-        Response response;
-
-
-        Map<String, String> headersMap = new TreeMap<>();
-        headersMap.put("Content-Type","application/json");
-        headersMap.put("X-Registry-Auth", "");
-        Headers headers = Headers.of(headersMap);
-
-        Request request = new Request.Builder()
-                .headers(headers)
-                .url(URL+path)
-                .post(body)
-                .build();
-
-        try {
-            response = httpClient.newCall(request).execute();
-            return response.body().string();
-        }
-        catch (IOException e) {
-            logger.info(e.getLocalizedMessage(),e);
-        }
-
-        return null;
-
-    }
-
-    @Override
-    public void pull(DockerImageName image, AuthConfig authConfig) {
-        final String path = "/v1.24/images/create?fromImage="+image.toStringWithoutTag() + "?tag=" + image.getTag();
-
-        String jsonHeader = null;
-        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
-        try {
-            jsonHeader = mapper.writeValueAsString(authConfig);
-            jsonHeader = Base64.getEncoder().encodeToString(jsonHeader.getBytes());
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        Response response;
-        Request request = new Request.Builder()
-                .header("X-Registry-Auth", jsonHeader)
-                .url(URL+path)
-                .post(body)
-                .build();
-    }
-
-    @Override
-    public void pull(DockerImageName image, String token) {
-
-        final String path = "/v1.24/images/create?fromImage="+image.toStringWithoutTag() + "?tag=" + image.getTag();
-        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
-        TreeMap<String, String> map = new TreeMap<>();
-
-        map.put("registrytoken",token);
-
-        String jsonHeader = null;
-        try {
-            jsonHeader = mapper.writeValueAsString(map);
-            jsonHeader = Base64.getEncoder().encodeToString(jsonHeader.getBytes());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        Response response;
-        Request request = new Request.Builder()
-                .header("X-Registry-Auth", jsonHeader)
-                .url(URL+path)
-                .post(body)
-                .build();
-
-
+        return logsHandler.logsSpecial(id, params);
     }
 
     @Override
     public InputStream logsRawStream(String id, DockerLogsParameters params) {
-        final String path = "/v1.24/containers/"+id+"/logs"+params.toString();
-        Response response;
-        Request request = new Request.Builder()
-                .url(URL+path)
-                .get()
-                .build();
+        return logsHandler.logsRawStream(id, params);
+    }
 
-        try {
-            response = httpClient.newCall(request).execute();
-            System.out.println(response.code());
-            //System.out.println(response.body().string());
-            if(response.code() != 200 ) {
-                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
-                        +"\nHTTP-Code: "+response.code());
-            }
-            return response.body().byteStream();
+    @Override
+    public String pull(DockerImageName image) {
+        return pullHandler.pull(image);
+    }
 
+    @Override
+    public void pull(DockerImageName image, AuthConfig authConfig) {
+        pullHandler.pull(image, authConfig);
+    }
 
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    @Override
+    public void pull(DockerImageName image, String token) {
+        pullHandler.pull(image,token);
     }
 
     @Override

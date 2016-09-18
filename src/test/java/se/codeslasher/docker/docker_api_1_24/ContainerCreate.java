@@ -9,7 +9,7 @@ import org.junit.Test;
 import se.codeslasher.docker.ContainerCreation;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.HostConfig;
+import se.codeslasher.docker.model.api124.HostConfig;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
