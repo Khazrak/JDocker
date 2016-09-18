@@ -1,5 +1,6 @@
 package se.codeslasher.docker;
 
+import lombok.Getter;
 import se.codeslasher.docker.exception.DockerClientException;
 
 import java.util.Optional;
@@ -7,6 +8,7 @@ import java.util.Optional;
 /**
  * Created by karl on 9/11/16.
  */
+
 
 public class DockerImageName {
 
@@ -34,6 +36,22 @@ public class DockerImageName {
     private Optional<DockerRegistryName> registry = Optional.empty();
     private Optional<DockerRepositoryName> repository = Optional.empty();
     private DockerImagePartName imageName;
+
+    public String getImageRegistry() {
+        return this.registry.isPresent() ? this.registry.toString() : null;
+    }
+
+    public String getImageRepo() {
+        return this.repository.isPresent() ? this.repository.toString() : null;
+    }
+
+    public String getImageName() {
+        return this.imageName.name;
+    }
+
+    public String getTag() {
+        return this.imageName.version;
+    }
 
 
     public static class DockerRepositoryName {
@@ -88,6 +106,14 @@ public class DockerImageName {
         return sb.toString();
     }
 
+    public String toStringWithoutTag() {
+        StringBuilder sb = new StringBuilder();
+        this.registry.ifPresent(drn -> {sb.append(drn.registryName);sb.append("/");});
+        this.repository.ifPresent(drn -> {sb.append(drn.repoName);sb.append("/");});
+        sb.append(imageName.name);
+
+        return sb.toString();
+    }
 
     public boolean equals(Object other) {
         if(other == null) {

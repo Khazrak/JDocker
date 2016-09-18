@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.DockerLogsLineReader;
+import se.codeslasher.docker.DockerLogsParameters;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class ContainerLogs {
 
     @Before
     public void setup() {
-        client = new DefaultDockerClient("http://127.0.0.1:4243");
+        client = new DefaultDockerClient("http://127.0.0.1:9779");
     }
 
     @After
@@ -45,7 +46,9 @@ public class ContainerLogs {
         int linesCount = 0;
         int expectedLineCount = 31;
 
-        List<String> logLines = client.logs("mongo");
+        DockerLogsParameters params = DockerLogsParameters.builder().stdout(true).build();
+
+        List<String> logLines = client.logs("mongo", params);
 
         for(String s : logLines) {
             logger.info(s);
@@ -62,7 +65,9 @@ public class ContainerLogs {
         int linesCount = 0;
         int expectedLineCount = 31;
 
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(client.logsRawStream("mongo")))) {
+        DockerLogsParameters params = DockerLogsParameters.builder().stdout(true).build();
+
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(client.logsRawStream("mongo", params)))) {
 
             String line = "";
             while((line = reader.readLine()) != null) {
@@ -83,7 +88,9 @@ public class ContainerLogs {
         int linesCount = 0;
         int expectedLineCount = 31;
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(client.logsStream("mongo")))) {
+        DockerLogsParameters params = DockerLogsParameters.builder().stdout(true).build();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(client.logsStream("mongo", params)))) {
             String line = "";
             while((line = reader.readLine()) != null) {
                 logger.info(line);
@@ -101,7 +108,9 @@ public class ContainerLogs {
         int linesCount = 0;
         int expectedLineCount = 31;
 
-        try(DockerLogsLineReader reader = client.logsSpecial("mongo")) {
+        DockerLogsParameters params = DockerLogsParameters.builder().stdout(true).build();
+
+        try(DockerLogsLineReader reader = client.logsSpecial("mongo", params)) {
             String line = "";
             while((line = reader.readLine()) != null) {
                 logger.info(line);
@@ -113,5 +122,7 @@ public class ContainerLogs {
 
         assertThat(linesCount).isEqualTo(expectedLineCount);
     }
+
+    //TODO: Add more test for logging with only stderr in call and the other params
 
 }

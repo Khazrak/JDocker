@@ -1,11 +1,9 @@
 package se.codeslasher.docker;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.exception.DockerServerException;
@@ -14,8 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by karl on 9/5/16.
@@ -32,7 +29,7 @@ public class DefaultDockerClient implements DockerClient {
 
     public DefaultDockerClient() {
         httpClient = new OkHttpClient();
-        URL = "http://127.0.0.1:4243";
+        URL = "http://127.0.0.1:9779";
         mapper = new ObjectMapper();
     }
 
@@ -172,9 +169,10 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public List<String> logs(String id) {
+    public List<String> logs(String id, DockerLogsParameters params) {
         List<String> logLines = null;
-        final String path = "/v1.24/containers/"+id+"/logs?stdout=true";
+        final String path = "/v1.24/containers/"+id+"/logs"+params.toString();
+        logger.info((path));
         Response response;
         Request request = new Request.Builder()
                 .url(URL+path)
@@ -208,8 +206,8 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public DockerLogsLineReader logsSpecial(String id) {
-        final String path = "/v1.24/containers/"+id+"/logs?stdout=true";
+    public DockerLogsLineReader logsSpecial(String id, DockerLogsParameters params) {
+        final String path = "/v1.24/containers/"+id+"/logs"+params.toString();
         Response response;
         Request request = new Request.Builder()
                 .url(URL+path)
@@ -236,8 +234,87 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public InputStream logsRawStream(String id) {
-        final String path = "/v1.24/containers/"+id+"/logs?stdout=true";
+    public String pull(DockerImageName image) {
+        final String path = "/v1.24/images/create?fromImage="+image.toStringWithoutTag() + "&tag=" + image.getTag();
+        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
+        Response response;
+
+
+        Map<String, String> headersMap = new TreeMap<>();
+        headersMap.put("Content-Type","application/json");
+        headersMap.put("X-Registry-Auth", "");
+        Headers headers = Headers.of(headersMap);
+
+        Request request = new Request.Builder()
+                .headers(headers)
+                .url(URL+path)
+                .post(body)
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            return response.body().string();
+        }
+        catch (IOException e) {
+            logger.info(e.getLocalizedMessage(),e);
+        }
+
+        return null;
+
+    }
+
+    @Override
+    public void pull(DockerImageName image, AuthConfig authConfig) {
+        final String path = "/v1.24/images/create?fromImage="+image.toStringWithoutTag() + "?tag=" + image.getTag();
+
+        String jsonHeader = null;
+        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
+        try {
+            jsonHeader = mapper.writeValueAsString(authConfig);
+            jsonHeader = Base64.getEncoder().encodeToString(jsonHeader.getBytes());
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        Response response;
+        Request request = new Request.Builder()
+                .header("X-Registry-Auth", jsonHeader)
+                .url(URL+path)
+                .post(body)
+                .build();
+    }
+
+    @Override
+    public void pull(DockerImageName image, String token) {
+
+        final String path = "/v1.24/images/create?fromImage="+image.toStringWithoutTag() + "?tag=" + image.getTag();
+        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
+        TreeMap<String, String> map = new TreeMap<>();
+
+        map.put("registrytoken",token);
+
+        String jsonHeader = null;
+        try {
+            jsonHeader = mapper.writeValueAsString(map);
+            jsonHeader = Base64.getEncoder().encodeToString(jsonHeader.getBytes());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        Response response;
+        Request request = new Request.Builder()
+                .header("X-Registry-Auth", jsonHeader)
+                .url(URL+path)
+                .post(body)
+                .build();
+
+
+    }
+
+    @Override
+    public InputStream logsRawStream(String id, DockerLogsParameters params) {
+        final String path = "/v1.24/containers/"+id+"/logs"+params.toString();
         Response response;
         Request request = new Request.Builder()
                 .url(URL+path)
@@ -264,8 +341,8 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public InputStream logsStream(String id) {
-        final String path = "/v1.24/containers/"+id+"/logs?stdout=true";
+    public InputStream logsStream(String id, DockerLogsParameters params) {
+        final String path = "/v1.24/containers/"+id+"/logs"+params.toString();
         Response response;
         Request request = new Request.Builder()
                 .url(URL+path)

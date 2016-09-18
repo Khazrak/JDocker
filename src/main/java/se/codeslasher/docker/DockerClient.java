@@ -21,8 +21,12 @@ public interface DockerClient {
     List<Container> list();
     List<Container> list(ContainerListRequest listRequest);
 
-    List<String> logs(String id);
-    InputStream logsRawStream(String id);
-    InputStream logsStream(String id);
-    DockerLogsLineReader logsSpecial(String id);
+    List<String> logs(String id, DockerLogsParameters params);
+    InputStream logsRawStream(String id, DockerLogsParameters params);
+    InputStream logsStream(String id, DockerLogsParameters params);
+    DockerLogsLineReader logsSpecial(String id, DockerLogsParameters params);
+
+    String pull(DockerImageName image);
+    void pull(DockerImageName image, AuthConfig authConfig);
+    void pull(DockerImageName image, String token);
 }
