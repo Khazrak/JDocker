@@ -21,6 +21,8 @@ public interface DockerClient {
     List<Container> list();
     List<Container> list(ContainerListRequest listRequest);
 
-    void logs(String id);
+    List<String> logs(String id);
+    InputStream logsRawStream(String id);
     InputStream logsStream(String id);
+    DockerLogsLineReader logsSpecial(String id);
 }
