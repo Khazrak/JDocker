@@ -1,0 +1,16 @@
+{
+  "uuid" : "78b31475-4da5-3067-8641-1377ca33c29f",
+  "request" : {
+    "url" : "/v1.24/containers/mongo/top?ps_args=aux",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-container-top-mongo-args.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Wed, 21 Sep 2016 17:30:53 GMT"
+    }
+  }
+}

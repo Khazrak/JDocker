@@ -14,6 +14,8 @@ import se.codeslasher.docker.model.api124.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -102,6 +104,48 @@ public class DefaultDockerClient implements DockerClient {
                         +"\nHTTP-Code: "+response.code());
             }
             return mapper.readValue(response.body().string(), DockerContainerInspect.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public ContainerProcesses top(String id) {
+        return top(id,null);
+    }
+
+    @Override
+    public ContainerProcesses top(String id, String arg) {
+        String param = "";
+        if(arg != null) {
+            try {
+                param += "?ps_args="+ URLEncoder.encode(arg, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                logger.error(e.getLocalizedMessage(),e);
+            }
+        }
+        final String path = "/v1.24/containers/"+id+"/top"+param;
+
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            System.out.println(response.code());
+            //System.out.println(response.body().string());
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+            return mapper.readValue(response.body().string(),ContainerProcesses.class);
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

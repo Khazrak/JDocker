@@ -1,11 +1,7 @@
 package se.codeslasher.docker;
 
-import se.codeslasher.docker.model.api124.DockerContainerInspect;
+import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.handlers.DockerLogsLineReader;
-import se.codeslasher.docker.model.api124.AuthConfig;
-import se.codeslasher.docker.model.api124.Container;
-import se.codeslasher.docker.model.api124.DockerImageName;
-import se.codeslasher.docker.model.api124.DockerLogsParameters;
 
 import java.io.InputStream;
 import java.util.List;
@@ -29,6 +25,9 @@ public interface DockerClient {
     List<Container> list(ContainerListRequest listRequest);
 
     DockerContainerInspect inspectContainer(String id, boolean size);
+
+    ContainerProcesses top(String id);
+    ContainerProcesses top(String id, String arg);
 
     List<String> logs(String id, DockerLogsParameters params);
     InputStream logsRawStream(String id, DockerLogsParameters params);
