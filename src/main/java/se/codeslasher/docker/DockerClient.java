@@ -1,5 +1,6 @@
 package se.codeslasher.docker;
 
+import se.codeslasher.docker.model.api124.DockerContainerInspect;
 import se.codeslasher.docker.handlers.DockerLogsLineReader;
 import se.codeslasher.docker.model.api124.AuthConfig;
 import se.codeslasher.docker.model.api124.Container;
@@ -26,6 +27,8 @@ public interface DockerClient {
     void kill(String id, String signal);
     List<Container> list();
     List<Container> list(ContainerListRequest listRequest);
+
+    DockerContainerInspect inspectContainer(String id, boolean size);
 
     List<String> logs(String id, DockerLogsParameters params);
     InputStream logsRawStream(String id, DockerLogsParameters params);

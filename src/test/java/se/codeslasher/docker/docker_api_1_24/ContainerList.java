@@ -45,6 +45,8 @@ public class ContainerList {
         Container one = containerList.get(0);
         Container two = containerList.get(1);
 
+        System.out.println(one.getState());
+
         assertThat(one.getImage()).isEqualTo(mongo);
         assertThat(two.getImage()).isEqualTo(mongo);
 

@@ -1,26 +1,20 @@
 package se.codeslasher.docker;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.*;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.exception.DockerServerException;
-import se.codeslasher.docker.handlers.DockerLogsHandler;
-import se.codeslasher.docker.handlers.DockerLogsInputStream;
-import se.codeslasher.docker.handlers.DockerLogsLineReader;
-import se.codeslasher.docker.handlers.DockerPullHandler;
-import se.codeslasher.docker.model.api124.AuthConfig;
-import se.codeslasher.docker.model.api124.Container;
-import se.codeslasher.docker.model.api124.DockerImageName;
-import se.codeslasher.docker.model.api124.DockerLogsParameters;
+import se.codeslasher.docker.handlers.*;
+import se.codeslasher.docker.model.api124.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.util.List;
 
 /**
  * Created by karl on 9/5/16.
@@ -42,6 +36,8 @@ public class DefaultDockerClient implements DockerClient {
         httpClient = new OkHttpClient();
         URL = "http://127.0.0.1:9779";
         mapper = new ObjectMapper();
+
+
 
         logsHandler = new DockerLogsHandler(httpClient, URL);
         pullHandler = new DockerPullHandler(httpClient, mapper, URL);
@@ -84,6 +80,33 @@ public class DefaultDockerClient implements DockerClient {
         }
         return id;
 
+    }
+
+    @Override
+    public DockerContainerInspect inspectContainer(String id, boolean size) {
+        final String path = "/v1.24/containers/"+id+"/json?size="+size;
+
+        Response response = null;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            if(response.code() == 304) {
+                logger.warn("Container already stopped: "+id);
+            }
+            else if(response.code() != 200 ) {
+                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+            return mapper.readValue(response.body().string(), DockerContainerInspect.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override

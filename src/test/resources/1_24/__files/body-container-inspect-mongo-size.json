@@ -1,0 +1,209 @@
+{
+  "Id": "bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a",
+  "Created": "2016-09-11T12:13:19.341100607Z",
+  "Path": "/entrypoint.sh",
+  "Args": [
+    "mongod"
+  ],
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2016-09-11T12:13:20.289888181Z",
+    "FinishedAt": "2016-09-11T21:03:16.05987119Z"
+  },
+  "Image": "sha256:48b8b08dca4d307feb5b560650be81d8e5cba8e9849dbf6a21df41b48dcf340c",
+  "ResolvConfPath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/resolv.conf",
+  "HostnamePath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/hostname",
+  "HostsPath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/hosts",
+  "LogPath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a-json.log",
+  "Name": "/mongo",
+  "RestartCount": 0,
+  "Driver": "devicemapper",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "",
+  "ExecIDs": null,
+  "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {}
+    },
+    "NetworkMode": "default",
+    "PortBindings": {
+      "27015/tcp": [
+        {
+          "HostIp": "",
+          "HostPort": "27015"
+        }
+      ]
+    },
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "CapAdd": null,
+    "CapDrop": null,
+    "Dns": [],
+    "DnsOptions": [],
+    "DnsSearch": [],
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": null,
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": [],
+    "DiskQuota": 0,
+    "KernelMemory": 0,
+    "MemoryReservation": 0,
+    "MemorySwap": 0,
+    "MemorySwappiness": -1,
+    "OomKillDisable": false,
+    "PidsLimit": 0,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0
+  },
+  "GraphDriver": {
+    "Name": "devicemapper",
+    "Data": {
+      "DeviceId": "61",
+      "DeviceName": "docker-253:1-10223820-6b89fe77b9ad1277d3442502f21f6de6d74bcb58c06de5a459aeeabc8e18d33b",
+      "DeviceSize": "10737418240"
+    }
+  },
+  "SizeRw": 0,
+  "SizeRootFs": 366335174,
+  "Mounts": [
+    {
+      "Name": "bc478a2933747208001a6f4b90fcd3770e881775494d28754b9e26f016fb834f",
+      "Source": "/var/lib/docker/volumes/bc478a2933747208001a6f4b90fcd3770e881775494d28754b9e26f016fb834f/_data",
+      "Destination": "/data/configdb",
+      "Driver": "local",
+      "Mode": "",
+      "RW": true,
+      "Propagation": ""
+    },
+    {
+      "Name": "f4429f9beedccb795a7d4a00afeb2c1b0d0b4f5128864c1c605093608e84034c",
+      "Source": "/var/lib/docker/volumes/f4429f9beedccb795a7d4a00afeb2c1b0d0b4f5128864c1c605093608e84034c/_data",
+      "Destination": "/data/db",
+      "Driver": "local",
+      "Mode": "",
+      "RW": true,
+      "Propagation": ""
+    }
+  ],
+  "Config": {
+    "Hostname": "bd76acba6268",
+    "Domainname": "",
+    "User": "",
+    "AttachStdin": false,
+    "AttachStdout": false,
+    "AttachStderr": false,
+    "ExposedPorts": {
+      "27015/tcp": {},
+      "27017/tcp": {}
+    },
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOSU_VERSION=1.7",
+      "GPG_KEYS=DFFA3DCF326E302C4787673A01C4E7FAAAB2461C \t42F3E95A2C4F08279C4960ADD68FA50FEA312927",
+      "MONGO_MAJOR=3.2",
+      "MONGO_VERSION=3.2.9"
+    ],
+    "Cmd": [
+      "mongod"
+    ],
+    "Image": "mongo",
+    "Volumes": {
+      "/data/configdb": {},
+      "/data/db": {}
+    },
+    "WorkingDir": "",
+    "Entrypoint": [
+      "/entrypoint.sh"
+    ],
+    "OnBuild": null,
+    "Labels": {}
+  },
+  "NetworkSettings": {
+    "Bridge": "",
+    "SandboxID": "7aa3760e148086f5e826479af71e8da86f51eb41e50eeabd3ec453f47767df94",
+    "HairpinMode": false,
+    "LinkLocalIPv6Address": "",
+    "LinkLocalIPv6PrefixLen": 0,
+    "Ports": null,
+    "SandboxKey": "/var/run/docker/netns/7aa3760e1480",
+    "SecondaryIPAddresses": null,
+    "SecondaryIPv6Addresses": null,
+    "EndpointID": "",
+    "Gateway": "",
+    "GlobalIPv6Address": "",
+    "GlobalIPv6PrefixLen": 0,
+    "IPAddress": "",
+    "IPPrefixLen": 0,
+    "IPv6Gateway": "",
+    "MacAddress": "",
+    "Networks": {
+      "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "NetworkID": "d22a726bc15611e132426993044c775af8a049ea4ba3ec13cc257c26e9a5ca86",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "MacAddress": ""
+      }
+    }
+  }
+}

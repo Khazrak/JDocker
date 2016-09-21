@@ -1,0 +1,17 @@
+{
+  "uuid" : "09b3b033-6326-307e-8ee9-9812d2d44b9a",
+  "request" : {
+    "url" : "/v1.24/containers/mongo/json?size=true",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-container-inspect-mongo-size.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Mon, 19 Sep 2016 17:49:19 GMT",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}

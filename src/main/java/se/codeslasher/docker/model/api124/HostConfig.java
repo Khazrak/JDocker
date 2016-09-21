@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
-import lombok.Singular;
 
 import java.util.List;
 import java.util.Map;
@@ -76,6 +75,39 @@ import java.util.TreeMap;
 @JsonDeserialize(builder = HostConfig.HostConfigBuilder.class)
 public class HostConfig {
 
+    @JsonProperty("AutoRemove")
+    private boolean autoRemove;
+
+    @JsonProperty("IpcMode")
+    private String ipcMode;
+
+    @JsonProperty("Cgroup")
+    private String cgroup;
+
+    @JsonProperty("UTSMode")
+    private String utsMode;
+
+    @JsonProperty("UsernsMode")
+    private String usernsMode;
+
+    @JsonProperty("Runtime")
+    private String runtime;
+
+    @JsonProperty("ConsoleSize")
+    private List<Integer> consoleSize;
+
+    @JsonProperty("Isolation")
+    private String isolation;
+
+    @JsonProperty("DiskQuota")
+    private int diskQuota;
+
+    @JsonProperty("CpuCount")
+    private int cpuCount;
+
+    @JsonProperty("ContainerIDFile")
+    private String containerIdFile;
+
     @JsonProperty("Binds")
     private List<String> binds;
 
@@ -121,21 +153,20 @@ public class HostConfig {
     @JsonProperty("BlkioWeight")
     private int blkioWeight;
 
-    //TODO: Replace Object with other
     @JsonProperty("BlkioWeightDevice")
-    private List <Object> blkioWeightDevice;
+    private List <Map<String,String>> blkioWeightDevice;
 
     @JsonProperty("BlkioDeviceReadBps")
-    private List <Object> blkioDeviceReadBps;
+    private List <Map<String,String>> blkioDeviceReadBps;
 
     @JsonProperty("BlkioDeviceReadIOps")
-    private List <Object> blkioDeviceReadIops;
+    private List <Map<String,String>> blkioDeviceReadIops;
 
     @JsonProperty("BlkioDeviceWriteBps")
-    private List <Object> blkioDeviceWriteBps;
+    private List <Map<String,String>> blkioDeviceWriteBps;
 
     @JsonProperty("BlkioDeviceWriteIOps")
-    private List <Object> blkioDeviceWriteIops;
+    private List <Map<String,String>> blkioDeviceWriteIops;
 
     @JsonProperty("MemorySwappiness")
     private int memorySwappiness;
@@ -152,7 +183,6 @@ public class HostConfig {
     @JsonProperty("PidsLimit")
     private int pidsLimit;
 
-    @Singular
     @JsonProperty("PortBindings")
     private Map<String, List<HostPort>> portBindings;
 
@@ -165,22 +195,17 @@ public class HostConfig {
     @JsonProperty("ReadonlyRootfs")
     private boolean readOnlyRootfs;
 
-    @Singular
     @JsonProperty("Dns")
     private List<String> dns;
 
-    @Singular
     @JsonProperty("DnsOptions")
     private List<String> dnsOptions;
 
-    @Singular("DnsSearch")
     @JsonProperty("DnsSearch")
     private List<String> dnsSearch;
 
-    //TODO: replace with something better, list of strings?
     @JsonProperty("ExtraHosts")
-    private Object extraHosts;
-
+    private List<String> extraHosts;
 
     @JsonProperty("VolumesFrom")
     private List<String> volumesFrom;
@@ -200,7 +225,6 @@ public class HostConfig {
     @JsonProperty("NetworkMode")
     private String networkMode;
 
-    @Singular
     @JsonProperty("Devices")
     private List<String> devices;
 
@@ -208,7 +232,7 @@ public class HostConfig {
     private Map<String,String> sysCtls;
 
     @JsonProperty("Ulimits")
-    private List<Object> uLimits;
+    private List<Ulimit> uLimits;
 
     @JsonProperty("LogConfig")
     private LogConfig logConfig;
@@ -217,7 +241,7 @@ public class HostConfig {
     private List<String> securityOpt;
 
     @JsonProperty("StorageOpt")
-    private Object storageOpt;
+    private List<Map<String, String>> storageOpt;
 
     @JsonProperty("CgroupParent")
     private String cgroupParent;
@@ -230,16 +254,184 @@ public class HostConfig {
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class HostConfigBuilder {
-        LogConfig logConfig = new LogConfig("",new TreeMap<String,String>());
+
+        @JsonProperty("AutoRemove")
+        private boolean autoRemove;
+
+        @JsonProperty("IpcMode")
+        private String ipcMode;
+
+        @JsonProperty("Cgroup")
+        private String cgroup;
+
+        @JsonProperty("UsernsMode")
+        private String usernsMode;
+
+        @JsonProperty("UTSMode")
+        private String utsMode;
+
+        @JsonProperty("Runtime")
+        private String runtime;
+
+        @JsonProperty("ConsoleSize")
+        private List<Integer> consoleSize;
+
+        @JsonProperty("Isolation")
+        private String isolation;
+
+        @JsonProperty("DiskQuota")
+        private int diskQuota;
+
+        @JsonProperty("CpuCount")
+        private int cpuCount;
+
+        @JsonProperty("ContainerIDFile")
+        private String containerIdFile;
+
+        @JsonProperty("Binds")
+        private List<String> binds;
+
+        @JsonProperty("Links")
+        private List<String> links;
+
+        @JsonProperty("Memory")
+        private int memory;
+
+        @JsonProperty("MemorySwap")
+        private int memorySwap;
+
+        @JsonProperty("MemoryReservation")
+        private int memoryReservation;
+
+        @JsonProperty("KernelMemory")
+        private int kernelMemory;
+
+        @JsonProperty("CpuPercent")
+        private int cpuPercent;
+
+        @JsonProperty("CpuShares")
+        private int cpuShares;
+
+        @JsonProperty("CpuPeriod")
+        private int cpuPeriod;
+
+        @JsonProperty("CpuQuota")
+        private int cpuQuota;
+
+        @JsonProperty("IOMaximumIOps")
+        private int ioMaximumIOps;
+
+        @JsonProperty("IOMaximumBandwidth")
+        private int ioMaximumBandwidth;
+
+        @JsonProperty("BlkioWeight")
+        private int blkioWeight;
+
+        @JsonProperty("BlkioWeightDevice")
+        private List <Map<String,String>> blkioWeightDevice;
+
+        @JsonProperty("BlkioDeviceReadBps")
+        private List <Map<String,String>> blkioDeviceReadBps;
+
+        @JsonProperty("BlkioDeviceReadIOps")
+        private List <Map<String,String>> blkioDeviceReadIops;
+
+        @JsonProperty("BlkioDeviceWriteBps")
+        private List <Map<String,String>> blkioDeviceWriteBps;
+
+        @JsonProperty("BlkioDeviceWriteIOps")
+        private List <Map<String,String>> blkioDeviceWriteIops;
+
+        @JsonProperty("OomKillDisable")
+        private boolean oomKillDisable;
+
+        @JsonProperty("OomScoreAdj")
+        private int oomScoreAdj;
+
+        @JsonProperty("PidsLimit")
+        private int pidsLimit;
+
+        @JsonProperty("PortBindings")
+        private Map<String, List<HostPort>> portBindings;
+
+        @JsonProperty("PublishAllPorts")
+        private boolean publishAllPorts;
+
+        @JsonProperty("Privileged")
+        private boolean privileged;
+
+        @JsonProperty("ReadonlyRootfs")
+        private boolean readOnlyRootfs;
+
+        @JsonProperty("Dns")
+        private List<String> dns;
+
+        @JsonProperty("DnsOptions")
+        private List<String> dnsOptions;
+
+        @JsonProperty("DnsSearch")
+        private List<String> dnsSearch;
+
+        @JsonProperty("ExtraHosts")
+        private List<String> extraHosts;
+
+        @JsonProperty("VolumesFrom")
+        private List<String> volumesFrom;
+
+        @JsonProperty("CapAdd")
+        private List<String> capAdd;
+
+        @JsonProperty("CapDrop")
+        private List<String> capDrop;
+
+        @JsonProperty("GroupAdd")
+        private List<String> groupAdd;
+
+
+        @JsonProperty("Devices")
+        private List<String> devices;
+
+        @JsonProperty("Sysctls")
+        private Map<String,String> sysCtls;
+
+        @JsonProperty("Ulimits")
+        private List<Ulimit> uLimits;
+
+        @JsonProperty("SecurityOpt")
+        private List<String> securityOpt;
+
+        @JsonProperty("StorageOpt")
+        private List<Map<String, String>> storageOpt;
+
+        @JsonProperty("ShmSize")
+        private int shmSize;
+
+        @JsonProperty("LogConfig")
+        private LogConfig logConfig = new LogConfig("",new TreeMap<String,String>());
+
         @JsonProperty("NetworkMode")
-        String networkMode = "default";
-        RestartPolicy restartPolicy = new RestartPolicy("no",0);
-        String volumeDriver = "";
-        String pidMode = "";
-        String cgroupParent = "";
-        String cpuSetCpus = "";
-        String cpuSetMems = "";
-        int memorySwappiness = -1;
+        private String networkMode = "default";
+
+        @JsonProperty("RestartPolicy")
+        private RestartPolicy restartPolicy = new RestartPolicy("no",0);
+
+        @JsonProperty("VolumeDriver")
+        private String volumeDriver = "";
+
+        @JsonProperty("PidMode")
+        private String pidMode = "";
+
+        @JsonProperty("CgroupParent")
+        private String cgroupParent = "";
+
+        @JsonProperty("CpusetCpus")
+        private String cpuSetCpus = "";
+
+        @JsonProperty("CpusetMems")
+        private String cpuSetMems = "";
+
+        @JsonProperty("MemorySwappiness")
+        private int memorySwappiness = -1;
 
     }
 }
