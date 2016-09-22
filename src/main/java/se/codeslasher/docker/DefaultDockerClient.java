@@ -239,6 +239,28 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
+    public void resizeTty(String id, int width, int height) {
+        final String path ="/v1.24/containers/"+id+"/resize?h="+height+"&w="+width;
+
+        Response response;
+        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .post(body)
+                .build();
+        try {
+            response = httpClient.newCall(request).execute();
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error resizing container tty with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public void start(String id) {
         final String path = "/v1.24/containers/"+id+"/start";
 
