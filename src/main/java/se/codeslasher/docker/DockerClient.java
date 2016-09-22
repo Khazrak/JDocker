@@ -29,6 +29,8 @@ public interface DockerClient {
     ContainerProcesses top(String id);
     ContainerProcesses top(String id, String arg);
 
+    List<ContainerFileSystemChange> containerFileSystemChanges(String id);
+
     List<String> logs(String id, DockerLogsParameters params);
     InputStream logsRawStream(String id, DockerLogsParameters params);
     InputStream logsStream(String id, DockerLogsParameters params);

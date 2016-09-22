@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -143,6 +144,36 @@ public class DefaultDockerClient implements DockerClient {
                         +"\nHTTP-Code: "+response.code());
             }
             return mapper.readValue(response.body().string(),ContainerProcesses.class);
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<ContainerFileSystemChange> containerFileSystemChanges(String id) {
+        final String path = "/v1.24/containers/"+id+"/changes";
+
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            System.out.println(response.code());
+            //System.out.println(response.body().string());
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error stopping container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+            ContainerFileSystemChange[] array = mapper.readValue(response.body().string(),ContainerFileSystemChange[].class);
+            return Arrays.asList(array);
 
 
 
