@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -14,19 +14,13 @@ import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.model.api124.ContainerProcesses;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by karl on 9/22/16.
+ * Created by karl on 9/21/16.
  */
-public class ContainerStats {
-
+public class ContainerTop {
     private DockerClient client;
     private static Logger logger = LoggerFactory.getLogger(ContainerTop.class);
 
@@ -43,15 +37,17 @@ public class ContainerStats {
         client.close();
     }
 
+
+
     @Test
-    public void stats() {
-        final String path = "/v1.24/containers/mongo/stats?stream=false";
+    public void top() {
+        final String path = "/v1.24/containers/mongo/top";
 
-        se.codeslasher.docker.model.api124.ContainerStats mongoStats = client.stats("mongo");
+        ContainerProcesses top = client.top("mongo");
 
-        long systemCpuUsage = 60897810000000L;
 
-        assertThat(mongoStats.getCpuStats().getSystemCpuUsage()).isEqualTo(systemCpuUsage);
+        String c = top.getProcesses().get(0).get(3);
+        assertThat(c).isEqualTo("0");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -60,26 +56,19 @@ public class ContainerStats {
     }
 
     @Test
-    public void statsStream() {
-        final String path = "/v1.24/containers/mongo/stats?stream=true";
+    public void topWithArgument() {
+        final String path = "/v1.24/containers/mongo/top?ps_args=aux";
 
-        InputStream input = client.statsStream("mongo");
-        int count = 0;
-        int expected = 59;
+        ContainerProcesses top = client.top("mongo","aux");
 
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
-            while(reader.readLine() != null) {
-                count++;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assertThat(count).isEqualTo(expected);
+        String start = top.getProcesses().get(0).get(8);
+        assertThat(start).isEqualTo("19:29");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
     }
+
+
 }

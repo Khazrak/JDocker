@@ -1,9 +1,6 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
-import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
-import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,7 +13,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options
 /**
  * Created by karl on 9/10/16.
  */
-public class ContainerRename {
+public class ContainerRemove {
 
     private DockerClient client;
 
@@ -34,15 +31,28 @@ public class ContainerRename {
     }
 
     @Test
-    public void rename() {
-        final String path = "/v1.24/containers/mongo/rename?name=mongo2";
+    public void remove() {
+        client.remove("f2aca7ccb724d73aad6e4f6");
+    }
 
-        client.rename("mongo","mongo2");
+    @Test
+    public void removeForceAndVolume() {
+        client.remove("f2aca7ccb724d73aad6e4f1", true, true);
+    }
 
-        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
-        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
+    @Test
+    public void removeForce() {
+        client.remove("f2aca7ccb724d73aad6e4f1", true, false);
+    }
 
-        wireMockRule.verify(1, requestPatternBuilder);
+    @Test
+    public void removeWithVolume() {
+        client.remove("f2aca7ccb724d73aad6e4f1", false, true);
+    }
+
+    @Test
+    public void removeNormal() {
+        client.remove("f2aca7ccb724d73aad6e4f1", false, false);
     }
 
 }

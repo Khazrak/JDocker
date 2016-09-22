@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -12,18 +12,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.model.api124.DockerContainerInspect;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by karl on 9/20/16.
+ * Created by karl on 9/22/16.
  */
-public class ContainerInspect {
+public class ContainerStats {
 
     private DockerClient client;
-    private static Logger logger = LoggerFactory.getLogger(ContainerInspect.class);
+    private static Logger logger = LoggerFactory.getLogger(ContainerTop.class);
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options().usingFilesUnderClasspath("src/test/resources/1_24").port(9779)); // No-args constructor defaults
@@ -38,18 +42,15 @@ public class ContainerInspect {
         client.close();
     }
 
-
-
     @Test
-    public void inspect() {
-        final String path = "/v1.24/containers/mongo/json?size=false";
+    public void stats() {
+        final String path = "/v1.24/containers/mongo/stats?stream=false";
 
-        DockerContainerInspect mongo = client.inspectContainer("mongo", false);
+        se.codeslasher.docker.model.api124.ContainerStats mongoStats = client.stats("mongo");
 
-        logger.info(mongo.getName());
-        assertThat(mongo.getName()).isEqualTo("/mongo");
-        assertThat(mongo.getSizeRootFs()).isEqualTo(0);
-        assertThat(mongo.getConfig().getHostName()).isEqualTo("bd76acba6268");
+        long systemCpuUsage = 60897810000000L;
+
+        assertThat(mongoStats.getCpuStats().getSystemCpuUsage()).isEqualTo(systemCpuUsage);
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -58,20 +59,26 @@ public class ContainerInspect {
     }
 
     @Test
-    public void inspectSize() {
-        final String path = "/v1.24/containers/mongo/json?size=true";
+    public void statsStream() {
+        final String path = "/v1.24/containers/mongo/stats?stream=true";
 
-        DockerContainerInspect mongo = client.inspectContainer("mongo", true);
+        InputStream input = client.statsStream("mongo");
+        int count = 0;
+        int expected = 59;
 
-        logger.info(mongo.getName());
-        assertThat(mongo.getName()).isEqualTo("/mongo");
-        assertThat(mongo.getSizeRootFs()).isGreaterThan(0);
-        assertThat(mongo.getConfig().getHostName()).isEqualTo("bd76acba6268");
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+            while(reader.readLine() != null) {
+                count++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertThat(count).isEqualTo(expected);
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
     }
-
 }

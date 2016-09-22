@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -12,18 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.model.api124.ContainerFileSystemChange;
-import se.codeslasher.docker.model.api124.ContainerProcesses;
-
-import java.util.List;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by karl on 9/21/16.
+ * Created by karl on 9/22/16.
  */
-public class ContainerChanges {
+public class ContainerResize {
 
     private DockerClient client;
     private static Logger logger = LoggerFactory.getLogger(ContainerTop.class);
@@ -41,23 +36,14 @@ public class ContainerChanges {
         client.close();
     }
 
-
-
     @Test
-    public void changes() {
-        final String path = "/v1.24/containers/mongo/changes";
+    public void resize() {
+        final String path = "/v1.24/containers/mongo/resize?h=80&w=200";
 
-        ContainerFileSystemChange change1 = ContainerFileSystemChange.builder().path("/tmp").kind(0).build();
-        ContainerFileSystemChange change2 = ContainerFileSystemChange.builder().path("/tmp/mongodb-27017.sock").kind(1).build();
-
-        List<ContainerFileSystemChange> changes = client.containerFileSystemChanges("mongo");
-
-        assertThat(changes.get(0)).isEqualTo(change1);
-        assertThat(changes.get(1)).isEqualTo(change2);
-
+        client.resizeTty("mongo",200,80);
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
-        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
     }

@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -10,14 +10,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.exception.DockerServerException;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 
 /**
  * Created by karl on 9/10/16.
  */
-public class ContainerRestart {
+public class ContainerRename {
 
     private DockerClient client;
 
@@ -35,22 +34,10 @@ public class ContainerRestart {
     }
 
     @Test
-    public void restart() {
-        final String path = "/v1.24/containers/mongo/restart?t=10";
+    public void rename() {
+        final String path = "/v1.24/containers/mongo/rename?name=mongo2";
 
-        client.restart("mongo");
-
-        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
-        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
-
-        wireMockRule.verify(1, requestPatternBuilder);
-    }
-
-    @Test
-    public void restartWait() {
-        final String path = "/v1.24/containers/mongo/restart?t=20";
-
-        client.restart("mongo",20);
+        client.rename("mongo","mongo2");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);

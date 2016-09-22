@@ -21,8 +21,8 @@ public interface DockerClient {
     void remove(String id, boolean forceRemove, boolean removeVolume);
     void kill(String id);
     void kill(String id, String signal);
-    List<Container> list();
-    List<Container> list(ContainerListRequest listRequest);
+    List<Container> listContainers();
+    List<Container> listContainers(ContainerListRequest listRequest);
 
     DockerContainerInspect inspectContainer(String id, boolean size);
 
@@ -55,4 +55,7 @@ public interface DockerClient {
     void pause(String id);
 
     void unpause(String id);
+
+    List<Image> listImages(boolean all);
+    List<Image> listImages(ListImagesParams params);
 }

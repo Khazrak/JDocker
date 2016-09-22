@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -16,7 +16,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options
 /**
  * Created by karl on 9/10/16.
  */
-public class ContainerPause {
+public class ContainerKill {
 
     private DockerClient client;
 
@@ -34,24 +34,20 @@ public class ContainerPause {
     }
 
     @Test
-    public void pause() {
-        final String path = "/v1.24/containers/mongo/pause";
+    public void kill() {
+        client.kill("f2aca7ccb724d73aad6e4f6");
 
-        client.pause("mongo");
-
-        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/f2aca7ccb724d73aad6e4f6/kill", null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
-    public void unPause() {
-        final String path = "/v1.24/containers/mongo/unpause";
+    public void killSignal() {
+        client.kill("with_signal","SIGKILL");
 
-        client.unpause("mongo");
-
-        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/with_signal/kill?signal=SIGKILL", null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);

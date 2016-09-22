@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -36,7 +36,7 @@ public class ContainerList {
 
     @Test
     public void list() {
-        List<Container> containerList = client.list();
+        List<Container> containerList = client.listContainers();
 
         assertThat(containerList.size()).isEqualTo(2);
 
@@ -59,7 +59,7 @@ public class ContainerList {
     @Test
     public void listAll() {
         ContainerListRequest request = ContainerListRequest.builder().all(true).build();
-        List<Container> containerList = client.list(request);
+        List<Container> containerList = client.listContainers(request);
 
         assertThat(containerList.size()).isEqualTo(3);
 
@@ -93,7 +93,7 @@ public class ContainerList {
     @Test
     public void listLimit() {
         ContainerListRequest request = ContainerListRequest.builder().limit(1).build();
-        List<Container> containerList = client.list(request);
+        List<Container> containerList = client.listContainers(request);
 
 
         assertThat(containerList.size()).isEqualTo(1);
@@ -113,7 +113,7 @@ public class ContainerList {
     @Test
     public void listSize() {
         ContainerListRequest request = ContainerListRequest.builder().size(true).build();
-        List<Container> containerList = client.list(request);
+        List<Container> containerList = client.listContainers(request);
 
         assertThat(containerList.size()).isEqualTo(2);
 

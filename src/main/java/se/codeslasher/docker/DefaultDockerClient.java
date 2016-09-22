@@ -1,6 +1,5 @@
 package se.codeslasher.docker;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
@@ -33,6 +32,7 @@ public class DefaultDockerClient implements DockerClient {
 
     private DockerLogsHandler logsHandler;
     private DockerPullHandler pullHandler;
+    private DockerImagesHandler imageHandler;
 
     private ObjectMapper mapper;
 
@@ -45,6 +45,7 @@ public class DefaultDockerClient implements DockerClient {
 
         logsHandler = new DockerLogsHandler(httpClient, URL);
         pullHandler = new DockerPullHandler(httpClient, mapper, URL);
+        imageHandler = new DockerImagesHandler(httpClient, mapper, URL);
     }
 
     public DefaultDockerClient(String host) {
@@ -54,6 +55,7 @@ public class DefaultDockerClient implements DockerClient {
 
         logsHandler = new DockerLogsHandler(httpClient, URL);
         pullHandler = new DockerPullHandler(httpClient, mapper, URL);
+        imageHandler = new DockerImagesHandler(httpClient, mapper, URL);
     }
 
     public void close()  {
@@ -343,20 +345,20 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public List<Container> list() {
+    public List<Container> listContainers() {
         final String path = "/v1.24/containers/json";
         return runListCommand(path);
     }
 
     @Override
-    public List<Container> list(ContainerListRequest listRequest) {
+    public List<Container> listContainers(ContainerListRequest listRequest) {
 
         String params = listRequest.toString();
         if(params.length() > 0) {
             return runListCommand("/v1.24/containers/json?"+params);
         }
         else {
-            return list();
+            return listContainers();
         }
     }
 
@@ -512,6 +514,16 @@ public class DefaultDockerClient implements DockerClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Image> listImages(boolean all) {
+        return imageHandler.listImages(all);
+    }
+
+    @Override
+    public List<Image> listImages(ListImagesParams params) {
+        return imageHandler.listImages(params);
     }
 
     @Override

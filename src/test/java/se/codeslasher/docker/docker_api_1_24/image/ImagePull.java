@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.image;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -20,10 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by karl on 9/18/16.
  */
-public class ContainerPull {
+public class ImagePull {
 
     private DockerClient client;
-    private static Logger logger = LoggerFactory.getLogger(ContainerPull.class);
+    private static Logger logger = LoggerFactory.getLogger(ImagePull.class);
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options().usingFilesUnderClasspath("src/test/resources/1_24").port(9779)); // No-args constructor defaults

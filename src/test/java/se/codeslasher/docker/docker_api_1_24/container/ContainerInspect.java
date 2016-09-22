@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -12,17 +12,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.model.api124.ContainerProcesses;
+import se.codeslasher.docker.model.api124.DockerContainerInspect;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by karl on 9/21/16.
+ * Created by karl on 9/20/16.
  */
-public class ContainerTop {
+public class ContainerInspect {
+
     private DockerClient client;
-    private static Logger logger = LoggerFactory.getLogger(ContainerTop.class);
+    private static Logger logger = LoggerFactory.getLogger(ContainerInspect.class);
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options().usingFilesUnderClasspath("src/test/resources/1_24").port(9779)); // No-args constructor defaults
@@ -40,14 +41,15 @@ public class ContainerTop {
 
 
     @Test
-    public void top() {
-        final String path = "/v1.24/containers/mongo/top";
+    public void inspect() {
+        final String path = "/v1.24/containers/mongo/json?size=false";
 
-        ContainerProcesses top = client.top("mongo");
+        DockerContainerInspect mongo = client.inspectContainer("mongo", false);
 
-
-        String c = top.getProcesses().get(0).get(3);
-        assertThat(c).isEqualTo("0");
+        logger.info(mongo.getName());
+        assertThat(mongo.getName()).isEqualTo("/mongo");
+        assertThat(mongo.getSizeRootFs()).isEqualTo(0);
+        assertThat(mongo.getConfig().getHostName()).isEqualTo("bd76acba6268");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -56,19 +58,20 @@ public class ContainerTop {
     }
 
     @Test
-    public void topWithArgument() {
-        final String path = "/v1.24/containers/mongo/top?ps_args=aux";
+    public void inspectSize() {
+        final String path = "/v1.24/containers/mongo/json?size=true";
 
-        ContainerProcesses top = client.top("mongo","aux");
+        DockerContainerInspect mongo = client.inspectContainer("mongo", true);
 
-        String start = top.getProcesses().get(0).get(8);
-        assertThat(start).isEqualTo("19:29");
+        logger.info(mongo.getName());
+        assertThat(mongo.getName()).isEqualTo("/mongo");
+        assertThat(mongo.getSizeRootFs()).isGreaterThan(0);
+        assertThat(mongo.getConfig().getHostName()).isEqualTo("bd76acba6268");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
     }
-
 
 }

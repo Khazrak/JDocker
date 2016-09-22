@@ -1,7 +1,10 @@
-package se.codeslasher.docker.docker_api_1_24;
+package se.codeslasher.docker.docker_api_1_24.container;
 
+import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.matching.RequestMatcher;
+import com.github.tomakehurst.wiremock.matching.RequestMatcherExtension;
 import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.junit.After;
@@ -16,7 +19,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options
 /**
  * Created by karl on 9/10/16.
  */
-public class ContainerKill {
+public class ContainerStop {
 
     private DockerClient client;
 
@@ -34,23 +37,22 @@ public class ContainerKill {
     }
 
     @Test
-    public void kill() {
-        client.kill("f2aca7ccb724d73aad6e4f6");
+    public void stop() {
+        client.stop("f2aca7ccb724d73aad6e4f6");
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/f2aca7ccb724d73aad6e4f6/kill", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/f2aca7ccb724d73aad6e4f6/stop?t=10", null, null, null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
-
         wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
-    public void killSignal() {
-        client.kill("with_signal","SIGKILL");
+    public void stopNoneExisting() {
+        //Will log 304
+        client.stop("none_existing",20);
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/with_signal/kill?signal=SIGKILL", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/none_existing/stop?t=20", null, null, null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
     }
-
 }

@@ -1,0 +1,16 @@
+{
+  "uuid" : "779728ca-793a-3ac3-8b76-c8e3d5ed441a",
+  "request" : {
+    "url" : "/v1.24/images/json?all=false&filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-images-list-dangling.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Thu, 22 Sep 2016 20:21:05 GMT"
+    }
+  }
+}
