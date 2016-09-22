@@ -185,6 +185,60 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
+    public ContainerStats stats(String id) {
+        final String path = "/v1.24/containers/"+id+"/stats?stream=false";
+
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            System.out.println(response.code());
+            //System.out.println(response.body().string());
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error reading stats from container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+            return mapper.readValue(response.body().string(), ContainerStats.class);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public InputStream statsStream(String id) {
+        final String path = "/v1.24/containers/"+id+"/stats?stream=true";
+
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            System.out.println(response.code());
+            //System.out.println(response.body().string());
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error reading stats from container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+            return response.body().byteStream();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
     public void start(String id) {
         final String path = "/v1.24/containers/"+id+"/start";
 

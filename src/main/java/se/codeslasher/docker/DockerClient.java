@@ -31,6 +31,9 @@ public interface DockerClient {
 
     List<ContainerFileSystemChange> containerFileSystemChanges(String id);
 
+    ContainerStats stats(String id);
+    InputStream statsStream(String id);
+
     List<String> logs(String id, DockerLogsParameters params);
     InputStream logsRawStream(String id, DockerLogsParameters params);
     InputStream logsStream(String id, DockerLogsParameters params);
