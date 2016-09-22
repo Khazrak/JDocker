@@ -389,6 +389,34 @@ public class DefaultDockerClient implements DockerClient {
         pullHandler.pull(image,token);
     }
 
+
+    @Override
+    public void restart(String id) {
+        restart(id,10);
+    }
+
+    @Override
+    public void restart(String id, int wait) {
+        final String path = "/v1.24/containers/"+id+"/restart?t="+wait;
+
+        Response response;
+        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .post(body)
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            if(response.code() != 204 ) {
+                throw new DockerServerException("Error restarting container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public InputStream logsStream(String id, DockerLogsParameters params) {
         final String path = "/v1.24/containers/"+id+"/logs"+params.toString();

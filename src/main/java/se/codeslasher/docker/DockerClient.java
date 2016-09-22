@@ -44,4 +44,7 @@ public interface DockerClient {
     String pull(DockerImageName image);
     void pull(DockerImageName image, AuthConfig authConfig);
     void pull(DockerImageName image, String token);
+
+    void restart(String id);
+    void restart(String id, int wait);
 }
