@@ -462,7 +462,51 @@ public class DefaultDockerClient implements DockerClient {
         try {
             response = httpClient.newCall(request).execute();
             if(response.code() != 204 ) {
-                throw new DockerServerException("Error restarting container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                throw new DockerServerException("Error renaming container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void pause(String id) {
+        final String path = "/v1.24/containers/"+id+"/pause";
+
+        Response response;
+        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .post(body)
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            if(response.code() != 204 ) {
+                throw new DockerServerException("Error pausing container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void unpause(String id) {
+        final String path = "/v1.24/containers/"+id+"/unpause";
+
+        Response response;
+        RequestBody body = RequestBody.create(ContainerCreation.JSON,"");
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .post(body)
+                .build();
+
+        try {
+            response = httpClient.newCall(request).execute();
+            if(response.code() != 204 ) {
+                throw new DockerServerException("Error unpausing container with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
                         +"\nHTTP-Code: "+response.code());
             }
         } catch (IOException e) {

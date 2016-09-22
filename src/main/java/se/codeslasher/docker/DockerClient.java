@@ -51,4 +51,8 @@ public interface DockerClient {
     Warnings update(String id, ContainerUpdate updateConfig);
 
     void rename(String originalName, String newName);
+
+    void pause(String id);
+
+    void unpause(String id);
 }
