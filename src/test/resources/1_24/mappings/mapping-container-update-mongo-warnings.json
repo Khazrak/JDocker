@@ -1,0 +1,22 @@
+{
+  "uuid" : "72714027-62fa-3e5b-9ba6-770d05549e08",
+  "request" : {
+    "url" : "/v1.24/containers/mongo/update",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+
+      "equalToJson" : "{\"BlkioWeight\":0,\"CpuShares\":3,\"CpuPeriod\":0,\"CpuQuota\":0,\"CpusetCpus\":null,\"CpusetMems\":null,\"Memory\":0,\"MemorySwap\":0,\"MemoryReservation\":0,\"KernelMemory\":0,\"RestartPolicy\":{\"Name\":\"\",\"MaximumRetryCount\":0}}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-container-update-mongo-warnings.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Thu, 22 Sep 2016 11:40:41 GMT"
+    }
+  }
+}

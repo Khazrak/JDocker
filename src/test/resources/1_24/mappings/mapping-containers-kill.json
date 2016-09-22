@@ -1,7 +1,6 @@
 {
   "request" : {
-    "urlPathPattern" : "/v1.24/containers/f2aca7ccb724d73aad6e4f6/kill",
-
+    "url" : "/v1.24/containers/f2aca7ccb724d73aad6e4f6/kill",
     "method" : "POST"
   },
   "response" : {

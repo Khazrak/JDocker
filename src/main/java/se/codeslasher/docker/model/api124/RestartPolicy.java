@@ -22,7 +22,7 @@ public class RestartPolicy {
     @JsonPOJOBuilder(withPrefix = "")
     public static class RestartPolicyBuilder {
         @JsonProperty("Name")
-        private String name;
+        private String name = "";
 
         @JsonProperty("MaximumRetryCount")
         private int maximumRetryCount;

@@ -1,5 +1,6 @@
 package se.codeslasher.docker;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
@@ -415,6 +416,36 @@ public class DefaultDockerClient implements DockerClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Warnings update(String id, ContainerUpdate updateConfig) {
+        final String path = "/v1.24/containers/"+id+"/update";
+
+        Response response;
+
+        try {
+            String json = mapper.writeValueAsString(updateConfig);
+            System.out.println(json);
+            RequestBody body = RequestBody.create(ContainerCreation.JSON,json);
+            Request request = new Request.Builder()
+                    .url(URL+path)
+                    .post(body)
+                    .build();
+            response = httpClient.newCall(request).execute();
+
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error updating container config with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+
+            return mapper.readValue(response.body().string(), Warnings.class);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override
