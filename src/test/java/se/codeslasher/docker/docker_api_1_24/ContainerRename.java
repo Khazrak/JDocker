@@ -8,18 +8,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import se.codeslasher.docker.ContainerUpdate;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.model.api124.Warnings;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by karl on 9/22/16.
+ * Created by karl on 9/10/16.
  */
-public class ContainerUpdateConfig {
+public class ContainerRename {
 
     private DockerClient client;
 
@@ -37,32 +34,10 @@ public class ContainerUpdateConfig {
     }
 
     @Test
-    public void update() {
-        final String path = "/v1.24/containers/mongo/update";
+    public void rename() {
+        final String path = "/v1.24/containers/mongo/rename?name=mongo2";
 
-        ContainerUpdate update = ContainerUpdate.builder().cpuShares(2).build();
-
-        Warnings warnings = client.update("mongo", update);
-
-        assertThat(warnings.getWarnings()).isNull();
-
-        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
-        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
-
-        wireMockRule.verify(1, requestPatternBuilder);
-    }
-
-    @Test
-    public void updateWithWarnings() {
-        final String path = "/v1.24/containers/mongo/update";
-
-        ContainerUpdate update = ContainerUpdate.builder().cpuShares(3).build();
-
-        Warnings warnings = client.update("mongo", update);
-
-        assertThat(warnings.getWarnings()).isNotNull();
-        assertThat(warnings.size()).isEqualTo(3);
-        assertThat(warnings.getWarning(0)).isEqualTo("This is a test warning");
+        client.rename("mongo","mongo2");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
