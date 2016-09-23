@@ -58,4 +58,6 @@ public interface DockerClient {
 
     List<Image> listImages(boolean all);
     List<Image> listImages(ListImagesParams params);
+
+    String createNetwork(DockerNetworkCreateRequest request);
 }

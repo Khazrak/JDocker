@@ -1,0 +1,21 @@
+{
+  "uuid" : "b21be165-58f5-35e2-b531-dae478f3699c",
+  "request" : {
+    "url" : "/v1.24/networks/create",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":{},\"Config\":[]},\"Internal\":false,\"Options\":{},\"Labels\":{},\"Name\":\"test1\"}\n",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-networks-create.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Fri, 23 Sep 2016 06:39:24 GMT"
+    }
+  }
+}

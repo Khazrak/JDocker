@@ -33,6 +33,7 @@ public class DefaultDockerClient implements DockerClient {
     private DockerLogsHandler logsHandler;
     private DockerPullHandler pullHandler;
     private DockerImagesHandler imageHandler;
+    private DockerNetwoksHandler netwoksHandler;
 
     private ObjectMapper mapper;
 
@@ -46,6 +47,7 @@ public class DefaultDockerClient implements DockerClient {
         logsHandler = new DockerLogsHandler(httpClient, URL);
         pullHandler = new DockerPullHandler(httpClient, mapper, URL);
         imageHandler = new DockerImagesHandler(httpClient, mapper, URL);
+        netwoksHandler = new DockerNetwoksHandler(httpClient, mapper, URL);
     }
 
     public DefaultDockerClient(String host) {
@@ -56,6 +58,7 @@ public class DefaultDockerClient implements DockerClient {
         logsHandler = new DockerLogsHandler(httpClient, URL);
         pullHandler = new DockerPullHandler(httpClient, mapper, URL);
         imageHandler = new DockerImagesHandler(httpClient, mapper, URL);
+        netwoksHandler = new DockerNetwoksHandler(httpClient, mapper, URL);
     }
 
     public void close()  {
@@ -524,6 +527,11 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public List<Image> listImages(ListImagesParams params) {
         return imageHandler.listImages(params);
+    }
+
+    @Override
+    public String createNetwork(DockerNetworkCreateRequest request) {
+        return netwoksHandler.createNetwork(request);
     }
 
     @Override

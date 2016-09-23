@@ -14,7 +14,6 @@ Extract an archive of files or folders to a directory in a container
 
 
 ### Images
-List Images
 Build image from a Dockerfile
 Create an image
 Inspect an image
@@ -52,7 +51,9 @@ Remove a volume
 ### Networks
 List networks
 Inspect network
-Create a network
 Connect a container to a network
 Disconnect a container from a network
 Remove a network
+
+
+More Custom Tests
