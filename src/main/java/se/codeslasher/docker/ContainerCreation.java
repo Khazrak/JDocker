@@ -4,6 +4,7 @@ package se.codeslasher.docker;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Singular;
 import okhttp3.MediaType;
 import se.codeslasher.docker.model.api124.HostConfig;
@@ -36,6 +37,7 @@ import java.util.Map;
         "HostConfig",
         "NetworkingConfig"
 })
+@Getter
 @Builder
 public class ContainerCreation {
 

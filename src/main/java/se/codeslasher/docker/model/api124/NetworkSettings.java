@@ -1,7 +1,6 @@
 package se.codeslasher.docker.model.api124;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
@@ -72,7 +71,7 @@ public class NetworkSettings {
     private String macAddress;
 
     @JsonProperty("Networks")
-    private Map<String,Network> networks;
+    private Map<String,NetworkInterface> networks;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class NetworkSettingsBuilder {
@@ -128,7 +127,7 @@ public class NetworkSettings {
         private String macAddress;
 
         @JsonProperty("Networks")
-        private Map<String,Network> networks;
+        private Map<String,NetworkInterface> networks;
     }
 
 }

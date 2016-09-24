@@ -1,0 +1,16 @@
+{
+  "uuid" : "f23560b3-f79c-3aaf-9230-41fa80cfb325",
+  "request" : {
+    "url" : "/v1.24/containers/json?filters=%7B%22before%22%3A%7B%22new_mongo%22%3Atrue%7D%7D",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-containers-list-filters-before.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sat, 24 Sep 2016 09:13:26 GMT"
+    }
+  }
+}

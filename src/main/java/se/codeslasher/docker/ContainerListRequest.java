@@ -2,12 +2,21 @@ package se.codeslasher.docker;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import se.codeslasher.docker.utils.Filters;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by karl on 9/11/16.
  */
 @Builder
 public class ContainerListRequest {
+
+    private static final Logger logger = LoggerFactory.getLogger(ContainerListRequest.class);
 
     @Getter
     private boolean all;
@@ -25,7 +34,7 @@ public class ContainerListRequest {
     private boolean size;
 
     @Getter
-    private String filters;
+    private Filters filters;
 
     public String toString() {
 
@@ -47,7 +56,11 @@ public class ContainerListRequest {
             append("size=true",sb);
         }
         if(filters != null) {
-            append("filters="+filters,sb);
+            try {
+                sb.append("filters="+URLEncoder.encode(filters.toString(), StandardCharsets.UTF_8.toString()));
+            } catch (UnsupportedEncodingException e) {
+                logger.error("Error encoding filters in container list method",e);
+            }
         }
 
         return sb.toString();

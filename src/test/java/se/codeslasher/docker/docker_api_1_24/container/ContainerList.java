@@ -8,6 +8,7 @@ import org.junit.*;
 import se.codeslasher.docker.*;
 import se.codeslasher.docker.model.api124.Container;
 import se.codeslasher.docker.model.api124.DockerImageName;
+import se.codeslasher.docker.utils.Filters;
 
 import java.util.List;
 
@@ -82,12 +83,40 @@ public class ContainerList {
 
     @Test
     public void listSince() {
-        Assert.fail("Not implemented yet");
+        final String path = "/v1.24/containers/json?since=mongo";
+        ContainerListRequest request = ContainerListRequest.builder().since("mongo").build();
+        List<Container> containerList = client.listContainers(request);
+
+        DockerImageName mongo = new DockerImageName("mongo");
+
+        assertThat(containerList.size()).isEqualTo(1);
+        assertThat(containerList.get(0).getImage()).isEqualTo(mongo);
+        assertThat(containerList.get(0).getNames().get(0)).isEqualTo("/new_mongo");
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
     public void listBefore() {
-        Assert.fail("Not implemented yet");
+        final String path = "/v1.24/containers/json?before=new_mongo";
+        ContainerListRequest request = ContainerListRequest.builder().before("new_mongo").build();
+        List<Container> containerList = client.listContainers(request);
+
+        DockerImageName mongo = new DockerImageName("mongo");
+
+        assertThat(containerList.size()).isEqualTo(2);
+        assertThat(containerList.get(0).getImage()).isEqualTo(mongo);
+        assertThat(containerList.get(1).getImage()).isEqualTo(mongo);
+        assertThat(containerList.get(0).getNames().get(0)).isEqualTo("/new_mongo");
+        assertThat(containerList.get(1).getNames().get(0)).isEqualTo("/mongo");
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
@@ -132,8 +161,44 @@ public class ContainerList {
     }
 
     @Test
-    public void listFilter() {
-        Assert.fail("Not implemented yet");
+    public void listFilterBefore() {
+        final String path = "/v1.24/containers/json?filters=%7B%22before%22%3A%7B%22new_mongo%22%3Atrue%7D%7D";
+
+        Filters filters = new Filters();
+        filters.add("before","new_mongo");
+
+        ContainerListRequest request = ContainerListRequest.builder().filters(filters).build();
+        List<Container> containerList = client.listContainers(request);
+
+        assertThat(containerList.size()).isEqualTo(1);
+        assertThat(containerList.get(0).getNames().get(0)).isEqualTo("/mongo");
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
+    }
+
+    @Test
+    public void listFilterSince() {
+        final String path = "/v1.24/containers/json?filters=%7B%22since%22%3A%7B%22mongo%22%3Atrue%7D%7D";
+
+        Filters filters = new Filters();
+        filters.add("since","mongo");
+
+        ContainerListRequest request = ContainerListRequest.builder().filters(filters).build();
+        List<Container> containerList = client.listContainers(request);
+
+        DockerImageName mongo = new DockerImageName("mongo");
+
+        assertThat(containerList.size()).isEqualTo(1);
+        assertThat(containerList.get(0).getNames().get(0)).isEqualTo("/new_mongo");
+        assertThat(containerList.get(0).getImage()).isEqualTo(mongo);
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
 

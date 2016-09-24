@@ -6,7 +6,7 @@
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-container-top-mongo-args.json",
+    "bodyFileName" : "body-containers-top-mongo-args.json",
     "headers" : {
       "Content-Type" : "application/json",
       "Server" : "Docker/1.12.1 (linux)",

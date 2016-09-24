@@ -1,7 +1,10 @@
 package se.codeslasher.docker.docker_api_1_24.container;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
+import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -38,13 +41,20 @@ public class ContainerCreate {
     @Test
     public void createContainer() throws JsonProcessingException {
 
+        final String path = "/v1.24/containers/create?name=test_container";
+
         HostConfig hostConfig = HostConfig.builder().build();
 
         ContainerCreation test = ContainerCreation.builder().name("test_container").image("ubuntu:14.04").hostConfig(hostConfig).build();
 
         String id = client.createContainer(test);
 
-        assertThat(id).isEqualTo("f2aca7ccb724d73aad6e4f6adc75fc3c8792df31ac5ec459cb857c0ca6f60d2c");
+        assertThat(id).isEqualTo("bd5ef2fe35da356ecc75527d77388149d7c016fcdfd3201429fe6a1b5a5e9308");
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
 }

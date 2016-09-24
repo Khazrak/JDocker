@@ -1,4 +1,4 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.model.api124;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -11,7 +11,7 @@ import se.codeslasher.docker.model.api124.RestartPolicy;
  */
 @Getter
 @Builder
-public class ContainerUpdate {
+public class ContainerUpdateRequest {
 
     @JsonProperty("BlkioWeight")
     private long blkioWeight;
@@ -46,7 +46,7 @@ public class ContainerUpdate {
     private RestartPolicy restartPolicy;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class ContainerUpdateBuilder {
+    public static class ContainerUpdateRequestBuilder {
 
         @JsonProperty("RestartPolicy")
         private RestartPolicy restartPolicy = RestartPolicy.builder().build();

@@ -1,64 +1,83 @@
 package se.codeslasher.docker.model.api124;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Map;
+
 /**
- * Created by karl on 9/11/16.
+ * Created by karl on 9/24/16.
  */
-@JsonPropertyOrder({
-        "IPAMConfig",
-        "Links",
-        "Aliases",
-        "NetworkID",
-        "EndpointID",
-        "Gateway",
-        "IPAddress",
-        "IPPrefixLen",
-        "IPv6Gateway",
-        "GlobalIPv6Address",
-        "GlobalIPv6PrefixLen",
-        "MacAddress"
-})
 @Getter
+@Builder
+@JsonDeserialize(builder = Network.NetworkBuilder.class)
 public class Network {
 
-    @JsonProperty("IPAMConfig")
-    private IPAMConfig ipamConfig;
+    @JsonProperty("Name")
+    private String name;
 
-    @JsonProperty("Links")
-    private String links;
+    @JsonProperty("Id")
+    private String id;
 
-    @JsonProperty("Aliases")
-    private String aliases;
+    @JsonProperty("Driver")
+    private String driver;
 
-    @JsonProperty("NetworkID")
-    private String networkId;
+    @JsonProperty("Scope")
+    private String scope;
 
-    @JsonProperty("EndpointID")
-    private String endpointId;
+    @JsonProperty("EnableIPv6")
+    private boolean enableIpv6;
 
-    @JsonProperty("Gateway")
-    private String gateway;
+    @JsonProperty("IPAM")
+    private NetworkIPAM ipam;
 
-    @JsonProperty("IPAddress")
-    private String ipAddress;
+    @JsonProperty("Internal")
+    private boolean internal;
 
-    @JsonProperty("IPPrefixLen")
-    private int ipPrefixLen;
+    @JsonProperty("Options")
+    private Map<String,String> options;
 
-    @JsonProperty("IPv6Gateway")
-    private String ipv6GateWay;
+    @JsonProperty("Containers")
+    private Map<String, NetworkContainer> containers;
 
-    @JsonProperty("GlobalIPv6Address")
-    private String globalIpv6Address;
+    @JsonProperty("Labels")
+    private Map<String, String> labels;
 
-    @JsonProperty("GlobalIPv6PrefixLen")
-    private int globalIpv6PrefixLen;
+    @JsonPOJOBuilder(withPrefix = "")
+    public static class NetworkBuilder {
 
-    @JsonProperty("MacAddress")
-    private String macAddress;
+        @JsonProperty("Name")
+        private String name;
 
+        @JsonProperty("Id")
+        private String id;
 
+        @JsonProperty("Driver")
+        private String driver;
+
+        @JsonProperty("Scope")
+        private String scope;
+
+        @JsonProperty("EnableIPv6")
+        private boolean enableIpv6;
+
+        @JsonProperty("IPAM")
+        private NetworkIPAM ipam;
+
+        @JsonProperty("Internal")
+        private boolean internal;
+
+        @JsonProperty("Options")
+        private Map<String,String> options;
+
+        @JsonProperty("Containers")
+        private Map<String, NetworkContainer> containers;
+
+        @JsonProperty("Labels")
+        private Map<String, String> labels;
+
+    }
 }

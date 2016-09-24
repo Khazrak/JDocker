@@ -5,14 +5,14 @@
     "method" : "POST",
     "bodyPatterns" : [ {
 
-      "equalToJson" : "{\"BlkioWeight\":0,\"CpuShares\":3,\"CpuPeriod\":0,\"CpuQuota\":0,\"CpusetCpus\":null,\"CpusetMems\":null,\"Memory\":0,\"MemorySwap\":0,\"MemoryReservation\":0,\"KernelMemory\":0,\"RestartPolicy\":{\"Name\":\"\",\"MaximumRetryCount\":0}}",
+      "equalToJson" : "{\"BlkioWeight\":0,\"CpuShares\":2,\"CpuPeriod\":0,\"CpuQuota\":0,\"CpusetCpus\":null,\"CpusetMems\":null,\"Memory\":0,\"MemorySwap\":0,\"MemoryReservation\":0,\"KernelMemory\":0,\"RestartPolicy\":{\"Name\":\"\",\"MaximumRetryCount\":0}}",
       "ignoreArrayOrder" : true,
       "ignoreExtraElements" : true
     } ]
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-container-update-mongo-warnings.json",
+    "bodyFileName" : "body-containers-update-mongo.json",
     "headers" : {
       "Content-Type" : "application/json",
       "Server" : "Docker/1.12.1 (linux)",

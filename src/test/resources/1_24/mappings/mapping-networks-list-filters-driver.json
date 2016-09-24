@@ -1,0 +1,16 @@
+{
+  "uuid" : "74c91c00-d9f4-3b8d-b602-25b26795983f",
+  "request" : {
+    "url" : "/v1.24/networks?filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-networks-list-filters-driver.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sat, 24 Sep 2016 14:15:28 GMT"
+    }
+  }
+}

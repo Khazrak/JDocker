@@ -1,5 +1,34 @@
 
+## Implemented
 
+### Containers
+List containers
+Create a container
+Inspect a container
+List processes running inside a container
+Get container logs
+Inspect changes on a container’s filesystem
+Get container stats based on resource usage
+Resize a container TTY
+Start a container
+Stop a container
+Restart a container
+Kill a container
+Update a container
+Rename a container
+Pause a container
+Unpause a container
+Remove a container
+
+### Images
+List Images
+Create an image
+
+### Misc
+
+### Volumes
+
+### Networks
 
 ## TODO
 

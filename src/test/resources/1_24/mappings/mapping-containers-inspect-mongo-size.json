@@ -6,7 +6,7 @@
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-container-inspect-mongo-size.json",
+    "bodyFileName" : "body-containers-inspect-mongo-size.json",
     "headers" : {
       "Content-Type" : "application/json",
       "Server" : "Docker/1.12.1 (linux)",

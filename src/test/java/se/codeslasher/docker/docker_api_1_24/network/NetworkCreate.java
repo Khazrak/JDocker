@@ -1,4 +1,4 @@
-package se.codeslasher.docker.docker_api_1_24.container;
+package se.codeslasher.docker.docker_api_1_24.network;
 
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.DockerNetworkCreateRequest;
+import se.codeslasher.docker.docker_api_1_24.container.ContainerTop;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,16 +1,16 @@
 {
-  "uuid" : "b71eaaa5-98d1-3748-bf70-2cb800547f06",
+  "uuid" : "38d8c368-1d94-3690-87d9-1cf84e4099aa",
   "request" : {
-    "url" : "/v1.24/containers/mongo/stats?stream=false",
+    "url" : "/v1.24/containers/json?before=new_mongo",
     "method" : "GET"
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-container-stats-mongo.json",
+    "bodyFileName" : "body-containers-list-before.json",
     "headers" : {
       "Content-Type" : "application/json",
       "Server" : "Docker/1.12.1 (linux)",
-      "Date" : "Thu, 22 Sep 2016 08:20:32 GMT",
+      "Date" : "Sat, 24 Sep 2016 08:52:22 GMT",
       "Transfer-Encoding" : "chunked"
     }
   }

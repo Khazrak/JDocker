@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import se.codeslasher.docker.ContainerUpdate;
+import se.codeslasher.docker.model.api124.ContainerUpdateRequest;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.model.api124.Warnings;
@@ -40,7 +40,7 @@ public class ContainerUpdateConfig {
     public void update() {
         final String path = "/v1.24/containers/mongo/update";
 
-        ContainerUpdate update = ContainerUpdate.builder().cpuShares(2).build();
+        ContainerUpdateRequest update = ContainerUpdateRequest.builder().cpuShares(2).build();
 
         Warnings warnings = client.update("mongo", update);
 
@@ -56,7 +56,7 @@ public class ContainerUpdateConfig {
     public void updateWithWarnings() {
         final String path = "/v1.24/containers/mongo/update";
 
-        ContainerUpdate update = ContainerUpdate.builder().cpuShares(3).build();
+        ContainerUpdateRequest update = ContainerUpdateRequest.builder().cpuShares(3).build();
 
         Warnings warnings = client.update("mongo", update);
 
