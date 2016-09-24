@@ -29,6 +29,10 @@ Create an image
 ### Volumes
 
 ### Networks
+List networks
+Create a network
+Connect a container to a network
+Disconnect a container from a network
 
 ## TODO
 
@@ -78,10 +82,7 @@ Remove a volume
 
 
 ### Networks
-List networks
 Inspect network
-Connect a container to a network
-Disconnect a container from a network
 Remove a network
 
 

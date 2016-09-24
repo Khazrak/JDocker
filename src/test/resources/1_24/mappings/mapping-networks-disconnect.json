@@ -1,0 +1,21 @@
+{
+  "uuid" : "507dcfc8-c181-3afb-b04c-3a14a5a20462",
+  "request" : {
+    "url" : "/v1.24/networks/test1/disconnect",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"Container\":\"mongo\",\"Force\":false}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-networks-disconnect.txt",
+    "headers" : {
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sat, 24 Sep 2016 15:30:30 GMT",
+      "Content-Type" : "text/plain; charset=utf-8"
+    }
+  }
+}

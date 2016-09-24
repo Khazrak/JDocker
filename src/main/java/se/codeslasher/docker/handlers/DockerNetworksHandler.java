@@ -1,5 +1,6 @@
 package se.codeslasher.docker.handlers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
@@ -11,9 +12,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.ContainerCreation;
 import se.codeslasher.docker.DockerNetworkCreateRequest;
 import se.codeslasher.docker.exception.DockerServerException;
-import se.codeslasher.docker.model.api124.Network;
-import se.codeslasher.docker.model.api124.NetworkInterface;
-import se.codeslasher.docker.model.api124.NetworkListParams;
+import se.codeslasher.docker.model.api124.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -119,5 +118,60 @@ public class DockerNetworksHandler {
         }
 
         return null;
+    }
+
+    public void connectContainerToNetwork(NetworkConnectRequest networkConnectRequest) {
+        final String path = "/v1.24/networks/"+networkConnectRequest.getNetworkName()+"/connect";
+
+        try {
+            String json = mapper.writeValueAsString(networkConnectRequest);
+            Response response;
+            RequestBody body = RequestBody.create(ContainerCreation.JSON, json);
+            Request request = new Request.Builder()
+                    .url(URL+path)
+                    .post(body)
+                    .build();
+
+            response = httpClient.newCall(request).execute();
+            if (response.code() != 200) {
+                throw new DockerServerException("Error connecting container to network with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
+            }
+
+            System.out.println("Response: "+response.body().string());
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void disconnectContainerFromNetwork(String containerName, String networkName, boolean force) {
+        final String path = "/v1.24/networks/"+ networkName +"/disconnect";
+        NetworkDisconnectRequest networkDisconnectRequest = NetworkDisconnectRequest.builder().container("mongo").build();
+        try {
+            String json = mapper.writeValueAsString(networkDisconnectRequest);
+            Response response;
+            RequestBody body = RequestBody.create(ContainerCreation.JSON, json);
+            Request request = new Request.Builder()
+                    .url(URL+path)
+                    .post(body)
+                    .build();
+
+            response = httpClient.newCall(request).execute();
+            if (response.code() != 200) {
+                throw new DockerServerException("Error disconnecting container to network with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
+            }
+
+            System.out.println("Response: "+response.body().string());
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

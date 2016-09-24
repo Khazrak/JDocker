@@ -227,8 +227,13 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public List<Volume> listVoume() {
-        return null;
+    public void connectContainerToNetwork(NetworkConnectRequest request) {
+        networksHandler.connectContainerToNetwork(request);
+    }
+
+    @Override
+    public void disconnectContainerFromNetwork(String containerName, String networkName, boolean force) {
+        networksHandler.disconnectContainerFromNetwork(containerName, networkName, force);
     }
 
     @Override
@@ -236,4 +241,9 @@ public class DefaultDockerClient implements DockerClient {
         return containerHandler.logsStream(id,params);
     }
 
+
+    @Override
+    public List<Volume> listVoume() {
+        return null;
+    }
 }
