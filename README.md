@@ -31,6 +31,8 @@ Create an image
 ### Networks
 List networks
 Create a network
+Inspect network
+Remove a network
 Connect a container to a network
 Disconnect a container from a network
 
@@ -79,11 +81,6 @@ List volumes
 Create a volume
 Inspect a volume
 Remove a volume
-
-
-### Networks
-Inspect network
-Remove a network
 
 
 More Custom Tests

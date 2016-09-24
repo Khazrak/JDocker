@@ -83,10 +83,14 @@ public interface DockerClient {
 
     List<Network> listNetworks(NetworkListParams params);
 
-    List<Volume> listVoume();
-
-
     void connectContainerToNetwork(NetworkConnectRequest request);
 
     void disconnectContainerFromNetwork(String containerName, String networkName, boolean force);
+
+    Network inspectNetwork(String id);
+
+    void removeNetwork(String id);
+
+    List<Volume> listVoume();
+
 }

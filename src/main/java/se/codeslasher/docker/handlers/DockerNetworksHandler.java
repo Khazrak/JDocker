@@ -174,4 +174,56 @@ public class DockerNetworksHandler {
             e.printStackTrace();
         }
     }
+
+    public Network inspectNetwork(String id) {
+        final String path = "/v1.24/networks/"+id;
+
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .get()
+                .build();
+
+        try {
+
+            response = httpClient.newCall(request).execute();
+            if(response.code() != 200 ) {
+                throw new DockerServerException("Error inspecting network with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+
+            String responseBody = response.body().string();
+            logger.debug("Response: {}",responseBody);
+
+            return mapper.readValue(responseBody,Network.class);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void removeNetwork(String id) {
+        final String path = "/v1.24/networks/"+id;
+
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL+path)
+                .delete()
+                .build();
+
+        try {
+
+            response = httpClient.newCall(request).execute();
+            if(response.code() != 204 ) {
+                throw new DockerServerException("Error removing network with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -10,21 +10,18 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.docker_api_1_24.container.ContainerTop;
-import se.codeslasher.docker.model.api124.Network;
+import se.codeslasher.docker.model.api124.IPAMConfig;
+import se.codeslasher.docker.model.api124.NetworkConnectEndpointConfig;
 import se.codeslasher.docker.model.api124.NetworkConnectRequest;
-import se.codeslasher.docker.model.api124.NetworkDisconnectRequest;
-
-import java.util.List;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by karl on 9/24/16.
  */
 public class NetworkConnectDisconnect {
     private DockerClient client;
-    private static Logger logger = LoggerFactory.getLogger(ContainerTop.class);
+    private static Logger logger = LoggerFactory.getLogger(NetworkConnectDisconnect.class);
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options().usingFilesUnderClasspath("src/test/resources/1_24").port(9779)); // No-args constructor defaults
@@ -57,7 +54,24 @@ public class NetworkConnectDisconnect {
 
     @Test
     public void connectWithEndpoint() {
-        Assert.fail("Not implemented yet");
+        final String path = "/v1.24/networks/test1/connect";
+
+        NetworkConnectRequest request = NetworkConnectRequest.builder()
+                .networkName("test1")
+                .container("mongo")
+                .endpointConfig(NetworkConnectEndpointConfig.builder()
+                        .config(IPAMConfig.builder()
+                                .ipv4Address("172.18.1.1")
+                                .build())
+                        .build())
+                .build();
+
+        client.connectContainerToNetwork(request);
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test

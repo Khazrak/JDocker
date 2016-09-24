@@ -237,6 +237,16 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
+    public Network inspectNetwork(String id) {
+        return networksHandler.inspectNetwork(id);
+    }
+
+    @Override
+    public void removeNetwork(String id) {
+        networksHandler.removeNetwork(id);
+    }
+
+    @Override
     public InputStream logsStream(String id, DockerLogsParameters params) {
         return containerHandler.logsStream(id,params);
     }
