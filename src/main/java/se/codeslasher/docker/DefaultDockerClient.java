@@ -251,9 +251,14 @@ public class DefaultDockerClient implements DockerClient {
         return containerHandler.logsStream(id,params);
     }
 
+    @Override
+    public List<Volume> listVolumes() {
+        return volumesHandler.listVolumes();
+    }
 
     @Override
-    public List<Volume> listVoume() {
-        return null;
+    public List<Volume> listVolumes(VolumeListParams params) {
+        return volumesHandler.listVolumes(params);
     }
+
 }

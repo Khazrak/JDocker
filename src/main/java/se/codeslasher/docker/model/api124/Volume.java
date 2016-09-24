@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Map;
+
 /**
  * Created by karl on 9/24/16.
  */
@@ -14,9 +16,36 @@ import lombok.Getter;
 @JsonDeserialize(builder = Volume.VolumeBuilder.class)
 public class Volume {
 
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("Driver")
+    private String driver;
+
+    @JsonProperty("Mountpoint")
+    private String mountPoint;
+
+    @JsonProperty("Labels")
+    private Map<String, String> labels;
+
+    @JsonProperty("Scope")
+    private String scope;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class VolumeBuilder {
+        @JsonProperty("Name")
+        private String name;
 
+        @JsonProperty("Driver")
+        private String driver;
+
+        @JsonProperty("Mountpoint")
+        private String mountPoint;
+
+        @JsonProperty("Labels")
+        private Map<String, String> labels;
+
+        @JsonProperty("Scope")
+        private String scope;
     }
 }

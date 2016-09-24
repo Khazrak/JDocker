@@ -91,6 +91,7 @@ public interface DockerClient {
 
     void removeNetwork(String id);
 
-    List<Volume> listVoume();
+    List<Volume> listVolumes();
 
+    List<Volume> listVolumes(VolumeListParams params);
 }

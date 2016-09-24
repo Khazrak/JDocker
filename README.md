@@ -27,6 +27,7 @@ Create an image
 ### Misc
 
 ### Volumes
+List volumes
 
 ### Networks
 List networks
@@ -77,7 +78,6 @@ Exec Inspect
 
 
 ### Volumes
-List volumes
 Create a volume
 Inspect a volume
 Remove a volume

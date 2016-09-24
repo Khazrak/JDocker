@@ -1,0 +1,17 @@
+{
+  "uuid" : "a44b3719-a7e5-396d-980d-7b6a47c5c756",
+  "request" : {
+    "url" : "/v1.24/volumes?filter=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-volumes-list-filters-dangling-true.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sat, 24 Sep 2016 22:17:40 GMT",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}
