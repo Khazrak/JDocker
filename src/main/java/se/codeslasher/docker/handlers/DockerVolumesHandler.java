@@ -44,7 +44,7 @@ public class DockerVolumesHandler {
     public List<Volume> listVolumes(VolumeListParams params) {
         String path = null;
         try {
-            path = "/v1.24/volumes?filter="+ URLEncoder.encode(params.toString(), StandardCharsets.UTF_8.toString());
+            path = "/v1.24/volumes?filters="+ URLEncoder.encode(params.toString(), StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

@@ -1,7 +1,7 @@
 {
-  "uuid" : "a44b3719-a7e5-396d-980d-7b6a47c5c756",
+  "uuid" : "a438bf2d-e26d-371f-9524-dba3bf7ff45a",
   "request" : {
-    "url" : "/v1.24/volumes?filter=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D",
+    "url" : "/v1.24/volumes?filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D",
     "method" : "GET"
   },
   "response" : {
@@ -10,7 +10,7 @@
     "headers" : {
       "Content-Type" : "application/json",
       "Server" : "Docker/1.12.1 (linux)",
-      "Date" : "Sat, 24 Sep 2016 22:17:40 GMT",
+      "Date" : "Sat, 24 Sep 2016 22:54:41 GMT",
       "Transfer-Encoding" : "chunked"
     }
   }

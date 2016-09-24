@@ -76,13 +76,13 @@ public class VolumeList {
     @Test
     public void listFiltersDanglingTrue() {
 
-        final String path = "/v1.24/volumes?filter=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
+        final String path = "/v1.24/volumes?filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
 
         VolumeListParams params = VolumeListParams.builder().dangling(true).build();
 
         List<Volume> volumeList = client.listVolumes(params);
 
-        assertThat(volumeList.size()).isEqualTo(26);
+        assertThat(volumeList.size()).isEqualTo(20);
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -94,13 +94,13 @@ public class VolumeList {
     @Test
     public void listFiltersDanglingFalse() {
 
-        final String path = "/v1.24/volumes?filter=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D";
+        final String path = "/v1.24/volumes?filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D";
 
         VolumeListParams params = VolumeListParams.builder().dangling(false).build();
 
         List<Volume> volumeList = client.listVolumes(params);
 
-        assertThat(volumeList.size()).isEqualTo(26);
+        assertThat(volumeList.size()).isEqualTo(6);
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
