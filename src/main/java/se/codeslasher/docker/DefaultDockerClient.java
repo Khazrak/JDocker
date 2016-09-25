@@ -261,4 +261,9 @@ public class DefaultDockerClient implements DockerClient {
         return volumesHandler.listVolumes(params);
     }
 
+    @Override
+    public Volume createVolume(VolumeCreateRequest request) {
+        return volumesHandler.createVolume(request);
+    }
+
 }

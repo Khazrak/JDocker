@@ -4,12 +4,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import se.codeslasher.docker.ContainerCreation;
 import se.codeslasher.docker.exception.DockerServerException;
 import se.codeslasher.docker.model.api124.Network;
 import se.codeslasher.docker.model.api124.Volume;
+import se.codeslasher.docker.model.api124.VolumeCreateRequest;
 import se.codeslasher.docker.model.api124.VolumeListParams;
 
 import java.io.IOException;
@@ -86,4 +89,35 @@ public class DockerVolumesHandler {
         return null;
     }
 
+    public Volume createVolume(VolumeCreateRequest volumeCreateRequest) {
+        final String path ="/v1.24/volumes/create";
+
+        Response response = null;
+
+        try {
+            String json = mapper.writeValueAsString(volumeCreateRequest);
+
+            RequestBody body = RequestBody.create(ContainerCreation.JSON,json);
+            Request request = new Request.Builder()
+                    .url(URL+path)
+                    .post(body)
+                    .build();
+
+            response = httpClient.newCall(request).execute();
+            if(response.code() != 201 ) {
+                throw new DockerServerException("Error creating volume with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
+                        +"\nHTTP-Code: "+response.code());
+            }
+
+            String responseBody = response.body().string();
+            logger.debug("Response: {}",responseBody);
+
+            return mapper.readValue(responseBody, Volume.class);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

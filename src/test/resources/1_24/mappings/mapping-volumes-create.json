@@ -1,0 +1,21 @@
+{
+  "uuid" : "69ef07ce-44f4-3a22-846e-0d80ab292bb8",
+  "request" : {
+    "url" : "/v1.24/volumes/create",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"Name\":\"my_vol\",\"Driver\":null,\"Labels\":null,\"DriverOpts\":null}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-volumes-create.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sun, 25 Sep 2016 08:21:34 GMT"
+    }
+  }
+}

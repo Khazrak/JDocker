@@ -9,12 +9,12 @@ import lombok.Getter;
 import java.util.Map;
 
 /**
- * Created by karl on 9/24/16.
+ * Created by karl on 9/25/16.
  */
 @Getter
 @Builder
-@JsonDeserialize(builder = Volume.VolumeBuilder.class)
-public class Volume {
+@JsonDeserialize(builder = VolumeCreateRequest.VolumeCreateRequestBuilder.class)
+public class VolumeCreateRequest {
 
     @JsonProperty("Name")
     private String name;
@@ -22,36 +22,25 @@ public class Volume {
     @JsonProperty("Driver")
     private String driver;
 
-    @JsonProperty("Mountpoint")
-    private String mountPoint;
-
     @JsonProperty("Labels")
     private Map<String, String> labels;
 
-    @JsonProperty("Scope")
-    private String scope;
-
-    @JsonProperty("Status")
-    private Map<String, String> status;
+    @JsonProperty("DriverOpts")
+    private Map<String, String> driverOpts;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class VolumeBuilder {
+    public static class VolumeCreateRequestBuilder {
+
         @JsonProperty("Name")
         private String name;
 
         @JsonProperty("Driver")
         private String driver;
 
-        @JsonProperty("Mountpoint")
-        private String mountPoint;
-
         @JsonProperty("Labels")
         private Map<String, String> labels;
 
-        @JsonProperty("Scope")
-        private String scope;
-
-        @JsonProperty("Status")
-        private Map<String, String> status;
+        @JsonProperty("DriverOpts")
+        private Map<String, String> driverOpts;
     }
 }

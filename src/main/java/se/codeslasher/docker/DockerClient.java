@@ -94,4 +94,6 @@ public interface DockerClient {
     List<Volume> listVolumes();
 
     List<Volume> listVolumes(VolumeListParams params);
+
+    Volume createVolume(VolumeCreateRequest request);
 }
