@@ -47,7 +47,7 @@ public class DockerVolumesHandler {
     public List<Volume> listVolumes(VolumeListParams params) {
         String path = null;
         try {
-            path = "/v1.24/volumes?filters="+ URLEncoder.encode(params.toString(), StandardCharsets.UTF_8.toString());
+            path = "/v1.24/volumes?filters=" + URLEncoder.encode(params.toString(), StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -55,30 +55,28 @@ public class DockerVolumesHandler {
     }
 
 
-
-
     private List<Volume> listVolumesCommand(final String path) {
         Response response;
         Request request = new Request.Builder()
-                .url(URL+path)
+                .url(URL + path)
                 .get()
                 .build();
 
         try {
 
             response = httpClient.newCall(request).execute();
-            if(response.code() != 200 ) {
-                throw new DockerServerException("Error listing network with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
-                        +"\nHTTP-Code: "+response.code());
+            if (response.code() != 200) {
+                throw new DockerServerException("Error listing network with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
             }
 
             String responseBody = response.body().string();
-            logger.debug("Response: {}",responseBody);
+            logger.debug("Response: {}", responseBody);
 
             JsonNode volumeJson = mapper.readTree(responseBody);
 
             volumeJson = volumeJson.get("Volumes");
-            Volume[] volumes = mapper.readValue(volumeJson.toString(),Volume[].class);
+            Volume[] volumes = mapper.readValue(volumeJson.toString(), Volume[].class);
 
             return Arrays.asList(volumes);
 
@@ -90,27 +88,27 @@ public class DockerVolumesHandler {
     }
 
     public Volume createVolume(VolumeCreateRequest volumeCreateRequest) {
-        final String path ="/v1.24/volumes/create";
+        final String path = "/v1.24/volumes/create";
 
         Response response = null;
 
         try {
             String json = mapper.writeValueAsString(volumeCreateRequest);
 
-            RequestBody body = RequestBody.create(ContainerCreation.JSON,json);
+            RequestBody body = RequestBody.create(ContainerCreation.JSON, json);
             Request request = new Request.Builder()
-                    .url(URL+path)
+                    .url(URL + path)
                     .post(body)
                     .build();
 
             response = httpClient.newCall(request).execute();
-            if(response.code() != 201 ) {
-                throw new DockerServerException("Error creating volume with path:" + URL+path + "\nMessage from Docker Daemon: " +response.body().string()
-                        +"\nHTTP-Code: "+response.code());
+            if (response.code() != 201) {
+                throw new DockerServerException("Error creating volume with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
             }
 
             String responseBody = response.body().string();
-            logger.debug("Response: {}",responseBody);
+            logger.debug("Response: {}", responseBody);
 
             return mapper.readValue(responseBody, Volume.class);
 
@@ -119,5 +117,55 @@ public class DockerVolumesHandler {
         }
 
         return null;
+    }
+
+    public Volume inspectVolume(String id) {
+        final String path = "/v1.24/volumes/" + id;
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL + path)
+                .get()
+                .build();
+
+        try {
+
+            response = httpClient.newCall(request).execute();
+            if (response.code() != 200) {
+                throw new DockerServerException("Error inspecting volume with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
+            }
+
+            String responseBody = response.body().string();
+            logger.debug("Response: {}", responseBody);
+
+            return mapper.readValue(responseBody, Volume.class);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void removeVolume(String id) {
+        final String path = "/v1.24/volumes/" + id;
+
+        Response response;
+        Request request = new Request.Builder()
+                .url(URL + path)
+                .delete()
+                .build();
+
+        try {
+
+            response = httpClient.newCall(request).execute();
+            if (response.code() != 204) {
+                throw new DockerServerException("Error removing network with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

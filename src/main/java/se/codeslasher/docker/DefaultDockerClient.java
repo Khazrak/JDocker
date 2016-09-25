@@ -266,4 +266,14 @@ public class DefaultDockerClient implements DockerClient {
         return volumesHandler.createVolume(request);
     }
 
+    @Override
+    public Volume inspectVolume(String id) {
+        return volumesHandler.inspectVolume(id);
+    }
+
+    @Override
+    public void removeVolume(String id) {
+        volumesHandler.removeVolume(id);
+    }
+
 }

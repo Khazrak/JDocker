@@ -1,0 +1,16 @@
+{
+  "uuid" : "561cffcf-bfb7-3045-b62e-8d73fc121dd0",
+  "request" : {
+    "url" : "/v1.24/volumes/my_vol",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-volumes-inspect.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sun, 25 Sep 2016 08:32:49 GMT"
+    }
+  }
+}

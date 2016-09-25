@@ -28,6 +28,9 @@ Create an image
 
 ### Volumes
 List volumes
+Create a volume
+Inspect a volume
+Remove a volume
 
 ### Networks
 List networks
@@ -75,12 +78,6 @@ Exec Create
 Exec Start
 Exec Resize
 Exec Inspect
-
-
-### Volumes
-Create a volume
-Inspect a volume
-Remove a volume
 
 
 More Custom Tests
