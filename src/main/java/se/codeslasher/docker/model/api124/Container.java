@@ -16,7 +16,7 @@ import java.util.Map;
 @JsonPropertyOrder({
         "Id",
         "Names",
-        "Image",
+        "ImageInfo",
         "ImageID",
         "Command",
         "Created",

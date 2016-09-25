@@ -9,9 +9,6 @@ import lombok.Getter;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by karl on 9/22/16.
- */
 @Getter
 @Builder
 @JsonDeserialize(builder = Image.ImageBuilder.class)
@@ -30,7 +27,7 @@ public class Image {
     private List<String> repoDigests;
 
     @JsonProperty("Created")
-    private long created;
+    private String created;
 
     @JsonProperty("Size")
     private long size;
@@ -40,6 +37,27 @@ public class Image {
 
     @JsonProperty("Labels")
     private Map<String,String> labels;
+
+    @JsonProperty("Parent")
+    private String parent;
+
+    @JsonProperty("Comment")
+    private String comment;
+
+    @JsonProperty("Os")
+    private String os;
+
+    @JsonProperty("Architecture")
+    private String architecture;
+
+    @JsonProperty("Container")
+    private String container;
+
+    @JsonProperty("ContainerConfig")
+    private ImageContainerConfig containerConfig;
+
+    @JsonProperty("DockerVersion")
+    private String dockerVersion;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class ImageBuilder {
@@ -57,7 +75,7 @@ public class Image {
         private List<String> repoDigests;
 
         @JsonProperty("Created")
-        private long created;
+        private String created;
 
         @JsonProperty("Size")
         private long size;
@@ -68,7 +86,40 @@ public class Image {
         @JsonProperty("Labels")
         private Map<String,String> labels;
 
+        @JsonProperty("Parent")
+        private String parent;
 
+        @JsonProperty("Comment")
+        private String comment;
+
+        @JsonProperty("Os")
+        private String os;
+
+        @JsonProperty("Architecture")
+        private String architecture;
+
+        @JsonProperty("Container")
+        private String container;
+
+        @JsonProperty("ContainerConfig")
+        private ImageContainerConfig containerConfig;
+
+        @JsonProperty("DockerVersion")
+        private String dockerVersion;
+
+
+
+        @JsonProperty("Author")
+        private String author;
+
+        @JsonProperty("Config")
+        private ImageContainerConfig config;
+
+        @JsonProperty("GraphDriver")
+        private GraphDriver graphDriver;
+
+        @JsonProperty("RootFS")
+        private RootFS rootFs;
     }
 
 }

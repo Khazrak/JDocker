@@ -202,12 +202,12 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public List<Image> listImages(boolean all) {
+    public List<ImageInfo> listImages(boolean all) {
         return imageHandler.listImages(all);
     }
 
     @Override
-    public List<Image> listImages(ListImagesParams params) {
+    public List<ImageInfo> listImages(ListImagesParams params) {
         return imageHandler.listImages(params);
     }
 
@@ -274,6 +274,11 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public void removeVolume(String id) {
         volumesHandler.removeVolume(id);
+    }
+
+    @Override
+    public Image inspectImage(DockerImageName imageName) {
+        return imageHandler.inspectImage(imageName);
     }
 
 }

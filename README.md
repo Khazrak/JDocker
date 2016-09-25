@@ -23,6 +23,7 @@ Remove a container
 ### Images
 List Images
 Create an image
+Inspect an image
 
 ### Misc
 
@@ -55,12 +56,11 @@ Extract an archive of files or folders to a directory in a container
 ### Images
 Build image from a Dockerfile
 Create an image
-Inspect an image
 Get the history of an image
 Push an image on the registry
 Tag an image into a repository
 Remove an image
-Search images
+Search imageInfos
 
 
 ### Misc
@@ -70,9 +70,9 @@ Show the docker version information
 Ping the docker server
 Create a new image from a container’s changes
 Monitor Docker’s events
-Get a tarball containing all images in a repository
-Get a tarball containing all images
-Load a tarball with a set of images and tags into docker
+Get a tarball containing all imageInfos in a repository
+Get a tarball containing all imageInfos
+Load a tarball with a set of imageInfos and tags into docker
 Image tarball format
 Exec Create
 Exec Start

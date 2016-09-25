@@ -26,7 +26,7 @@ public class DockerImageName {
             imageName = new DockerImagePartName(parts[0]);
         }
         else {
-            throw new DockerClientException("Docker Image Name creation failed, "+image+" is not a valid image-name");
+            throw new DockerClientException("Docker ImageInfo Name creation failed, "+image+" is not a valid image-name");
         }
 
 

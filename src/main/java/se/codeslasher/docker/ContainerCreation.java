@@ -28,7 +28,7 @@ import java.util.Map;
         "StdinOnce",
         "Env",
         "Cmd",
-        "Image",
+        "ImageInfo",
         "Volumes",
         "WorkingDir",
         "Entrypoint",

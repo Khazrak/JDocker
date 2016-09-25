@@ -12,8 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.model.api124.DockerImageName;
-import se.codeslasher.docker.model.api124.Image;
+import se.codeslasher.docker.model.api124.ImageInfo;
 import se.codeslasher.docker.model.api124.ListImagesParams;
 
 import java.util.List;
@@ -27,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ImageList {
 
     private DockerClient client;
-    private static Logger logger = LoggerFactory.getLogger(ImagePull.class);
+    private static Logger logger = LoggerFactory.getLogger(ImageList.class);
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options().usingFilesUnderClasspath("src/test/resources/1_24").port(9779)); // No-args constructor defaults
@@ -48,11 +47,11 @@ public class ImageList {
 
         final String path = "/v1.24/images/json?all=false";
 
-        List<Image> images = client.listImages(false);
+        List<ImageInfo> imageInfos = client.listImages(false);
 
-        assertThat(images.size()).isEqualTo(4);
+        assertThat(imageInfos.size()).isEqualTo(4);
 
-        assertThat(images.get(2).getRepoTags().get(0)).isEqualTo("ubuntu:14.04");
+        assertThat(imageInfos.get(2).getRepoTags().get(0)).isEqualTo("ubuntu:14.04");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -68,9 +67,9 @@ public class ImageList {
 
         ListImagesParams params = ListImagesParams.builder().dangling(true).build();
 
-        List<Image> images = client.listImages(params);
+        List<ImageInfo> imageInfos = client.listImages(params);
 
-        assertThat(images.size()).isEqualTo(0);
+        assertThat(imageInfos.size()).isEqualTo(0);
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -85,9 +84,9 @@ public class ImageList {
 
         ListImagesParams params = ListImagesParams.builder().before("mongo").build();
 
-        List<Image> images = client.listImages(params);
+        List<ImageInfo> imageInfos = client.listImages(params);
 
-        assertThat(images.size()).isEqualTo(3);
+        assertThat(imageInfos.size()).isEqualTo(3);
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);

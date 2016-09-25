@@ -73,9 +73,9 @@ public interface DockerClient {
 
     void unpause(String id);
 
-    List<Image> listImages(boolean all);
+    List<ImageInfo> listImages(boolean all);
 
-    List<Image> listImages(ListImagesParams params);
+    List<ImageInfo> listImages(ListImagesParams params);
 
     String createNetwork(DockerNetworkCreateRequest request);
 
@@ -100,4 +100,6 @@ public interface DockerClient {
     Volume inspectVolume(String id);
 
     void removeVolume(String id);
+
+    Image inspectImage(DockerImageName imageName);
 }
