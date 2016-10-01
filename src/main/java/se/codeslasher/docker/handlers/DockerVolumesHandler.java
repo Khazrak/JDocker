@@ -2,23 +2,16 @@ package se.codeslasher.docker.handlers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se.codeslasher.docker.ContainerCreation;
+import se.codeslasher.docker.utils.URLResolver;
 import se.codeslasher.docker.exception.DockerServerException;
-import se.codeslasher.docker.model.api124.Network;
 import se.codeslasher.docker.model.api124.Volume;
-import se.codeslasher.docker.model.api124.VolumeCreateRequest;
-import se.codeslasher.docker.model.api124.VolumeListParams;
+import se.codeslasher.docker.model.api124.requests.VolumeCreateRequest;
+import se.codeslasher.docker.model.api124.parameters.ListVolumeParams;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,49 +22,24 @@ public class DockerVolumesHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(DockerVolumesHandler.class);
 
-    private final OkHttpClient httpClient;
     private final ObjectMapper mapper;
-    private final String URL;
+    private OkHttpExecuter okHttpExecuter;
 
-    public DockerVolumesHandler(OkHttpClient httpClient, ObjectMapper mapper, String url) {
-        this.httpClient = httpClient;
+
+    public DockerVolumesHandler(OkHttpClient httpClient, URLResolver urlResolver, ObjectMapper mapper, String url) {
+        this.okHttpExecuter = new OkHttpExecuter(httpClient, url, urlResolver);
         this.mapper = mapper;
-        this.URL = url;
     }
 
     public List<Volume> listVolumes() {
-        String path = "/v1.24/volumes";
-        return listVolumesCommand(path);
-    }
-
-    public List<Volume> listVolumes(VolumeListParams params) {
-        String path = null;
-        try {
-            path = "/v1.24/volumes?filters=" + URLEncoder.encode(params.toString(), StandardCharsets.UTF_8.toString());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return listVolumesCommand(path);
-    }
-
-
-    private List<Volume> listVolumesCommand(final String path) {
-        Response response;
-        Request request = new Request.Builder()
-                .url(URL + path)
-                .get()
-                .build();
+        logger.debug("Listing volumes");
+        final String path = "/v1.24/volumes";
 
         try {
 
-            response = httpClient.newCall(request).execute();
-            if (response.code() != 200) {
-                throw new DockerServerException("Error listing network with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
-                        + "\nHTTP-Code: " + response.code());
-            }
-
+            Response response = okHttpExecuter.get(path);
             String responseBody = response.body().string();
-            logger.debug("Response: {}", responseBody);
+            logger.debug("Response body: {}", responseBody);
 
             JsonNode volumeJson = mapper.readTree(responseBody);
 
@@ -81,91 +49,79 @@ public class DockerVolumesHandler {
             return Arrays.asList(volumes);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Exception during listing volumes", e);
+        }
+
+        return null;
+    }
+
+    public List<Volume> listVolumes(ListVolumeParams params) {
+        logger.debug("Listing volumes with params {}", params);
+        final String path = "/v1.24/volumes";
+
+        try {
+
+            Response response = okHttpExecuter.get(path, params.getQueries());
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+
+            JsonNode volumeJson = mapper.readTree(responseBody);
+
+            volumeJson = volumeJson.get("Volumes");
+            Volume[] volumes = mapper.readValue(volumeJson.toString(), Volume[].class);
+
+            return Arrays.asList(volumes);
+
+        } catch (IOException e) {
+            logger.error("Exception during listing volumes", e);
         }
 
         return null;
     }
 
     public Volume createVolume(VolumeCreateRequest volumeCreateRequest) {
+        logger.debug("Creating volume");
         final String path = "/v1.24/volumes/create";
 
-        Response response = null;
 
         try {
             String json = mapper.writeValueAsString(volumeCreateRequest);
 
-            RequestBody body = RequestBody.create(ContainerCreation.JSON, json);
-            Request request = new Request.Builder()
-                    .url(URL + path)
-                    .post(body)
-                    .build();
-
-            response = httpClient.newCall(request).execute();
-            if (response.code() != 201) {
-                throw new DockerServerException("Error creating volume with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
-                        + "\nHTTP-Code: " + response.code());
-            }
+            Response response = okHttpExecuter.post(path, json);
 
             String responseBody = response.body().string();
-            logger.debug("Response: {}", responseBody);
+            logger.debug("Response body: {}", responseBody);
 
             return mapper.readValue(responseBody, Volume.class);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Exception during volume creation", e);
         }
 
         return null;
     }
 
     public Volume inspectVolume(String id) {
+        logger.debug("Inspecting volume {}", id);
         final String path = "/v1.24/volumes/" + id;
-        Response response;
-        Request request = new Request.Builder()
-                .url(URL + path)
-                .get()
-                .build();
 
         try {
 
-            response = httpClient.newCall(request).execute();
-            if (response.code() != 200) {
-                throw new DockerServerException("Error inspecting volume with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
-                        + "\nHTTP-Code: " + response.code());
-            }
-
+            Response response = okHttpExecuter.get(path);
             String responseBody = response.body().string();
-            logger.debug("Response: {}", responseBody);
-
+            logger.debug("Response body: {}", responseBody);
             return mapper.readValue(responseBody, Volume.class);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Exception during volume inspection of " + id, e);
         }
 
         return null;
     }
 
     public void removeVolume(String id) {
+        logger.debug("Removing volume {}", id);
         final String path = "/v1.24/volumes/" + id;
-
-        Response response;
-        Request request = new Request.Builder()
-                .url(URL + path)
-                .delete()
-                .build();
-
-        try {
-
-            response = httpClient.newCall(request).execute();
-            if (response.code() != 204) {
-                throw new DockerServerException("Error removing network with path:" + URL + path + "\nMessage from Docker Daemon: " + response.body().string()
-                        + "\nHTTP-Code: " + response.code());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Response response = okHttpExecuter.delete(path);
     }
 }

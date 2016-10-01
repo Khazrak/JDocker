@@ -1,7 +1,7 @@
 {
   "uuid" : "779728ca-793a-3ac3-8b76-c8e3d5ed441a",
   "request" : {
-    "url" : "/v1.24/images/json?all=false",
+    "url" : "/%2Fv1.24%2Fimages%2Fjson?all=false&filters=%7B%7D",
     "method" : "GET"
   },
   "response" : {

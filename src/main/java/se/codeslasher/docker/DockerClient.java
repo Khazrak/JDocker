@@ -1,7 +1,10 @@
 package se.codeslasher.docker;
 
-import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.handlers.DockerLogsLineReader;
+import se.codeslasher.docker.model.api124.*;
+import se.codeslasher.docker.model.api124.parameters.*;
+import se.codeslasher.docker.model.api124.requests.*;
+import se.codeslasher.docker.utils.DockerImageName;
 
 import java.io.InputStream;
 import java.util.List;
@@ -13,7 +16,7 @@ public interface DockerClient {
 
     void close();
 
-    String createContainer(ContainerCreation spec);
+    String createContainer(ContainerCreationRequest spec);
 
     void start(String id);
 
@@ -31,7 +34,7 @@ public interface DockerClient {
 
     List<Container> listContainers();
 
-    List<Container> listContainers(ContainerListRequest listRequest);
+    List<Container> listContainers(ListContainerParams listRequest);
 
     DockerContainerInspect inspectContainer(String id, boolean size);
 
@@ -77,7 +80,7 @@ public interface DockerClient {
 
     List<ImageInfo> listImages(ListImagesParams params);
 
-    String createNetwork(DockerNetworkCreateRequest request);
+    String createNetwork(NetworkCreateRequest request);
 
     List<Network> listNetworks();
 
@@ -93,7 +96,7 @@ public interface DockerClient {
 
     List<Volume> listVolumes();
 
-    List<Volume> listVolumes(VolumeListParams params);
+    List<Volume> listVolumes(ListVolumeParams params);
 
     Volume createVolume(VolumeCreateRequest request);
 
@@ -102,4 +105,14 @@ public interface DockerClient {
     void removeVolume(String id);
 
     Image inspectImage(DockerImageName imageName);
+
+    ExecInfo inspectExec(String id);
+
+    String createExec(String containerId, ExecCreateRequest request);
+
+    void resizeExec(String id, int width, int height);
+
+    void startExec(String id, boolean tty);
+
+    InputStream startExec(String id);
 }

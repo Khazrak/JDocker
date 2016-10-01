@@ -1,14 +1,6 @@
 {
   "request" : {
-    "urlPathPattern" : "/v1.24/containers/f2aca7ccb724d73aad6e4f1",
-    "queryParameters" : {
-      "force" : {
-        "matches" : "(true|false)"
-      },
-      "v" : {
-        "matches" : "(true|false)"
-      }
-    },
+    "url" : "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=false&v=false",
     "method" : "DELETE"
   },
   "response" : {

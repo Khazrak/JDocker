@@ -1,7 +1,7 @@
 {
   "uuid" : "409418d7-76ab-3e36-8630-b9ad1b9ecf98",
   "request" : {
-    "url" : "/v1.24/volumes",
+    "url" : "/%2Fv1.24%2Fvolumes",
     "method" : "GET"
   },
   "response" : {

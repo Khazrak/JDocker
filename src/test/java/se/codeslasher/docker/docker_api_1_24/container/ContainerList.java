@@ -7,7 +7,8 @@ import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.junit.*;
 import se.codeslasher.docker.*;
 import se.codeslasher.docker.model.api124.Container;
-import se.codeslasher.docker.model.api124.DockerImageName;
+import se.codeslasher.docker.utils.DockerImageName;
+import se.codeslasher.docker.model.api124.parameters.ListContainerParams;
 import se.codeslasher.docker.utils.Filters;
 
 import java.util.List;
@@ -37,6 +38,8 @@ public class ContainerList {
 
     @Test
     public void list() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson";
+
         List<Container> containerList = client.listContainers();
 
         assertThat(containerList.size()).isEqualTo(2);
@@ -51,7 +54,7 @@ public class ContainerList {
         assertThat(one.getImage()).isEqualTo(mongo);
         assertThat(two.getImage()).isEqualTo(mongo);
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
@@ -59,7 +62,8 @@ public class ContainerList {
 
     @Test
     public void listAll() {
-        ContainerListRequest request = ContainerListRequest.builder().all(true).build();
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?all=true";
+        ListContainerParams request = ListContainerParams.builder().all(true).build();
         List<Container> containerList = client.listContainers(request);
 
         assertThat(containerList.size()).isEqualTo(3);
@@ -75,7 +79,7 @@ public class ContainerList {
         assertThat(two.getImage()).isEqualTo(mongo);
         assertThat(three.getImage()).isEqualTo(ubuntu);
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json?all=true", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
@@ -83,8 +87,8 @@ public class ContainerList {
 
     @Test
     public void listSince() {
-        final String path = "/v1.24/containers/json?since=mongo";
-        ContainerListRequest request = ContainerListRequest.builder().since("mongo").build();
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?since=mongo";
+        ListContainerParams request = ListContainerParams.builder().since("mongo").build();
         List<Container> containerList = client.listContainers(request);
 
         DockerImageName mongo = new DockerImageName("mongo");
@@ -101,8 +105,8 @@ public class ContainerList {
 
     @Test
     public void listBefore() {
-        final String path = "/v1.24/containers/json?before=new_mongo";
-        ContainerListRequest request = ContainerListRequest.builder().before("new_mongo").build();
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?before=new_mongo";
+        ListContainerParams request = ListContainerParams.builder().before("new_mongo").build();
         List<Container> containerList = client.listContainers(request);
 
         DockerImageName mongo = new DockerImageName("mongo");
@@ -121,7 +125,8 @@ public class ContainerList {
 
     @Test
     public void listLimit() {
-        ContainerListRequest request = ContainerListRequest.builder().limit(1).build();
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?limit=1";
+        ListContainerParams request = ListContainerParams.builder().limit(1).build();
         List<Container> containerList = client.listContainers(request);
 
 
@@ -133,7 +138,7 @@ public class ContainerList {
 
         assertThat(one.getImage()).isEqualTo(mongo);
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json?limit=1", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
@@ -141,7 +146,8 @@ public class ContainerList {
 
     @Test
     public void listSize() {
-        ContainerListRequest request = ContainerListRequest.builder().size(true).build();
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?size=true";
+        ListContainerParams request = ListContainerParams.builder().size(true).build();
         List<Container> containerList = client.listContainers(request);
 
         assertThat(containerList.size()).isEqualTo(2);
@@ -154,7 +160,7 @@ public class ContainerList {
         assertThat(one.getImage()).isEqualTo(mongo);
         assertThat(two.getImage()).isEqualTo(mongo);
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/json?size=true", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
@@ -162,12 +168,12 @@ public class ContainerList {
 
     @Test
     public void listFilterBefore() {
-        final String path = "/v1.24/containers/json?filters=%7B%22before%22%3A%7B%22new_mongo%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?filters=%7B%22before%22%3A%7B%22new_mongo%22%3Atrue%7D%7D";
 
         Filters filters = new Filters();
         filters.add("before","new_mongo");
 
-        ContainerListRequest request = ContainerListRequest.builder().filters(filters).build();
+        ListContainerParams request = ListContainerParams.builder().filters(filters).build();
         List<Container> containerList = client.listContainers(request);
 
         assertThat(containerList.size()).isEqualTo(1);
@@ -181,12 +187,12 @@ public class ContainerList {
 
     @Test
     public void listFilterSince() {
-        final String path = "/v1.24/containers/json?filters=%7B%22since%22%3A%7B%22mongo%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?filters=%7B%22since%22%3A%7B%22mongo%22%3Atrue%7D%7D";
 
         Filters filters = new Filters();
         filters.add("since","mongo");
 
-        ContainerListRequest request = ContainerListRequest.builder().filters(filters).build();
+        ListContainerParams request = ListContainerParams.builder().filters(filters).build();
         List<Container> containerList = client.listContainers(request);
 
         DockerImageName mongo = new DockerImageName("mongo");

@@ -41,7 +41,7 @@ public class NetworkRemove {
 
     @Test
     public void remove() {
-        final String path = "/v1.24/networks/test1";
+        final String path = "/%2Fv1.24%2Fnetworks%2Ftest1";
 
         client.removeNetwork("test1");
 

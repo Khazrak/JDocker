@@ -26,6 +26,11 @@ Create an image
 Inspect an image
 
 ### Misc
+Exec Create
+Exec Inspect
+Exec Start
+Exec Resize
+
 
 ### Volumes
 List volumes
@@ -70,14 +75,10 @@ Show the docker version information
 Ping the docker server
 Create a new image from a container’s changes
 Monitor Docker’s events
-Get a tarball containing all imageInfos in a repository
-Get a tarball containing all imageInfos
-Load a tarball with a set of imageInfos and tags into docker
+Get a tarball containing all images in a repository
+Get a tarball containing all images
+Load a tarball with a set of images and tags into docker
 Image tarball format
-Exec Create
-Exec Start
-Exec Resize
-Exec Inspect
 
 
 More Custom Tests

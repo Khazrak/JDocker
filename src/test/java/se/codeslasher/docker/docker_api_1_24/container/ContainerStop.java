@@ -1,10 +1,7 @@
 package se.codeslasher.docker.docker_api_1_24.container;
 
-import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import com.github.tomakehurst.wiremock.matching.RequestMatcher;
-import com.github.tomakehurst.wiremock.matching.RequestMatcherExtension;
 import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.junit.After;
@@ -38,19 +35,22 @@ public class ContainerStop {
 
     @Test
     public void stop() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fstop?t=10";
+
         client.stop("f2aca7ccb724d73aad6e4f6");
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/f2aca7ccb724d73aad6e4f6/stop?t=10", null, null, null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null, null, null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
         wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
     public void stopNoneExisting() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Fnone_existing%2Fstop?t=20";
         //Will log 304
         client.stop("none_existing",20);
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/none_existing/stop?t=20", null, null, null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null, null, null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);

@@ -42,7 +42,7 @@ public class ContainerInspect {
 
     @Test
     public void inspect() {
-        final String path = "/v1.24/containers/mongo/json?size=false";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fjson?size=false";
 
         DockerContainerInspect mongo = client.inspectContainer("mongo", false);
 
@@ -59,7 +59,7 @@ public class ContainerInspect {
 
     @Test
     public void inspectSize() {
-        final String path = "/v1.24/containers/mongo/json?size=true";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fjson?size=true";
 
         DockerContainerInspect mongo = client.inspectContainer("mongo", true);
 

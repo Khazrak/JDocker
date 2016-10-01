@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/v1.24/containers/mongo/rename?name=mongo2",
+    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Frename?name=mongo2",
     "method" : "POST"
   },
   "response" : {

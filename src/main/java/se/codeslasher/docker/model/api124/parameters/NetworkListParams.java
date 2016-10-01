@@ -1,7 +1,10 @@
-package se.codeslasher.docker.model.api124;
+package se.codeslasher.docker.model.api124.parameters;
 
 import lombok.Builder;
 import se.codeslasher.docker.utils.Filters;
+
+import java.util.Map;
+import java.util.TreeMap;
 
 @Builder
 public class NetworkListParams {
@@ -42,4 +45,9 @@ public class NetworkListParams {
         return filter.toString();
     }
 
+    public Map<String, String> getQueries() {
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("filters", this.toString());
+        return queries;
+    }
 }

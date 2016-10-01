@@ -6,6 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.handlers.*;
 import se.codeslasher.docker.model.api124.*;
+import se.codeslasher.docker.model.api124.parameters.*;
+import se.codeslasher.docker.model.api124.requests.*;
+import se.codeslasher.docker.unixsocket.UnixSocketFactory;
+import se.codeslasher.docker.utils.DockerImageName;
+import se.codeslasher.docker.utils.HttpURLResolver;
+import se.codeslasher.docker.utils.URLResolver;
+import se.codeslasher.docker.utils.UnixURLResolver;
 
 import java.io.InputStream;
 import java.util.List;
@@ -14,6 +21,8 @@ import java.util.List;
  * Created by karl on 9/5/16.
  */
 public class DefaultDockerClient implements DockerClient {
+
+
 
     private static Logger logger = LoggerFactory.getLogger(DefaultDockerClient.class);
 
@@ -25,19 +34,38 @@ public class DefaultDockerClient implements DockerClient {
     private DockerNetworksHandler networksHandler;
     private DockerContainerHandler containerHandler;
     private DockerVolumesHandler volumesHandler;
+    private DockerExecHandler execHandler;
 
     private ObjectMapper mapper;
 
     public DefaultDockerClient() {
-        httpClient = new OkHttpClient();
-        URL = "http://127.0.0.1:9779";
+        //httpClient = new OkHttpClient();
+        URLResolver urlResolver;
+
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        if(UnixSocketFactory.isSupported()) {
+            UnixSocketFactory unixSocketFactory = new UnixSocketFactory();
+            builder = builder.socketFactory(unixSocketFactory);
+            builder = builder.dns(unixSocketFactory);
+            URL = "/var/run/docker.sock";
+            urlResolver = new UnixURLResolver(unixSocketFactory);
+        }
+        else {
+            URL = "http://127.0.0.1:4243";
+            urlResolver = new HttpURLResolver();
+        }
+
+        httpClient = builder.build();
+
+
 
         mapper = new ObjectMapper();
 
-        imageHandler = new DockerImagesHandler(httpClient, mapper, URL);
-        networksHandler = new DockerNetworksHandler(httpClient, mapper, URL);
-        containerHandler = new DockerContainerHandler(httpClient, mapper, URL);
-        volumesHandler = new DockerVolumesHandler(httpClient, mapper, URL);
+        imageHandler = new DockerImagesHandler(httpClient, urlResolver, mapper, URL);
+        networksHandler = new DockerNetworksHandler(httpClient, urlResolver,mapper, URL);
+        containerHandler = new DockerContainerHandler(httpClient, urlResolver,mapper, URL);
+        volumesHandler = new DockerVolumesHandler(httpClient, urlResolver,mapper, URL);
+        execHandler = new DockerExecHandler(httpClient, urlResolver, mapper, URL);
     }
 
     public DefaultDockerClient(String host) {
@@ -45,10 +73,12 @@ public class DefaultDockerClient implements DockerClient {
         URL = host;
         mapper = new ObjectMapper();
 
-        imageHandler = new DockerImagesHandler(httpClient, mapper, URL);
-        networksHandler = new DockerNetworksHandler(httpClient, mapper, URL);
-        containerHandler = new DockerContainerHandler(httpClient, mapper, URL);
-        volumesHandler = new DockerVolumesHandler(httpClient, mapper, URL);
+        URLResolver urlResolver = new HttpURLResolver();
+        imageHandler = new DockerImagesHandler(httpClient, urlResolver, mapper, URL);
+        networksHandler = new DockerNetworksHandler(httpClient, urlResolver, mapper, URL);
+        containerHandler = new DockerContainerHandler(httpClient, urlResolver, mapper, URL);
+        volumesHandler = new DockerVolumesHandler(httpClient, urlResolver, mapper, URL);
+        execHandler = new DockerExecHandler(httpClient, urlResolver, mapper, URL);
     }
 
     public void close()  {
@@ -56,7 +86,7 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public String createContainer(ContainerCreation spec) {
+    public String createContainer(ContainerCreationRequest spec) {
         return containerHandler.createContainer(spec);
     }
 
@@ -136,7 +166,7 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public List<Container> listContainers(ContainerListRequest listRequest) {
+    public List<Container> listContainers(ListContainerParams listRequest) {
         return containerHandler.listContainers(listRequest);
     }
 
@@ -212,7 +242,7 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public String createNetwork(DockerNetworkCreateRequest request) {
+    public String createNetwork(NetworkCreateRequest request) {
         return networksHandler.createNetwork(request);
     }
 
@@ -257,7 +287,7 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public List<Volume> listVolumes(VolumeListParams params) {
+    public List<Volume> listVolumes(ListVolumeParams params) {
         return volumesHandler.listVolumes(params);
     }
 
@@ -279,6 +309,31 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public Image inspectImage(DockerImageName imageName) {
         return imageHandler.inspectImage(imageName);
+    }
+
+    @Override
+    public ExecInfo inspectExec(String id) {
+        return execHandler.inspectExec(id);
+    }
+
+    @Override
+    public String createExec(String containerId, ExecCreateRequest request) {
+        return execHandler.createExec(containerId, request);
+    }
+
+    @Override
+    public void resizeExec(String id, int width, int height) {
+        execHandler.resizeExec(id,width,height);
+    }
+
+    @Override
+    public void startExec(String id, boolean tty) {
+        execHandler.startExec(id,tty);
+    }
+
+    @Override
+    public InputStream startExec(String id) {
+        return execHandler.startExec(id);
     }
 
 }

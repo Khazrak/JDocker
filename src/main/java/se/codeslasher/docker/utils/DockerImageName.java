@@ -1,4 +1,4 @@
-package se.codeslasher.docker.model.api124;
+package se.codeslasher.docker.utils;
 
 import se.codeslasher.docker.exception.DockerClientException;
 

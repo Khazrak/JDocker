@@ -1,11 +1,6 @@
 {
   "request" : {
-    "urlPathPattern" : "/v1.24/containers/with_signal/kill",
-    "queryParameters" : {
-      "signal" : {
-        "equalTo" : "SIGKILL"
-      }
-    },
+    "url" : "/%2Fv1.24%2Fcontainers%2Fwith_signal%2Fkill?signal=SIGKILL",
     "method" : "POST"
   },
   "response" : {

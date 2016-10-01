@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
+import se.codeslasher.docker.exception.DockerClientException;
 import se.codeslasher.docker.exception.DockerServerException;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -36,19 +37,23 @@ public class ContainerStart {
 
     @Test
     public void start() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fstart";
+
         client.start("f2aca7ccb724d73aad6e4f6");
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/f2aca7ccb724d73aad6e4f6/start", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
     }
 
-    @Test(expected = DockerServerException.class)
+    @Test(expected = DockerClientException.class)
     public void startNoneExisting() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Fnone_existing%2Fstart";
+
         client.start("none_existing");
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/none_existing/start", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
@@ -56,10 +61,12 @@ public class ContainerStart {
 
     @Test
     public void startAlreadyStarted() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Falready_started%2Fstart";
+
         //Will log 304
         client.start("already_started");
 
-        UrlPattern pattern = UrlPattern.fromOneOf("/v1.24/containers/already_started/start", null,null,null);
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);

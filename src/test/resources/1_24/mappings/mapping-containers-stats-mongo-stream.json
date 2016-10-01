@@ -1,7 +1,7 @@
 {
   "uuid" : "b71eaaa5-98d1-3748-bf70-2cb800547f06",
   "request" : {
-    "url" : "/v1.24/containers/mongo/stats?stream=true",
+    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Fstats?stream=true",
     "method" : "GET"
   },
   "response" : {

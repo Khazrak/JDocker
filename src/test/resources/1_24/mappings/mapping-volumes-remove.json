@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/v1.24/volumes/my_vol",
+    "url" : "/%2Fv1.24%2Fvolumes%2Fmy_vol",
     "method" : "DELETE"
   },
   "response" : {

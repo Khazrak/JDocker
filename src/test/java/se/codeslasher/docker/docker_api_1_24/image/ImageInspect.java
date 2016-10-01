@@ -12,9 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.model.api124.DockerImageName;
+import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.model.api124.Image;
-import se.codeslasher.docker.model.api124.Volume;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,7 +42,7 @@ public class ImageInspect {
 
     @Test
     public void inspect() {
-        final String path = "/v1.24/images/mongo%3Alatest/json";
+        final String path = "/%2Fv1.24%2Fimages%2Fmongo%253Alatest%2Fjson";
 
         DockerImageName mongo = new DockerImageName("mongo");
 

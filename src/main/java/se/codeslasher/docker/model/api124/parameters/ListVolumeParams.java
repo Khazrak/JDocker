@@ -1,17 +1,20 @@
-package se.codeslasher.docker.model.api124;
+package se.codeslasher.docker.model.api124.parameters;
 
 import lombok.Builder;
 import lombok.Getter;
 import se.codeslasher.docker.utils.Filters;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * Created by karl on 9/24/16.
  */
 @Getter
-public class VolumeListParams {
+public class ListVolumeParams {
 
     @Builder
-    public VolumeListParams(String name, String driver, boolean dangling) {
+    public ListVolumeParams(String name, String driver, boolean dangling) {
         this.name = name;
         this.driver = driver;
         this.dangling = dangling;
@@ -26,6 +29,14 @@ public class VolumeListParams {
     private boolean dangling;
 
     private Filters filters;
+
+    public Map<String, String> getQueries() {
+        Map<String, String> queries = new TreeMap<>();
+
+        queries.put("filters", this.toString());
+
+        return queries;
+    }
 
     public String toString() {
         filters = new Filters();
@@ -43,18 +54,18 @@ public class VolumeListParams {
         return filters.toString();
     }
 
-    public static class VolumeListParamsBuilder {
+    public static class ListVolumeParamsBuilder {
 
         private boolean useDangling;
 
-        public VolumeListParamsBuilder dangling(boolean dangling) {
+        public ListVolumeParamsBuilder dangling(boolean dangling) {
             this.dangling = dangling;
             useDangling = true;
             return this;
         }
 
-        public VolumeListParams build() {
-            VolumeListParams params = new VolumeListParams(this.name, this.driver, this.dangling);
+        public ListVolumeParams build() {
+            ListVolumeParams params = new ListVolumeParams(this.name, this.driver, this.dangling);
             params.useDangling = useDangling;
             return params;
         }

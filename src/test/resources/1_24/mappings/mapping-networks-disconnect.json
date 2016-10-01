@@ -1,7 +1,7 @@
 {
   "uuid" : "507dcfc8-c181-3afb-b04c-3a14a5a20462",
   "request" : {
-    "url" : "/v1.24/networks/test1/disconnect",
+    "url" : "/%2Fv1.24%2Fnetworks%2Ftest1%2Fdisconnect",
     "method" : "POST",
     "bodyPatterns" : [ {
       "equalToJson" : "{\"Container\":\"mongo\",\"Force\":false}",

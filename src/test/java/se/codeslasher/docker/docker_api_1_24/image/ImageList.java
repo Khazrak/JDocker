@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.model.api124.ImageInfo;
-import se.codeslasher.docker.model.api124.ListImagesParams;
+import se.codeslasher.docker.model.api124.parameters.ListImagesParams;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class ImageList {
     @Test
     public void list() {
 
-        final String path = "/v1.24/images/json?all=false";
+        final String path = "/%2Fv1.24%2Fimages%2Fjson?all=false&filters=%7B%7D";
 
         List<ImageInfo> imageInfos = client.listImages(false);
 
@@ -63,7 +63,7 @@ public class ImageList {
     @Test
     public void listDangling() {
 
-        final String path = "/v1.24/images/json?all=false&filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fimages%2Fjson?all=false&filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
 
         ListImagesParams params = ListImagesParams.builder().dangling(true).build();
 
@@ -80,7 +80,7 @@ public class ImageList {
     @Test
     public void listBefore() {
 
-        final String path = "/v1.24/images/json?all=false&filters=%7B%22before%22%3A%7B%22mongo%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fimages%2Fjson?all=false&filters=%7B%22before%22%3A%7B%22mongo%22%3Atrue%7D%7D";
 
         ListImagesParams params = ListImagesParams.builder().before("mongo").build();
 

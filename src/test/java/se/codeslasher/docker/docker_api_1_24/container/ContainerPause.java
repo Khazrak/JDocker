@@ -35,7 +35,7 @@ public class ContainerPause {
 
     @Test
     public void pause() {
-        final String path = "/v1.24/containers/mongo/pause";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fpause";
 
         client.pause("mongo");
 
@@ -47,7 +47,7 @@ public class ContainerPause {
 
     @Test
     public void unPause() {
-        final String path = "/v1.24/containers/mongo/unpause";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Funpause";
 
         client.unpause("mongo");
 

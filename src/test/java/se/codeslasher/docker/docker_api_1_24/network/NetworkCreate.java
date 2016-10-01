@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.DockerNetworkCreateRequest;
+import se.codeslasher.docker.model.api124.requests.NetworkCreateRequest;
 import se.codeslasher.docker.docker_api_1_24.container.ContainerTop;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -43,9 +43,9 @@ public class NetworkCreate {
 
     @Test
     public void create() {
-        final String path = "/v1.24/networks/create";
+        final String path = "/%2Fv1.24%2Fnetworks%2Fcreate";
 
-        DockerNetworkCreateRequest request = DockerNetworkCreateRequest.builder().name("test1").build();
+        NetworkCreateRequest request = NetworkCreateRequest.builder().name("test1").build();
 
         String id = client.createNetwork(request);
 

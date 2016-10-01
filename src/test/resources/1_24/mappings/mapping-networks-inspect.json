@@ -1,7 +1,7 @@
 {
   "uuid" : "7e70bfba-f9e6-3a4c-bce2-244aa4c58603",
   "request" : {
-    "url" : "/v1.24/networks/test1",
+    "url" : "/%2Fv1.24%2Fnetworks%2Ftest1",
     "method" : "GET"
   },
   "response" : {

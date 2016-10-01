@@ -38,7 +38,7 @@ public class ContainerResize {
 
     @Test
     public void resize() {
-        final String path = "/v1.24/containers/mongo/resize?h=80&w=200";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fresize?h=80&w=200";
 
         client.resizeTty("mongo",200,80);
 

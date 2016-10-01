@@ -1,0 +1,16 @@
+{
+  "uuid" : "219fe554-77c8-3ae1-8f7c-594ae4e322f4",
+  "request" : {
+    "url" : "/v1.24%2Fexec%2F35149c4cf8055c5cd524e109c8abff3b03d54e558e0633426860907cf793c714%2Fjson",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-exec-inspect.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Thu, 29 Sep 2016 16:33:48 GMT"
+    }
+  }
+}

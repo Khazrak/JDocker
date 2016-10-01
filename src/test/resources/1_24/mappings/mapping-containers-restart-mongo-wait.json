@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/v1.24/containers/mongo/restart?t=20",
+    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Frestart%3Ft=20",
     "method" : "POST"
   },
   "response" : {

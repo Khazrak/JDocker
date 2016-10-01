@@ -1,4 +1,4 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.model.api124.parameters;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,14 +9,16 @@ import se.codeslasher.docker.utils.Filters;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by karl on 9/11/16.
  */
 @Builder
-public class ContainerListRequest {
+public class ListContainerParams {
 
-    private static final Logger logger = LoggerFactory.getLogger(ContainerListRequest.class);
+    private static final Logger logger = LoggerFactory.getLogger(ListContainerParams.class);
 
     @Getter
     private boolean all;
@@ -35,6 +37,31 @@ public class ContainerListRequest {
 
     @Getter
     private Filters filters;
+
+    public Map<String, String> getQueries() {
+        Map <String, String> queries = new TreeMap<>();
+
+        if(all) {
+            queries.put("all","true");
+        }
+        if(limit > 0) {
+            queries.put("limit", Integer.toString(limit));
+        }
+        if(since != null) {
+            queries.put("since", since);
+        }
+        if(before != null) {
+            queries.put("before", before);
+        }
+        if(size) {
+            queries.put("size","true");
+        }
+        if(filters != null) {
+            queries.put("filters",filters.toString());
+        }
+
+        return queries;
+    }
 
     public String toString() {
 
@@ -56,15 +83,13 @@ public class ContainerListRequest {
             append("size=true",sb);
         }
         if(filters != null) {
-            try {
-                sb.append("filters="+URLEncoder.encode(filters.toString(), StandardCharsets.UTF_8.toString()));
-            } catch (UnsupportedEncodingException e) {
-                logger.error("Error encoding filters in container list method",e);
-            }
+            sb.append("filters="+filters.toString());
         }
 
         return sb.toString();
     }
+
+
 
     private void append(String ap, StringBuilder sb) {
         if(sb.length() > 0) {

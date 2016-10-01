@@ -12,11 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.docker_api_1_24.container.ContainerTop;
-import se.codeslasher.docker.model.api124.Network;
-import se.codeslasher.docker.model.api124.NetworkListParams;
 import se.codeslasher.docker.model.api124.Volume;
-import se.codeslasher.docker.model.api124.VolumeListParams;
+import se.codeslasher.docker.model.api124.parameters.ListVolumeParams;
 
 import java.util.List;
 
@@ -46,7 +43,7 @@ public class VolumeList {
 
     @Test
     public void list() {
-        final String path = "/v1.24/volumes";
+        final String path = "/%2Fv1.24%2Fvolumes";
 
         List<Volume> volumeList = client.listVolumes();
 
@@ -60,15 +57,15 @@ public class VolumeList {
 
     @Test
     public void paramsDanglingUsage() {
-        VolumeListParams params = VolumeListParams.builder().dangling(false).build();
+        ListVolumeParams params = ListVolumeParams.builder().dangling(false).build();
         assertThat(params.isUseDangling()).isTrue();
         assertThat(params.isDangling()).isFalse();
 
-        VolumeListParams params2 = VolumeListParams.builder().dangling(true).build();
+        ListVolumeParams params2 = ListVolumeParams.builder().dangling(true).build();
         assertThat(params2.isUseDangling()).isTrue();
         assertThat(params2.isDangling()).isTrue();
 
-        VolumeListParams params3 = VolumeListParams.builder().build();
+        ListVolumeParams params3 = ListVolumeParams.builder().build();
         assertThat(params3.isUseDangling()).isFalse();
         assertThat(params3.isDangling()).isFalse();
     }
@@ -76,9 +73,9 @@ public class VolumeList {
     @Test
     public void listFiltersDanglingTrue() {
 
-        final String path = "/v1.24/volumes?filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fvolumes?filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
 
-        VolumeListParams params = VolumeListParams.builder().dangling(true).build();
+        ListVolumeParams params = ListVolumeParams.builder().dangling(true).build();
 
         List<Volume> volumeList = client.listVolumes(params);
 
@@ -94,9 +91,9 @@ public class VolumeList {
     @Test
     public void listFiltersDanglingFalse() {
 
-        final String path = "/v1.24/volumes?filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fvolumes?filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D";
 
-        VolumeListParams params = VolumeListParams.builder().dangling(false).build();
+        ListVolumeParams params = ListVolumeParams.builder().dangling(false).build();
 
         List<Volume> volumeList = client.listVolumes(params);
 

@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.model.api124.Network;
-import se.codeslasher.docker.model.api124.NetworkConnectRequest;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,7 +41,7 @@ public class NetworkInspect {
 
     @Test
     public void inspect() {
-        final String path = "/v1.24/networks/test1";
+        final String path = "/%2Fv1.24%2Fnetworks%2Ftest1";
 
         Network network = client.inspectNetwork("test1");
 

@@ -1,11 +1,6 @@
 {
   "request" : {
-    "urlPathPattern" : "/v1.24/containers/f2aca7ccb724d73aad6e4f6/stop",
-    "queryParameters" : {
-      "t" : {
-        "matches" : "([0-9]*)"
-      }
-    },
+    "url" : "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fstop?t=10",
     "method" : "POST"
   },
   "response" : {

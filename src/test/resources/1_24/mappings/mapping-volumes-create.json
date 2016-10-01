@@ -1,7 +1,7 @@
 {
   "uuid" : "69ef07ce-44f4-3a22-846e-0d80ab292bb8",
   "request" : {
-    "url" : "/v1.24/volumes/create",
+    "url" : "/%2Fv1.24%2Fvolumes%2Fcreate",
     "method" : "POST",
     "bodyPatterns" : [ {
       "equalToJson" : "{\"Name\":\"my_vol\",\"Driver\":null,\"Labels\":null,\"DriverOpts\":null}",

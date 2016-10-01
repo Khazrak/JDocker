@@ -1,4 +1,4 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.model.api124.requests;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,10 +39,7 @@ import java.util.Map;
 })
 @Getter
 @Builder
-public class ContainerCreation {
-
-    public transient static final String PATH="/v1.24/containers/create";
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+public class ContainerCreationRequest {
 
     private transient String name;
 
@@ -118,7 +115,7 @@ public class ContainerCreation {
     private NetworkingConfig networkingConfig;
 
     //Made to give default values to variables, Lombok replaces the "normal" ones
-    public static class ContainerCreationBuilder {
+    public static class ContainerCreationRequestBuilder {
         private String hostname = "";
         private String domainname = "";
         private String user = "";

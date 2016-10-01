@@ -42,7 +42,7 @@ public class VolumeInspect {
 
     @Test
     public void inspect() {
-        final String path = "/v1.24/volumes/my_vol";
+        final String path = "/%2Fv1.24%2Fvolumes%2Fmy_vol";
 
         Volume volume = client.inspectVolume("my_vol");
 

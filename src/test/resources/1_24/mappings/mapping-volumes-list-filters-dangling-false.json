@@ -1,7 +1,7 @@
 {
   "uuid" : "db8aea0a-0cf1-3d90-ab82-f0e6f03c83bb",
   "request" : {
-    "url" : "/v1.24/volumes?filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D",
+    "url" : "/%2Fv1.24%2Fvolumes?filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D",
     "method" : "GET"
   },
   "response" : {

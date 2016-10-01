@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import se.codeslasher.docker.ContainerCreation;
+import se.codeslasher.docker.model.api124.requests.ContainerCreationRequest;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.model.api124.HostConfig;
@@ -41,11 +41,11 @@ public class ContainerCreate {
     @Test
     public void createContainer() throws JsonProcessingException {
 
-        final String path = "/v1.24/containers/create?name=test_container";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fcreate?name=test_container";
 
         HostConfig hostConfig = HostConfig.builder().build();
 
-        ContainerCreation test = ContainerCreation.builder().name("test_container").image("ubuntu:14.04").hostConfig(hostConfig).build();
+        ContainerCreationRequest test = ContainerCreationRequest.builder().name("test_container").image("ubuntu:14.04").hostConfig(hostConfig).build();
 
         String id = client.createContainer(test);
 

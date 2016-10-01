@@ -1,4 +1,4 @@
-package se.codeslasher.docker.model.api124;
+package se.codeslasher.docker.model.api124.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;

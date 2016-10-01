@@ -1,6 +1,9 @@
 package se.codeslasher.docker.docker_api_1_24.container;
 
+import com.github.tomakehurst.wiremock.http.RequestMethod;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
+import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -10,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.handlers.DockerLogsLineReader;
-import se.codeslasher.docker.model.api124.DockerLogsParameters;
+import se.codeslasher.docker.model.api124.parameters.DockerLogsParameters;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,6 +46,7 @@ public class ContainerLogs {
 
     @Test
     public void logs() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 
@@ -57,11 +61,16 @@ public class ContainerLogs {
         linesCount = logLines.size();
 
         assertThat(linesCount).isEqualTo(expectedLineCount);
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
     public void logsRawStream() {
-
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 
@@ -81,10 +90,16 @@ public class ContainerLogs {
 
         assertThat(linesCount).isEqualTo(expectedLineCount);
 
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
+
     }
 
     @Test
     public void logsStream() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 
@@ -101,10 +116,16 @@ public class ContainerLogs {
         }
 
         assertThat(linesCount).isEqualTo(expectedLineCount);
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     @Test
     public void logsSpecial() {
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 
@@ -121,6 +142,11 @@ public class ContainerLogs {
         }
 
         assertThat(linesCount).isEqualTo(expectedLineCount);
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     //TODO: Add more test for logging with only stderr in call and the other params

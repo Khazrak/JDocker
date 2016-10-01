@@ -1,7 +1,7 @@
 {
   "uuid" : "fb925385-a626-3979-9dd0-c36a1a0131fe",
   "request" : {
-    "url" : "/v1.24/images/create?fromImage=busybox&tag=latest",
+    "url" : "/%2Fv1.24%2Fimages%2Fcreate%3FfromImage=busybox&tag=latest",
     "method" : "POST"
   },
   "response" : {

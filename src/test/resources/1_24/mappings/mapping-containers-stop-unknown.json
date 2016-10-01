@@ -1,11 +1,6 @@
 {
   "request" : {
-    "urlPathPattern" : "/v1.24/containers/none_existing/stop",
-    "queryParameters" : {
-      "t" : {
-        "matches" : "([0-9]*)"
-      }
-    },
+    "url" : "/%2Fv1.24%2Fcontainers%2Fnone_existing%2Fstop?t=20",
     "method" : "POST"
   },
   "response" : {

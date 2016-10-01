@@ -1,7 +1,7 @@
 {
   "uuid" : "72714027-62fa-3e5b-9ba6-770d05549e08",
   "request" : {
-    "url" : "/v1.24/containers/mongo/update",
+    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Fupdate",
     "method" : "POST",
     "bodyPatterns" : [ {
 

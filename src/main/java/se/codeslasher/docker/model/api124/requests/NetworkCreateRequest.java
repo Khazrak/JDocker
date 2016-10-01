@@ -1,4 +1,4 @@
-package se.codeslasher.docker;
+package se.codeslasher.docker.model.api124.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -10,13 +10,10 @@ import se.codeslasher.docker.model.api124.NetworkCreateIpam;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Created by karl on 9/23/16.
- */
 @Getter
 @Builder
-@JsonDeserialize(builder = DockerNetworkCreateRequest.DockerNetworkCreateRequestBuilder.class)
-public class DockerNetworkCreateRequest {
+@JsonDeserialize(builder = NetworkCreateRequest.NetworkCreateRequestBuilder.class)
+public class NetworkCreateRequest {
 
     @JsonProperty("Name")
     private String name;
@@ -43,7 +40,7 @@ public class DockerNetworkCreateRequest {
     private Map<String,String> labels;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class DockerNetworkCreateRequestBuilder {
+    public static class NetworkCreateRequestBuilder {
 
         @JsonProperty("Name")
         private String name;

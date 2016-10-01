@@ -1,0 +1,21 @@
+{
+  "request" : {
+    "url" : "/v1.24%2Fexec%2F8f7abc89befc402cab81d1d01250559e5445f2f94290386e779805c6a274307a%2Fstart",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"Detach\":false,\"Tty\":true}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-exec-start-attached.txt",
+    "headers" : {
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Mon, 12 Sep 2016 16:55:59 GMT",
+      "Content-Type" : "application/vnd.docker.raw-stream; charset=utf-8",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}

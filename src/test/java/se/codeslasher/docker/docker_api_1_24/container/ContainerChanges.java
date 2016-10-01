@@ -44,7 +44,7 @@ public class ContainerChanges {
 
     @Test
     public void changes() {
-        final String path = "/v1.24/containers/mongo/changes";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Fchanges";
 
         ContainerFileSystemChange change1 = ContainerFileSystemChange.builder().path("/tmp").kind(0).build();
         ContainerFileSystemChange change2 = ContainerFileSystemChange.builder().path("/tmp/mongodb-27017.sock").kind(1).build();

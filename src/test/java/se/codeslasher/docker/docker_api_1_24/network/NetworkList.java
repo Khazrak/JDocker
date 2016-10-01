@@ -14,9 +14,7 @@ import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.docker_api_1_24.container.ContainerTop;
 import se.codeslasher.docker.model.api124.Network;
-import se.codeslasher.docker.model.api124.NetworkInterface;
-import se.codeslasher.docker.model.api124.NetworkListParams;
-import se.codeslasher.docker.utils.Filters;
+import se.codeslasher.docker.model.api124.parameters.NetworkListParams;
 
 import java.util.List;
 
@@ -44,11 +42,9 @@ public class NetworkList {
         client.close();
     }
 
-
-
     @Test
     public void list() {
-        final String path = "/v1.24/networks";
+        final String path = "/%2Fv1.24%2Fnetworks";
 
         List<Network> networksList = client.listNetworks();
 
@@ -62,7 +58,7 @@ public class NetworkList {
 
     @Test
     public void listByname() {
-        final String path = "/v1.24/networks?filters=%7B%22name%22%3A%7B%22test1%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fnetworks?filters=%7B%22name%22%3A%7B%22test1%22%3Atrue%7D%7D";
 
         NetworkListParams params = NetworkListParams.builder().name("test1").build();
 
@@ -79,7 +75,7 @@ public class NetworkList {
 
     @Test
     public void listByDriver() {
-        final String path = "/v1.24/networks?filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D";
+        final String path = "/%2Fv1.24%2Fnetworks?filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D";
 
         NetworkListParams params = NetworkListParams.builder().driver("bridge").build();
 

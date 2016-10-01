@@ -12,10 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.DockerNetworkCreateRequest;
 import se.codeslasher.docker.docker_api_1_24.container.ContainerTop;
 import se.codeslasher.docker.model.api124.Volume;
-import se.codeslasher.docker.model.api124.VolumeCreateRequest;
+import se.codeslasher.docker.model.api124.requests.VolumeCreateRequest;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,7 +44,7 @@ public class VolumeCreate {
 
     @Test
     public void create() {
-        final String path = "/v1.24/volumes/create";
+        final String path = "/%2Fv1.24%2Fvolumes%2Fcreate";
 
         VolumeCreateRequest request = VolumeCreateRequest.builder().name("my_vol").build();
 

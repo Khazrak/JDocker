@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/v1.24/containers/f2aca7ccb724d73aad6e4f6/kill",
+    "url" : "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fkill",
     "method" : "POST"
   },
   "response" : {

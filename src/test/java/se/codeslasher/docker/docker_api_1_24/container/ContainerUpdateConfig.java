@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import se.codeslasher.docker.model.api124.ContainerUpdateRequest;
+import se.codeslasher.docker.model.api124.requests.ContainerUpdateRequest;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.model.api124.Warnings;
@@ -38,7 +38,7 @@ public class ContainerUpdateConfig {
 
     @Test
     public void update() {
-        final String path = "/v1.24/containers/mongo/update";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fupdate";
 
         ContainerUpdateRequest update = ContainerUpdateRequest.builder().cpuShares(2).build();
 
@@ -54,7 +54,7 @@ public class ContainerUpdateConfig {
 
     @Test
     public void updateWithWarnings() {
-        final String path = "/v1.24/containers/mongo/update";
+        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fupdate";
 
         ContainerUpdateRequest update = ContainerUpdateRequest.builder().cpuShares(3).build();
 
