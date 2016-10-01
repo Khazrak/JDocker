@@ -35,7 +35,7 @@ public class ContainerRemove {
 
     @Test
     public void remove() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6";
 
         client.remove("f2aca7ccb724d73aad6e4f6");
 
@@ -47,7 +47,7 @@ public class ContainerRemove {
 
     @Test
     public void removeForceAndVolume() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=true&v=true";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=true&v=true";
 
         client.remove("f2aca7ccb724d73aad6e4f1", true, true);
 
@@ -59,7 +59,7 @@ public class ContainerRemove {
 
     @Test
     public void removeForce() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=true&v=false";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=true&v=false";
 
         client.remove("f2aca7ccb724d73aad6e4f1", true, false);
 
@@ -71,7 +71,7 @@ public class ContainerRemove {
 
     @Test
     public void removeWithVolume() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=false&v=true";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=false&v=true";
 
         client.remove("f2aca7ccb724d73aad6e4f1", false, true);
 
@@ -83,7 +83,7 @@ public class ContainerRemove {
 
     @Test
     public void removeNormal() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=false&v=false";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=false&v=false";
 
         client.remove("f2aca7ccb724d73aad6e4f1", false, false);
 

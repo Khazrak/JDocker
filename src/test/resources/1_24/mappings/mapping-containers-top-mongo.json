@@ -1,7 +1,7 @@
 {
   "uuid" : "3d2f0314-6a89-3cc5-9bbd-f3500011323e",
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Ftop",
+    "url" : "/v1.24%2Fcontainers%2Fmongo%2Ftop",
     "method" : "GET"
   },
   "response" : {

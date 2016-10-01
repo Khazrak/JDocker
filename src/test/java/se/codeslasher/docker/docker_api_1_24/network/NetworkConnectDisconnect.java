@@ -39,7 +39,7 @@ public class NetworkConnectDisconnect {
 
     @Test
     public void connect() {
-        final String path = "/%2Fv1.24%2Fnetworks%2Ftest1%2Fconnect";
+        final String path = "/v1.24%2Fnetworks%2Ftest1%2Fconnect";
 
         NetworkConnectRequest request = NetworkConnectRequest.builder().networkName("test1").container("mongo").build();
 
@@ -53,7 +53,7 @@ public class NetworkConnectDisconnect {
 
     @Test
     public void connectWithEndpoint() {
-        final String path = "/%2Fv1.24%2Fnetworks%2Ftest1%2Fconnect";
+        final String path = "/v1.24%2Fnetworks%2Ftest1%2Fconnect";
 
         NetworkConnectRequest request = NetworkConnectRequest.builder()
                 .networkName("test1")
@@ -75,7 +75,7 @@ public class NetworkConnectDisconnect {
 
     @Test
     public void disconnect() {
-        final String path = "/%2Fv1.24%2Fnetworks%2Ftest1%2Fdisconnect";
+        final String path = "/v1.24%2Fnetworks%2Ftest1%2Fdisconnect";
 
         client.disconnectContainerFromNetwork("mongo","test1",false);
 

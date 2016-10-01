@@ -36,7 +36,7 @@ public class ContainerRestart {
 
     @Test
     public void restart() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Frestart%3Ft=10";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Frestart%3Ft=10";
 
         client.restart("mongo");
 
@@ -48,7 +48,7 @@ public class ContainerRestart {
 
     @Test
     public void restartWait() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Frestart%3Ft=20";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Frestart%3Ft=20";
 
         client.restart("mongo",20);
 

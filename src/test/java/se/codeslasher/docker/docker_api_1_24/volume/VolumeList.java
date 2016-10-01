@@ -43,7 +43,7 @@ public class VolumeList {
 
     @Test
     public void list() {
-        final String path = "/%2Fv1.24%2Fvolumes";
+        final String path = "/v1.24%2Fvolumes";
 
         List<Volume> volumeList = client.listVolumes();
 
@@ -73,7 +73,7 @@ public class VolumeList {
     @Test
     public void listFiltersDanglingTrue() {
 
-        final String path = "/%2Fv1.24%2Fvolumes?filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
+        final String path = "/v1.24%2Fvolumes?filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D";
 
         ListVolumeParams params = ListVolumeParams.builder().dangling(true).build();
 
@@ -91,7 +91,7 @@ public class VolumeList {
     @Test
     public void listFiltersDanglingFalse() {
 
-        final String path = "/%2Fv1.24%2Fvolumes?filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D";
+        final String path = "/v1.24%2Fvolumes?filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D";
 
         ListVolumeParams params = ListVolumeParams.builder().dangling(false).build();
 

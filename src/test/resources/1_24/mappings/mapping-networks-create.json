@@ -1,7 +1,7 @@
 {
   "uuid" : "b21be165-58f5-35e2-b531-dae478f3699c",
   "request" : {
-    "url" : "/%2Fv1.24%2Fnetworks%2Fcreate",
+    "url" : "/v1.24%2Fnetworks%2Fcreate",
     "method" : "POST",
     "bodyPatterns" : [ {
       "equalToJson" : "{\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":{},\"Config\":[]},\"Internal\":false,\"Options\":{},\"Labels\":{},\"Name\":\"test1\"}\n",

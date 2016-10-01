@@ -36,7 +36,7 @@ public class DockerNetworksHandler {
 
     public String createNetwork(NetworkCreateRequest networkRequest) {
         logger.debug("Creating network");
-        final String path = "/v1.24/networks/create";
+        final String path = "v1.24/networks/create";
 
 
         try {
@@ -62,7 +62,7 @@ public class DockerNetworksHandler {
 
     public List<Network> listNetworks() {
         logger.debug("Listing networks");
-        final String path = "/v1.24/networks";
+        final String path = "v1.24/networks";
 
         try {
 
@@ -83,7 +83,7 @@ public class DockerNetworksHandler {
 
     public List<Network> listNetworks(NetworkListParams params) {
         logger.debug("Listing networks");
-        final String path = "/v1.24/networks";
+        final String path = "v1.24/networks";
 
         try {
 
@@ -105,7 +105,7 @@ public class DockerNetworksHandler {
 
     public void connectContainerToNetwork(NetworkConnectRequest networkConnectRequest) {
         logger.debug("Connect container to a network");
-        final String path = "/v1.24/networks/"+networkConnectRequest.getNetworkName()+"/connect";
+        final String path = "v1.24/networks/"+networkConnectRequest.getNetworkName()+"/connect";
 
         try {
             String json = mapper.writeValueAsString(networkConnectRequest);
@@ -119,7 +119,7 @@ public class DockerNetworksHandler {
 
     public void disconnectContainerFromNetwork(String containerName, String networkName, boolean force) {
         logger.debug("Disconnecting container {} from network {}, force: {}", containerName, networkName, force);
-        final String path = "/v1.24/networks/"+ networkName +"/disconnect";
+        final String path = "v1.24/networks/"+ networkName +"/disconnect";
         NetworkDisconnectRequest networkDisconnectRequest = NetworkDisconnectRequest
                 .builder()
                 .container(containerName)
@@ -137,7 +137,7 @@ public class DockerNetworksHandler {
 
     public Network inspectNetwork(String id) {
         logger.debug("Inspecting network {}", id);
-        final String path = "/v1.24/networks/"+id;
+        final String path = "v1.24/networks/"+id;
 
         try {
             Response response = okHttpExecuter.get(path);
@@ -155,7 +155,7 @@ public class DockerNetworksHandler {
 
     public void removeNetwork(String id) {
         logger.debug("Removing network {}", id);
-        final String path = "/v1.24/networks/"+id;
+        final String path = "v1.24/networks/"+id;
         Response response = okHttpExecuter.delete(path);
     }
 }

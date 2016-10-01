@@ -38,7 +38,7 @@ public class ContainerUpdateConfig {
 
     @Test
     public void update() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fupdate";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Fupdate";
 
         ContainerUpdateRequest update = ContainerUpdateRequest.builder().cpuShares(2).build();
 
@@ -54,7 +54,7 @@ public class ContainerUpdateConfig {
 
     @Test
     public void updateWithWarnings() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fupdate";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Fupdate";
 
         ContainerUpdateRequest update = ContainerUpdateRequest.builder().cpuShares(3).build();
 

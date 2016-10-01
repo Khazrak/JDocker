@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/%2Fv1.24%2Fnetworks%2Ftest1",
+    "url" : "/v1.24%2Fnetworks%2Ftest1",
     "method" : "DELETE"
   },
   "response" : {

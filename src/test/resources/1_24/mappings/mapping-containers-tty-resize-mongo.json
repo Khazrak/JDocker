@@ -1,7 +1,7 @@
 {
   "uuid" : "b7a84220-2166-3cc5-854e-7234bddcfe0b",
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Fresize?h=80&w=200",
+    "url" : "/v1.24%2Fcontainers%2Fmongo%2Fresize?h=80&w=200",
     "method" : "POST"
   },
   "response" : {

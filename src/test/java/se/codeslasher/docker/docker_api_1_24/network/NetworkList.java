@@ -44,7 +44,7 @@ public class NetworkList {
 
     @Test
     public void list() {
-        final String path = "/%2Fv1.24%2Fnetworks";
+        final String path = "/v1.24%2Fnetworks";
 
         List<Network> networksList = client.listNetworks();
 
@@ -58,7 +58,7 @@ public class NetworkList {
 
     @Test
     public void listByname() {
-        final String path = "/%2Fv1.24%2Fnetworks?filters=%7B%22name%22%3A%7B%22test1%22%3Atrue%7D%7D";
+        final String path = "/v1.24%2Fnetworks?filters=%7B%22name%22%3A%7B%22test1%22%3Atrue%7D%7D";
 
         NetworkListParams params = NetworkListParams.builder().name("test1").build();
 
@@ -75,7 +75,7 @@ public class NetworkList {
 
     @Test
     public void listByDriver() {
-        final String path = "/%2Fv1.24%2Fnetworks?filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D";
+        final String path = "/v1.24%2Fnetworks?filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D";
 
         NetworkListParams params = NetworkListParams.builder().driver("bridge").build();
 

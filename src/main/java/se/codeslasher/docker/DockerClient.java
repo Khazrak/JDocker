@@ -60,9 +60,9 @@ public interface DockerClient {
 
     String pull(DockerImageName image);
 
-    void pull(DockerImageName image, AuthConfig authConfig);
+    String pull(DockerImageName image, AuthConfig authConfig);
 
-    void pull(DockerImageName image, String token);
+    String pull(DockerImageName image, String token);
 
     void restart(String id);
 

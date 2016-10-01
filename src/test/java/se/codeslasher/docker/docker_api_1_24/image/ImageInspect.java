@@ -42,7 +42,7 @@ public class ImageInspect {
 
     @Test
     public void inspect() {
-        final String path = "/%2Fv1.24%2Fimages%2Fmongo%253Alatest%2Fjson";
+        final String path = "/v1.24%2Fimages%2Fmongo%253Alatest%2Fjson";
 
         DockerImageName mongo = new DockerImageName("mongo");
 

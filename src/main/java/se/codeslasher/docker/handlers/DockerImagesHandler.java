@@ -40,7 +40,7 @@ public class DockerImagesHandler {
 
     public List<ImageInfo> listImages(ListImagesParams params) {
         logger.debug("Listing images");
-        final String path = "/v1.24/images/json";
+        final String path = "v1.24/images/json";
 
         try {
             Response response = okHttpExecuter.get(path, params.getQueries());
@@ -59,33 +59,22 @@ public class DockerImagesHandler {
 
 
     public String pull(DockerImageName image) {
-        logger.debug("Pulling image with name {}", image.toString());
-        final String path = "/v1.24/images/create";
-        Map<String, String> queries = new TreeMap<>();
-        queries.put("fromImage", image.toStringWithoutTag());
-        queries.put("tag", image.getTag());
-
-        Map<String, String> headersMap = new TreeMap<>();
-        return pull("", image);
+        return pull(getBase64EncodedJson("{}"), image);
     }
 
-    public void pull(DockerImageName image, AuthConfig authConfig) {
-        logger.debug("Pulling image with name {}", image.toString());
-        final String path = "/v1.24/images/create";
-        Map<String, String> queries = new TreeMap<>();
-        queries.put("fromImage", image.toStringWithoutTag());
-        queries.put("tag", image.getTag());
+    public String pull(DockerImageName image, AuthConfig authConfig) {
         try {
             String jsonHeader = mapper.writeValueAsString(authConfig);
             jsonHeader = getBase64EncodedJson(jsonHeader);
-            pull(jsonHeader, image);
+            return pull(jsonHeader, image);
         } catch (JsonProcessingException e) {
             logger.debug("Exception during oulling if image: "+image.toString()+" due to json serialization of authconfig", e);
         }
+        return null;
     }
 
     public String pull(DockerImageName image, String token) {
-        final String path = "/v1.24/images/create";
+        final String path = "v1.24/images/create";
         Map<String, String> queries = new TreeMap<>();
         queries.put("fromImage", image.toStringWithoutTag());
         queries.put("tag", image.getTag());
@@ -109,7 +98,7 @@ public class DockerImagesHandler {
     }
 
     private String pull(String encodedAuthJson, DockerImageName image) {
-        final String path = "/v1.24/images/create?fromImage=" + image.toStringWithoutTag() + "&tag=" + image.getTag();
+        final String path = "v1.24/images/create";
         String result = "";
 
         Map<String, String> headersMap = new TreeMap<>();
@@ -117,9 +106,12 @@ public class DockerImagesHandler {
         headersMap.put("X-Registry-Auth", encodedAuthJson);
         Headers headers = Headers.of(headersMap);
 
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("fromImage", image.toStringWithoutTag());
+        queries.put("tag", image.getTag());
 
         try {
-            Response response = okHttpExecuter.post(headers, path);
+            Response response = okHttpExecuter.post(headers, path, queries);
             result = response.body().string();
         } catch (IOException e) {
             logger.info("Exception during pulling of image: "+image.toString(), e);
@@ -136,7 +128,7 @@ public class DockerImagesHandler {
         logger.debug("Inspecting image {}", imageName.toString());
         final String path;
         try {
-            path = "/v1.24/images/" + URLEncoder.encode(imageName.toString(), StandardCharsets.UTF_8.toString()) + "/json";
+            path = "v1.24/images/" + URLEncoder.encode(imageName.toString(), StandardCharsets.UTF_8.toString()) + "/json";
             Response response = okHttpExecuter.get(path);
             String responseBody = response.body().string();
             logger.debug("Response body: {}", responseBody);

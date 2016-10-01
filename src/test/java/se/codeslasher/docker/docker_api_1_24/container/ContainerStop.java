@@ -35,7 +35,7 @@ public class ContainerStop {
 
     @Test
     public void stop() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fstop?t=10";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fstop?t=10";
 
         client.stop("f2aca7ccb724d73aad6e4f6");
 
@@ -46,7 +46,7 @@ public class ContainerStop {
 
     @Test
     public void stopNoneExisting() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fnone_existing%2Fstop?t=20";
+        final String path = "/v1.24%2Fcontainers%2Fnone_existing%2Fstop?t=20";
         //Will log 304
         client.stop("none_existing",20);
 

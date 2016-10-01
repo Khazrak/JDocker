@@ -1,7 +1,7 @@
 {
   "uuid" : "74c91c00-d9f4-3b8d-b602-25b26795983f",
   "request" : {
-    "url" : "/%2Fv1.24%2Fnetworks?filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D",
+    "url" : "/v1.24%2Fnetworks?filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D",
     "method" : "GET"
   },
   "response" : {

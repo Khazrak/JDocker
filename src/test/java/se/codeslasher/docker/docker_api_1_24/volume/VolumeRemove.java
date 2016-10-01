@@ -37,7 +37,7 @@ public class VolumeRemove {
 
     @Test
     public void remove() {
-        final String path = "/%2Fv1.24%2Fvolumes%2Fmy_vol";
+        final String path = "/v1.24%2Fvolumes%2Fmy_vol";
 
         client.removeVolume("my_vol");
 

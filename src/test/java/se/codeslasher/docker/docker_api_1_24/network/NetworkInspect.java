@@ -41,7 +41,7 @@ public class NetworkInspect {
 
     @Test
     public void inspect() {
-        final String path = "/%2Fv1.24%2Fnetworks%2Ftest1";
+        final String path = "/v1.24%2Fnetworks%2Ftest1";
 
         Network network = client.inspectNetwork("test1");
 

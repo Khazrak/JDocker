@@ -44,7 +44,7 @@ public class ContainerStats {
 
     @Test
     public void stats() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fstats?stream=false";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Fstats?stream=false";
 
         se.codeslasher.docker.model.api124.ContainerStats mongoStats = client.stats("mongo");
 
@@ -60,7 +60,7 @@ public class ContainerStats {
 
     @Test
     public void statsStream() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Fstats?stream=true";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Fstats?stream=true";
 
         InputStream input = client.statsStream("mongo");
         int count = 0;

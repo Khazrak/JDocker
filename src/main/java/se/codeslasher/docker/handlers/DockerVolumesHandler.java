@@ -33,7 +33,7 @@ public class DockerVolumesHandler {
 
     public List<Volume> listVolumes() {
         logger.debug("Listing volumes");
-        final String path = "/v1.24/volumes";
+        final String path = "v1.24/volumes";
 
         try {
 
@@ -57,7 +57,7 @@ public class DockerVolumesHandler {
 
     public List<Volume> listVolumes(ListVolumeParams params) {
         logger.debug("Listing volumes with params {}", params);
-        final String path = "/v1.24/volumes";
+        final String path = "v1.24/volumes";
 
         try {
 
@@ -81,7 +81,7 @@ public class DockerVolumesHandler {
 
     public Volume createVolume(VolumeCreateRequest volumeCreateRequest) {
         logger.debug("Creating volume");
-        final String path = "/v1.24/volumes/create";
+        final String path = "v1.24/volumes/create";
 
 
         try {
@@ -103,7 +103,7 @@ public class DockerVolumesHandler {
 
     public Volume inspectVolume(String id) {
         logger.debug("Inspecting volume {}", id);
-        final String path = "/v1.24/volumes/" + id;
+        final String path = "v1.24/volumes/" + id;
 
         try {
 
@@ -121,7 +121,7 @@ public class DockerVolumesHandler {
 
     public void removeVolume(String id) {
         logger.debug("Removing volume {}", id);
-        final String path = "/v1.24/volumes/" + id;
+        final String path = "v1.24/volumes/" + id;
         Response response = okHttpExecuter.delete(path);
     }
 }

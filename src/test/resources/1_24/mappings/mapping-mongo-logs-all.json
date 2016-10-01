@@ -1,7 +1,7 @@
 {
   "uuid" : "c1b2865f-652f-30da-8288-ba3dcd5dee99",
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true",
+    "url" : "/v1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true",
     "method" : "GET"
   },
   "response" : {

@@ -37,7 +37,7 @@ public class ContainerStart {
 
     @Test
     public void start() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fstart";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fstart";
 
         client.start("f2aca7ccb724d73aad6e4f6");
 
@@ -49,7 +49,7 @@ public class ContainerStart {
 
     @Test(expected = DockerClientException.class)
     public void startNoneExisting() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fnone_existing%2Fstart";
+        final String path = "/v1.24%2Fcontainers%2Fnone_existing%2Fstart";
 
         client.start("none_existing");
 
@@ -61,7 +61,7 @@ public class ContainerStart {
 
     @Test
     public void startAlreadyStarted() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Falready_started%2Fstart";
+        final String path = "/v1.24%2Fcontainers%2Falready_started%2Fstart";
 
         //Will log 304
         client.start("already_started");

@@ -41,7 +41,7 @@ public class ContainerCreate {
     @Test
     public void createContainer() throws JsonProcessingException {
 
-        final String path = "/%2Fv1.24%2Fcontainers%2Fcreate?name=test_container";
+        final String path = "/v1.24%2Fcontainers%2Fcreate?name=test_container";
 
         HostConfig hostConfig = HostConfig.builder().build();
 

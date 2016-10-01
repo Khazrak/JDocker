@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=true&v=false",
+    "url" : "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f1?force=true&v=false",
     "method" : "DELETE"
   },
   "response" : {

@@ -43,7 +43,7 @@ public class NetworkCreate {
 
     @Test
     public void create() {
-        final String path = "/%2Fv1.24%2Fnetworks%2Fcreate";
+        final String path = "/v1.24%2Fnetworks%2Fcreate";
 
         NetworkCreateRequest request = NetworkCreateRequest.builder().name("test1").build();
 

@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
+import se.codeslasher.docker.model.api124.AuthConfig;
 import se.codeslasher.docker.utils.DockerImageName;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -24,6 +25,9 @@ public class ImagePull {
 
     private DockerClient client;
     private static Logger logger = LoggerFactory.getLogger(ImagePull.class);
+    private final String user = "testuser";
+    private final String password = "testpassword";
+
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options().usingFilesUnderClasspath("src/test/resources/1_24").port(9779)); // No-args constructor defaults
@@ -41,7 +45,7 @@ public class ImagePull {
 
     @Test
     public void pull() {
-        final String path = "/%2Fv1.24%2Fimages%2Fcreate%3FfromImage=busybox&tag=latest";
+        final String path = "/v1.24%2Fimages%2Fcreate?fromImage=busybox&tag=latest";
 
 
         DockerImageName image = new DockerImageName("busybox");
@@ -57,9 +61,23 @@ public class ImagePull {
         wireMockRule.verify(1, requestPatternBuilder);
     }
 
-    //@Test
+    @Test
     public void pullAuth() {
-        //TODO: private Registry pull with login
+        final String path = "/v1.24%2Fimages%2Fcreate?fromImage=codeslasher.se%3A5000%2Fmongo&tag=latest";
+
+
+        DockerImageName image = new DockerImageName("codeslasher.se:5000/mongo");
+        AuthConfig authConfig = AuthConfig.builder().username(user).password(password).email("test@test.se").build();
+        String response = client.pull(image, authConfig);
+
+        logger.info(response);
+
+        assertThat(response).contains("{\"status\":\"Status: Downloaded newer image for codeslasher.se:5000/mongo:latest\"}");
+
+        UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
+
+        wireMockRule.verify(1, requestPatternBuilder);
     }
 
     //@Test
@@ -69,7 +87,7 @@ public class ImagePull {
 
     @Test
     public void pullUbuntu() {
-        final String path = "/%2Fv1.24%2Fimages%2Fcreate%3FfromImage=ubuntu&tag=16.04";
+        final String path = "/v1.24%2Fimages%2Fcreate?fromImage=ubuntu&tag=16.04";
         DockerImageName image = new DockerImageName("ubuntu:16.04");
         String response = client.pull(image);
 

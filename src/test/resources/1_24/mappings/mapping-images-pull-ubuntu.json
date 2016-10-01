@@ -1,7 +1,7 @@
 {
   "uuid" : "f0bf50c1-dae7-337f-bc2d-62221cead968",
   "request" : {
-    "url" : "/%2Fv1.24%2Fimages%2Fcreate%3FfromImage=ubuntu&tag=16.04",
+    "url" : "/v1.24%2Fimages%2Fcreate?fromImage=ubuntu&tag=16.04",
     "method" : "POST"
   },
   "response" : {

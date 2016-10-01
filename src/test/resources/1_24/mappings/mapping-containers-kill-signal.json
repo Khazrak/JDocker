@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fwith_signal%2Fkill?signal=SIGKILL",
+    "url" : "/v1.24%2Fcontainers%2Fwith_signal%2Fkill?signal=SIGKILL",
     "method" : "POST"
   },
   "response" : {

@@ -38,7 +38,7 @@ public class ContainerList {
 
     @Test
     public void list() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson";
+        final String path = "/v1.24%2Fcontainers%2Fjson";
 
         List<Container> containerList = client.listContainers();
 
@@ -62,7 +62,7 @@ public class ContainerList {
 
     @Test
     public void listAll() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?all=true";
+        final String path = "/v1.24%2Fcontainers%2Fjson?all=true";
         ListContainerParams request = ListContainerParams.builder().all(true).build();
         List<Container> containerList = client.listContainers(request);
 
@@ -87,7 +87,7 @@ public class ContainerList {
 
     @Test
     public void listSince() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?since=mongo";
+        final String path = "/v1.24%2Fcontainers%2Fjson?since=mongo";
         ListContainerParams request = ListContainerParams.builder().since("mongo").build();
         List<Container> containerList = client.listContainers(request);
 
@@ -105,7 +105,7 @@ public class ContainerList {
 
     @Test
     public void listBefore() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?before=new_mongo";
+        final String path = "/v1.24%2Fcontainers%2Fjson?before=new_mongo";
         ListContainerParams request = ListContainerParams.builder().before("new_mongo").build();
         List<Container> containerList = client.listContainers(request);
 
@@ -125,7 +125,7 @@ public class ContainerList {
 
     @Test
     public void listLimit() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?limit=1";
+        final String path = "/v1.24%2Fcontainers%2Fjson?limit=1";
         ListContainerParams request = ListContainerParams.builder().limit(1).build();
         List<Container> containerList = client.listContainers(request);
 
@@ -146,7 +146,7 @@ public class ContainerList {
 
     @Test
     public void listSize() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?size=true";
+        final String path = "/v1.24%2Fcontainers%2Fjson?size=true";
         ListContainerParams request = ListContainerParams.builder().size(true).build();
         List<Container> containerList = client.listContainers(request);
 
@@ -168,7 +168,7 @@ public class ContainerList {
 
     @Test
     public void listFilterBefore() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?filters=%7B%22before%22%3A%7B%22new_mongo%22%3Atrue%7D%7D";
+        final String path = "/v1.24%2Fcontainers%2Fjson?filters=%7B%22before%22%3A%7B%22new_mongo%22%3Atrue%7D%7D";
 
         Filters filters = new Filters();
         filters.add("before","new_mongo");
@@ -187,7 +187,7 @@ public class ContainerList {
 
     @Test
     public void listFilterSince() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fjson?filters=%7B%22since%22%3A%7B%22mongo%22%3Atrue%7D%7D";
+        final String path = "/v1.24%2Fcontainers%2Fjson?filters=%7B%22since%22%3A%7B%22mongo%22%3Atrue%7D%7D";
 
         Filters filters = new Filters();
         filters.add("since","mongo");

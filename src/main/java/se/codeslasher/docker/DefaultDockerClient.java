@@ -191,15 +191,14 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public void pull(DockerImageName image, AuthConfig authConfig) {
-        imageHandler.pull(image, authConfig);
+    public String pull(DockerImageName image, AuthConfig authConfig) {
+        return imageHandler.pull(image, authConfig);
     }
 
     @Override
-    public void pull(DockerImageName image, String token) {
-        imageHandler.pull(image,token);
+    public String pull(DockerImageName image, String token) {
+        return imageHandler.pull(image,token);
     }
-
 
     @Override
     public void restart(String id) {

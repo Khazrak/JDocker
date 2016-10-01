@@ -44,7 +44,7 @@ public class VolumeCreate {
 
     @Test
     public void create() {
-        final String path = "/%2Fv1.24%2Fvolumes%2Fcreate";
+        final String path = "/v1.24%2Fvolumes%2Fcreate";
 
         VolumeCreateRequest request = VolumeCreateRequest.builder().name("my_vol").build();
 

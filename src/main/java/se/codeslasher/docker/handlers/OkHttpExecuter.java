@@ -83,6 +83,16 @@ public class OkHttpExecuter {
         return execute(request);
     }
 
+    public Response post(Headers headers, String path, Map<String, String> queries) {
+        Request request =  new Request.Builder()
+                .headers(headers)
+                .url(urlResolver.resolve(URL, path, queries))
+                .post(emptyRequestBody)
+                .build();
+
+        return execute(request);
+    }
+
     public Response post(String path, String jsonBody) {
         RequestBody body = RequestBody.create(JSON,jsonBody);
         Request request =  new Request.Builder()
@@ -172,5 +182,6 @@ public class OkHttpExecuter {
 
         return response;
     }
+
 
 }

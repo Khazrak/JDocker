@@ -1,7 +1,7 @@
 {
   "uuid" : "f64bea02-1fc6-34d2-915d-2eaa61b4f3af",
   "request" : {
-    "url" : "/%2Fv1.24%2Fimages%2Fmongo%253Alatest%2Fjson",
+    "url" : "/v1.24%2Fimages%2Fmongo%253Alatest%2Fjson",
     "method" : "GET"
   },
   "response" : {

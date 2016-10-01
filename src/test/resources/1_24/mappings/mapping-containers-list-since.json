@@ -1,7 +1,7 @@
 {
   "uuid" : "62d8d51b-49ed-305c-ab58-53e4ccc09cc1",
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fjson?since=mongo",
+    "url" : "/v1.24%2Fcontainers%2Fjson?since=mongo",
     "method" : "GET"
   },
   "response" : {

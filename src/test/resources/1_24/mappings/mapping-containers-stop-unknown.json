@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fnone_existing%2Fstop?t=20",
+    "url" : "/v1.24%2Fcontainers%2Fnone_existing%2Fstop?t=20",
     "method" : "POST"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "uuid" : "842f6bac-08ab-3bca-9152-941a59f560a4",
   "request" : {
-    "url" : "/%2Fv1.24%2Fnetworks%2Ftest1%2Fconnect",
+    "url" : "/v1.24%2Fnetworks%2Ftest1%2Fconnect",
     "method" : "POST",
     "bodyPatterns" : [ {
       "equalToJson" : "{\"networkName\":\"test1\",\"Container\":\"mongo\",\"EndpointConfig\":null}",

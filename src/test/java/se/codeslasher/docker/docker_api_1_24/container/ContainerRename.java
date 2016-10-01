@@ -35,7 +35,7 @@ public class ContainerRename {
 
     @Test
     public void rename() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Frename?name=mongo2";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Frename?name=mongo2";
 
         client.rename("mongo","mongo2");
 

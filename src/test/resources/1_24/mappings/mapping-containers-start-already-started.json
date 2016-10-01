@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Falready_started%2Fstart",
+    "url" : "/v1.24%2Fcontainers%2Falready_started%2Fstart",
     "method" : "POST"
   },
   "response" : {

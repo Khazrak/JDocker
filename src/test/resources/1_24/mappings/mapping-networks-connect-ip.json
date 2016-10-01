@@ -1,7 +1,7 @@
 {
   "uuid" : "da4a04d2-605c-3922-a5f2-3bee404f5f4a",
   "request" : {
-    "url" : "/%2Fv1.24%2Fnetworks%2Ftest1%2Fconnect",
+    "url" : "/v1.24%2Fnetworks%2Ftest1%2Fconnect",
     "method" : "POST",
     "bodyPatterns" : [ {
       "equalToJson" : "{\"networkName\":\"test1\",\"Container\":\"mongo\",\"EndpointConfig\":{\"IPAMConfig\":{\"IPv4Address\":\"172.18.1.1\",\"IPv6Address\":null,\"LinkLocalIPs\":null}}}",

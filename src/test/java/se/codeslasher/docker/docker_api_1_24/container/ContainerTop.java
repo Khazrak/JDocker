@@ -41,7 +41,7 @@ public class ContainerTop {
 
     @Test
     public void top() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Ftop";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Ftop";
 
         ContainerProcesses top = client.top("mongo");
 
@@ -57,7 +57,7 @@ public class ContainerTop {
 
     @Test
     public void topWithArgument() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Ftop?ps_args=aux";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Ftop?ps_args=aux";
 
         ContainerProcesses top = client.top("mongo","aux");
 

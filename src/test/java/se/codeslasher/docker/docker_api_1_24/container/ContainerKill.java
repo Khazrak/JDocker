@@ -35,7 +35,7 @@ public class ContainerKill {
 
     @Test
     public void kill() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fkill";
+        final String path = "/v1.24%2Fcontainers%2Ff2aca7ccb724d73aad6e4f6%2Fkill";
         client.kill("f2aca7ccb724d73aad6e4f6");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
@@ -46,7 +46,7 @@ public class ContainerKill {
 
     @Test
     public void killSignal() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fwith_signal%2Fkill?signal=SIGKILL";
+        final String path = "/v1.24%2Fcontainers%2Fwith_signal%2Fkill?signal=SIGKILL";
         client.kill("with_signal","SIGKILL");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);

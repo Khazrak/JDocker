@@ -36,7 +36,7 @@ public class DockerContainerHandler {
 
     public String createContainer(ContainerCreationRequest spec) {
         logger.debug("Creating container");
-        final String path = "/v1.24/containers/create";
+        final String path = "v1.24/containers/create";
 
         String id = null;
 
@@ -60,7 +60,7 @@ public class DockerContainerHandler {
 
     public DockerContainerInspect inspectContainer(String id, boolean size) {
         logger.debug("Inspect container with {}, parameter: size={}", id, size);
-        final String path = "/v1.24/containers/" + id + "/json";
+        final String path = "v1.24/containers/" + id + "/json";
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("size", Boolean.toString(size));
@@ -81,7 +81,7 @@ public class DockerContainerHandler {
 
     public ContainerProcesses top(String id, String arg) {
         logger.debug("Checking processin in container: {}, with ps_args={}", id, arg);
-        final String path = "/v1.24/containers/" + id + "/top";
+        final String path = "v1.24/containers/" + id + "/top";
 
         Map<String, String> queries = new TreeMap<>();
 
@@ -121,7 +121,7 @@ public class DockerContainerHandler {
 
     public ContainerStats stats(String id) {
         logger.debug("Checking stats for container {}", id);
-        final String path = "/v1.24/containers/" + id + "/stats";
+        final String path = "v1.24/containers/" + id + "/stats";
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("stream", Boolean.toString(false));
@@ -141,7 +141,7 @@ public class DockerContainerHandler {
 
     public InputStream statsStream(String id) {
         logger.debug("Streaming stats for container {}", id);
-        final String path = "/v1.24/containers/" + id + "/stats";
+        final String path = "v1.24/containers/" + id + "/stats";
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("stream", Boolean.toString(true));
@@ -152,7 +152,7 @@ public class DockerContainerHandler {
 
     public void resizeTty(String id, int width, int height) {
         logger.debug("Resizing TTY with id: {}, with new width: {} and new height: {}", id, width, height);
-        final String path = "/v1.24/containers/" + id + "/resize";
+        final String path = "v1.24/containers/" + id + "/resize";
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("h", Integer.toString(height));
@@ -164,7 +164,7 @@ public class DockerContainerHandler {
 
     public void start(String id) {
         logger.debug("Starting container {}", id);
-        final String path = "/v1.24/containers/" + id + "/start";
+        final String path = "v1.24/containers/" + id + "/start";
 
         Response response = okHttpExecuter.post(path);
         if (response.code() == 304) {
@@ -174,7 +174,7 @@ public class DockerContainerHandler {
 
     public void stop(String id, int secondsUntilKill) {
         logger.debug("Stopping container {}, seconds until issuing kill {}", id, secondsUntilKill);
-        final String path = "/v1.24/containers/" + id + "/stop";
+        final String path = "v1.24/containers/" + id + "/stop";
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("t", Integer.toString(secondsUntilKill));
@@ -187,7 +187,7 @@ public class DockerContainerHandler {
 
     public List<String> logs(String id, DockerLogsParameters params) {
         logger.debug("Reading logs as List for container {}, with params {} ", id, params);
-        final String path = "/v1.24/containers/" + id + "/logs";
+        final String path = "v1.24/containers/" + id + "/logs";
         List<String> logLines = null;
 
         Response response = okHttpExecuter.get(path, params.getQueryMap());
@@ -211,21 +211,21 @@ public class DockerContainerHandler {
 
     public DockerLogsLineReader logsSpecial(String id, DockerLogsParameters params) {
         logger.debug("Reading logs as DockerLogsLineReader for container {}, with params {} ", id, params);
-        final String path = "/v1.24/containers/" + id + "/logs";
+        final String path = "v1.24/containers/" + id + "/logs";
         Response response = okHttpExecuter.get(path, params.getQueryMap());
         return new DockerLogsLineReader(response.body().byteStream());
     }
 
     public InputStream logsRawStream(String id, DockerLogsParameters params) {
         logger.debug("Reading logs as raw stream for container {}, with params {} ", id, params);
-        final String path = "/v1.24/containers/" + id + "/logs";
+        final String path = "v1.24/containers/" + id + "/logs";
         Response response = okHttpExecuter.get(path, params.getQueryMap());
         return response.body().byteStream();
     }
 
     public InputStream logsStream(String id, DockerLogsParameters params) {
         logger.debug("Reading logs as DockerLogsInputStream for container {}, with params {} ", id, params);
-        final String path = "/v1.24/containers/" + id + "/logs";
+        final String path = "v1.24/containers/" + id + "/logs";
 
         Response response = okHttpExecuter.get(path, params.getQueryMap());
 
@@ -240,7 +240,7 @@ public class DockerContainerHandler {
 
     public List<Container> listContainers() {
         logger.debug("Listing containers");
-        final String path = "/v1.24/containers/json";
+        final String path = "v1.24/containers/json";
         try {
             Response response = okHttpExecuter.get(path);
             String responseBody = response.body().string();
@@ -255,7 +255,7 @@ public class DockerContainerHandler {
 
     public List<Container> listContainers(ListContainerParams listParams) {
         logger.debug("Listing containers with params: {}", listParams);
-        final String path = "/v1.24/containers/json";
+        final String path = "v1.24/containers/json";
         try {
             Response response = okHttpExecuter.get(path, listParams.getQueries());
             String responseBody = response.body().string();
@@ -270,7 +270,7 @@ public class DockerContainerHandler {
 
     public void remove(String id) {
         logger.debug("Removing container with id {}", id);
-        final String path = "/v1.24/containers/" + id;
+        final String path = "v1.24/containers/" + id;
 
         Response response = okHttpExecuter.delete(path);
         if (response.code() == 304) {
@@ -280,7 +280,7 @@ public class DockerContainerHandler {
 
     public void remove(String id, boolean forceRemove, boolean removeVolume) {
         logger.debug("Removing container with id {} forceRemove: {} remove volume: {}", id, forceRemove, removeVolume);
-        final String path = "/v1.24/containers/" + id;
+        final String path = "v1.24/containers/" + id;
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("force", Boolean.toString(forceRemove));
@@ -294,13 +294,13 @@ public class DockerContainerHandler {
 
     public void kill(String id) {
         logger.debug("Killing container {}", id);
-        final String path = "/v1.24/containers/" + id + "/kill";
+        final String path = "v1.24/containers/" + id + "/kill";
         Response response = okHttpExecuter.post(path);
     }
 
     public void kill(String id, String signal) {
         logger.debug("Killing container {} with signal: {}", id, signal);
-        final String path = "/v1.24/containers/" + id + "/kill";
+        final String path = "v1.24/containers/" + id + "/kill";
         Map<String, String> queries = new TreeMap<>();
         queries.put("signal", signal);
 
@@ -309,13 +309,13 @@ public class DockerContainerHandler {
 
     public void restart(String id, int wait) {
         logger.debug("Restarting container {}, wait {}", id, wait);
-        final String path = "/v1.24/containers/" + id + "/restart?t=" + wait;
+        final String path = "v1.24/containers/" + id + "/restart?t=" + wait;
         Response response = okHttpExecuter.post(path);
     }
 
     public Warnings update(String id, ContainerUpdateRequest updateConfig) {
         logger.debug("Updating container config");
-        final String path = "/v1.24/containers/" + id + "/update";
+        final String path = "v1.24/containers/" + id + "/update";
 
         try {
             String json = mapper.writeValueAsString(updateConfig);
@@ -333,7 +333,7 @@ public class DockerContainerHandler {
 
     public void rename(String originalName, String newName) {
         logger.debug("Renaming container from {} to {}", originalName, newName);
-        final String path = "/v1.24/containers/" + originalName + "/rename";
+        final String path = "v1.24/containers/" + originalName + "/rename";
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("name", newName);
@@ -342,13 +342,13 @@ public class DockerContainerHandler {
 
     public void pause(String id) {
         logger.debug("Pausing container {}", id);
-        final String path = "/v1.24/containers/" + id + "/pause";
+        final String path = "v1.24/containers/" + id + "/pause";
         Response response = okHttpExecuter.post(path);
     }
 
     public void unpause(String id) {
         logger.debug("Unpausing container {}", id);
-        final String path = "/v1.24/containers/" + id + "/unpause";
+        final String path = "v1.24/containers/" + id + "/unpause";
         Response response = okHttpExecuter.post(path);
     }
 

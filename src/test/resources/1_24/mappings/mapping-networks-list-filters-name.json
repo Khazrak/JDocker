@@ -1,7 +1,7 @@
 {
   "uuid" : "6d92e8cf-87b5-33a2-918c-7315da10f8a8",
   "request" : {
-    "url" : "/%2Fv1.24%2Fnetworks?filters=%7B%22name%22%3A%7B%22test1%22%3Atrue%7D%7D",
+    "url" : "/v1.24%2Fnetworks?filters=%7B%22name%22%3A%7B%22test1%22%3Atrue%7D%7D",
     "method" : "GET"
   },
   "response" : {

@@ -1,7 +1,7 @@
 {
   "uuid" : "730c81dc-390d-34d1-b13e-ad7808f5ecf6",
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fjson",
+    "url" : "/v1.24%2Fcontainers%2Fjson",
     "method" : "GET"
   },
   "response" : {

@@ -46,7 +46,7 @@ public class ContainerLogs {
 
     @Test
     public void logs() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 
@@ -70,7 +70,7 @@ public class ContainerLogs {
 
     @Test
     public void logsRawStream() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 
@@ -99,7 +99,7 @@ public class ContainerLogs {
 
     @Test
     public void logsStream() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 
@@ -125,7 +125,7 @@ public class ContainerLogs {
 
     @Test
     public void logsSpecial() {
-        final String path = "/%2Fv1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
+        final String path = "/v1.24%2Fcontainers%2Fmongo%2Flogs?stdout=true";
         int linesCount = 0;
         int expectedLineCount = 31;
 

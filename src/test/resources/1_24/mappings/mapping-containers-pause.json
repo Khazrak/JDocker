@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/%2Fv1.24%2Fcontainers%2Fmongo%2Fpause",
+    "url" : "/v1.24%2Fcontainers%2Fmongo%2Fpause",
     "method" : "POST"
   },
   "response" : {
