@@ -1,0 +1,17 @@
+{
+  "uuid" : "6f902bac-620e-3ce9-b61c-7ee6edca7a20",
+  "request" : {
+    "url" : "/v1.24%2Fimages%2Fmongo:latest%2Fhistory",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-images-history-mongo.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sun, 02 Oct 2016 11:50:28 GMT",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}

@@ -27,6 +27,8 @@ Inspect an image
 Tag an image into a repository
 Push an image on the registry
 Remove an image
+Search images
+Get the history of an image
 
 ### Misc
 Exec Create
@@ -64,8 +66,8 @@ Extract an archive of files or folders to a directory in a container
 ### Images
 Build image from a Dockerfile
 Create an image
-Get the history of an image
-Search images
+
+
 
 
 ### Misc

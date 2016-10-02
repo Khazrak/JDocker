@@ -369,4 +369,9 @@ public class DefaultDockerClient implements DockerClient {
         return imageHandler.searchImage(term);
     }
 
+    @Override
+    public List<ImageHistoryInfo> historyOfImage(DockerImageName name) {
+        return imageHandler.historyOfImage(name);
+    }
+
 }

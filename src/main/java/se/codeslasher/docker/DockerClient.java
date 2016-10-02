@@ -127,4 +127,6 @@ public interface DockerClient {
     String removeImage(DockerImageName name, boolean force, boolean noprune);
 
     List<ImageSearchInfo> searchImage(String term);
+
+    List<ImageHistoryInfo> historyOfImage(DockerImageName name);
 }

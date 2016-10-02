@@ -7,10 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se.codeslasher.docker.model.api124.AuthConfig;
-import se.codeslasher.docker.model.api124.Image;
-import se.codeslasher.docker.model.api124.ImageInfo;
-import se.codeslasher.docker.model.api124.ImageSearchInfo;
+import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.model.api124.parameters.ListImagesParams;
 import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.URLResolver;
@@ -185,7 +182,7 @@ public class DockerImagesHandler {
         logger.debug("Searching docker hub for {}", term);
         final String path = "v1.24/images/search";
         Map<String, String> queries = new TreeMap<>();
-        queries.put("term",term);
+        queries.put("term", term);
         Response response = okHttpExecuter.get(path, queries);
 
         try {
@@ -194,7 +191,24 @@ public class DockerImagesHandler {
             ImageSearchInfo[] searchInfos = mapper.readValue(responseBody, ImageSearchInfo[].class);
             return Arrays.asList(searchInfos);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Exception during image search for term " + term, e);
+        }
+
+        return null;
+    }
+
+    public List<ImageHistoryInfo> historyOfImage(DockerImageName name) {
+        logger.debug("Retrieving history of image {}", name);
+        final String path = "v1.24/images/" + name + "/history";
+
+        try {
+            Response response = okHttpExecuter.get(path);
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+            ImageHistoryInfo[] history = mapper.readValue(responseBody, ImageHistoryInfo[].class);
+            return Arrays.asList(history);
+        } catch (IOException e) {
+            logger.error("Exception during retrieving of history for image " + name, e);
         }
 
         return null;
