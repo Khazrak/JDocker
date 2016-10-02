@@ -1,0 +1,16 @@
+{
+  "uuid" : "104bfffa-6a54-3956-81f8-69a67ca71a88",
+  "request" : {
+    "url" : "/v1.24%2Fimages%2Fmongo:latest?force=false&noprune=false",
+    "method" : "DELETE"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-images-remove.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sun, 02 Oct 2016 11:05:00 GMT"
+    }
+  }
+}

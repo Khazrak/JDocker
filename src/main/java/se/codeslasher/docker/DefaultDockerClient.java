@@ -354,4 +354,14 @@ public class DefaultDockerClient implements DockerClient {
         return imageHandler.pushImage(imageToPush, identityToken);
     }
 
+    @Override
+    public String removeImage(DockerImageName name) {
+        return imageHandler.removeImage(name, false, false);
+    }
+
+    @Override
+    public String removeImage(DockerImageName name, boolean force, boolean noprune) {
+        return imageHandler.removeImage(name,force,noprune);
+    }
+
 }

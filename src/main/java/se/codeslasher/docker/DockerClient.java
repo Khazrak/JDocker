@@ -121,4 +121,9 @@ public interface DockerClient {
     InputStream pushImage(DockerImageName imageToPush, AuthConfig authConfig);
 
     InputStream pushImage(DockerImageName imageToPush, String identitytoken);
+
+    String removeImage(DockerImageName name);
+
+    String removeImage(DockerImageName name, boolean force, boolean noprune);
+
 }

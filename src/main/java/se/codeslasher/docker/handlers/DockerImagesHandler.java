@@ -170,4 +170,21 @@ public class DockerImagesHandler {
         return response.body().byteStream();
     }
 
+    public String removeImage(DockerImageName name, boolean force, boolean noprune) {
+        logger.debug("Removing image {}", name);
+        final String path = "v1.24/images/"+name;
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("force", Boolean.toString(force));
+        queries.put("noprune", Boolean.toString(noprune));
+        Response response = okHttpExecuter.delete(path, queries);
+        String responseBody = null;
+        try {
+            responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+        } catch (IOException e) {
+            logger.error("Exception during removal of image "+name, e);
+        }
+
+        return responseBody;
+    }
 }
