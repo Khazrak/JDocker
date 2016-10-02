@@ -115,4 +115,6 @@ public interface DockerClient {
     void startExec(String id, boolean tty);
 
     InputStream startExec(String id);
+
+    void tagImage(DockerImageName original, DockerImageName newName);
 }

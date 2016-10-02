@@ -335,4 +335,9 @@ public class DefaultDockerClient implements DockerClient {
         return execHandler.startExec(id);
     }
 
+    @Override
+    public void tagImage(DockerImageName original, DockerImageName newName) {
+        imageHandler.tagImage(original, newName);
+    }
+
 }

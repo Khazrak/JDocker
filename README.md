@@ -24,6 +24,7 @@ Remove a container
 List Images
 Create an image
 Inspect an image
+Tag an image into a repository
 
 ### Misc
 Exec Create
@@ -63,7 +64,6 @@ Build image from a Dockerfile
 Create an image
 Get the history of an image
 Push an image on the registry
-Tag an image into a repository
 Remove an image
 Search imageInfos
 

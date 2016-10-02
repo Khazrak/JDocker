@@ -141,4 +141,13 @@ public class DockerImagesHandler {
 
         return null;
     }
+
+    public void tagImage(DockerImageName original, DockerImageName newName) {
+        logger.debug("Taggin image {} to {}", original, newName);
+        final String path = "v1.24/images/"+original.toString()+"/tag";
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("repo", newName.toStringWithoutTag());
+        queries.put("tag", newName.getTag());
+        okHttpExecuter.post(path, queries);
+    }
 }

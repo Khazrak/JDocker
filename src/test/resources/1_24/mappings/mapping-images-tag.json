@@ -1,0 +1,16 @@
+{
+  "uuid" : "df1e31ad-49ab-34aa-b16b-fd53e4a53d2e",
+  "request" : {
+    "url" : "/v1.24%2Fimages%2Fmongo:latest%2Ftag?repo=test%2Fmongos&tag=5",
+    "method" : "POST"
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-images-tag.txt",
+    "headers" : {
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sun, 02 Oct 2016 08:45:34 GMT",
+      "Content-Type" : "text/plain; charset=utf-8"
+    }
+  }
+}
