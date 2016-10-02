@@ -17,13 +17,17 @@ import se.codeslasher.docker.model.api124.requests.BuildImageFromArchiveRequest;
 import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.RequestStreamBody;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -80,9 +84,23 @@ public class ImageBuildFromArchive {
                 .pull(true)
                 .build();
 
-        String response = client.buildImageFromArchive(request);
+        InputStream inputStream = client.buildImageFromArchive(request);
 
-        assertThat(response).contains("{\"stream\":\"Successfully built 249496a881e2\\n\"}");
+        List<String> lines = new ArrayList<>();
+
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                lines.add(line);
+                logger.info(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        assertThat(lines.get(lines.size() - 1)).contains("{\"stream\":\"Successfully built 249496a881e2\\n\"}");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
@@ -121,9 +139,22 @@ public class ImageBuildFromArchive {
                 .pull(true)
                 .build();
 
-        String response = client.buildImageFromArchive(request);
+        InputStream inputStream = client.buildImageFromArchive(request);
 
-        assertThat(response).contains("{\"stream\":\"Successfully built 0918942c704b\\n\"}");
+        List<String> lines = new ArrayList<>();
+
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                lines.add(line);
+                logger.info(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertThat(lines.get(lines.size() - 1)).contains("{\"stream\":\"Successfully built 0918942c704b\\n\"}");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null, null, null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST, pattern);

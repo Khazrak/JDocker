@@ -1,0 +1,17 @@
+{
+  "uuid" : "fcb7a4f4-9e03-3b49-87ea-153e4924442c",
+  "request" : {
+    "url" : "/v1.24%2Fbuild?labels=%7B%22LICENSE%22%3A%22GPL%22%7D&pull=true&remote=https%3A%2F%2Fgithub.com%2FSylvainLasnier%2Fecho.git&rm=true&t=busy-echo%3Alatest",
+    "method" : "POST"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-images-build-remote.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Sun, 02 Oct 2016 20:33:35 GMT",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}

@@ -20,6 +20,7 @@ Pause a container
 Unpause a container
 Remove a container
 
+
 ### Images
 List Images
 Create an image
@@ -29,6 +30,9 @@ Push an image on the registry
 Remove an image
 Search images
 Get the history of an image
+Build image from a Dockerfile
+Pull Image
+
 
 ### Misc
 Exec Create
@@ -42,6 +46,7 @@ List volumes
 Create a volume
 Inspect a volume
 Remove a volume
+
 
 ### Networks
 List networks
@@ -64,11 +69,7 @@ Extract an archive of files or folders to a directory in a container
 
 
 ### Images
-Build image from a Dockerfile
-Create an image
-
-
-
+Import Image from tarball
 
 ### Misc
 Check auth configuration

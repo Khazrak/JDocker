@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.model.api124.parameters.ListImagesParams;
 import se.codeslasher.docker.model.api124.requests.BuildImageFromArchiveRequest;
+import se.codeslasher.docker.model.api124.requests.BuildImageFromRemoteRequest;
 import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.URLResolver;
 
@@ -211,7 +212,7 @@ public class DockerImagesHandler {
         return null;
     }
 
-    public String buildImageFromArchive(BuildImageFromArchiveRequest request) {
+    public InputStream buildImageFromArchive(BuildImageFromArchiveRequest request) {
         logger.debug("Building image from archive");
         final String path = "v1.24/build";
         Map<String, String> queries = request.getQueries();
@@ -223,12 +224,29 @@ public class DockerImagesHandler {
                     .build();
 
             Response response = okHttpExecuter.post(headers,path,queries, request.getBody());
-            String responseBody = response.body().string();
-            logger.debug("Response body: {}", responseBody);
-
-            return responseBody;
+            return response.body().byteStream();
         } catch (IOException e) {
             logger.error("Exception during build from archive", e);
+        }
+
+        return null;
+    }
+
+    public InputStream buildImageFromRemote(BuildImageFromRemoteRequest request) {
+        logger.debug("Building image from remote url: {}", request.getRemoteUrl());
+        final String path = "v1.24/build";
+        Map<String, String> queries = request.getQueries();
+
+        try {
+            Headers headers = new Headers.Builder()
+                    .add("X-Registry-Config", getBase64EncodedJson(mapper.writeValueAsString(request.getAuthConfigs())))
+                    .add("Content-type", "application/tar")
+                    .build();
+
+            Response response = okHttpExecuter.post(headers,path,queries);
+            return response.body().byteStream();
+        } catch (IOException e) {
+            logger.error("Exception during build from remote", e);
         }
 
         return null;

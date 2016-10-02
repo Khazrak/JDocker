@@ -1,8 +1,12 @@
 package se.codeslasher.docker.model.api124.requests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.model.api124.AuthConfig;
 import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.RequestStreamBody;
@@ -16,6 +20,8 @@ import java.util.TreeMap;
 @Getter
 @Builder
 public class BuildImageFromArchiveRequest {
+
+    private static final Logger logger = LoggerFactory.getLogger(BuildImageFromArchiveRequest.class);
 
     @Singular
     private Map<String, AuthConfig> authConfigs;
@@ -137,6 +143,26 @@ public class BuildImageFromArchiveRequest {
         }
         if(shmsize > 0) {
             queries.put("shmsize", Long.toString(shmsize));
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        if(buildargs.keySet().size() > 0) {
+            try {
+                String json = mapper.writeValueAsString(buildargs);
+                queries.put("buildargs", json);
+            } catch (JsonProcessingException e) {
+                logger.error("Exception during json serialization of buildargs");
+            }
+        }
+
+        if(labels.keySet().size() > 0) {
+            try {
+                String json = mapper.writeValueAsString(labels);
+                queries.put("labels", json);
+            } catch (JsonProcessingException e) {
+                logger.error("Exception during json serialization of labels");
+            }
         }
 
         return queries;

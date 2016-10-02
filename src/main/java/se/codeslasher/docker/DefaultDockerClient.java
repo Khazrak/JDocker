@@ -383,12 +383,12 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public String buildImageFromRemote(BuildImageFromRemoteRequest request) {
-        return null;
+    public InputStream buildImageFromRemote(BuildImageFromRemoteRequest request) {
+        return imageHandler.buildImageFromRemote(request);
     }
 
     @Override
-    public String buildImageFromArchive(BuildImageFromArchiveRequest request) {
+    public InputStream buildImageFromArchive(BuildImageFromArchiveRequest request) {
         return imageHandler.buildImageFromArchive(request);
     }
 
