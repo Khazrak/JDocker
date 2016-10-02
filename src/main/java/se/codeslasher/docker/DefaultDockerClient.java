@@ -16,6 +16,7 @@ import se.codeslasher.docker.utils.UnixURLResolver;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by karl on 9/5/16.
@@ -55,7 +56,10 @@ public class DefaultDockerClient implements DockerClient {
             urlResolver = new HttpURLResolver();
         }
 
-        httpClient = builder.build();
+        httpClient = builder
+                .readTimeout(30, TimeUnit.MINUTES)
+                .writeTimeout(30, TimeUnit.MINUTES)
+                .build();
 
 
 
@@ -186,18 +190,18 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
-    public String pull(DockerImageName image) {
-        return imageHandler.pull(image);
+    public String pullImage(DockerImageName image) {
+        return imageHandler.pullImage(image);
     }
 
     @Override
-    public String pull(DockerImageName image, AuthConfig authConfig) {
-        return imageHandler.pull(image, authConfig);
+    public String pullImage(DockerImageName image, AuthConfig authConfig) {
+        return imageHandler.pullImage(image, authConfig);
     }
 
     @Override
-    public String pull(DockerImageName image, String token) {
-        return imageHandler.pull(image,token);
+    public String pullImage(DockerImageName image, String token) {
+        return imageHandler.pullImage(image,token);
     }
 
     @Override
@@ -338,6 +342,16 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public void tagImage(DockerImageName original, DockerImageName newName) {
         imageHandler.tagImage(original, newName);
+    }
+
+    @Override
+    public InputStream pushImage(DockerImageName imageToPush, AuthConfig authConfig) {
+        return imageHandler.pushImage(imageToPush, authConfig);
+    }
+
+    @Override
+    public InputStream pushImage(DockerImageName imageToPush, String identityToken) {
+        return imageHandler.pushImage(imageToPush, identityToken);
     }
 
 }

@@ -49,7 +49,7 @@ public class ImagePull {
 
 
         DockerImageName image = new DockerImageName("busybox");
-        String response = client.pull(image);
+        String response = client.pullImage(image);
 
         logger.info(response);
 
@@ -68,7 +68,7 @@ public class ImagePull {
 
         DockerImageName image = new DockerImageName("codeslasher.se:5000/mongo");
         AuthConfig authConfig = AuthConfig.builder().username(user).password(password).email("test@test.se").build();
-        String response = client.pull(image, authConfig);
+        String response = client.pullImage(image, authConfig);
 
         logger.info(response);
 
@@ -89,7 +89,7 @@ public class ImagePull {
     public void pullUbuntu() {
         final String path = "/v1.24%2Fimages%2Fcreate?fromImage=ubuntu&tag=16.04";
         DockerImageName image = new DockerImageName("ubuntu:16.04");
-        String response = client.pull(image);
+        String response = client.pullImage(image);
 
         logger.info(response);
 

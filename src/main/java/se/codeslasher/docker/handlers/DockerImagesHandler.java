@@ -2,10 +2,11 @@ package se.codeslasher.docker.handlers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.*;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se.codeslasher.docker.exception.DockerServerException;
 import se.codeslasher.docker.model.api124.AuthConfig;
 import se.codeslasher.docker.model.api124.Image;
 import se.codeslasher.docker.model.api124.ImageInfo;
@@ -14,6 +15,7 @@ import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.URLResolver;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -58,53 +60,41 @@ public class DockerImagesHandler {
     }
 
 
-    public String pull(DockerImageName image) {
-        return pull(getBase64EncodedJson("{}"), image);
+    public String pullImage(DockerImageName image) {
+        return pull(image, getBase64EncodedJson("{}"));
     }
 
-    public String pull(DockerImageName image, AuthConfig authConfig) {
+    public String pullImage(DockerImageName image, AuthConfig authConfig) {
         try {
             String jsonHeader = mapper.writeValueAsString(authConfig);
             jsonHeader = getBase64EncodedJson(jsonHeader);
-            return pull(jsonHeader, image);
+            return pull(image, jsonHeader);
         } catch (JsonProcessingException e) {
             logger.debug("Exception during oulling if image: "+image.toString()+" due to json serialization of authconfig", e);
         }
         return null;
     }
 
-    public String pull(DockerImageName image, String token) {
+    public String pullImage(DockerImageName image, String token) {
         final String path = "v1.24/images/create";
         Map<String, String> queries = new TreeMap<>();
         queries.put("fromImage", image.toStringWithoutTag());
         queries.put("tag", image.getTag());
 
-        TreeMap<String, String> map = new TreeMap<>();
+        String json = mapper.createObjectNode().put("registrytoken", token).toString();
+        json = getBase64EncodedJson(json);
 
-        map.put("registrytoken", token);
-
-        String result = null;
-
-        String jsonHeader = null;
-        try {
-            jsonHeader = mapper.writeValueAsString(map);
-            jsonHeader = getBase64EncodedJson(jsonHeader);
-            result = pull(jsonHeader, image);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return result;
+        return pull(image, json);
     }
 
-    private String pull(String encodedAuthJson, DockerImageName image) {
+    private String pull(DockerImageName image, String encodedAuthJson) {
         final String path = "v1.24/images/create";
         String result = "";
 
-        Map<String, String> headersMap = new TreeMap<>();
-        headersMap.put("Content-Type", "application/json");
-        headersMap.put("X-Registry-Auth", encodedAuthJson);
-        Headers headers = Headers.of(headersMap);
+        Headers headers = new Headers.Builder()
+                .add("Content-Type", "application/json")
+                .add("X-Registry-Auth", encodedAuthJson)
+                .build();
 
         Map<String, String> queries = new TreeMap<>();
         queries.put("fromImage", image.toStringWithoutTag());
@@ -150,4 +140,34 @@ public class DockerImagesHandler {
         queries.put("tag", newName.getTag());
         okHttpExecuter.post(path, queries);
     }
+
+    public InputStream pushImage(DockerImageName imageToPush, AuthConfig authConfig) {
+        String auth = null;
+        try {
+            auth = getBase64EncodedJson(mapper.writeValueAsString(authConfig));
+            return pushImageWithAuth(imageToPush, auth);
+        } catch (JsonProcessingException e) {
+            logger.error("Exception during push of image due to Json serialization of auth problem", e);
+        }
+        return null;
+    }
+
+    public InputStream pushImage(DockerImageName imageToPush, String identyToken) {
+        String token = mapper.createObjectNode().put("identitytoken", identyToken).toString();
+        token = getBase64EncodedJson(token);
+        return pushImageWithAuth(imageToPush, token);
+    }
+
+    private InputStream pushImageWithAuth(DockerImageName name, String auth) {
+        logger.debug("Pushing image {}", name);
+        final String path = "v1.24/images/" + name.toStringWithoutTag() + "/push";
+        Headers headers = new Headers.Builder().add("X-Registry-Auth", auth).build();
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("tag",name.getTag());
+
+        Response response = okHttpExecuter.post(headers, path, queries);
+
+        return response.body().byteStream();
+    }
+
 }
