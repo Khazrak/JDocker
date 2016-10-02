@@ -16,6 +16,8 @@ public interface DockerClient {
 
     void close();
 
+    String ping();
+
     String createContainer(ContainerCreationRequest spec);
 
     void start(String id);

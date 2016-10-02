@@ -11,7 +11,7 @@ Currently only implemented API version 1.24 (Docker 1.12)
 * Inspect a container
 * List processes running inside a container
 * Get container logs
-* Inspect changes on a container’s filesystem
+* Inspect changes on a containerï¿½s filesystem
 * Get container stats based on resource usage
 * Resize a container TTY
 * Start a container
@@ -43,6 +43,7 @@ Currently only implemented API version 1.24 (Docker 1.12)
 * Exec Inspect
 * Exec Start
 * Exec Resize
+* Ping the docker server
 
 
 ### Volumes
@@ -78,9 +79,8 @@ Currently only implemented API version 1.24 (Docker 1.12)
 * Check auth configuration
 * Display system-wide information
 * Show the docker version information
-* Ping the docker server
-* Create a new image from a container’s changes
-* Monitor Docker’s events
+* Create a new image from a containerï¿½s changes
+* Monitor Dockerï¿½s events
 * Get a tarball containing all images in a repository
 * Get a tarball containing all images
 * Load a tarball with a set of images and tags into docker

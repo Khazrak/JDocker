@@ -93,8 +93,14 @@ public class DefaultDockerClient implements DockerClient {
         execHandler = new DockerExecHandler(httpClient, urlResolver, mapper, URL);
     }
 
+    @Override
     public void close()  {
         httpClient = null;
+    }
+
+    @Override
+    public String ping() {
+        return containerHandler.ping();
     }
 
     @Override

@@ -352,4 +352,17 @@ public class DockerContainerHandler {
         Response response = okHttpExecuter.post(path);
     }
 
+    public String ping() {
+        logger.debug("Ping");
+        final String path = "v1.24/_ping";
+        Response response = okHttpExecuter.get(path);
+        try {
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+            return responseBody;
+        } catch (IOException e) {
+            logger.error("Exception during ping", e);
+        }
+        return null;
+    }
 }
