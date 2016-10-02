@@ -129,4 +129,10 @@ public interface DockerClient {
     List<ImageSearchInfo> searchImage(String term);
 
     List<ImageHistoryInfo> historyOfImage(DockerImageName name);
+
+    String buildImageFromRemote(BuildImageFromRemoteRequest request);
+
+    String buildImageFromArchive(BuildImageFromArchiveRequest request);
+
+
 }

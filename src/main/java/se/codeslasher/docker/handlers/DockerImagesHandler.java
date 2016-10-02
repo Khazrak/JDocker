@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.model.api124.parameters.ListImagesParams;
+import se.codeslasher.docker.model.api124.requests.BuildImageFromArchiveRequest;
 import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.URLResolver;
 
@@ -74,10 +75,6 @@ public class DockerImagesHandler {
     }
 
     public InputStream pullImage(DockerImageName image, String token) {
-        Map<String, String> queries = new TreeMap<>();
-        queries.put("fromImage", image.toStringWithoutTag());
-        queries.put("tag", image.getTag());
-
         String json = mapper.createObjectNode().put("registrytoken", token).toString();
         json = getBase64EncodedJson(json);
 
@@ -209,6 +206,29 @@ public class DockerImagesHandler {
             return Arrays.asList(history);
         } catch (IOException e) {
             logger.error("Exception during retrieving of history for image " + name, e);
+        }
+
+        return null;
+    }
+
+    public String buildImageFromArchive(BuildImageFromArchiveRequest request) {
+        logger.debug("Building image from archive");
+        final String path = "v1.24/build";
+        Map<String, String> queries = request.getQueries();
+
+        try {
+            Headers headers = new Headers.Builder()
+                    .add("X-Registry-Config", getBase64EncodedJson(mapper.writeValueAsString(request.getAuthConfigs())))
+                    .add("Content-type", "application/tar")
+                    .build();
+
+            Response response = okHttpExecuter.post(headers,path,queries, request.getBody());
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+
+            return responseBody;
+        } catch (IOException e) {
+            logger.error("Exception during build from archive", e);
         }
 
         return null;

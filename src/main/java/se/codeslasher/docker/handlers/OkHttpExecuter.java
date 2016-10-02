@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.exception.DockerClientException;
 import se.codeslasher.docker.exception.DockerServerException;
+import se.codeslasher.docker.utils.RequestStreamBody;
 import se.codeslasher.docker.utils.URLResolver;
 
 import java.io.IOException;
@@ -113,6 +114,16 @@ public class OkHttpExecuter {
         return execute(request);
     }
 
+    public Response post(Headers headers, String path, Map<String, String> queries, RequestStreamBody body) {
+        Request request =  new Request.Builder()
+                .headers(headers)
+                .url(urlResolver.resolve(URL, path, queries))
+                .post(body)
+                .build();
+
+        return execute(request);
+    }
+
     //=== DELETE =======================================================================================================
 
     public Response delete(String path) {
@@ -182,6 +193,7 @@ public class OkHttpExecuter {
 
         return response;
     }
+
 
 
 }

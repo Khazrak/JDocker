@@ -57,8 +57,9 @@ public class DefaultDockerClient implements DockerClient {
         }
 
         httpClient = builder
-                .readTimeout(30, TimeUnit.MINUTES)
-                .writeTimeout(30, TimeUnit.MINUTES)
+                .connectTimeout(30, TimeUnit.MINUTES)
+                .readTimeout(0, TimeUnit.SECONDS)
+                .writeTimeout(0, TimeUnit.SECONDS)
                 .build();
 
 
@@ -73,6 +74,13 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     public DefaultDockerClient(String host) {
+
+        httpClient = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.MINUTES)
+                .readTimeout(0, TimeUnit.SECONDS)
+                .writeTimeout(0, TimeUnit.SECONDS)
+                .build();
+
         httpClient = new OkHttpClient();
         URL = host;
         mapper = new ObjectMapper();
@@ -372,6 +380,16 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public List<ImageHistoryInfo> historyOfImage(DockerImageName name) {
         return imageHandler.historyOfImage(name);
+    }
+
+    @Override
+    public String buildImageFromRemote(BuildImageFromRemoteRequest request) {
+        return null;
+    }
+
+    @Override
+    public String buildImageFromArchive(BuildImageFromArchiveRequest request) {
+        return imageHandler.buildImageFromArchive(request);
     }
 
 }
