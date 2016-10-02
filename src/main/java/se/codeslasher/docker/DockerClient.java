@@ -58,11 +58,11 @@ public interface DockerClient {
 
     DockerLogsLineReader logsSpecial(String id, DockerLogsParameters params);
 
-    String pullImage(DockerImageName image);
+    InputStream pullImage(DockerImageName image);
 
-    String pullImage(DockerImageName image, AuthConfig authConfig);
+    InputStream pullImage(DockerImageName image, AuthConfig authConfig);
 
-    String pullImage(DockerImageName image, String token);
+    InputStream pullImage(DockerImageName image, String token);
 
     void restart(String id);
 

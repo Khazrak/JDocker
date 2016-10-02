@@ -15,6 +15,13 @@ import se.codeslasher.docker.DockerClient;
 import se.codeslasher.docker.model.api124.AuthConfig;
 import se.codeslasher.docker.utils.DockerImageName;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,11 +56,21 @@ public class ImagePull {
 
 
         DockerImageName image = new DockerImageName("busybox");
-        String response = client.pullImage(image);
+        InputStream input = client.pullImage(image);
 
-        logger.info(response);
+        List<String> lines = new ArrayList<>();
 
-        assertThat(response).contains("{\"status\":\"Status: Downloaded newer image for busybox:latest\"}");
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                lines.add(line);
+                logger.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertThat(lines.get(lines.size()-1)).contains("{\"status\":\"Status: Downloaded newer image for busybox:latest\"}");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
@@ -68,11 +85,21 @@ public class ImagePull {
 
         DockerImageName image = new DockerImageName("codeslasher.se:5000/mongo");
         AuthConfig authConfig = AuthConfig.builder().username(user).password(password).email("test@test.se").build();
-        String response = client.pullImage(image, authConfig);
+        InputStream input = client.pullImage(image, authConfig);
 
-        logger.info(response);
+        List<String> lines = new ArrayList<>();
 
-        assertThat(response).contains("{\"status\":\"Status: Downloaded newer image for codeslasher.se:5000/mongo:latest\"}");
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                lines.add(line);
+                logger.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertThat(lines.get(lines.size()-1)).contains("{\"status\":\"Status: Downloaded newer image for codeslasher.se:5000/mongo:latest\"}");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
@@ -89,11 +116,21 @@ public class ImagePull {
     public void pullUbuntu() {
         final String path = "/v1.24%2Fimages%2Fcreate?fromImage=ubuntu&tag=16.04";
         DockerImageName image = new DockerImageName("ubuntu:16.04");
-        String response = client.pullImage(image);
+        InputStream input = client.pullImage(image);
 
-        logger.info(response);
+        List<String> lines = new ArrayList<>();
 
-        assertThat(response).contains("{\"status\":\"Status: Downloaded newer image for ubuntu:16.04\"}");
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                lines.add(line);
+                logger.info(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertThat(lines.get(lines.size()-1)).contains("{\"status\":\"Status: Downloaded newer image for ubuntu:16.04\"}");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);

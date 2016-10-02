@@ -60,23 +60,22 @@ public class DockerImagesHandler {
     }
 
 
-    public String pullImage(DockerImageName image) {
+    public InputStream pullImage(DockerImageName image) {
         return pull(image, getBase64EncodedJson("{}"));
     }
 
-    public String pullImage(DockerImageName image, AuthConfig authConfig) {
+    public InputStream pullImage(DockerImageName image, AuthConfig authConfig) {
         try {
             String jsonHeader = mapper.writeValueAsString(authConfig);
             jsonHeader = getBase64EncodedJson(jsonHeader);
             return pull(image, jsonHeader);
         } catch (JsonProcessingException e) {
-            logger.debug("Exception during oulling if image: "+image.toString()+" due to json serialization of authconfig", e);
+            logger.debug("Exception during oulling if image: " + image.toString() + " due to json serialization of authconfig", e);
         }
         return null;
     }
 
-    public String pullImage(DockerImageName image, String token) {
-        final String path = "v1.24/images/create";
+    public InputStream pullImage(DockerImageName image, String token) {
         Map<String, String> queries = new TreeMap<>();
         queries.put("fromImage", image.toStringWithoutTag());
         queries.put("tag", image.getTag());
@@ -87,9 +86,8 @@ public class DockerImagesHandler {
         return pull(image, json);
     }
 
-    private String pull(DockerImageName image, String encodedAuthJson) {
+    private InputStream pull(DockerImageName image, String encodedAuthJson) {
         final String path = "v1.24/images/create";
-        String result = "";
 
         Headers headers = new Headers.Builder()
                 .add("Content-Type", "application/json")
@@ -100,14 +98,8 @@ public class DockerImagesHandler {
         queries.put("fromImage", image.toStringWithoutTag());
         queries.put("tag", image.getTag());
 
-        try {
-            Response response = okHttpExecuter.post(headers, path, queries);
-            result = response.body().string();
-        } catch (IOException e) {
-            logger.info("Exception during pulling of image: "+image.toString(), e);
-        }
-
-        return result;
+        Response response = okHttpExecuter.post(headers, path, queries);
+        return response.body().byteStream();
     }
 
     private String getBase64EncodedJson(String json) {
@@ -126,7 +118,7 @@ public class DockerImagesHandler {
             return mapper.readValue(responseBody, Image.class);
 
         } catch (IOException e) {
-            logger.error("Exception during inspecting image: "+imageName.toString(), e);
+            logger.error("Exception during inspecting image: " + imageName.toString(), e);
         }
 
         return null;
@@ -134,7 +126,7 @@ public class DockerImagesHandler {
 
     public void tagImage(DockerImageName original, DockerImageName newName) {
         logger.debug("Taggin image {} to {}", original, newName);
-        final String path = "v1.24/images/"+original.toString()+"/tag";
+        final String path = "v1.24/images/" + original.toString() + "/tag";
         Map<String, String> queries = new TreeMap<>();
         queries.put("repo", newName.toStringWithoutTag());
         queries.put("tag", newName.getTag());
@@ -163,7 +155,7 @@ public class DockerImagesHandler {
         final String path = "v1.24/images/" + name.toStringWithoutTag() + "/push";
         Headers headers = new Headers.Builder().add("X-Registry-Auth", auth).build();
         Map<String, String> queries = new TreeMap<>();
-        queries.put("tag",name.getTag());
+        queries.put("tag", name.getTag());
 
         Response response = okHttpExecuter.post(headers, path, queries);
 
@@ -172,7 +164,7 @@ public class DockerImagesHandler {
 
     public String removeImage(DockerImageName name, boolean force, boolean noprune) {
         logger.debug("Removing image {}", name);
-        final String path = "v1.24/images/"+name;
+        final String path = "v1.24/images/" + name;
         Map<String, String> queries = new TreeMap<>();
         queries.put("force", Boolean.toString(force));
         queries.put("noprune", Boolean.toString(noprune));
@@ -182,7 +174,7 @@ public class DockerImagesHandler {
             responseBody = response.body().string();
             logger.debug("Response body: {}", responseBody);
         } catch (IOException e) {
-            logger.error("Exception during removal of image "+name, e);
+            logger.error("Exception during removal of image " + name, e);
         }
 
         return responseBody;
