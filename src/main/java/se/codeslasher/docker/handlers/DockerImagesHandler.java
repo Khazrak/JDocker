@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.model.api124.AuthConfig;
 import se.codeslasher.docker.model.api124.Image;
 import se.codeslasher.docker.model.api124.ImageInfo;
+import se.codeslasher.docker.model.api124.ImageSearchInfo;
 import se.codeslasher.docker.model.api124.parameters.ListImagesParams;
 import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.URLResolver;
@@ -178,5 +179,24 @@ public class DockerImagesHandler {
         }
 
         return responseBody;
+    }
+
+    public List<ImageSearchInfo> searchImage(String term) {
+        logger.debug("Searching docker hub for {}", term);
+        final String path = "v1.24/images/search";
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("term",term);
+        Response response = okHttpExecuter.get(path, queries);
+
+        try {
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+            ImageSearchInfo[] searchInfos = mapper.readValue(responseBody, ImageSearchInfo[].class);
+            return Arrays.asList(searchInfos);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

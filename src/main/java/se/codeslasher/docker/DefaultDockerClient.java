@@ -364,4 +364,9 @@ public class DefaultDockerClient implements DockerClient {
         return imageHandler.removeImage(name,force,noprune);
     }
 
+    @Override
+    public List<ImageSearchInfo> searchImage(String term) {
+        return imageHandler.searchImage(term);
+    }
+
 }
