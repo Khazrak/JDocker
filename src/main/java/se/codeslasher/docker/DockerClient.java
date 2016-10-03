@@ -18,6 +18,8 @@ public interface DockerClient {
 
     String ping();
 
+    DockerVersion version();
+
     String createContainer(ContainerCreationRequest spec);
 
     void start(String id);

@@ -365,4 +365,18 @@ public class DockerContainerHandler {
         }
         return null;
     }
+
+    public DockerVersion version() {
+        logger.debug("Version");
+        final String path = "version";
+        Response response = okHttpExecuter.get(path);
+        try {
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+            return mapper.readValue(responseBody, DockerVersion.class);
+        } catch (IOException e) {
+            logger.error("Exception during ping", e);
+        }
+        return null;
+    }
 }

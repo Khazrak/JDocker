@@ -44,6 +44,7 @@ Currently only implemented API version 1.24 (Docker 1.12)
 * Exec Start
 * Exec Resize
 * Ping the docker server
+* Show the docker version information
 
 
 ### Volumes
@@ -78,9 +79,8 @@ Currently only implemented API version 1.24 (Docker 1.12)
 ### Misc
 * Check auth configuration
 * Display system-wide information
-* Show the docker version information
-* Create a new image from a container�s changes
-* Monitor Docker�s events
+* Create a new image from a container's changes
+* Monitor Docker's events
 * Get a tarball containing all images in a repository
 * Get a tarball containing all images
 * Load a tarball with a set of images and tags into docker
