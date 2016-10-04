@@ -1,4 +1,5 @@
-# Docker Java Client
+# JDocker
+Java Docker Client
 
 Docker client in Java that uses tcp or socket. It mapps domain-objects to json and follow Docker Remote API.
 Currently only implemented API version 1.24 (Docker 1.12)
@@ -86,5 +87,7 @@ Currently only implemented API version 1.24 (Docker 1.12)
 * Load a tarball with a set of images and tags into docker
 * Image tarball format
 
+
+SSL/TLS cert for client
 
 More Custom Tests
