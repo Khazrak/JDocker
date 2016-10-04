@@ -76,7 +76,7 @@ public class DockerImagesHandler {
     }
 
     public InputStream pullImage(DockerImageName image, String token) {
-        String json = mapper.createObjectNode().put("registrytoken", token).toString();
+        String json = mapper.createObjectNode().put("identitytoken", token).toString();
         json = getBase64EncodedJson(json);
 
         return pull(image, json);
