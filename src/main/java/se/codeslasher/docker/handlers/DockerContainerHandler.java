@@ -390,4 +390,20 @@ public class DockerContainerHandler {
         return null;
     }
 
+    public SystemInfo info() {
+        logger.debug("Info");
+        final String path = "info";
+        Response response = okHttpExecuter.get(path);
+
+        try {
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+            SystemInfo systemInfo = mapper.readValue(responseBody, SystemInfo.class);
+            return systemInfo;
+        } catch (IOException e) {
+            logger.error("Exception during info command", e);
+        }
+
+        return null;
+    }
 }

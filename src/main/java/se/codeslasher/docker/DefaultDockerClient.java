@@ -119,6 +119,11 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
+    public SystemInfo info() {
+        return containerHandler.info();
+    }
+
+    @Override
     public String createContainer(ContainerCreationRequest spec) {
         return containerHandler.createContainer(spec);
     }

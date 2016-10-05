@@ -30,6 +30,8 @@ public interface DockerClient {
 
     DockerVersion version();
 
+    SystemInfo info();
+
     String createContainer(ContainerCreationRequest spec);
 
     void start(String id);

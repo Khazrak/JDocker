@@ -1,0 +1,17 @@
+{
+  "uuid" : "07e14937-85d1-3e33-a1fc-fcb79babcbec",
+  "request" : {
+    "url" : "/info",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-info.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.1 (linux)",
+      "Date" : "Wed, 05 Oct 2016 19:20:53 GMT",
+      "Transfer-Encoding" : "chunked"
+    }
+  }
+}
