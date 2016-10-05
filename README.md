@@ -4,6 +4,10 @@ Java Docker Client
 Docker client in Java that uses tcp or socket. It mapps domain-objects to json and follow Docker Remote API.
 Currently only implemented API version 1.24 (Docker 1.12)
 
+The client have support for tcp and unixsocket, Windows namedpipe and test of OSX socket will come.
+
+Most functions have recorded request-response (By Wiremock proxy to docker) and are used in unittest by Wiremock (files and mappings)
+
 ## Implemented
 
 ### Containers
@@ -46,6 +50,7 @@ Currently only implemented API version 1.24 (Docker 1.12)
 * Exec Resize
 * Ping the docker server
 * Show the docker version information
+* Display system-wide information
 
 
 ### Volumes
@@ -79,7 +84,6 @@ Currently only implemented API version 1.24 (Docker 1.12)
 
 ### Misc
 * Check auth configuration
-* Display system-wide information
 * Create a new image from a container's changes
 * Monitor Docker's events
 * Get a tarball containing all images in a repository
@@ -89,5 +93,7 @@ Currently only implemented API version 1.24 (Docker 1.12)
 
 
 SSL/TLS cert for client
+Testing of OSX socket
+NamedPipe for Windows
 
 More Custom Tests
