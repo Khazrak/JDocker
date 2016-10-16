@@ -13,6 +13,7 @@
  */
 package se.codeslasher.docker.handlers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.model.api124.parameters.DockerLogsParameters;
 import se.codeslasher.docker.model.api124.parameters.ListContainerParams;
+import se.codeslasher.docker.model.api124.requests.AuthTestRequest;
 import se.codeslasher.docker.model.api124.requests.ContainerCreationRequest;
 import se.codeslasher.docker.model.api124.requests.ContainerUpdateRequest;
 import se.codeslasher.docker.utils.URLResolver;
@@ -402,6 +404,24 @@ public class DockerContainerHandler {
             return systemInfo;
         } catch (IOException e) {
             logger.error("Exception during info command", e);
+        }
+
+        return null;
+    }
+
+    public AuthTestResponse auth(AuthTestRequest authRequest) {
+        logger.debug("Auth test");
+        final String path = "v1.24/auth";
+        try {
+            String json = mapper.writeValueAsString(authRequest);
+            Response respone = okHttpExecuter.post(path, json);
+            String responseBody = respone.body().string();
+            logger.debug("Response body: {}", responseBody);
+            return mapper.readValue(responseBody, AuthTestResponse.class);
+        } catch (JsonProcessingException e) {
+            logger.error("Exception during auth test due to JSON de/serialization", e);
+        } catch (IOException e) {
+            logger.error("Exception during auth test when retrieving response body", e);
         }
 
         return null;

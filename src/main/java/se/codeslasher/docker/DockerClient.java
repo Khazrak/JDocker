@@ -150,5 +150,5 @@ public interface DockerClient {
 
     InputStream buildImageFromArchive(BuildImageFromArchiveRequest request);
 
-
+    AuthTestResponse auth(AuthTestRequest request);
 }

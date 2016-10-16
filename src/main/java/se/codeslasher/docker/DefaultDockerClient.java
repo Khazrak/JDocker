@@ -33,8 +33,6 @@ import java.util.concurrent.TimeUnit;
 
 public class DefaultDockerClient implements DockerClient {
 
-
-
     private static Logger logger = LoggerFactory.getLogger(DefaultDockerClient.class);
 
     private OkHttpClient httpClient;
@@ -106,6 +104,11 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public void close()  {
         httpClient = null;
+    }
+
+    @Override
+    public AuthTestResponse auth(AuthTestRequest request) {
+        return containerHandler.auth(request);
     }
 
     @Override

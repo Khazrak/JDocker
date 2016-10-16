@@ -51,6 +51,7 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 * Ping the docker server
 * Show the docker version information
 * Display system-wide information
+* Check auth configuration
 
 
 ### Volumes
@@ -83,7 +84,6 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 * Import Image from tarball
 
 ### Misc
-* Check auth configuration
 * Create a new image from a container's changes
 * Monitor Docker's events
 * Get a tarball containing all images in a repository
