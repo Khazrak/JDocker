@@ -8,6 +8,24 @@ The client have support for tcp and unixsocket, Windows namedpipe and test of OS
 
 Most functions have recorded request-response (By Wiremock proxy to docker) and are used in unittest by Wiremock (files and mappings)
 
+
+## Setting up the client
+
+**Remote Unsecure tcp**
+```java
+DockerClient client = new DefaultDockerClient("http://127.0.0.1:4243");
+```
+**Remote secure tcp**
+```java
+DockerClient client = new DefaultDockerClient("https://127.0.0.1:2376", "/path/to/ssl/certs");
+```
+**Unix socket**
+```java
+DockerClient client = new DefaultDockerClient();
+```
+
+
+
 ## Implemented
 
 ### Containers
@@ -92,8 +110,8 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 * Image tarball format
 
 
-SSL/TLS cert for client
-Testing of OSX socket
-NamedPipe for Windows
+
+*Testing of OSX socket
+*NamedPipe for Windows
 
 More Custom Tests
