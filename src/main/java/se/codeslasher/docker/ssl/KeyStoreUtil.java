@@ -167,71 +167,78 @@ accepting any such warranty or additional liability.
 
 END OF TERMS AND CONDITIONS
 */
-package se.codeslasher.docker.unixsocket;
+package se.codeslasher.docker.ssl;
 
-import org.newsclub.net.unix.AFUNIXSocket;
-import org.newsclub.net.unix.AFUNIXSocketAddress;
+import org.bouncycastle.openssl.PEMKeyPair;
+import org.bouncycastle.openssl.PEMParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import se.codeslasher.docker.exception.DockerClientException;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
+import java.io.*;
+import java.security.*;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.util.Collection;
 
 /**
  * Created by gesellix
  * From https://github.com/gesellix/docker-client
  * Modified by Khazrak (Groovy > Java)
  */
-public class UnixSocket extends FileSocket {
+public class KeyStoreUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(UnixSocket.class);
-    private AFUNIXSocket socket;
+    private static Logger logger = LoggerFactory.getLogger(KeyStoreUtil.class);
 
-    @Override
-    public void connect(SocketAddress endpoint, int timeout) throws IOException {
-        InetAddress address = ((InetSocketAddress) endpoint).getAddress();
-        String socketPath = decodeHostname(address);
+    static char [] KEY_STORE_PASSWORD = "docker".toCharArray();
 
-        logger.debug("connect via {}'...", socketPath);
-        File socketFile = new File(socketPath);
+    static KeyStore createDockerKeyStore(String certPath) throws IOException, GeneralSecurityException {
+        PrivateKey privKey = loadPrivateKey(new File(certPath, "key.pem").getAbsolutePath());
+        Collection<Certificate> certificates = loadCertificates(new File(certPath, "cert.pem").getAbsolutePath());
 
-        if (timeout < 0) {
-            timeout = 0;
+        Certificate [] certs = new Certificate[certificates.size()];
+        int index = 0;
+        for(Certificate c : certificates) {
+            certs[index] = c;
+            index++;
         }
 
-        socket = AFUNIXSocket.newInstance();
-        socket.connect(new AFUNIXSocketAddress(socketFile), timeout);
-        socket.setSoTimeout(timeout);
+        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+        keyStore.load((KeyStore.LoadStoreParameter) null);
+
+        keyStore.setKeyEntry("docker", privKey, KEY_STORE_PASSWORD, certs);
+        addCA(keyStore, new File(certPath, "ca.pem").getAbsolutePath());
+        return keyStore;
     }
 
-    @Override
-    public InputStream getInputStream() throws IOException {
-        return socket.getInputStream();
+    static PrivateKey loadPrivateKey(String keyPath) throws IOException, GeneralSecurityException {
+        PEMKeyPair keyPair = loadPEM(keyPath);
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyPair.getPrivateKeyInfo().getEncoded());
+        return KeyFactory.getInstance("RSA").generatePrivate(keySpec);
     }
 
-    @Override
-    public OutputStream getOutputStream() throws IOException {
-        return socket.getOutputStream();
+    static <T> T loadPEM(String keyPath) throws IOException {
+        PEMParser parser = new PEMParser(new BufferedReader(new FileReader(keyPath)));
+        return (T) parser.readObject();
     }
 
-    @Override
-    public void bind(SocketAddress bindpoint) throws IOException {
-        socket.bind(bindpoint);
+    static void addCA(KeyStore keyStore, String caPath) throws KeyStoreException, FileNotFoundException, CertificateException {
+        loadCertificates(caPath).forEach(cert -> {
+            X509Certificate crt = (X509Certificate) cert;
+            String alias = crt.getSubjectX500Principal().getName();
+            try {
+                keyStore.setCertificateEntry(alias, crt);
+            } catch (KeyStoreException e) {
+                throw new DockerClientException("Exception during adding CA to keystore",e);
+            }
+        });
     }
 
-    @Override
-    public boolean isConnected() {
-        return socket.isConnected();
+    static Collection<Certificate> loadCertificates(String certPath) throws FileNotFoundException, CertificateException {
+        InputStream is = new FileInputStream(certPath);
+        return (Collection<Certificate>) CertificateFactory.getInstance("X509").generateCertificates(is);
     }
-
-    @Override
-    public synchronized void close() throws IOException {
-        socket.close();
-    }
-
 }

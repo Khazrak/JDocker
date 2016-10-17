@@ -5,6 +5,7 @@ import okhttp3.*;
 import okio.BufferedSink;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.docker_api_1_24.container.ContainerTop;
@@ -14,6 +15,7 @@ import se.codeslasher.docker.model.api124.requests.ExecCreateRequest;
 import se.codeslasher.docker.unixsocket.UnixSocketFactory;
 
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;

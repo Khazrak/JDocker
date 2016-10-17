@@ -167,71 +167,65 @@ accepting any such warranty or additional liability.
 
 END OF TERMS AND CONDITIONS
 */
-package se.codeslasher.docker.unixsocket;
+package se.codeslasher.docker.ssl;
 
-import org.newsclub.net.unix.AFUNIXSocket;
-import org.newsclub.net.unix.AFUNIXSocketAddress;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import javax.net.SocketFactory;
+import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
+import java.security.*;
+import java.util.Arrays;
+
+import static javax.net.ssl.KeyManagerFactory.getDefaultAlgorithm;
 
 /**
  * Created by gesellix
  * From https://github.com/gesellix/docker-client
  * Modified by Khazrak (Groovy > Java)
  */
-public class UnixSocket extends FileSocket {
+public class SslSocketConfigFactory {
 
-    private static final Logger logger = LoggerFactory.getLogger(UnixSocket.class);
-    private AFUNIXSocket socket;
+    public DockerSSLSocket createDockerSslSocket(String certPath) throws IOException, GeneralSecurityException {
+        KeyStore keyStore = createKeyStore(certPath);
+        KeyManagerFactory keyManagerFactory = initKeyManagerFactory(keyStore);
+        TrustManagerFactory tmf = initTrustManagerFactory(keyStore);
+        X509TrustManager trustManager = getUniqueX509TrustManager(tmf);
+        SSLContext sslContext = initSslContext(keyManagerFactory, trustManager);
 
-    @Override
-    public void connect(SocketAddress endpoint, int timeout) throws IOException {
-        InetAddress address = ((InetSocketAddress) endpoint).getAddress();
-        String socketPath = decodeHostname(address);
+        return DockerSSLSocket.builder()
+                .sslSocketFactory(sslContext.getSocketFactory())
+                .trustManager(trustManager)
+                .build();
+    }
 
-        logger.debug("connect via {}'...", socketPath);
-        File socketFile = new File(socketPath);
+    private SSLContext initSslContext(KeyManagerFactory keyManagerFactory, X509TrustManager trustManager) throws NoSuchAlgorithmException, KeyManagementException {
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(keyManagerFactory.getKeyManagers(), new TrustManager[]{trustManager}, null);
+        return sslContext;
+    }
 
-        if (timeout < 0) {
-            timeout = 0;
+    private X509TrustManager getUniqueX509TrustManager(TrustManagerFactory trustManagerFactory) {
+        TrustManager [] trustManagers = trustManagerFactory.getTrustManagers();
+        if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+            throw new IllegalStateException("Unexpected default trust managers: " + Arrays.toString(trustManagers));
         }
-
-        socket = AFUNIXSocket.newInstance();
-        socket.connect(new AFUNIXSocketAddress(socketFile), timeout);
-        socket.setSoTimeout(timeout);
+        return (X509TrustManager) trustManagers[0];
     }
 
-    @Override
-    public InputStream getInputStream() throws IOException {
-        return socket.getInputStream();
+    private TrustManagerFactory initTrustManagerFactory(KeyStore keyStore) throws KeyStoreException, NoSuchAlgorithmException {
+        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(getDefaultAlgorithm());
+        trustManagerFactory.init(keyStore);
+        return trustManagerFactory;
     }
 
-    @Override
-    public OutputStream getOutputStream() throws IOException {
-        return socket.getOutputStream();
+    private KeyManagerFactory initKeyManagerFactory(KeyStore keyStore) throws NoSuchAlgorithmException, UnrecoverableKeyException, KeyStoreException {
+        KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(getDefaultAlgorithm());
+        keyManagerFactory.init(keyStore, KeyStoreUtil.KEY_STORE_PASSWORD);
+        return keyManagerFactory;
     }
 
-    @Override
-    public void bind(SocketAddress bindpoint) throws IOException {
-        socket.bind(bindpoint);
-    }
-
-    @Override
-    public boolean isConnected() {
-        return socket.isConnected();
-    }
-
-    @Override
-    public synchronized void close() throws IOException {
-        socket.close();
+    private KeyStore createKeyStore(String dockerCertPath) throws IOException, GeneralSecurityException {
+        return KeyStoreUtil.createDockerKeyStore(new File(dockerCertPath).getAbsolutePath());
     }
 
 }

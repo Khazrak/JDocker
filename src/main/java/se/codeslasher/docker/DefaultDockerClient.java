@@ -21,13 +21,21 @@ import se.codeslasher.docker.handlers.*;
 import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.model.api124.parameters.*;
 import se.codeslasher.docker.model.api124.requests.*;
+import se.codeslasher.docker.ssl.DockerSSLSocket;
+import se.codeslasher.docker.ssl.SslSocketConfigFactory;
 import se.codeslasher.docker.unixsocket.UnixSocketFactory;
 import se.codeslasher.docker.utils.DockerImageName;
 import se.codeslasher.docker.utils.HttpURLResolver;
 import se.codeslasher.docker.utils.URLResolver;
 import se.codeslasher.docker.utils.UnixURLResolver;
 
+import javax.net.ssl.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.*;
+import java.security.cert.CertificateException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -90,6 +98,7 @@ public class DefaultDockerClient implements DockerClient {
                 .build();
 
         httpClient = new OkHttpClient();
+
         URL = host;
         mapper = new ObjectMapper();
 
@@ -99,6 +108,40 @@ public class DefaultDockerClient implements DockerClient {
         containerHandler = new DockerContainerHandler(httpClient, urlResolver, mapper, URL);
         volumesHandler = new DockerVolumesHandler(httpClient, urlResolver, mapper, URL);
         execHandler = new DockerExecHandler(httpClient, urlResolver, mapper, URL);
+    }
+
+    public DefaultDockerClient(String host, String certPath) throws IOException, GeneralSecurityException {
+
+        URL = host;
+
+        DockerSSLSocket dockerSSLSocket = new SslSocketConfigFactory().createDockerSslSocket(certPath);
+
+        httpClient = new OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.MINUTES)
+                .readTimeout(0, TimeUnit.SECONDS)
+                .writeTimeout(0, TimeUnit.SECONDS)
+                .sslSocketFactory(dockerSSLSocket.getSslSocketFactory(), dockerSSLSocket.getTrustManager())
+                .build();
+
+        mapper = new ObjectMapper();
+
+        URLResolver urlResolver = new HttpURLResolver();
+        imageHandler = new DockerImagesHandler(httpClient, urlResolver, mapper, URL);
+        networksHandler = new DockerNetworksHandler(httpClient, urlResolver, mapper, URL);
+        containerHandler = new DockerContainerHandler(httpClient, urlResolver, mapper, URL);
+        volumesHandler = new DockerVolumesHandler(httpClient, urlResolver, mapper, URL);
+        execHandler = new DockerExecHandler(httpClient, urlResolver, mapper, URL);
+    }
+
+    private KeyStore getKeyStore(String keyStoreName, char [] password) throws NoSuchAlgorithmException, IOException, CertificateException, KeyStoreException {
+        KeyStore ks = null;
+        try (FileInputStream fis = new FileInputStream(keyStoreName)){
+            ks = KeyStore.getInstance(KeyStore.getDefaultType());
+            // get user password and file input stream
+            ks.load(fis, password);
+        }
+
+        return ks;
     }
 
     @Override
