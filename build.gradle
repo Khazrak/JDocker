@@ -17,7 +17,11 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.2'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
 
+    //PEM support
     compile 'org.bouncycastle:bcpkix-jdk15on:1.55'
+
+    //Tar support
+    compile 'org.kamranzafar:jtar:2.3'
 
     //compile 'com.github.jnr:jnr-unixsocket:0.12'
 

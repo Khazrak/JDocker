@@ -26,12 +26,14 @@ import se.codeslasher.docker.model.api124.requests.AuthTestRequest;
 import se.codeslasher.docker.model.api124.requests.ContainerCommitRequest;
 import se.codeslasher.docker.model.api124.requests.ContainerCreationRequest;
 import se.codeslasher.docker.model.api124.requests.ContainerUpdateRequest;
+import se.codeslasher.docker.utils.RequestStreamBody;
 import se.codeslasher.docker.utils.URLResolver;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
 import java.util.*;
 
 public class DockerContainerHandler {
@@ -449,5 +451,43 @@ public class DockerContainerHandler {
         }
 
         return null;
+    }
+
+    public FileSystemInfo fileSystemInfo(String id, String pathInContainer) {
+        logger.debug("FileSystemInfo for container {} with path {}", id, pathInContainer);
+        final String path = "v1.24/containers/" + id + "/archive";
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("path",pathInContainer);
+        Response response = okHttpExecuter.head(path, queries);
+        try {
+
+            String responseHead = response.header("X-Docker-Container-Path-Stat");
+            logger.debug("Response head base64: {}", responseHead);
+            responseHead = new String(Base64.getDecoder().decode(responseHead));
+            logger.debug("Response head: {}", responseHead);
+            return mapper.readValue(responseHead, FileSystemInfo.class);
+
+        } catch (IOException e) {
+            logger.debug("Exception during fileSystemInfo, due to json deserialization", e);
+        }
+
+        return null;
+    }
+
+    public InputStream fileSystemArchiveDownload(String id, String pathInContainer) {
+        logger.debug("FileSystemArchiveDownload for container {} with path {}", id, pathInContainer);
+        final String path = "v1.24/containers/" + id + "/archive";
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("path",pathInContainer);
+        Response response = okHttpExecuter.get(path, queries);
+        return response.body().byteStream();
+    }
+
+    public void fileSystemArchiveUpload(String id, String pathInContainer, RequestStreamBody body) {
+        logger.debug("FileSystemArchiveUpload for container {} with path {}", id, pathInContainer);
+        final String path = "v1.24/containers/" + id + "/archive";
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("path", pathInContainer);
+        Response response = okHttpExecuter.put(path, queries, body);
     }
 }

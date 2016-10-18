@@ -18,6 +18,7 @@ import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.model.api124.parameters.*;
 import se.codeslasher.docker.model.api124.requests.*;
 import se.codeslasher.docker.utils.DockerImageName;
+import se.codeslasher.docker.utils.RequestStreamBody;
 
 import java.io.InputStream;
 import java.util.List;
@@ -155,4 +156,10 @@ public interface DockerClient {
     void waitForContainerStop(String id);
 
     String commitContainer(ContainerCommitRequest containerCommitRequest);
+
+    FileSystemInfo fileSystemInfo(String id, String path);
+
+    InputStream fileSystemArchiveDownload(String id, String path);
+
+    void fileSystemArchiveUpload(String id, String pathToTar, RequestStreamBody pathInContainer);
 }

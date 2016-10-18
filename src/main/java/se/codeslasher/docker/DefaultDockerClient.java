@@ -14,7 +14,6 @@
 package se.codeslasher.docker;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
@@ -26,16 +25,11 @@ import se.codeslasher.docker.model.api124.requests.*;
 import se.codeslasher.docker.ssl.DockerSSLSocket;
 import se.codeslasher.docker.ssl.SslSocketConfigFactory;
 import se.codeslasher.docker.unixsocket.UnixSocketFactory;
-import se.codeslasher.docker.utils.DockerImageName;
-import se.codeslasher.docker.utils.HttpURLResolver;
-import se.codeslasher.docker.utils.URLResolver;
-import se.codeslasher.docker.utils.UnixURLResolver;
+import se.codeslasher.docker.utils.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.*;
-import java.security.cert.CertificateException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -159,6 +153,21 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public String commitContainer(ContainerCommitRequest containerCommitRequest) {
         return containerHandler.commitContainer(containerCommitRequest);
+    }
+
+    @Override
+    public FileSystemInfo fileSystemInfo(String id, String path) {
+        return containerHandler.fileSystemInfo(id, path);
+    }
+
+    @Override
+    public InputStream fileSystemArchiveDownload(String id, String path) {
+        return containerHandler.fileSystemArchiveDownload(id, path);
+    }
+
+    @Override
+    public void fileSystemArchiveUpload(String id, String pathInContainer, RequestStreamBody body) {
+        containerHandler.fileSystemArchiveUpload(id, pathInContainer, body);
     }
 
     @Override

@@ -22,6 +22,7 @@ import se.codeslasher.docker.utils.RequestStreamBody;
 import se.codeslasher.docker.utils.URLResolver;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Map;
 
 public class OkHttpExecuter {
@@ -205,5 +206,23 @@ public class OkHttpExecuter {
     }
 
 
+    public Response head(String path, Map<String, String> queries) {
+        Request request = new Request
+                .Builder()
+                .url(urlResolver.resolve(URL, path, queries))
+                .head()
+                .build();
 
+        return execute(request);
+    }
+
+    public Response put(String path, Map<String, String> queries, RequestStreamBody body) {
+        Request request = new Request
+                .Builder()
+                .url(urlResolver.resolve(URL, path, queries))
+                .put(body)
+                .build();
+
+        return execute(request);
+    }
 }

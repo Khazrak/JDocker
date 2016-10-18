@@ -47,6 +47,9 @@ DockerClient client = new DefaultDockerClient();
 * Pause a container
 * Unpause a container
 * Remove a container
+* Retrieving information about files and folders in a container
+* Get an archive of a filesystem resource in a container
+* Extract an archive of files or folders to a directory in a container
 
 
 ### Images
@@ -94,10 +97,6 @@ DockerClient client = new DefaultDockerClient();
 ### Container
 * Attach to a container
 * Attach to a container (websocket)
-* Retrieving information about files and folders in a container
-* Get an archive of a filesystem resource in a container
-* Extract an archive of files or folders to a directory in a container
-
 
 ### Images
 * Import Image from tarball
