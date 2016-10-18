@@ -14,6 +14,8 @@
 package se.codeslasher.docker;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +31,7 @@ import se.codeslasher.docker.utils.HttpURLResolver;
 import se.codeslasher.docker.utils.URLResolver;
 import se.codeslasher.docker.utils.UnixURLResolver;
 
-import javax.net.ssl.*;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.*;
@@ -80,7 +80,7 @@ public class DefaultDockerClient implements DockerClient {
 
 
 
-        mapper = new ObjectMapper();
+        mapper = getMapper();
 
         imageHandler = new DockerImagesHandler(httpClient, urlResolver, mapper, URL);
         networksHandler = new DockerNetworksHandler(httpClient, urlResolver,mapper, URL);
@@ -100,7 +100,7 @@ public class DefaultDockerClient implements DockerClient {
         httpClient = new OkHttpClient();
 
         URL = host;
-        mapper = new ObjectMapper();
+        mapper = getMapper();
 
         URLResolver urlResolver = new HttpURLResolver();
         imageHandler = new DockerImagesHandler(httpClient, urlResolver, mapper, URL);
@@ -123,7 +123,9 @@ public class DefaultDockerClient implements DockerClient {
                 .sslSocketFactory(dockerSSLSocket.getSslSocketFactory(), dockerSSLSocket.getTrustManager())
                 .build();
 
-        mapper = new ObjectMapper();
+        mapper = getMapper();
+
+        //SerializationFeature.FAIL_ON_EMPTY_BEANS
 
         URLResolver urlResolver = new HttpURLResolver();
         imageHandler = new DockerImagesHandler(httpClient, urlResolver, mapper, URL);
@@ -133,15 +135,10 @@ public class DefaultDockerClient implements DockerClient {
         execHandler = new DockerExecHandler(httpClient, urlResolver, mapper, URL);
     }
 
-    private KeyStore getKeyStore(String keyStoreName, char [] password) throws NoSuchAlgorithmException, IOException, CertificateException, KeyStoreException {
-        KeyStore ks = null;
-        try (FileInputStream fis = new FileInputStream(keyStoreName)){
-            ks = KeyStore.getInstance(KeyStore.getDefaultType());
-            // get user password and file input stream
-            ks.load(fis, password);
-        }
-
-        return ks;
+    private ObjectMapper getMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+        return objectMapper;
     }
 
     @Override
@@ -152,6 +149,16 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public AuthTestResponse auth(AuthTestRequest request) {
         return containerHandler.auth(request);
+    }
+
+    @Override
+    public void waitForContainerStop(String id) {
+        containerHandler.waitForContainerStop(id);
+    }
+
+    @Override
+    public String commitContainer(ContainerCommitRequest containerCommitRequest) {
+        return containerHandler.commitContainer(containerCommitRequest);
     }
 
     @Override

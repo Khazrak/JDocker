@@ -23,6 +23,7 @@ import se.codeslasher.docker.model.api124.*;
 import se.codeslasher.docker.model.api124.parameters.DockerLogsParameters;
 import se.codeslasher.docker.model.api124.parameters.ListContainerParams;
 import se.codeslasher.docker.model.api124.requests.AuthTestRequest;
+import se.codeslasher.docker.model.api124.requests.ContainerCommitRequest;
 import se.codeslasher.docker.model.api124.requests.ContainerCreationRequest;
 import se.codeslasher.docker.model.api124.requests.ContainerUpdateRequest;
 import se.codeslasher.docker.utils.URLResolver;
@@ -422,6 +423,29 @@ public class DockerContainerHandler {
             logger.error("Exception during auth test due to JSON de/serialization", e);
         } catch (IOException e) {
             logger.error("Exception during auth test when retrieving response body", e);
+        }
+
+        return null;
+    }
+
+    public void waitForContainerStop(String id) {
+        logger.debug("Wait for container {}", id);
+        final String path = "v1.24/containers/" + id + "/wait";
+        Response response = okHttpExecuter.post(path);
+    }
+
+    public String commitContainer(ContainerCommitRequest containerCommitRequest) {
+        logger.debug("Commit container {}", containerCommitRequest.getContainerName());
+        final String path = "v1.24/commit";
+
+        try {
+            String json = mapper.writeValueAsString(containerCommitRequest.getContainerCommit());
+            Response response = okHttpExecuter.post(path, containerCommitRequest.getQueries(), json);
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+            return mapper.readTree(responseBody).get("Id").textValue();
+        } catch (IOException e) {
+            logger.error("Exception during commit due to JsonProcessing", e);
         }
 
         return null;

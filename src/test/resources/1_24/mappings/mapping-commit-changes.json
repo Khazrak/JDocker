@@ -1,0 +1,21 @@
+{
+  "uuid" : "79a0bd6d-c990-3564-b012-aa45b003eece",
+  "request" : {
+    "url" : "/v1.24%2Fcommit?changes=CMD+echo+%27kasnke%27&container=mongo&pause=true&repo=test%2Fmongo&tag=my_version",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"Hostname\":null,\"Domainname\":null,\"User\":null,\"AttachStdin\":false,\"AttachStdout\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":null,\"Mounts\":null,\"Labels\":null,\"WorkingDir\":null,\"NetworkDisabled\":false,\"ExposedPorts\":{\"1337/tcp\":{}}}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 201,
+    "bodyFileName" : "body-commit-changes.json",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Server" : "Docker/1.12.2 (linux)",
+      "Date" : "Tue, 18 Oct 2016 18:48:42 GMT"
+    }
+  }
+}

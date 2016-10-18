@@ -41,6 +41,7 @@ DockerClient client = new DefaultDockerClient();
 * Stop a container
 * Restart a container
 * Kill a container
+* Wait a container
 * Update a container
 * Rename a container
 * Pause a container
@@ -70,6 +71,7 @@ DockerClient client = new DefaultDockerClient();
 * Show the docker version information
 * Display system-wide information
 * Check auth configuration
+* Create a new image from a container's changes
 
 
 ### Volumes
@@ -92,7 +94,6 @@ DockerClient client = new DefaultDockerClient();
 ### Container
 * Attach to a container
 * Attach to a container (websocket)
-* Wait a container
 * Retrieving information about files and folders in a container
 * Get an archive of a filesystem resource in a container
 * Extract an archive of files or folders to a directory in a container
@@ -102,16 +103,14 @@ DockerClient client = new DefaultDockerClient();
 * Import Image from tarball
 
 ### Misc
-* Create a new image from a container's changes
 * Monitor Docker's events
 * Get a tarball containing all images in a repository
 * Get a tarball containing all images
 * Load a tarball with a set of images and tags into docker
-* Image tarball format
 
 
 
-*Testing of OSX socket
-*NamedPipe for Windows
+* Testing of OSX socket
+* NamedPipe for Windows
 
 More Custom Tests
