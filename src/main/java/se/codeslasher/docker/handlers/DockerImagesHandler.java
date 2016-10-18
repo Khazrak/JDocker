@@ -261,4 +261,22 @@ public class DockerImagesHandler {
 
         return null;
     }
+
+    public InputStream getImageTar(DockerImageName repositoryName) {
+        logger.debug("Downloading images as tar from repository: {}", repositoryName.toString());
+
+        String name = repositoryName.getImageName();
+
+        if(repositoryName.getTag() != null) {
+            name += ":" + repositoryName.getTag();
+        }
+
+        if(repositoryName.getImageRepo() != null) {
+            name = repositoryName.getImageRepo();
+        }
+
+        final String path = "v1.24/images/" + name + "/get";
+        Response response = okHttpExecuter.get(path);
+        return response.body().byteStream();
+    }
 }

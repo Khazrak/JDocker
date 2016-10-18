@@ -86,7 +86,7 @@ public class DefaultDockerClient implements DockerClient {
     public DefaultDockerClient(String host) {
 
         httpClient = new OkHttpClient.Builder()
-                .connectTimeout(30, TimeUnit.MINUTES)
+                .connectTimeout(0, TimeUnit.MINUTES)
                 .readTimeout(0, TimeUnit.SECONDS)
                 .writeTimeout(0, TimeUnit.SECONDS)
                 .build();
@@ -168,6 +168,11 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public void fileSystemArchiveUpload(String id, String pathInContainer, RequestStreamBody body) {
         containerHandler.fileSystemArchiveUpload(id, pathInContainer, body);
+    }
+
+    @Override
+    public InputStream getImageTar(DockerImageName repositoryName) {
+        return imageHandler.getImageTar(repositoryName);
     }
 
     @Override

@@ -63,6 +63,7 @@ DockerClient client = new DefaultDockerClient();
 * Get the history of an image
 * Build image from a Dockerfile
 * Pull Image
+* Get a tarball containing all images in a repository
 
 
 ### Misc
@@ -103,7 +104,6 @@ DockerClient client = new DefaultDockerClient();
 
 ### Misc
 * Monitor Docker's events
-* Get a tarball containing all images in a repository
 * Get a tarball containing all images
 * Load a tarball with a set of images and tags into docker
 
