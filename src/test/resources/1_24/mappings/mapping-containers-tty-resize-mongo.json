@@ -6,7 +6,7 @@
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-containers-tty-resize-mongo.txt",
+    "bodyFileName" : "empty-body.txt",
     "headers" : {
       "Server" : "Docker/1.12.1 (linux)",
       "Date" : "Thu, 22 Sep 2016 09:42:30 GMT",

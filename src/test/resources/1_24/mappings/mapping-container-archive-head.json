@@ -6,7 +6,7 @@
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-mongo-archive-head.txt",
+    "bodyFileName" : "empty-body.txt",
     "headers" : {
       "Server" : "Docker/1.12.2 (linux)",
       "X-Docker-Container-Path-Stat" : "eyJuYW1lIjoicm9vdCIsInNpemUiOjU4LCJtb2RlIjoyMTQ3NDg0MDk2LCJtdGltZSI6IjIwMTYtMTAtMTdUMjI6MTc6MzQuODUwMDAwNzQxKzAyOjAwIiwibGlua1RhcmdldCI6IiJ9",

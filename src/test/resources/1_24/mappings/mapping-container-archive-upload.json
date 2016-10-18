@@ -9,7 +9,7 @@
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-mongo-archive-upload.txt",
+    "bodyFileName" : "empty-body.txt",
     "headers" : {
       "Server" : "Docker/1.12.2 (linux)",
       "Date" : "Tue, 18 Oct 2016 20:58:35 GMT",

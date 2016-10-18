@@ -11,7 +11,7 @@
   },
   "response" : {
     "status" : 200,
-    "bodyFileName" : "body-exec-start-detached.txt",
+    "bodyFileName" : "empty-body.txt",
     "headers" : {
       "Server" : "Docker/1.12.1 (linux)",
       "Date" : "Thu, 29 Sep 2016 17:33:38 GMT",
