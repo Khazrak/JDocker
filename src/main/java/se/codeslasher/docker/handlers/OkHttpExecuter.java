@@ -184,6 +184,7 @@ public class OkHttpExecuter {
     private Response execute(Request request) {
         Response response = null;
         try {
+            logger.debug("URL {}", request.url().toString());
             response = this.httpClient.newCall(request).execute();
 
             if(response.code() >= 300 && response.code() < 400) {

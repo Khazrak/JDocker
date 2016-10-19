@@ -34,7 +34,7 @@ DockerClient client = new DefaultDockerClient();
 * Inspect a container
 * List processes running inside a container
 * Get container logs
-* Inspect changes on a container�s filesystem
+* Inspect changes on a container's filesystem
 * Get container stats based on resource usage
 * Resize a container TTY
 * Start a container
@@ -64,7 +64,7 @@ DockerClient client = new DefaultDockerClient();
 * Build image from a Dockerfile
 * Pull Image
 * Get a tarball containing all images in a repository
-
+* Load a tarball with a set of images and tags into docker
 
 ### Misc
 * Exec Create
@@ -99,14 +99,8 @@ DockerClient client = new DefaultDockerClient();
 * Attach to a container
 * Attach to a container (websocket)
 
-### Images
-* Import Image from tarball
-
 ### Misc
 * Monitor Docker's events
-* Get a tarball containing all images
-* Load a tarball with a set of images and tags into docker
-
 
 
 * Testing of OSX socket

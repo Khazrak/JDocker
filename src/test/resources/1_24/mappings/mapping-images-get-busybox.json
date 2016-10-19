@@ -1,7 +1,7 @@
 {
   "uuid" : "75755547-d2ba-3e7d-a0d2-0a9a0c36fb00",
   "request" : {
-    "url" : "/v1.24%2Fimages%2Fbusybox:latest%2Fget",
+    "url" : "/v1.24%2Fimages%2Fget?names=busybox%3Alatest",
     "method" : "GET"
   },
   "response" : {

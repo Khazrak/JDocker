@@ -164,4 +164,6 @@ public interface DockerClient {
     void fileSystemArchiveUpload(String id, String pathToTar, RequestStreamBody pathInContainer);
 
     InputStream getImageTar(DockerImageName repositoryName);
+
+    String importImageTar(InputStream input, boolean quiet);
 }

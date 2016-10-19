@@ -176,6 +176,11 @@ public class DefaultDockerClient implements DockerClient {
     }
 
     @Override
+    public String importImageTar(InputStream input, boolean queit) {
+        return imageHandler.importImageTar(input, queit);
+    }
+
+    @Override
     public String ping() {
         return containerHandler.ping();
     }

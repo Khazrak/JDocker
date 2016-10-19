@@ -86,10 +86,10 @@ public class ContainerFilesystem {
             logger.error("Exception during creating temp file");
         }
 
-        try(BufferedInputStream in = new BufferedInputStream(input); BufferedWriter writer = new BufferedWriter(Files.newBufferedWriter(p, StandardOpenOption.CREATE))) {
+        try(BufferedInputStream in = new BufferedInputStream(input); BufferedOutputStream output = new BufferedOutputStream(Files.newOutputStream(p, StandardOpenOption.CREATE))) {
             int data = -1;
             while((data = in.read()) != -1) {
-                writer.write(data);
+                output.write(data);
             }
 
         } catch (IOException e) {

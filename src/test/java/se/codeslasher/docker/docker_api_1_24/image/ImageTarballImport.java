@@ -25,10 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.codeslasher.docker.DefaultDockerClient;
 import se.codeslasher.docker.DockerClient;
-import se.codeslasher.docker.model.api124.AuthConfig;
-import se.codeslasher.docker.model.api124.requests.BuildImageFromArchiveRequest;
 import se.codeslasher.docker.utils.DockerImageName;
-import se.codeslasher.docker.utils.RequestStreamBody;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -36,16 +33,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ImageTarballDownload {
+public class ImageTarballImport {
 
     private DockerClient client;
-    private static Logger logger = LoggerFactory.getLogger(ImageTarballDownload.class);
+    private static Logger logger = LoggerFactory.getLogger(ImageTarballImport.class);
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options().usingFilesUnderClasspath("src/test/resources/1_24").port(9779)); // No-args constructor defaults
@@ -62,53 +57,34 @@ public class ImageTarballDownload {
 
 
     @Test
-    public void downloadBusyBox() {
+    public void importBusyBox() {
 
-        final String path = "/v1.24%2Fimages%2Fget?names=busybox%3Alatest";
+        final String path = "/v1.24%2Fimages%2Fload?quiet=false";
 
-        DockerImageName imageName = new DockerImageName("busybox");
-
-        InputStream input = client.getImageTar(imageName);
-
-        Path p = null;
-        File f = null;
+        InputStream input = null;
+        Path filePath = null;
+        String output = null;
         try {
-            f = File.createTempFile("busybox-images",".tar");
-            p = f.toPath();
+            ClassLoader classLoader = getClass().getClassLoader();
+            filePath = Paths.get(classLoader.getResource("1_24/__files/busybox-image.tar").toURI());
+
+            input = Files.newInputStream(filePath, StandardOpenOption.READ);
+            output = client.importImageTar(input, false);
+            System.out.println(output);
+        } catch (URISyntaxException e) {
+            logger.error("Exception due to URI", e);
         } catch (IOException e) {
-            logger.error("Exception during creating temp file");
+            logger.error("Exception due to IO", e);
         }
 
-        try(BufferedInputStream in = new BufferedInputStream(input); BufferedOutputStream writer = new BufferedOutputStream(Files.newOutputStream(p, StandardOpenOption.CREATE))) {
-            int data = -1;
-            while((data = in.read()) != -1) {
-                writer.write(data);
-            }
-            writer.flush();
-        } catch (IOException e) {
-            logger.error("Excpetion during download of tar", e);
-        }
 
-        long size = -1;
-        try {
-            size = Files.size(p);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            f.delete();
-        }
-
-        assertThat(size).isEqualTo(1303040L);
-
+        assertThat(output).contains("{\"stream\":\"Loaded image: busybox:latest\\n\"}");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
-        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
+        RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.POST,pattern);
 
         wireMockRule.verify(1, requestPatternBuilder);
 
     }
-
-
 
 }

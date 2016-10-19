@@ -14,7 +14,12 @@ import se.codeslasher.docker.model.api124.parameters.ListImagesParams;
 import se.codeslasher.docker.model.api124.requests.ExecCreateRequest;
 import se.codeslasher.docker.unixsocket.UnixSocketFactory;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
@@ -126,6 +131,39 @@ public class TestDockerNative {
 
         ResponseBody responseBody = response.body();
         System.out.println(responseBody.string());
+
+    }
+
+    @Test
+    public void bla() {
+
+        Path p1 = Paths.get("/tmp/busybox-image2.tar.gz");
+        Path p2 = Paths.get("/tmp/busybox-images5382536916064150339.tar");
+
+
+        try(BufferedInputStream input1 = new BufferedInputStream(Files.newInputStream(p1, StandardOpenOption.READ));
+            BufferedInputStream input2 = new BufferedInputStream(Files.newInputStream(p2, StandardOpenOption.READ))) {
+
+            long d = 0;
+            int data1, data2;
+            while((data1 = input1.read()) != -1) {
+
+
+                data2 = input2.read();
+
+                if(data1 != data2) {
+                    System.out.println("Wrong! "+d +" data1:" +data1 +", data2:"+data2);
+                    break;
+                }
+
+                d++;
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

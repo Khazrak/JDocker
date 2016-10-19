@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ import se.codeslasher.docker.model.api124.parameters.ListImagesParams;
 import se.codeslasher.docker.model.api124.requests.BuildImageFromArchiveRequest;
 import se.codeslasher.docker.model.api124.requests.BuildImageFromRemoteRequest;
 import se.codeslasher.docker.utils.DockerImageName;
+import se.codeslasher.docker.utils.RequestStreamBody;
 import se.codeslasher.docker.utils.URLResolver;
 
 import java.io.IOException;
@@ -264,7 +266,7 @@ public class DockerImagesHandler {
 
     public InputStream getImageTar(DockerImageName repositoryName) {
         logger.debug("Downloading images as tar from repository: {}", repositoryName.toString());
-
+        final String path = "v1.24/images/get";
         String name = repositoryName.getImageName();
 
         if(repositoryName.getTag() != null) {
@@ -275,8 +277,30 @@ public class DockerImagesHandler {
             name = repositoryName.getImageRepo();
         }
 
-        final String path = "v1.24/images/" + name + "/get";
-        Response response = okHttpExecuter.get(path);
+        Map<String, String> queries = new TreeMap<>();
+        queries.put("names", name);
+
+
+        Response response = okHttpExecuter.get(path, queries);
+
         return response.body().byteStream();
+    }
+
+    public String importImageTar(InputStream input, boolean quiet) {
+        logger.debug("Importing images from tar");
+        final String path = "v1.24/images/load";
+        Map<String,String> queries = new TreeMap<>();
+        queries.put("quiet", Boolean.toString(quiet));
+        RequestStreamBody body = new RequestStreamBody(input);
+        Headers headers = new Headers.Builder().add("Content-Type", "application/x-tar").build();
+        Response response = okHttpExecuter.post(headers, path, queries, body);
+        try {
+            String responseBody = response.body().string();
+            logger.debug("Response body: {}", responseBody);
+            return responseBody;
+        } catch (IOException e) {
+            logger.error("Exception during retrieving body from response", e);
+        }
+        return null;
     }
 }
