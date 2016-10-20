@@ -169,8 +169,14 @@ END OF TERMS AND CONDITIONS
 */
 package se.codeslasher.docker.unixsocket;
 
+import okhttp3.HttpUrl;
+
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 /**
  * Created by gesellix
@@ -179,9 +185,50 @@ import java.net.Socket;
  */
 public class NpipeSocketFactory extends FileSocketFactory {
 
+    public static boolean isSupported() {
+        boolean isWindows = false;
+        try {
+            String property = System.getProperty("os.name");
+            if (property != null) {
+                isWindows = property.toLowerCase().contains("windows");
+            }
+        } catch (Exception e) {
+
+        }
+        return isWindows;
+    }
+
     @Override
     public Socket createSocket() throws IOException {
         return new NamedPipeSocket();
+    }
+
+    public HttpUrl urlForNamedPipeSocketPath(String unixSocketPath, String path) {
+        HttpUrl.Builder builder = new HttpUrl.Builder();
+        builder = builder
+                .scheme("http")
+                .host(NamedPipeSocket.encodeHostname(unixSocketPath))
+                .addPathSegment(path);
+        HttpUrl url = builder.build();
+        String s = url.toString().replace("%2F","/");
+        System.out.println(s);
+        return HttpUrl.parse(s);
+    }
+
+    public HttpUrl urlForNamedPipeSocketPath(String unixSocketPath, String path, Map<String, String> queries) {
+        HttpUrl.Builder builder = new HttpUrl.Builder();
+        builder = builder
+                .scheme("http")
+                .host(NamedPipeSocket.encodeHostname(unixSocketPath))
+                .addPathSegment(path);
+
+        for(String key : queries.keySet()) {
+            builder = builder.addQueryParameter(key, queries.get(key));
+        }
+        HttpUrl url = builder.build();
+        String s = url.toString().replace("%2F","/");
+        System.out.println(s);
+        return HttpUrl.parse(s);
     }
 
 }

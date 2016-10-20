@@ -194,7 +194,7 @@ public class NamedPipeSocket extends FileSocket {
         InetAddress address = ((InetSocketAddress) endpoint).getAddress();
         String socketPath = decodeHostname(address);
 
-        logger.debug("connect via '${socketPath}'...");
+        logger.debug("connect via " + socketPath + "...");
 
         socketPath = socketPath.replaceAll("/", "\\\\");
         this.namedPipe = new RandomAccessFile(socketPath, "rw");
@@ -217,7 +217,9 @@ public class NamedPipeSocket extends FileSocket {
 
     @Override
     public synchronized void close() throws IOException {
-        this.namedPipe.close();
+        if(this.namedPipe != null) {
+            this.namedPipe.close();
+        }
         this.isClosed = true;
     }
 

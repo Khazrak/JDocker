@@ -24,6 +24,7 @@ import se.codeslasher.docker.model.api124.parameters.*;
 import se.codeslasher.docker.model.api124.requests.*;
 import se.codeslasher.docker.ssl.DockerSSLSocket;
 import se.codeslasher.docker.ssl.SslSocketConfigFactory;
+import se.codeslasher.docker.unixsocket.NpipeSocketFactory;
 import se.codeslasher.docker.unixsocket.UnixSocketFactory;
 import se.codeslasher.docker.utils.*;
 
@@ -60,6 +61,13 @@ public class DefaultDockerClient implements DockerClient {
             builder = builder.dns(unixSocketFactory);
             URL = "/var/run/docker.sock";
             urlResolver = new UnixURLResolver(unixSocketFactory);
+        }
+        else if(NpipeSocketFactory.isSupported()) {
+            NpipeSocketFactory npipeSocketFactory = new NpipeSocketFactory();
+            builder = builder.socketFactory(npipeSocketFactory);
+            builder = builder.dns(npipeSocketFactory);
+            URL = "\\\\.\\pipe/docker_engine";
+            urlResolver = new NpipeURLResolver(npipeSocketFactory);
         }
         else {
             URL = "http://127.0.0.1:4243";
