@@ -178,7 +178,7 @@ import javax.net.ssl.X509TrustManager;
 /**
  * Created by gesellix
  * From https://github.com/gesellix/docker-client
- * Modified by Khazrak (Groovy > Java)
+ * Modified by Khazrak (Groovy to Java)
  */
 @Getter
 @Builder

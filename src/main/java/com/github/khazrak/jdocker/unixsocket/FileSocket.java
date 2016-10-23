@@ -175,7 +175,7 @@ import java.net.Socket;
 /**
  * Created by gesellix
  * From https://github.com/gesellix/docker-client
- * Modified by Khazrak (Groovy > Java)
+ * Modified by Khazrak (Groovy to Java)
  */
 abstract class FileSocket extends Socket {
 

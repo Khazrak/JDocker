@@ -182,7 +182,7 @@ import java.util.List;
 /**
  * Created by gesellix
  * From https://github.com/gesellix/docker-client
- * Modified by Khazrak (Groovy > Java)
+ * Modified by Khazrak (Groovy to Java)
  */
 public class FileSocketFactory extends SocketFactory implements Dns {
 

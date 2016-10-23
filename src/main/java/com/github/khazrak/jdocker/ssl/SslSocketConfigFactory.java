@@ -180,7 +180,7 @@ import static javax.net.ssl.KeyManagerFactory.getDefaultAlgorithm;
 /**
  * Created by gesellix
  * From https://github.com/gesellix/docker-client
- * Modified by Khazrak (Groovy > Java)
+ * Modified by Khazrak (Groovy to Java)
  */
 public class SslSocketConfigFactory {
 

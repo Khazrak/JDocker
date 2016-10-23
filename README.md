@@ -11,6 +11,21 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 
 ## Setting up the client
 
+Maven:
+```groovy
+compile 'com.github.khazrak:jdocker-client:1.0'
+```
+
+Maven:
+```xml
+<dependency>
+    <groupId>com.github.khazrak</groupId>
+    <artifactId>jdocker-client</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
+
 **Remote Unsecure tcp**
 ```java
 DockerClient client = new DefaultDockerClient("http://127.0.0.1:4243");
