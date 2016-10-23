@@ -11,7 +11,7 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 
 ## Setting up the client
 
-Maven:
+Gradle:
 ```groovy
 compile 'com.github.khazrak:jdocker-client:1.0'
 ```
