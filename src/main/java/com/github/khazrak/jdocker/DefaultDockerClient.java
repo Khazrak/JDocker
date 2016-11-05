@@ -56,7 +56,7 @@ public class DefaultDockerClient implements DockerClient {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if(UnixSocketFactory.isSupported()) {
-            UnixSocketFactory unixSocketFactory = new UnixSocketFactory();
+            UnixSocketFactory unixSocketFactory = new UnixSocketFactory("/var/run/docker.sock");
             builder = builder.socketFactory(unixSocketFactory);
             builder = builder.dns(unixSocketFactory);
             URL = "/var/run/docker.sock";
@@ -75,7 +75,7 @@ public class DefaultDockerClient implements DockerClient {
         }
 
         httpClient = builder
-                .connectTimeout(30, TimeUnit.MINUTES)
+                .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(0, TimeUnit.SECONDS)
                 .writeTimeout(0, TimeUnit.SECONDS)
                 .build();

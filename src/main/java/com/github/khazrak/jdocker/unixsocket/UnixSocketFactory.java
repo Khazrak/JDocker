@@ -169,19 +169,23 @@ END OF TERMS AND CONDITIONS
 */
 package com.github.khazrak.jdocker.unixsocket;
 
+import jnr.unixsocket.UnixSocketAddress;
 import okhttp3.HttpUrl;
-import org.newsclub.net.unix.AFUNIXSocket;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
- * Created by gesellix
+ * Mix of class created by gesellix and a class modified by Fabric8
  * From https://github.com/gesellix/docker-client
- * Modified by Khazrak (Groovy to Java)
+ * https://github.com/fabric8io/docker-client/blob/master/client/src/main/java/io/fabric8/docker/client/unix/UnixSocketFactory.java
+ * Modified by Khazrak (Groovy to Java and the merge)
  */
 public class UnixSocketFactory extends FileSocketFactory {
 
@@ -195,13 +199,13 @@ public class UnixSocketFactory extends FileSocketFactory {
         } catch (Exception e) {
 
         }
-        return !isWindows && AFUNIXSocket.isSupported();
+        return !isWindows;
     }
 
     public HttpUrl urlForUnixSocketPath(String unixSocketPath, String path) {
         return new HttpUrl.Builder()
                 .scheme("http")
-                .host(UnixSocket.encodeHostname(unixSocketPath))
+                .host(JnrUnixSocket.encodeHostname(unixSocketPath))
                 .addPathSegment(path)
                 .build();
     }
@@ -210,10 +214,10 @@ public class UnixSocketFactory extends FileSocketFactory {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder = builder
                 .scheme("http")
-                .host(UnixSocket.encodeHostname(unixSocketPath))
+                .host(JnrUnixSocket.encodeHostname(unixSocketPath))
                 .addPathSegment(path);
 
-        for(String key : queries.keySet()) {
+        for (String key : queries.keySet()) {
             try {
                 builder = builder.addEncodedQueryParameter(key, URLEncoder.encode(queries.get(key), StandardCharsets.UTF_8.toString()));
             } catch (UnsupportedEncodingException e) {
@@ -224,8 +228,35 @@ public class UnixSocketFactory extends FileSocketFactory {
         return builder.build();
     }
 
-    public Socket createSocket() {
-        return new UnixSocket();
+    private final String path;
+
+    public UnixSocketFactory(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public Socket createSocket() throws IOException {
+        return new JnrUnixSocket(new UnixSocketAddress(new File(path)));
+    }
+
+    @Override
+    public Socket createSocket(String s, int i) throws IOException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Socket createSocket(String s, int i, InetAddress inetAddress, int i1) throws IOException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Socket createSocket(InetAddress inetAddress, int i) throws IOException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Socket createSocket(InetAddress inetAddress, int i, InetAddress inetAddress1, int i1) throws IOException {
+        throw new UnsupportedOperationException();
     }
 
 }

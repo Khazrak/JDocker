@@ -27,14 +27,9 @@ dependencies {
     //PEM support
     compile 'org.bouncycastle:bcpkix-jdk15on:1.55'
 
-    //compile 'com.github.jnr:jnr-unixsocket:0.12'
+    compile 'com.github.jnr:jnr-unixsocket:0.12'
 
-    compile('com.kohlschutter.junixsocket:junixsocket-native-common:2.0.4') {
-        exclude module: 'log4j'
-    }
-    compile('com.kohlschutter.junixsocket:junixsocket-common:2.0.4') {
-        exclude module: 'log4j'
-    }
+   
 
 
     compileOnly 'org.projectlombok:lombok:1.16.10'
