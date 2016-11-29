@@ -51,7 +51,6 @@ public class DefaultDockerClient implements DockerClient {
     private ObjectMapper mapper;
 
     public DefaultDockerClient() {
-        //httpClient = new OkHttpClient();
         URLResolver urlResolver;
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

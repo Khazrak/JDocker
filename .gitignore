@@ -12,3 +12,4 @@ delivery
 generated
 .gradle
 generated_test
+gradle.properties
