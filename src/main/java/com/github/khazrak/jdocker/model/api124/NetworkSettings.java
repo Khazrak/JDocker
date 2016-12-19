@@ -45,7 +45,7 @@ public class NetworkSettings {
     private int linkLocalIpv6PrefixLen;
 
     @JsonProperty("Ports")
-    private List<ContainerPort> ports;
+    private Map<String,List<HostPort>> ports;
 
     @JsonProperty("SandboxKey")
     private String sandboxKey;
@@ -101,7 +101,7 @@ public class NetworkSettings {
         private int linkLocalIpv6PrefixLen;
 
         @JsonProperty("Ports")
-        private List<ContainerPort> ports;
+        private Map<String,List<HostPort>> ports;
 
         @JsonProperty("SandboxKey")
         private String sandboxKey;
