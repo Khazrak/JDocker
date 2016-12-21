@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Map;
@@ -81,6 +82,7 @@ import java.util.TreeMap;
         "IOMaximumIOps",
         "IOMaximumBandwidth"
 })
+@Getter
 @Builder
 @JsonDeserialize(builder = HostConfig.HostConfigBuilder.class)
 public class HostConfig {

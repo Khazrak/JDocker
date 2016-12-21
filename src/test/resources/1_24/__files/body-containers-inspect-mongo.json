@@ -1,28 +1,28 @@
 {
-  "Id": "bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a",
-  "Created": "2016-09-11T12:13:19.341100607Z",
+  "Id": "73f363f484b41e68898508dfdfdde42b953fe7ad76a00a28b50d7d74355bae4d",
+  "Created": "2016-12-21T17:37:20.553322857Z",
   "Path": "/entrypoint.sh",
   "Args": [
     "mongod"
   ],
   "State": {
-    "Status": "exited",
-    "Running": false,
+    "Status": "running",
+    "Running": true,
     "Paused": false,
     "Restarting": false,
     "OOMKilled": false,
     "Dead": false,
-    "Pid": 0,
+    "Pid": 8528,
     "ExitCode": 0,
     "Error": "",
-    "StartedAt": "2016-09-11T12:13:20.289888181Z",
-    "FinishedAt": "2016-09-11T21:03:16.05987119Z"
+    "StartedAt": "2016-12-21T17:37:21.582596001Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
   },
-  "Image": "sha256:48b8b08dca4d307feb5b560650be81d8e5cba8e9849dbf6a21df41b48dcf340c",
-  "ResolvConfPath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/resolv.conf",
-  "HostnamePath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/hostname",
-  "HostsPath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/hosts",
-  "LogPath": "/var/lib/docker/containers/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a/bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a-json.log",
+  "Image": "sha256:ca01b33b859af5f405aa3ea5030a15246bb970058ac71295eae258527abc8819",
+  "ResolvConfPath": "/var/lib/docker/containers/73f363f484b41e68898508dfdfdde42b953fe7ad76a00a28b50d7d74355bae4d/resolv.conf",
+  "HostnamePath": "/var/lib/docker/containers/73f363f484b41e68898508dfdfdde42b953fe7ad76a00a28b50d7d74355bae4d/hostname",
+  "HostsPath": "/var/lib/docker/containers/73f363f484b41e68898508dfdfdde42b953fe7ad76a00a28b50d7d74355bae4d/hosts",
+  "LogPath": "/var/lib/docker/containers/73f363f484b41e68898508dfdfdde42b953fe7ad76a00a28b50d7d74355bae4d/73f363f484b41e68898508dfdfdde42b953fe7ad76a00a28b50d7d74355bae4d-json.log",
   "Name": "/mongo",
   "RestartCount": 0,
   "Driver": "devicemapper",
@@ -39,10 +39,10 @@
     },
     "NetworkMode": "default",
     "PortBindings": {
-      "27015/tcp": [
+      "1338/tcp": [
         {
           "HostIp": "",
-          "HostPort": "27015"
+          "HostPort": "1337"
         }
       ]
     },
@@ -108,15 +108,15 @@
   "GraphDriver": {
     "Name": "devicemapper",
     "Data": {
-      "DeviceId": "61",
-      "DeviceName": "docker-253:1-10223820-6b89fe77b9ad1277d3442502f21f6de6d74bcb58c06de5a459aeeabc8e18d33b",
+      "DeviceId": "254",
+      "DeviceName": "docker-254:1-10223820-24828da6afa228dca12f7156e86cdefcdfe68265734b3582e73ab24e932a3629",
       "DeviceSize": "10737418240"
     }
   },
   "Mounts": [
     {
-      "Name": "bc478a2933747208001a6f4b90fcd3770e881775494d28754b9e26f016fb834f",
-      "Source": "/var/lib/docker/volumes/bc478a2933747208001a6f4b90fcd3770e881775494d28754b9e26f016fb834f/_data",
+      "Name": "e1854264f03c115c040e51bf12ca530b4434b2a47294204caa68f302176eec41",
+      "Source": "/var/lib/docker/volumes/e1854264f03c115c040e51bf12ca530b4434b2a47294204caa68f302176eec41/_data",
       "Destination": "/data/configdb",
       "Driver": "local",
       "Mode": "",
@@ -124,8 +124,8 @@
       "Propagation": ""
     },
     {
-      "Name": "f4429f9beedccb795a7d4a00afeb2c1b0d0b4f5128864c1c605093608e84034c",
-      "Source": "/var/lib/docker/volumes/f4429f9beedccb795a7d4a00afeb2c1b0d0b4f5128864c1c605093608e84034c/_data",
+      "Name": "d4900e12aeccc9021437bd84c4f1372ccefdeffbcbed1429de190648167ba15b",
+      "Source": "/var/lib/docker/volumes/d4900e12aeccc9021437bd84c4f1372ccefdeffbcbed1429de190648167ba15b/_data",
       "Destination": "/data/db",
       "Driver": "local",
       "Mode": "",
@@ -134,14 +134,14 @@
     }
   ],
   "Config": {
-    "Hostname": "bd76acba6268",
+    "Hostname": "73f363f484b4",
     "Domainname": "",
     "User": "",
     "AttachStdin": false,
     "AttachStdout": false,
     "AttachStderr": false,
     "ExposedPorts": {
-      "27015/tcp": {},
+      "1338/tcp": {},
       "27017/tcp": {}
     },
     "Tty": false,
@@ -150,9 +150,9 @@
     "Env": [
       "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
       "GOSU_VERSION=1.7",
-      "GPG_KEYS=DFFA3DCF326E302C4787673A01C4E7FAAAB2461C \t42F3E95A2C4F08279C4960ADD68FA50FEA312927",
-      "MONGO_MAJOR=3.2",
-      "MONGO_VERSION=3.2.9"
+      "MONGO_MAJOR=3.4",
+      "MONGO_VERSION=3.4.0",
+      "MONGO_PACKAGE=mongodb-org"
     ],
     "Cmd": [
       "mongod"
@@ -171,37 +171,46 @@
   },
   "NetworkSettings": {
     "Bridge": "",
-    "SandboxID": "7aa3760e148086f5e826479af71e8da86f51eb41e50eeabd3ec453f47767df94",
+    "SandboxID": "277640f1fb584e9dd8c5957bf4f277d2068f1396551e7bce33c3edbf4898fd41",
     "HairpinMode": false,
     "LinkLocalIPv6Address": "",
     "LinkLocalIPv6PrefixLen": 0,
-    "Ports": null,
-    "SandboxKey": "/var/run/docker/netns/7aa3760e1480",
+    "Ports": {
+      "1338/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "1337"
+        }
+      ],
+      "27017/tcp": null
+    },
+    "SandboxKey": "/var/run/docker/netns/277640f1fb58",
     "SecondaryIPAddresses": null,
     "SecondaryIPv6Addresses": null,
-    "EndpointID": "",
-    "Gateway": "",
+    "EndpointID": "4fc2d0c877565c2a8df42bc80f0969d667cdce87bdbf49079b8de99892de5388",
+    "Gateway": "172.17.0.1",
     "GlobalIPv6Address": "",
     "GlobalIPv6PrefixLen": 0,
-    "IPAddress": "",
-    "IPPrefixLen": 0,
+    "IPAddress": "172.17.0.2",
+    "IPPrefixLen": 16,
     "IPv6Gateway": "",
-    "MacAddress": "",
+    "MacAddress": "02:42:ac:11:00:02",
     "Networks": {
       "bridge": {
         "IPAMConfig": null,
         "Links": null,
         "Aliases": null,
-        "NetworkID": "d22a726bc15611e132426993044c775af8a049ea4ba3ec13cc257c26e9a5ca86",
-        "EndpointID": "",
-        "Gateway": "",
-        "IPAddress": "",
-        "IPPrefixLen": 0,
+        "NetworkID": "4793205593d15a8bad891386c1bee54e269663ca7c16d274dd1a1ba3f9a165a9",
+        "EndpointID": "4fc2d0c877565c2a8df42bc80f0969d667cdce87bdbf49079b8de99892de5388",
+        "Gateway": "172.17.0.1",
+        "IPAddress": "172.17.0.2",
+        "IPPrefixLen": 16,
         "IPv6Gateway": "",
         "GlobalIPv6Address": "",
         "GlobalIPv6PrefixLen": 0,
-        "MacAddress": ""
+        "MacAddress": "02:42:ac:11:00:02"
       }
     }
   }
 }
+

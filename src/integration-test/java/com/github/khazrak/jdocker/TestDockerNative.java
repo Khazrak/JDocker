@@ -1,6 +1,9 @@
 package com.github.khazrak.jdocker;
 
 import com.github.khazrak.jdocker.docker_api_1_24.container.ContainerTop;
+import com.github.khazrak.jdocker.model.api124.HostPort;
+import com.github.khazrak.jdocker.model.api124.requests.ContainerCreationRequest;
+
 import okhttp3.*;
 import org.junit.After;
 import org.junit.Before;
@@ -9,10 +12,10 @@ import org.slf4j.LoggerFactory;
 
 
 import java.io.*;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
 
-/**
- * Created by karl on 9/27/16.
- */
 public class TestDockerNative {
 
     private DockerClient client;
@@ -33,34 +36,26 @@ public class TestDockerNative {
 
     @org.junit.Test
     public void unix() throws IOException {
-        //System.out.println(client.version().getApiVersion());
 
-        //List<ImageInfo> imageInfos = client.listImages(false);
-        //System.out.println(imageInfos.size());
+        EasyContainer container = new EasyContainer("mongo");
+        container.net("my-net")
+                .name("my-mongo")
+                .addAlias("haha-mongo")
+                .addPublishPort("0.0.0.0",1337,8080)
+                .addVolume(Paths.get("/tmp"))
+                .addVolume("my-vol", Paths.get("/my_volume"))
+                .addHostVolume(Paths.get("/tmp/logs"), Paths.get("/var/log"))
+                //.cmd("echo 'hello'")
+                .addEnvVariable("key","value");
 
-        //NetworkCreateRequest request = NetworkCreateRequest.builder().name("my-net").build();
-        //System.out.println(client.createNetwork(request));
+        ContainerCreationRequest containerCreationRequest = container.buildRequest();
 
-        /*
+        Map<String, List<HostPort>> portBindings = containerCreationRequest.getHostConfig().getPortBindings();
 
-        DockerImageName busybox = new DockerImageName("busybox");
+        System.out.println(portBindings);
 
-        InputStream input = client.pullImage(busybox);
-
-        List<String> lines = new ArrayList<>();
-
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
-            String line;
-            while((line = reader.readLine()) != null) {
-                lines.add(line);
-                logger.info(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-
-
+        String id = client.createContainer(containerCreationRequest);
+        client.start(id);
 
     }
 

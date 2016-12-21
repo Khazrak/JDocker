@@ -59,7 +59,7 @@ public class ContainerInspect {
         logger.info(mongo.getName());
         assertThat(mongo.getName()).isEqualTo("/mongo");
         assertThat(mongo.getSizeRootFs()).isEqualTo(0);
-        assertThat(mongo.getConfig().getHostName()).isEqualTo("bd76acba6268");
+        assertThat(mongo.getConfig().getHostName()).isEqualTo("73f363f484b4");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);
@@ -76,7 +76,7 @@ public class ContainerInspect {
         logger.info(mongo.getName());
         assertThat(mongo.getName()).isEqualTo("/mongo");
         assertThat(mongo.getSizeRootFs()).isGreaterThan(0);
-        assertThat(mongo.getConfig().getHostName()).isEqualTo("bd76acba6268");
+        assertThat(mongo.getConfig().getHostName()).isEqualTo("73f363f484b4");
 
         UrlPattern pattern = UrlPattern.fromOneOf(path, null,null,null);
         RequestPatternBuilder requestPatternBuilder = RequestPatternBuilder.newRequestPattern(RequestMethod.GET,pattern);

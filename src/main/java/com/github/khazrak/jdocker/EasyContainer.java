@@ -10,13 +10,19 @@ import com.github.khazrak.jdocker.utils.DockerImageName;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class EasyContainer {
 
-    public EasyContainer() {
+    public EasyContainer(String imageName) {
+        this(new DockerImageName(imageName));
+    }
+
+    public EasyContainer(DockerImageName imageName) {
+        this.dockerImageName = imageName;
         requestBuilder = ContainerCreationRequest.builder();
         hostConfigBuilder = HostConfig.builder();
         networkingConfig = new NetworkingConfig();
@@ -48,6 +54,7 @@ public class EasyContainer {
         List<HostPort> portList = new ArrayList<HostPort>();
         portList.add(port);
         ports.put(containerPort + "/tcp", portList);
+        requestBuilder.exposedPort(Integer.toString(containerPort)+"/tcp", new Object());
 
         return this;
     }
@@ -62,12 +69,17 @@ public class EasyContainer {
         return this;
     }
 
+    public EasyContainer name(String containerName) {
+        this.containerName = containerName;
+        return this;
+    }
+
     public EasyContainer net(String net) {
         this.net = net;
         return this;
     }
 
-    public EasyContainer addAlia(String alias) {
+    public EasyContainer addAlias(String alias) {
         aliases.add(alias);
         return this;
     }
@@ -98,15 +110,35 @@ public class EasyContainer {
 
     public ContainerCreationRequest buildRequest() {
 
-        createNetConfig();
-        createHostConfig();
+        requestBuilder.image(this.dockerImageName.toString());
 
-        requestBuilder.networkingConfig(networkingConfig);
+        if(this.containerName != null) {
+            requestBuilder.name(containerName);
+        }
+
+        if(net != null) {
+            createNetConfig();
+            requestBuilder.networkingConfig(networkingConfig);
+        }
+        if(ports.size() > 0) {
+            createHostConfig();
+            requestBuilder.hostConfig(hostConfigBuilder.build());
+        }
+        if(command != null) {
+            createCommand();
+        }
 
         return requestBuilder.build();
     }
 
+    private void createCommand() {
+        String [] cmds = command.split(" ");
+        List<String> commands = Arrays.asList(cmds);
+        requestBuilder.commands(commands);
+    }
+
     private void createHostConfig() {
+        hostConfigBuilder.portBindings(ports);
         hostConfigBuilder.binds(binds);
     }
 
