@@ -13,7 +13,7 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 
 Gradle:
 ```groovy
-compile 'com.github.khazrak:jdocker-client:1.0'
+compile 'com.github.khazrak:jdocker-client:1.1.2'
 ```
 
 Maven:
