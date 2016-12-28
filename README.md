@@ -21,7 +21,7 @@ Maven:
 <dependency>
     <groupId>com.github.khazrak</groupId>
     <artifactId>jdocker-client</artifactId>
-    <version>1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -34,9 +34,36 @@ DockerClient client = new DefaultDockerClient("http://127.0.0.1:4243");
 ```java
 DockerClient client = new DefaultDockerClient("https://127.0.0.1:2376", "/path/to/ssl/certs");
 ```
-**Unix socket**
+**Unix socket/named Pipe**
 ```java
 DockerClient client = new DefaultDockerClient();
+```
+
+Wrapper classes (EasyContainer)
+```java
+DockerClient client = new DefaultDockerClient();
+
+EasyContainer container = new EasyContainer("mongo");
+container.net("my-net")
+      .name("my-mongo")
+      .addAlias("haha-mongo")
+      .addPublishPort("0.0.0.0",1337,8080)
+      .addVolume(Paths.get("/tmp"))
+      .addVolume("my-vol", Paths.get("/my_volume"))
+      .addHostVolume(Paths.get("/tmp/logs"), Paths.get("/var/log"))
+      //.cmd("echo 'hello'")
+      .addEnvVariable("key","value");
+
+ContainerCreationRequest containerCreationRequest = container.buildRequest();
+
+Map<String, List<HostPort>> portBindings = containerCreationRequest.getHostConfig().getPortBindings();
+
+System.out.println(portBindings);
+
+String id = client.createContainer(containerCreationRequest);
+client.start(id);
+
+client.close();
 ```
 
 
