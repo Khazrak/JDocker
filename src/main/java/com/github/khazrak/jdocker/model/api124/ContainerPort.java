@@ -38,6 +38,14 @@ public class ContainerPort {
     @JsonProperty("Type")
     private String type;
 
+    @Override
+    public String toString() {
+        if(ip == null) {
+            return privatePort + "/" + type;
+        }
+        return ip + ":" + publicPort + "-> "+ privatePort + "/" + type;
+    }
+
 
     public static class ContainerPortBuilder {
         private String type = "tcp";

@@ -13,7 +13,7 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 
 Gradle:
 ```groovy
-compile 'com.github.khazrak:jdocker-client:1.1.2'
+compile 'com.github.khazrak:jdocker-client:1.1.3'
 ```
 
 Maven:
@@ -21,7 +21,7 @@ Maven:
 <dependency>
     <groupId>com.github.khazrak</groupId>
     <artifactId>jdocker-client</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 
@@ -64,6 +64,15 @@ String id = client.createContainer(containerCreationRequest);
 client.start(id);
 
 client.close();
+```
+
+## Building from source
+
+You need to add these properties to your project:
+
+```
+ossrhUsername=null
+ossrhPassword=null
 ```
 
 

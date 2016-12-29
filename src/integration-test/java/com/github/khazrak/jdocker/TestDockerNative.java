@@ -1,6 +1,8 @@
 package com.github.khazrak.jdocker;
 
 import com.github.khazrak.jdocker.docker_api_1_24.container.ContainerTop;
+import com.github.khazrak.jdocker.model.api124.Container;
+import com.github.khazrak.jdocker.model.api124.DockerContainerInspect;
 import com.github.khazrak.jdocker.model.api124.HostPort;
 import com.github.khazrak.jdocker.model.api124.requests.ContainerCreationRequest;
 
@@ -57,6 +59,25 @@ public class TestDockerNative {
         String id = client.createContainer(containerCreationRequest);
         client.start(id);
 
+        try {
+            Thread.sleep(62000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        List<Container> containers = client.listContainers();
+
+        System.out.println(containers);
+
+        client.stop(id);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        client.remove(id);
     }
 
 }

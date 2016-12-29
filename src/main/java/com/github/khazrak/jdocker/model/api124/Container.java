@@ -20,6 +20,13 @@ import lombok.Singular;
 import lombok.ToString;
 import com.github.khazrak.jdocker.utils.DockerImageName;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +48,6 @@ import java.util.Map;
         "Mounts"
 })
 @Getter
-@ToString
 public class Container {
 
     @JsonProperty("Id")
@@ -91,5 +97,43 @@ public class Container {
     @JsonProperty("Mounts")
     private List<Mount> mounts;
 
+    @Override
+    public String toString() {
+        String ports = this.ports.toString();
+        String names = this.names.toString();
+        return id.substring(0,12) + "\t" +
+                image + "\t" +
+                command + "\t" +
+                getCreatedTime() + "\t" +
+                ports.substring(1,ports.length()-1) + "\t" +
+                status + "\t" +
+                names.substring(1,names.length()-1);
+    }
 
+    private String getCreatedTime() {
+        Instant now = Instant.now();
+        Instant then = Instant.ofEpochSecond(created);
+
+        Duration time = Duration.between(then, now);
+
+
+        String res = "";
+
+        if(time.toDays() > 0) {
+            res += time.toDays() + " days";
+        }
+
+        if(time.toHours() > 0) {
+            res += time.toHours() + " hours";
+        }
+        else {
+            res = time.toMinutes() + " minutes";
+        }
+
+        if(time.getSeconds() < 60) {
+            res = time.getSeconds() + " seconds";
+        }
+
+        return res + " ago";
+    }
 }
