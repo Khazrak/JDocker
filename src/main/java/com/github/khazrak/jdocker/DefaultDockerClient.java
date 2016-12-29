@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.*;
+import java.util.Formatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -185,6 +186,30 @@ public class DefaultDockerClient implements DockerClient {
     @Override
     public String importImageTar(InputStream input, boolean queit) {
         return imageHandler.importImageTar(input, queit);
+    }
+
+    @Override
+    public String ps(boolean all) {
+
+        Formatter formatter = new Formatter();
+
+
+        formatter.format("%14s\t%40s\t%30s\t%12s\t%18s\t%40s\t%30s \n",
+                "CONTAINER ID", "IMAGE", "COMMAND", "CREATED", "STATUS", "PORTS", "NAMES"
+                );
+
+        List<Container> containers = listContainers(ListContainerParams.builder().all(all).build());
+
+        for(Container c : containers) {
+            String [] parts = c.toString().split("\t");
+            formatter.format("%14s\t%40s\t%30s\t%12s\t%18s\t%40s\t%30s \n",
+                    parts[0],parts[1],parts[2],parts[3],parts[4],parts[5],parts[6]
+            );
+
+        }
+        String res = formatter.toString();
+        formatter.close();
+        return res;
     }
 
     @Override

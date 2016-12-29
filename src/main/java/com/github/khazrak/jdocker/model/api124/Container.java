@@ -105,8 +105,8 @@ public class Container {
                 image + "\t" +
                 command + "\t" +
                 getCreatedTime() + "\t" +
-                ports.substring(1,ports.length()-1) + "\t" +
                 status + "\t" +
+                ports.substring(1,ports.length()-1) + "\t" +
                 names.substring(1,names.length()-1);
     }
 

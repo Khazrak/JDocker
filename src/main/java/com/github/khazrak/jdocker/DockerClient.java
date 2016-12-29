@@ -166,4 +166,6 @@ public interface DockerClient {
     InputStream getImageTar(DockerImageName repositoryName);
 
     String importImageTar(InputStream input, boolean quiet);
+
+    String ps(boolean all);
 }

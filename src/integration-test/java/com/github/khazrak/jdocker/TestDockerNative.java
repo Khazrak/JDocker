@@ -54,20 +54,20 @@ public class TestDockerNative {
 
         Map<String, List<HostPort>> portBindings = containerCreationRequest.getHostConfig().getPortBindings();
 
-        System.out.println(portBindings);
+        //System.out.println(portBindings);
 
         String id = client.createContainer(containerCreationRequest);
         client.start(id);
 
         try {
-            Thread.sleep(62000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         List<Container> containers = client.listContainers();
 
-        System.out.println(containers);
+        //System.out.println(containers);
 
         client.stop(id);
 
@@ -76,6 +76,9 @@ public class TestDockerNative {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        System.out.println("------------------------");
+        System.out.println(client.ps(true));
 
         client.remove(id);
     }
