@@ -3,9 +3,11 @@ package com.github.khazrak.jdocker;
 import com.github.khazrak.jdocker.docker_api_1_24.container.ContainerTop;
 import com.github.khazrak.jdocker.model.api124.Container;
 import com.github.khazrak.jdocker.model.api124.DockerContainerInspect;
+import com.github.khazrak.jdocker.model.api124.HostConfig;
 import com.github.khazrak.jdocker.model.api124.HostPort;
 import com.github.khazrak.jdocker.model.api124.requests.ContainerCreationRequest;
 
+import com.github.khazrak.jdocker.model.api124.requests.NetworkCreateRequest;
 import okhttp3.*;
 import org.junit.After;
 import org.junit.Before;
@@ -17,6 +19,8 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestDockerNative {
 
@@ -81,6 +85,40 @@ public class TestDockerNative {
         System.out.println(client.ps(true));
 
         client.remove(id);
+    }
+
+    @org.junit.Test
+    public void testContainer() {
+        try {
+            NetworkCreateRequest networkCreateRequest = NetworkCreateRequest.builder()
+                    .driver("bridge")
+                    .name("test-network")
+                    .checkDuplicate(true)
+                    .build();
+            client.createNetwork(networkCreateRequest);
+
+            ContainerCreationRequest containerCreationRequest = ContainerCreationRequest.builder()
+                    .name("test-container")
+                    .image("ekino/wiremock:2.1.11")
+                    .hostConfig(HostConfig.builder()
+                            .networkMode("test-network")
+                            .build())
+                    .build();
+            client.createContainer(containerCreationRequest);
+            client.start("test-container");
+            DockerContainerInspect dockerContainerInspect = client.inspectContainer("test-container", false);
+            assertThat(dockerContainerInspect).isNotNull();
+        } finally {
+            try {
+                client.stop("test-container");
+            } finally {
+                try {
+                    client.remove("test-container");
+                } finally {
+                    client.removeNetwork("test-network");
+                }
+            }
+        }
     }
 
 }

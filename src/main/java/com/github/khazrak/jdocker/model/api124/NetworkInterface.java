@@ -20,6 +20,8 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 @JsonPropertyOrder({
         "IPAMConfig",
         "Links",
@@ -43,10 +45,10 @@ public class NetworkInterface {
     private IPAMConfig ipamConfig;
 
     @JsonProperty("Links")
-    private String links;
+    private List<String> links;
 
     @JsonProperty("Aliases")
-    private String aliases;
+    private List<String> aliases;
 
     @JsonProperty("NetworkID")
     private String networkId;
@@ -82,10 +84,10 @@ public class NetworkInterface {
         private IPAMConfig ipamConfig;
 
         @JsonProperty("Links")
-        private String links;
+        private List<String> links;
 
         @JsonProperty("Aliases")
-        private String aliases;
+        private List<String> aliases;
 
         @JsonProperty("NetworkID")
         private String networkId;

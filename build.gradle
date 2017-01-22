@@ -1,7 +1,7 @@
 group 'com.github.khazrak'
 //name 'docker-client'
 
-version '1.1.3'
+version '1.1.4'
 
 apply plugin: 'java'
 apply plugin: 'maven'
