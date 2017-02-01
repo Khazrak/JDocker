@@ -17,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 @Builder
 @JsonDeserialize(builder = HostPort.HostPortBuilder.class)
 public class HostPort {
@@ -27,6 +29,11 @@ public class HostPort {
 
     @JsonProperty("HostPort")
     private String hostPort;
+
+    @Override
+    public String toString() {
+        return String.format("Hostport = [%s:%s]", hostIp, hostPort);
+    }
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class HostPortBuilder {
@@ -38,5 +45,6 @@ public class HostPort {
         private String hostPort;
 
     }
+
 
 }
