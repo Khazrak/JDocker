@@ -16,7 +16,7 @@ public class ListImagesParams126 implements ListImagesParams {
 
     private boolean dangling;
 
-    private Map<String,String> labels;
+    private Map<String, String> labels;
 
     private String before;
 
@@ -55,7 +55,7 @@ public class ListImagesParams126 implements ListImagesParams {
     }
 
     public static class ListImagesParams126Builder {
-        private Map<String,String> labels = new TreeMap<String,String>();
+        private Map<String, String> labels = new TreeMap<String, String>();
     }
 
 }

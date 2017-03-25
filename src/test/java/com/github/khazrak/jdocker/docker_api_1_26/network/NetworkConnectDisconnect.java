@@ -4,10 +4,9 @@ import com.github.khazrak.jdocker.abstraction.DockerClient;
 import com.github.khazrak.jdocker.abstraction.IPAMConfig;
 import com.github.khazrak.jdocker.abstraction.NetworkConnectRequest;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
-
+import com.github.khazrak.jdocker.api126.model.IPAMConfig126;
 import com.github.khazrak.jdocker.api126.requests.NetworkConnectEndpointConfig126;
 import com.github.khazrak.jdocker.api126.requests.NetworkConnectRequest126;
-import com.github.khazrak.jdocker.api126.model.IPAMConfig126;
 import io.specto.hoverfly.junit.rule.HoverflyRule;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -17,8 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class NetworkConnectDisconnect {
 
@@ -32,7 +29,8 @@ public class NetworkConnectDisconnect {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -62,7 +60,7 @@ public class NetworkConnectDisconnect {
     @Test
     public void disconnect() {
 
-        client.disconnectContainerFromNetwork("mongo3","test1",false);
+        client.disconnectContainerFromNetwork("mongo3", "test1", false);
 
     }
 

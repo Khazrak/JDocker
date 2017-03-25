@@ -24,7 +24,7 @@ public class ImageInfo126 implements ImageInfo {
     long created;
     long size;
     long virtualSize;
-    Map<String,String> labels;
+    Map<String, String> labels;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class ImageInfo126Builder {
@@ -57,7 +57,7 @@ public class ImageInfo126 implements ImageInfo {
         private long virtualSize;
 
         @JsonProperty("Labels")
-        private Map<String,String> labels;
+        private Map<String, String> labels;
 
 
     }

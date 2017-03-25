@@ -9,6 +9,7 @@ import lombok.Getter;
 
 import java.util.List;
 import java.util.Map;
+
 @Getter
 @Builder
 @JsonDeserialize(builder = ImageInspectContainerInfo126.ImageInspectContainerInfo126Builder.class)
@@ -28,12 +29,12 @@ public class ImageInspectContainerInfo126 implements ImageInspectContainerInfo {
     private boolean stdinOnce;
     private boolean argsEscaped;
     private String image;
-    private Map<String,String> labels;
+    private Map<String, String> labels;
     private boolean networkDisabled;
     private List<String> onBuild;
     private String publishService;
     private String user;
-    private Map<String,Map<String,String>> volumes;
+    private Map<String, Map<String, String>> volumes;
     private String workingDir;
 
     @JsonPOJOBuilder(withPrefix = "")
@@ -73,7 +74,7 @@ public class ImageInspectContainerInfo126 implements ImageInspectContainerInfo {
         private String workingDir;
 
         @JsonProperty("Volumes")
-        private Map<String,Map<String,String>> volumes;
+        private Map<String, Map<String, String>> volumes;
 
         @JsonProperty("Tty")
         private boolean tty;
@@ -94,7 +95,7 @@ public class ImageInspectContainerInfo126 implements ImageInspectContainerInfo {
         private List<String> onBuild;
 
         @JsonProperty("Labels")
-        private Map<String,String> labels;
+        private Map<String, String> labels;
 
         @JsonProperty("NetworkDisabled")
         private boolean networkDisabled;

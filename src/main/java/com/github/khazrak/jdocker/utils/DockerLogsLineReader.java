@@ -15,7 +15,10 @@ package com.github.khazrak.jdocker.utils;
 
 import org.slf4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class DockerLogsLineReader implements AutoCloseable {
 
@@ -33,7 +36,7 @@ public class DockerLogsLineReader implements AutoCloseable {
     public String readLine() throws IOException {
 
         String data = reader.readLine();
-        if(data == null) {
+        if (data == null) {
             return null;
         }
 
@@ -41,13 +44,11 @@ public class DockerLogsLineReader implements AutoCloseable {
 
         String res = "";
 
-        if(streamBit == STDIN) {
+        if (streamBit == STDIN) {
             res += "<STDIN>";
-        }
-        else if(streamBit == STDOUT) {
+        } else if (streamBit == STDOUT) {
             res += "<STDOUT>";
-        }
-        else if(streamBit == STDERR) {
+        } else if (streamBit == STDERR) {
             res += "<SRDERR>";
         }
 
@@ -58,7 +59,7 @@ public class DockerLogsLineReader implements AutoCloseable {
 
     @Override
     public void close() throws IOException {
-        if(reader != null) {
+        if (reader != null) {
             reader.close();
         }
     }

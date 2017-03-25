@@ -204,7 +204,7 @@ public class SslSocketConfigFactory {
     }
 
     private X509TrustManager getUniqueX509TrustManager(TrustManagerFactory trustManagerFactory) {
-        TrustManager [] trustManagers = trustManagerFactory.getTrustManagers();
+        TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
         if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
             throw new IllegalStateException("Unexpected default trust managers: " + Arrays.toString(trustManagers));
         }

@@ -27,14 +27,15 @@ public class ImageInspect {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
     public void inspect() {
         com.github.khazrak.jdocker.abstraction.ImageInspect imageInspect = client.inspectImage(new DockerImageName("mongo"));
 
-        assertThat(imageInspect.getRepoTags()).contains("mongo:latest","mongo:mytag");
+        assertThat(imageInspect.getRepoTags()).contains("mongo:latest", "mongo:mytag");
 
     }
 

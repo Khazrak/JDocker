@@ -43,7 +43,8 @@ public class ImageBuildFromArchive {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -66,7 +67,7 @@ public class ImageBuildFromArchive {
         AuthConfig authConfig = AuthConfig126.builder().username("username").password("password").build();
 
         BuildImageFromArchiveRequest request = BuildImageFromArchiveRequest126.builder()
-                .authConfig("localhost:5000",authConfig)
+                .authConfig("localhost:5000", authConfig)
                 .tag(name)
                 .body(body)
                 .removeIntermediateContainers(true)
@@ -77,9 +78,9 @@ public class ImageBuildFromArchive {
 
         List<String> lines = new ArrayList<>();
 
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 lines.add(line);
                 logger.info(line);
             }

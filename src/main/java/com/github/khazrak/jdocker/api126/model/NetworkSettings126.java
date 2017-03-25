@@ -19,24 +19,24 @@ import java.util.Map;
 @JsonDeserialize(builder = NetworkSettings126.NetworkSettings126Builder.class)
 public class NetworkSettings126 implements NetworkSettings {
 
-       private String bridge;
-       private String sandboxId;
-       private boolean hairPindMode;
-       private String linkLocalIpv6Address;
-       private int linkLocalIpv6PrefixLen;
-       private Map<String,List<HostPort>> ports;
-       private String sandboxKey;
-       private Object secondaryIpAddresses;
-       private Object secondaryIpv6Addresses;
-       private String endpointId;
-       private String gateway;
-       private String globalIpv6Address;
-       private int globalIpv6PrefixLen;
-       private String ipAddress;
-       private int ipPrefixLen;
-       private String ipv6Gateway;
-       private String macAddress;
-       private Map<String, NetworkInterface> networks;
+    private String bridge;
+    private String sandboxId;
+    private boolean hairPindMode;
+    private String linkLocalIpv6Address;
+    private int linkLocalIpv6PrefixLen;
+    private Map<String, List<HostPort>> ports;
+    private String sandboxKey;
+    private Object secondaryIpAddresses;
+    private Object secondaryIpv6Addresses;
+    private String endpointId;
+    private String gateway;
+    private String globalIpv6Address;
+    private int globalIpv6PrefixLen;
+    private String ipAddress;
+    private int ipPrefixLen;
+    private String ipv6Gateway;
+    private String macAddress;
+    private Map<String, NetworkInterface> networks;
 
 
     @JsonPOJOBuilder(withPrefix = "")

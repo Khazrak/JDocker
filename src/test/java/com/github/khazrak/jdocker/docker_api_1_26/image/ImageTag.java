@@ -29,7 +29,8 @@ public class ImageTag {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -41,8 +42,8 @@ public class ImageTag {
 
         List<ImageInfo> images = client.listImages(false);
 
-        for(ImageInfo i : images) {
-            if(searchForTag(i, "mongo:mytag")) {
+        for (ImageInfo i : images) {
+            if (searchForTag(i, "mongo:mytag")) {
                 tagFound = true;
                 break;
             }
@@ -55,8 +56,8 @@ public class ImageTag {
 
         tagFound = false;
 
-        for(ImageInfo i : images) {
-            if(searchForTag(i, "mongo:mytag")) {
+        for (ImageInfo i : images) {
+            if (searchForTag(i, "mongo:mytag")) {
                 tagFound = true;
                 break;
             }
@@ -67,11 +68,11 @@ public class ImageTag {
 
     private boolean searchForTag(ImageInfo i, String tag) {
 
-        if(i.getRepoTags() == null) return false;
+        if (i.getRepoTags() == null) return false;
 
-        for(String s : i.getRepoTags()) {
+        for (String s : i.getRepoTags()) {
             logger.debug(s);
-            if(s.equals(tag)) {
+            if (s.equals(tag)) {
                 return true;
             }
         }

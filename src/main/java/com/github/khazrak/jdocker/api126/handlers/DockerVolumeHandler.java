@@ -2,7 +2,8 @@ package com.github.khazrak.jdocker.api126.handlers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.khazrak.jdocker.abstraction.*;
+import com.github.khazrak.jdocker.abstraction.Volume;
+import com.github.khazrak.jdocker.abstraction.VolumeCreateRequest;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
 import com.github.khazrak.jdocker.api126.requests.ListVolumeParams;
 import com.github.khazrak.jdocker.utils.OkHttpExecuter;
@@ -42,7 +43,7 @@ public class DockerVolumeHandler {
             volumeJson = volumeJson.get("Volumes");
             Volume[] volumes = mapper.readValue(volumeJson.toString(), Volume[].class);
 
-            if(volumes == null) return new ArrayList<Volume>();
+            if (volumes == null) return new ArrayList<Volume>();
 
             return Arrays.asList(volumes);
 
@@ -68,7 +69,7 @@ public class DockerVolumeHandler {
             volumeJson = volumeJson.get("Volumes");
             Volume[] volumes = mapper.readValue(volumeJson.toString(), Volume[].class);
 
-            if(volumes == null) return new ArrayList<Volume>();
+            if (volumes == null) return new ArrayList<Volume>();
 
             return Arrays.asList(volumes);
 

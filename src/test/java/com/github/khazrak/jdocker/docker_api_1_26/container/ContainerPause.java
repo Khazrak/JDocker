@@ -1,11 +1,7 @@
 package com.github.khazrak.jdocker.docker_api_1_26.container;
 
-import com.github.khazrak.jdocker.abstraction.*;
+import com.github.khazrak.jdocker.abstraction.DockerClient;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
-import com.github.khazrak.jdocker.api126.model.HealthCheck126;
-import com.github.khazrak.jdocker.api126.model.HostConfig126;
-import com.github.khazrak.jdocker.api126.requests.ContainerCreationRequest126;
-import com.github.khazrak.jdocker.utils.DockerImageName;
 import io.specto.hoverfly.junit.rule.HoverflyRule;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -30,7 +26,8 @@ public class ContainerPause {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test

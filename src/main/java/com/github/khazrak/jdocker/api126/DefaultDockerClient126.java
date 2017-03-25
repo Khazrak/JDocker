@@ -9,7 +9,6 @@ import com.github.khazrak.jdocker.api126.model.*;
 import com.github.khazrak.jdocker.api126.requests.ContainerCommitRequestMount126;
 import com.github.khazrak.jdocker.api126.requests.ListVolumeParams;
 import com.github.khazrak.jdocker.api126.requests.NetworkCreateIpamConfig126;
-import com.github.khazrak.jdocker.utils.OkHttpExecuter;
 import com.github.khazrak.jdocker.ssl.DockerSSLSocket;
 import com.github.khazrak.jdocker.ssl.SslSocketConfigFactory;
 import com.github.khazrak.jdocker.unixsocket.NpipeSocketFactory;
@@ -35,6 +34,7 @@ public class DefaultDockerClient126 implements DockerClient {
     private OkHttpClient httpClient;
 
     private final String URL;
+    private final URLResolver urlResolver;
 
     private DockerMiscHandler miscHandler;
     private DockerImageHandler imageHandler;
@@ -46,24 +46,21 @@ public class DefaultDockerClient126 implements DockerClient {
     private ObjectMapper mapper;
 
     public DefaultDockerClient126() {
-        URLResolver urlResolver;
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        if(UnixSocketFactory.isSupported()) {
+        if (UnixSocketFactory.isSupported()) {
             UnixSocketFactory unixSocketFactory = new UnixSocketFactory("/var/run/docker.sock");
             builder = builder.socketFactory(unixSocketFactory);
             builder = builder.dns(unixSocketFactory);
             URL = "/var/run/docker.sock";
             urlResolver = new UnixURLResolver(unixSocketFactory);
-        }
-        else if(NpipeSocketFactory.isSupported()) {
+        } else if (NpipeSocketFactory.isSupported()) {
             NpipeSocketFactory npipeSocketFactory = new NpipeSocketFactory();
             builder = builder.socketFactory(npipeSocketFactory);
             builder = builder.dns(npipeSocketFactory);
             URL = "\\\\.\\pipe/docker_engine";
             urlResolver = new NpipeURLResolver(npipeSocketFactory);
-        }
-        else {
+        } else {
             URL = "http://127.0.0.1:4243";
             urlResolver = new HttpURLResolver();
         }
@@ -91,23 +88,7 @@ public class DefaultDockerClient126 implements DockerClient {
         URL = host;
         mapper = getMapper();
 
-        URLResolver urlResolver = new HttpURLResolver();
-        createHandlers(httpClient, urlResolver, mapper, URL);
-    }
-
-    public DefaultDockerClient126(String host, Proxy proxy) {
-
-        httpClient = new OkHttpClient.Builder()
-                .proxy(proxy)
-                .connectTimeout(0, TimeUnit.MINUTES)
-                .readTimeout(0, TimeUnit.SECONDS)
-                .writeTimeout(0, TimeUnit.SECONDS)
-                .build();
-
-        URL = host;
-        mapper = getMapper();
-
-        URLResolver urlResolver = new HttpURLResolver();
+        urlResolver = new HttpURLResolver();
         createHandlers(httpClient, urlResolver, mapper, URL);
     }
 
@@ -128,7 +109,15 @@ public class DefaultDockerClient126 implements DockerClient {
 
         //SerializationFeature.FAIL_ON_EMPTY_BEANS
 
-        URLResolver urlResolver = new HttpURLResolver();
+        urlResolver = new HttpURLResolver();
+        createHandlers(httpClient, urlResolver, mapper, URL);
+    }
+
+    public void setProxy(Proxy proxy) {
+        httpClient = httpClient.newBuilder()
+                .proxy(proxy)
+                .build();
+
         createHandlers(httpClient, urlResolver, mapper, URL);
     }
 
@@ -171,7 +160,7 @@ public class DefaultDockerClient126 implements DockerClient {
 
     private void createHandlers(OkHttpClient httpClient, URLResolver urlResolver, ObjectMapper mapper, String url) {
 
-        OkHttpExecuter okHttpExecuter = new OkHttpExecuter(httpClient,URL, urlResolver);
+        OkHttpExecuter okHttpExecuter = new OkHttpExecuter(httpClient, URL, urlResolver);
 
         miscHandler = new DockerMiscHandler(okHttpExecuter, mapper);
         imageHandler = new DockerImageHandler(okHttpExecuter, mapper);
@@ -182,7 +171,7 @@ public class DefaultDockerClient126 implements DockerClient {
     }
 
     @Override
-    public void close()  {
+    public void close() {
         httpClient = null;
     }
 
@@ -285,7 +274,6 @@ public class DefaultDockerClient126 implements DockerClient {
     public String importImageTar(InputStream input, boolean quiet) {
         return imageHandler.importImageTar(input, quiet);
     }
-
 
 
     @Override
@@ -480,7 +468,7 @@ public class DefaultDockerClient126 implements DockerClient {
 
     @Override
     public void restart(String id) {
-        containerHandler.restart(id,0);
+        containerHandler.restart(id, 0);
     }
 
     @Override
@@ -495,7 +483,7 @@ public class DefaultDockerClient126 implements DockerClient {
 
     @Override
     public void resizeTty(String id, int w, int h) {
-        containerHandler.resizeTty(id, w,h);
+        containerHandler.resizeTty(id, w, h);
     }
 
     @Override

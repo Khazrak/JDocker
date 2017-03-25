@@ -6,7 +6,9 @@ import java.util.Map;
 public interface NetworkCreateIpam {
 
     String getDriver();
+
     List<NetworkCreateIpamConfig> getConfig();
-    Map<String,String> getOptions();
+
+    Map<String, String> getOptions();
 
 }

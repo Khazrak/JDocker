@@ -8,12 +8,19 @@ import java.util.Map;
 public interface ListImagesParams {
 
     boolean isAll();
+
     boolean isDangling();
-    Map<String,String> getLabels();
+
+    Map<String, String> getLabels();
+
     String getBefore();
+
     String getSince();
+
     String getFilterByName();
+
     Filters getFilters();
+
     Map<String, String> getQueries();
 
 

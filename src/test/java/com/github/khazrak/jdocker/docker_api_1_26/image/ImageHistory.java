@@ -29,7 +29,8 @@ public class ImageHistory {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -38,8 +39,8 @@ public class ImageHistory {
 
         List<ImageHistoryInfo> history = client.imageHistory(name);
 
-        for(ImageHistoryInfo info : history) {
-            logger.info("Created by {} at {}, comments: {}",info.getCreatedBy(), info.getCreated(), info.getComment());
+        for (ImageHistoryInfo info : history) {
+            logger.info("Created by {} at {}, comments: {}", info.getCreatedBy(), info.getCreated(), info.getComment());
         }
 
         assertThat(history.get(0).getCreated()).isEqualTo(1488261885L);

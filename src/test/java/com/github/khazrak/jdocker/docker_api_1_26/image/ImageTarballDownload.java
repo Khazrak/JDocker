@@ -31,7 +31,8 @@ public class ImageTarballDownload {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -43,15 +44,15 @@ public class ImageTarballDownload {
         Path p = null;
         File f = null;
         try {
-            f = File.createTempFile("busybox-images",".tar");
+            f = File.createTempFile("busybox-images", ".tar");
             p = f.toPath();
         } catch (IOException e) {
             logger.error("Exception during creating temp file");
         }
 
-        try(BufferedInputStream in = new BufferedInputStream(input); BufferedOutputStream writer = new BufferedOutputStream(Files.newOutputStream(p, StandardOpenOption.CREATE))) {
+        try (BufferedInputStream in = new BufferedInputStream(input); BufferedOutputStream writer = new BufferedOutputStream(Files.newOutputStream(p, StandardOpenOption.CREATE))) {
             int data = -1;
-            while((data = in.read()) != -1) {
+            while ((data = in.read()) != -1) {
                 writer.write(data);
             }
             writer.flush();
@@ -64,8 +65,7 @@ public class ImageTarballDownload {
             size = Files.size(p);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             f.delete();
         }
 

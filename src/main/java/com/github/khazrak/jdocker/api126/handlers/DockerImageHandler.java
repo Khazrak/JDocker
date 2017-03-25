@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.khazrak.jdocker.abstraction.*;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
 import com.github.khazrak.jdocker.api126.model.ListImagesParams126;
-import com.github.khazrak.jdocker.utils.OkHttpExecuter;
 import com.github.khazrak.jdocker.utils.DockerImageName;
+import com.github.khazrak.jdocker.utils.OkHttpExecuter;
 import com.github.khazrak.jdocker.utils.RequestStreamBody;
 import okhttp3.Headers;
 import okhttp3.Response;
@@ -96,7 +96,6 @@ public class DockerImageHandler {
     }
 
 
-
     private String getBase64EncodedJson(String json) {
         return Base64.getEncoder().encodeToString(json.getBytes());
     }
@@ -182,7 +181,7 @@ public class DockerImageHandler {
         final String path;
         try {
             path = VERSION + "/images/" + URLEncoder.encode(imageName.toStringWithoutTag(), StandardCharsets.UTF_8.toString())
-                    + ":" + URLEncoder.encode(imageName.getTag(), StandardCharsets.UTF_8.toString()) +  "/json";
+                    + ":" + URLEncoder.encode(imageName.getTag(), StandardCharsets.UTF_8.toString()) + "/json";
             //path = VERSION + "/images/" + imageName.toString() + "/json";
             Response response = okHttpExecuter.get(path);
             String responseBody = response.body().string();
@@ -225,7 +224,7 @@ public class DockerImageHandler {
                     .add("Content-type", "application/tar")
                     .build();
 
-            Response response = okHttpExecuter.post(headers,path,queries, request.getBody());
+            Response response = okHttpExecuter.post(headers, path, queries, request.getBody());
             return response.body().byteStream();
         } catch (IOException e) {
             logger.error("Exception during build from archive", e);
@@ -245,7 +244,7 @@ public class DockerImageHandler {
                     .add("Content-type", "application/tar")
                     .build();
 
-            Response response = okHttpExecuter.post(headers,path,queries);
+            Response response = okHttpExecuter.post(headers, path, queries);
             return response.body().byteStream();
         } catch (IOException e) {
             logger.error("Exception during build from remote", e);
@@ -259,11 +258,11 @@ public class DockerImageHandler {
         final String path = VERSION + "/images/get";
         String name = repositoryName.getImageName();
 
-        if(repositoryName.getTag() != null) {
+        if (repositoryName.getTag() != null) {
             name += ":" + repositoryName.getTag();
         }
 
-        if(repositoryName.getImageRepo() != null) {
+        if (repositoryName.getImageRepo() != null) {
             name = repositoryName.getImageRepo();
         }
 
@@ -278,7 +277,7 @@ public class DockerImageHandler {
     public String importImageTar(InputStream input, boolean quiet) {
         logger.debug("Importing images from tar");
         final String path = VERSION + "/images/load";
-        Map<String,String> queries = new TreeMap<>();
+        Map<String, String> queries = new TreeMap<>();
         queries.put("quiet", Boolean.toString(quiet));
         RequestStreamBody body = new RequestStreamBody(input);
         Headers headers = new Headers.Builder().add("Content-Type", "application/x-tar").build();

@@ -1,7 +1,6 @@
 package com.github.khazrak.jdocker.docker_api_1_26.misc;
 
 
-
 import com.github.khazrak.jdocker.abstraction.DockerClient;
 import com.github.khazrak.jdocker.abstraction.DockerVersion;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
@@ -29,7 +28,8 @@ public class Version {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -37,7 +37,6 @@ public class Version {
         DockerVersion version = client.version();
         assertThat(version.getApiVersion()).isEqualToIgnoringCase("1.26");
     }
-
 
 
 }

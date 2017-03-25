@@ -24,7 +24,7 @@ public class RequestStreamBody extends RequestBody {
     private InputStream inputStream;
 
     public RequestStreamBody(InputStream inputStream) {
-        if(inputStream == null) {
+        if (inputStream == null) {
             throw new NullPointerException("InputStream in RequestStreamBody creation may not be null!");
         }
 
@@ -40,11 +40,11 @@ public class RequestStreamBody extends RequestBody {
     public void writeTo(BufferedSink sink) throws IOException {
         OutputStream outputStream = sink.outputStream();
 
-        try(BufferedInputStream bufIn = new BufferedInputStream(inputStream);
-            BufferedOutputStream bufOut = new BufferedOutputStream(outputStream)) {
+        try (BufferedInputStream bufIn = new BufferedInputStream(inputStream);
+             BufferedOutputStream bufOut = new BufferedOutputStream(outputStream)) {
 
             int aByte;
-            while((aByte = bufIn.read()) != -1) {
+            while ((aByte = bufIn.read()) != -1) {
                 bufOut.write(aByte);
             }
             bufOut.flush();

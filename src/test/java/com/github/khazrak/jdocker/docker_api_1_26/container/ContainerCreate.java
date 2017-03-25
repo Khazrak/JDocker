@@ -33,14 +33,15 @@ public class ContainerCreate {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
     public void containerCreate() {
         HostConfig hostConfig = HostConfig126.builder().build();
 
-        HealthCheck healthCheck = HealthCheck126.builder().test(new String []{"CMD-SHELL","ls"}).interval(5).retries(2).build();
+        HealthCheck healthCheck = HealthCheck126.builder().test(new String[]{"CMD-SHELL", "ls"}).interval(5).retries(2).build();
 
         ContainerCreationRequest test = ContainerCreationRequest126.builder()
                 .name("test_container")

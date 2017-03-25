@@ -28,22 +28,22 @@ public class DockerLogsParameters126 implements DockerLogsParameters {
     private int tail;
 
     public Map<String, String> getQueryMap() {
-        Map <String, String> queries = new TreeMap<>();
+        Map<String, String> queries = new TreeMap<>();
 
         queries.put("stdout", Boolean.toString(stdout));
-        if(stderr) {
+        if (stderr) {
             queries.put("stderr", Boolean.toString(true));
         }
-        if(details) {
+        if (details) {
             queries.put("details", Boolean.toString(true));
         }
-        if(timestamps) {
+        if (timestamps) {
             queries.put("timestamps", Boolean.toString(true));
         }
-        if(since != 0) {
+        if (since != 0) {
             queries.put("since", Long.toString(since));
         }
-        if(tail > 0) {
+        if (tail > 0) {
             queries.put("tail", Integer.toString(tail));
         }
 
@@ -51,24 +51,24 @@ public class DockerLogsParameters126 implements DockerLogsParameters {
     }
 
     public String toString() {
-        String params = "?stdout="+stdout;
-        if(stderr) {
+        String params = "?stdout=" + stdout;
+        if (stderr) {
             params += "&stderr=true";
         }
-        if(details) {
+        if (details) {
             params += "&details=true";
         }
-        if(timestamps) {
+        if (timestamps) {
             params += "%timestamps=true";
         }
-        if(since != 0) {
+        if (since != 0) {
             params += "&since=" + since;
         }
-        if(tail > 0) {
-            params += "&tail="+tail;
+        if (tail > 0) {
+            params += "&tail=" + tail;
         }
 
-        if(params.length() == 1) {
+        if (params.length() == 1) {
             params = "";
         }
         return params;

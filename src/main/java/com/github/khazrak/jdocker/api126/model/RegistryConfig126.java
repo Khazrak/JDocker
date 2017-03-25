@@ -14,7 +14,7 @@ import java.util.Map;
 @Getter
 @Builder
 @JsonDeserialize(builder = RegistryConfig126.RegistryConfig126Builder.class)
-public class RegistryConfig126 implements RegistryConfig{
+public class RegistryConfig126 implements RegistryConfig {
 
     private List<String> mirrors;
     private Map<String, IndexConfig> indexConfigs;

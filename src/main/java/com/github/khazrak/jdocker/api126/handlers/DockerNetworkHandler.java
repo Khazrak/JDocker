@@ -40,7 +40,7 @@ public class DockerNetworkHandler {
             JsonNode jsonNode = mapper.readTree(response.body().string());
             String warn = jsonNode.get("Warning").textValue();
 
-            if(warn.length() > 0) {
+            if (warn.length() > 0) {
                 logger.warn(warn);
             }
 
@@ -64,9 +64,9 @@ public class DockerNetworkHandler {
             Response response = okHttpExecuter.get(path);
 
             String responseBody = response.body().string();
-            logger.debug("Response body: {}",responseBody);
+            logger.debug("Response body: {}", responseBody);
 
-            Network[] networkArray = mapper.readValue(responseBody,Network[].class);
+            Network[] networkArray = mapper.readValue(responseBody, Network[].class);
             return Arrays.asList(networkArray);
 
         } catch (IOException e) {
@@ -85,9 +85,9 @@ public class DockerNetworkHandler {
             Response response = okHttpExecuter.get(path, params.getQueries());
 
             String responseBody = response.body().string();
-            logger.debug("Response body: {}",responseBody);
+            logger.debug("Response body: {}", responseBody);
 
-            Network[] networkArray = mapper.readValue(responseBody,Network[].class);
+            Network[] networkArray = mapper.readValue(responseBody, Network[].class);
 
             return Arrays.asList(networkArray);
 
@@ -100,23 +100,23 @@ public class DockerNetworkHandler {
 
     public void removeNetwork(String id) {
         logger.debug("Removing network {}", id);
-        final String path = VERSION + "/networks/"+id;
+        final String path = VERSION + "/networks/" + id;
         Response response = okHttpExecuter.delete(path);
     }
 
     public Network inspectNetwork(String id) {
         logger.debug("Inspecting network {}", id);
-        final String path = VERSION + "/networks/"+id;
+        final String path = VERSION + "/networks/" + id;
 
         try {
             Response response = okHttpExecuter.get(path);
 
             String responseBody = response.body().string();
-            logger.debug("Response body: {}",responseBody);
-            return mapper.readValue(responseBody,Network.class);
+            logger.debug("Response body: {}", responseBody);
+            return mapper.readValue(responseBody, Network.class);
 
         } catch (IOException e) {
-            logger.error("Exception during inspecting network "+id, e);
+            logger.error("Exception during inspecting network " + id, e);
         }
 
         return null;
@@ -124,7 +124,7 @@ public class DockerNetworkHandler {
 
     public void connectContainerToNetwork(NetworkConnectRequest networkConnectRequest) {
         logger.debug("Connect container to a network");
-        final String path = VERSION + "/networks/"+networkConnectRequest.getNetworkName()+"/connect";
+        final String path = VERSION + "/networks/" + networkConnectRequest.getNetworkName() + "/connect";
 
         try {
             String json = mapper.writeValueAsString(networkConnectRequest);
@@ -138,7 +138,7 @@ public class DockerNetworkHandler {
 
     public void disconnectContainerFromNetwork(String containerName, String networkName, boolean force) {
         logger.debug("Disconnecting container {} from network {}, force: {}", containerName, networkName, force);
-        final String path = VERSION + "/networks/"+ networkName +"/disconnect";
+        final String path = VERSION + "/networks/" + networkName + "/disconnect";
         NetworkDisconnectRequest126 networkDisconnectRequest = NetworkDisconnectRequest126
                 .builder()
                 .container(containerName)

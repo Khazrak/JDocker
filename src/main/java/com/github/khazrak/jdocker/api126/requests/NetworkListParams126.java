@@ -25,24 +25,24 @@ public class NetworkListParams126 implements NetworkListParams {
     public String toString() {
         Filters filter = new Filters();
 
-        if(driver != null) {
-            filter.add("driver",driver);
+        if (driver != null) {
+            filter.add("driver", driver);
         }
 
-        if(id != null) {
-            filter.add("id",id);
+        if (id != null) {
+            filter.add("id", id);
         }
 
-        if(label != null) {
-            filter.add("label",label);
+        if (label != null) {
+            filter.add("label", label);
         }
 
-        if(name != null) {
-            filter.add("name",name);
+        if (name != null) {
+            filter.add("name", name);
         }
 
-        if(type != null) {
-            filter.add("type",type);
+        if (type != null) {
+            filter.add("type", type);
         }
 
         return filter.toString();

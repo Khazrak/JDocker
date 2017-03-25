@@ -14,12 +14,12 @@
 package com.github.khazrak.jdocker.abstraction;
 
 import com.github.khazrak.jdocker.api126.requests.ListVolumeParams;
-import com.github.khazrak.jdocker.api126.requests.VolumeCreateRequest126;
 import com.github.khazrak.jdocker.utils.DockerImageName;
 import com.github.khazrak.jdocker.utils.DockerLogsLineReader;
 import com.github.khazrak.jdocker.utils.RequestStreamBody;
 
 import java.io.InputStream;
+import java.net.Proxy;
 import java.util.List;
 
 public interface DockerClient {
@@ -33,17 +33,22 @@ public interface DockerClient {
     SystemInfo info();
 
     List<ImageInfo> listImages();
+
     List<ImageInfo> listImages(boolean all);
+
     List<ImageInfo> listImages(ListImagesParams params);
 
 
     InputStream pullImage(DockerImageName image);
+
     InputStream pullImage(DockerImageName image, String token);
+
     InputStream pullImage(DockerImageName image, AuthConfig authConfig);
 
     InputStream pushImage(DockerImageName imageToPush, AuthConfig authConfig);
 
     String removeImage(DockerImageName image);
+
     String removeImage(DockerImageName image, boolean force, boolean noprune);
 
     void imageTag(DockerImageName original, DockerImageName newTag);
@@ -151,7 +156,7 @@ public interface DockerClient {
     void remove(String id, boolean forceRemove, boolean removeVolume);
 
     FileSystemInfo fileSystemInfo(String id, String path);
-    
+
     InputStream fileSystemArchiveDownload(String id, String path);
 
     void fileSystemArchiveUpload(String id, String path, RequestStreamBody body);
@@ -159,4 +164,6 @@ public interface DockerClient {
     String commitContainer(ContainerCommitRequest containerCommitRequest);
 
     List<ContainerFileSystemChange> containerFileSystemChanges(String id);
+
+    void setProxy(Proxy proxy);
 }

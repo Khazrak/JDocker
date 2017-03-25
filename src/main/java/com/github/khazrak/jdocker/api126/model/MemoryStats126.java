@@ -15,7 +15,7 @@ import java.util.Map;
 public class MemoryStats126 implements MemoryStats {
 
     @JsonProperty("stats")
-    private Map<String,Long> stats;
+    private Map<String, Long> stats;
 
     @JsonProperty("max_usage")
     private long maxUsage;
@@ -33,7 +33,7 @@ public class MemoryStats126 implements MemoryStats {
     public static class MemoryStats126Builder {
 
         @JsonProperty("stats")
-        private Map<String,Long> stats;
+        private Map<String, Long> stats;
 
         @JsonProperty("max_usage")
         private long maxUsage;

@@ -20,7 +20,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class HttpURLResolver implements URLResolver{
+public class HttpURLResolver implements URLResolver {
     @Override
     public HttpUrl resolve(String host, String path) {
         HttpUrl.Builder builder = HttpUrl.parse(host).newBuilder();
@@ -32,7 +32,7 @@ public class HttpURLResolver implements URLResolver{
         HttpUrl.Builder builder = HttpUrl.parse(host).newBuilder();
         builder = builder.addPathSegment(path);
 
-        for(String key : queries.keySet()) {
+        for (String key : queries.keySet()) {
             try {
                 builder = builder.addEncodedQueryParameter(key, URLEncoder.encode(queries.get(key), StandardCharsets.UTF_8.toString()));
             } catch (UnsupportedEncodingException e) {

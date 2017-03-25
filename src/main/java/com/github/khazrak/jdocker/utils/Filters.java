@@ -29,7 +29,7 @@ public class Filters {
     private static final Logger logger = LoggerFactory.getLogger(Filters.class);
 
     private ObjectMapper mapper;
-    private Map<String,String> filters;
+    private Map<String, String> filters;
 
     public Filters() {
         mapper = new ObjectMapper();
@@ -42,13 +42,13 @@ public class Filters {
     }
 
     public void add(String key, String value) {
-        filters.put(key,value);
+        filters.put(key, value);
     }
 
-    public void add(Map<String,String> filters) {
-        if(filters.keySet().size() > 0) {
-            for(String s : filters.keySet()) {
-                add(s,filters.get(s));
+    public void add(Map<String, String> filters) {
+        if (filters.keySet().size() > 0) {
+            for (String s : filters.keySet()) {
+                add(s, filters.get(s));
             }
         }
     }
@@ -59,29 +59,29 @@ public class Filters {
 
     public String toString() {
         ObjectNode objectNode = mapper.createObjectNode();
-        if(filters.keySet().size() > 0) {
-            for(String s : filters.keySet()) {
-                objectNode.putObject(s).put(filters.get(s),true);
+        if (filters.keySet().size() > 0) {
+            for (String s : filters.keySet()) {
+                objectNode.putObject(s).put(filters.get(s), true);
             }
         }
 
         return objectNode.toString();
     }
 
-    public static String encodeFilters(Map<String,String> filters) {
+    public static String encodeFilters(Map<String, String> filters) {
         ObjectMapper mapper = new ObjectMapper();
         String result = null;
         ObjectNode objectNode = mapper.createObjectNode();
-        if(filters.keySet().size() > 0) {
-            for(String s : filters.keySet()) {
-                objectNode.putObject(s).put(filters.get(s),true);
+        if (filters.keySet().size() > 0) {
+            for (String s : filters.keySet()) {
+                objectNode.putObject(s).put(filters.get(s), true);
             }
         }
 
         try {
             result = URLEncoder.encode(objectNode.toString(), StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException e) {
-            logger.error("Error encoding filters",e);
+            logger.error("Error encoding filters", e);
         }
         return result;
     }

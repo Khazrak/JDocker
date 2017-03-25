@@ -169,13 +169,15 @@ END OF TERMS AND CONDITIONS
 */
 package com.github.khazrak.jdocker.unixsocket;
 
-import java.io.*;
-import java.net.*;
-import java.nio.channels.Channels;
-import java.nio.channels.SocketChannel;
-
 import jnr.unixsocket.UnixSocketAddress;
 import jnr.unixsocket.UnixSocketChannel;
+
+import java.io.*;
+import java.net.InetAddress;
+import java.net.SocketAddress;
+import java.net.SocketException;
+import java.nio.channels.Channels;
+import java.nio.channels.SocketChannel;
 
 final class JnrUnixSocket extends FileSocket {
 

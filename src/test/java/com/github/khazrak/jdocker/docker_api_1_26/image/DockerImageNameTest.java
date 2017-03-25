@@ -1,7 +1,7 @@
 package com.github.khazrak.jdocker.docker_api_1_26.image;
 
-import org.junit.Test;
 import com.github.khazrak.jdocker.utils.DockerImageName;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

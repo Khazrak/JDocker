@@ -35,7 +35,8 @@ public class ImagePush {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -48,7 +49,7 @@ public class ImagePush {
 
         List<String> lines = new ArrayList<>();
 
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(input))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);
@@ -58,7 +59,7 @@ public class ImagePush {
             e.printStackTrace();
         }
 
-        assertThat(lines.get(lines.size()-1)).isEqualTo("{\"progressDetail\":{},\"aux\":{\"Tag\":\"1.25\",\"Digest\":\"sha256:cdbe636b45107ebde0a6a6d3f2a7ba4cd8dd9719937579bace5139377f98c72f\",\"Size\":527}}");
+        assertThat(lines.get(lines.size() - 1)).isEqualTo("{\"progressDetail\":{},\"aux\":{\"Tag\":\"1.25\",\"Digest\":\"sha256:cdbe636b45107ebde0a6a6d3f2a7ba4cd8dd9719937579bace5139377f98c72f\",\"Size\":527}}");
     }
 
 }

@@ -15,28 +15,28 @@ import java.util.Map;
 @JsonDeserialize(builder = ContainerInspectConfig126.ContainerInspectConfig126Builder.class)
 public class ContainerInspectConfig126 implements ContainerInspectConfig {
 
-       private boolean attachStderr;
-       private boolean attachStdin;
-       private boolean attachStdout;
-       private List<String> cmd;
-       private String domainName;
-       private List<String> entrypoint;
-       private List<String> envs;
-       private Map<String, Object> exposedPorts;
-       private String hostName;
-       private String image;
-       private Map<String,String> labels;
-       private String macAddress;
-       private boolean networkDisabled;
-       private List<String> onBuild;
-       private boolean openStdin;
-       private boolean stdinOnce;
-       private boolean tty;
-       private String user;
-       private Map<String,Map<String,String>> volumes;
-       private String workingDir;
-       private String stopSignal;
-       private boolean argsEscaped;
+    private boolean attachStderr;
+    private boolean attachStdin;
+    private boolean attachStdout;
+    private List<String> cmd;
+    private String domainName;
+    private List<String> entrypoint;
+    private List<String> envs;
+    private Map<String, Object> exposedPorts;
+    private String hostName;
+    private String image;
+    private Map<String, String> labels;
+    private String macAddress;
+    private boolean networkDisabled;
+    private List<String> onBuild;
+    private boolean openStdin;
+    private boolean stdinOnce;
+    private boolean tty;
+    private String user;
+    private Map<String, Map<String, String>> volumes;
+    private String workingDir;
+    private String stopSignal;
+    private boolean argsEscaped;
 
 
     @JsonPOJOBuilder(withPrefix = "")
@@ -73,7 +73,7 @@ public class ContainerInspectConfig126 implements ContainerInspectConfig {
         private String image;
 
         @JsonProperty("Labels")
-        private Map<String,String> labels;
+        private Map<String, String> labels;
 
         @JsonProperty("MacAddress")
         private String macAddress;
@@ -97,7 +97,7 @@ public class ContainerInspectConfig126 implements ContainerInspectConfig {
         private String user;
 
         @JsonProperty("Volumes")
-        private Map<String,Map<String,String>> volumes;
+        private Map<String, Map<String, String>> volumes;
 
         @JsonProperty("WorkingDir")
         private String workingDir;

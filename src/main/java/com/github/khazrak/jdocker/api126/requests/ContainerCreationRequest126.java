@@ -67,12 +67,12 @@ public class ContainerCreationRequest126 implements ContainerCreationRequest {
 
     @Singular
     @JsonProperty("Labels")
-    private Map<String,String> labels;
+    private Map<String, String> labels;
 
     //volumes map
     @Singular()
     @JsonProperty("Volumes")
-    private Map<String,Object> volumes;
+    private Map<String, Object> volumes;
 
     @JsonProperty("WorkingDir")
     private String workingDir;
@@ -85,7 +85,7 @@ public class ContainerCreationRequest126 implements ContainerCreationRequest {
 
     @Singular
     @JsonProperty("ExposedPorts")
-    private Map<String,Object> exposedPorts;
+    private Map<String, Object> exposedPorts;
 
     @JsonProperty("StopSignal")
     private String stopSignal;

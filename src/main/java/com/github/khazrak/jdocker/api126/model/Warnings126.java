@@ -39,7 +39,7 @@ public class Warnings126 implements Warnings, Iterable<String> {
 
     }
 
-    public class WarningsIterator implements Iterator<String>  {
+    public class WarningsIterator implements Iterator<String> {
 
         private int index = 0;
 

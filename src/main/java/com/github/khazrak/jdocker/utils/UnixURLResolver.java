@@ -13,8 +13,8 @@
  */
 package com.github.khazrak.jdocker.utils;
 
-import okhttp3.HttpUrl;
 import com.github.khazrak.jdocker.unixsocket.UnixSocketFactory;
+import okhttp3.HttpUrl;
 
 import java.util.Map;
 

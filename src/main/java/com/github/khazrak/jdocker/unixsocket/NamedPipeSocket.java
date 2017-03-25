@@ -217,7 +217,7 @@ public class NamedPipeSocket extends FileSocket {
 
     @Override
     public synchronized void close() throws IOException {
-        if(this.namedPipe != null) {
+        if (this.namedPipe != null) {
             this.namedPipe.close();
         }
         this.isClosed = true;

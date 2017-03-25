@@ -33,7 +33,7 @@ public class BuildImageFromRemoteRequest126 implements BuildImageFromRemoteReque
     private DockerImageName tag;
 
     /**
-     *  Suppress verbose build output.
+     * Suppress verbose build output.
      */
     private boolean quiet;
 
@@ -63,7 +63,7 @@ public class BuildImageFromRemoteRequest126 implements BuildImageFromRemoteReque
     private long memory;
 
     /**
-     *  Total memory (memory + swap), -1 to enable unlimited swap
+     * Total memory (memory + swap), -1 to enable unlimited swap
      */
     private long memswap;
 
@@ -102,52 +102,52 @@ public class BuildImageFromRemoteRequest126 implements BuildImageFromRemoteReque
     public Map<String, String> getQueries() {
         Map<String, String> queries = new TreeMap<>();
 
-        if(remoteUrl == null) {
+        if (remoteUrl == null) {
             throw new NullPointerException("remoteUrl is null in BuildImageFromRemoteRequest");
         }
 
         queries.put("remote", remoteUrl);
 
-        if(dockerFilePath != null) {
+        if (dockerFilePath != null) {
             queries.put("dockerfile", dockerFilePath);
         }
-        if(tag != null) {
+        if (tag != null) {
             queries.put("t", tag.toString());
         }
-        if(quiet) {
+        if (quiet) {
             queries.put("q", Boolean.toString(true));
         }
-        if(nocache) {
+        if (nocache) {
             queries.put("nocache", Boolean.toString(true));
         }
-        if(pull) {
+        if (pull) {
             queries.put("pull", Boolean.toString(true));
         }
-        if(removeIntermediateContainers) {
+        if (removeIntermediateContainers) {
             queries.put("rm", Boolean.toString(true));
         }
-        if(forceRm) {
+        if (forceRm) {
             queries.put("forcerm", Boolean.toString(true));
         }
-        if(memory > 0) {
+        if (memory > 0) {
             queries.put("memory", Long.toString(memory));
         }
-        if(memswap > 0 || memswap == -1) {
+        if (memswap > 0 || memswap == -1) {
             queries.put("memswap", Long.toString(memswap));
         }
-        if(cpushares > 0) {
+        if (cpushares > 0) {
             queries.put("cpushares", Integer.toString(cpushares));
         }
-        if(cpusetcpus != null) {
+        if (cpusetcpus != null) {
             queries.put("cpusetcpus", cpusetcpus);
         }
-        if(cpuperiod > 0) {
+        if (cpuperiod > 0) {
             queries.put("cpuperiod", Long.toString(cpuperiod));
         }
-        if(cpuquota > 0) {
+        if (cpuquota > 0) {
             queries.put("cpuquota", Long.toString(cpuquota));
         }
-        if(shmsize > 0) {
+        if (shmsize > 0) {
             queries.put("shmsize", Long.toString(shmsize));
         }
 
@@ -156,7 +156,7 @@ public class BuildImageFromRemoteRequest126 implements BuildImageFromRemoteReque
         module.addAbstractTypeMapping(AuthConfig.class, AuthConfig126.class);
         mapper.registerModule(module);
 
-        if(buildargs.keySet().size() > 0) {
+        if (buildargs.keySet().size() > 0) {
             try {
                 String json = mapper.writeValueAsString(buildargs);
                 queries.put("buildargs", json);
@@ -165,7 +165,7 @@ public class BuildImageFromRemoteRequest126 implements BuildImageFromRemoteReque
             }
         }
 
-        if(labels.keySet().size() > 0) {
+        if (labels.keySet().size() > 0) {
             try {
                 String json = mapper.writeValueAsString(labels);
                 queries.put("labels", json);

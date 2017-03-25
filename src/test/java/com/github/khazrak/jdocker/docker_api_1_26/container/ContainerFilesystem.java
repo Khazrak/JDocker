@@ -1,11 +1,8 @@
 package com.github.khazrak.jdocker.docker_api_1_26.container;
 
-import com.github.khazrak.jdocker.abstraction.*;
+import com.github.khazrak.jdocker.abstraction.DockerClient;
+import com.github.khazrak.jdocker.abstraction.FileSystemInfo;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
-import com.github.khazrak.jdocker.api126.model.HealthCheck126;
-import com.github.khazrak.jdocker.api126.model.HostConfig126;
-import com.github.khazrak.jdocker.api126.requests.ContainerCreationRequest126;
-import com.github.khazrak.jdocker.utils.DockerImageName;
 import com.github.khazrak.jdocker.utils.RequestStreamBody;
 import io.specto.hoverfly.junit.rule.HoverflyRule;
 import org.junit.Before;
@@ -37,13 +34,14 @@ public class ContainerFilesystem {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
 
     @Test
     public void info() {
-        FileSystemInfo info = client.fileSystemInfo("mongo","/root");
+        FileSystemInfo info = client.fileSystemInfo("mongo", "/root");
 
         assertThat(info.getName()).isEqualTo("root");
         assertThat(info.getSize()).isEqualTo(71);
@@ -51,20 +49,20 @@ public class ContainerFilesystem {
 
     @Test
     public void get() {
-        InputStream input = client.fileSystemArchiveDownload("mongo","/root");
+        InputStream input = client.fileSystemArchiveDownload("mongo", "/root");
 
         Path p = null;
         File f = null;
         try {
-            f = File.createTempFile("myfile",".tar");
+            f = File.createTempFile("myfile", ".tar");
             p = f.toPath();
         } catch (IOException e) {
             logger.error("Exception during creating temp file");
         }
 
-        try(BufferedInputStream in = new BufferedInputStream(input); BufferedOutputStream output = new BufferedOutputStream(Files.newOutputStream(p, StandardOpenOption.CREATE))) {
+        try (BufferedInputStream in = new BufferedInputStream(input); BufferedOutputStream output = new BufferedOutputStream(Files.newOutputStream(p, StandardOpenOption.CREATE))) {
             int data = -1;
-            while((data = in.read()) != -1) {
+            while ((data = in.read()) != -1) {
                 output.write(data);
             }
 
@@ -77,8 +75,7 @@ public class ContainerFilesystem {
             size = Files.size(p);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             f.delete();
         }
 
@@ -93,7 +90,7 @@ public class ContainerFilesystem {
             Path filePath = Paths.get(classLoader.getResource("upload.tar").toURI());
             input = Files.newInputStream(filePath, StandardOpenOption.READ);
         } catch (URISyntaxException e) {
-            logger.error("Exception due to URI",e);
+            logger.error("Exception due to URI", e);
         } catch (IOException e) {
             logger.error("Exception due to IO", e);
         }

@@ -20,7 +20,7 @@ public class DockerServerException extends RuntimeException {
     }
 
     public DockerServerException(String msg, Throwable cause) {
-        super(msg,cause);
+        super(msg, cause);
     }
 
 }

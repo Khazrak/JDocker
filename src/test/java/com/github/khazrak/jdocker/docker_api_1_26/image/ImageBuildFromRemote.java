@@ -37,7 +37,8 @@ public class ImageBuildFromRemote {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -47,11 +48,11 @@ public class ImageBuildFromRemote {
         AuthConfig authConfig = AuthConfig126.builder().username("username").password("password").build();
 
         BuildImageFromRemoteRequest request = BuildImageFromRemoteRequest126.builder()
-                .authConfig("localhost:5000",authConfig)
+                .authConfig("localhost:5000", authConfig)
                 .remoteUrl("https://github.com/SylvainLasnier/echo.git")
                 .tag(name)
                 .removeIntermediateContainers(true)
-                .label("LICENSE","GPL")
+                .label("LICENSE", "GPL")
                 .pull(true)
                 .build();
 
@@ -59,9 +60,9 @@ public class ImageBuildFromRemote {
 
         List<String> lines = new ArrayList<>();
 
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 lines.add(line);
                 logger.info(line);
             }
@@ -72,7 +73,6 @@ public class ImageBuildFromRemote {
 
         assertThat(lines.get(lines.size() - 1)).contains("{\"stream\":\"Successfully built");
     }
-
 
 
 }

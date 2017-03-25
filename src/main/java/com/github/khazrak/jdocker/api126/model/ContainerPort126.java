@@ -33,10 +33,10 @@ public class ContainerPort126 implements ContainerPort {
 
     @Override
     public String toString() {
-        if(ip == null) {
+        if (ip == null) {
             return privatePort + "/" + type;
         }
-        return ip + ":" + publicPort + "-> "+ privatePort + "/" + type;
+        return ip + ":" + publicPort + "-> " + privatePort + "/" + type;
     }
 
     @JsonPOJOBuilder(withPrefix = "")
@@ -54,7 +54,8 @@ public class ContainerPort126 implements ContainerPort {
         private int publicPort;
 
         @JsonProperty("Type")
-        private String type = "tcp";;
+        private String type = "tcp";
+        ;
     }
 
 }

@@ -3,9 +3,9 @@ package com.github.khazrak.jdocker.api126.handlers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.khazrak.jdocker.abstraction.*;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
-import com.github.khazrak.jdocker.utils.OkHttpExecuter;
 import com.github.khazrak.jdocker.utils.DockerLogsInputStream;
 import com.github.khazrak.jdocker.utils.DockerLogsLineReader;
+import com.github.khazrak.jdocker.utils.OkHttpExecuter;
 import com.github.khazrak.jdocker.utils.RequestStreamBody;
 import okhttp3.Response;
 import org.slf4j.Logger;
@@ -341,7 +341,7 @@ public class DockerContainerHandler {
         logger.debug("FileSystemInfo for container {} with path {}", id, pathInContainer);
         final String path = VERSION + "/containers/" + id + "/archive";
         Map<String, String> queries = new TreeMap<>();
-        queries.put("path",pathInContainer);
+        queries.put("path", pathInContainer);
         Response response = okHttpExecuter.head(path, queries);
         try {
 
@@ -362,7 +362,7 @@ public class DockerContainerHandler {
         logger.debug("FileSystemArchiveDownload for container {} with path {}", id, pathInContainer);
         final String path = VERSION + "/containers/" + id + "/archive";
         Map<String, String> queries = new TreeMap<>();
-        queries.put("path",pathInContainer);
+        queries.put("path", pathInContainer);
         Response response = okHttpExecuter.get(path, queries);
         return response.body().byteStream();
     }

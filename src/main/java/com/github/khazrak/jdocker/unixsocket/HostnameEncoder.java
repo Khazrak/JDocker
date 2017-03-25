@@ -197,20 +197,20 @@ class HostnameEncoder {
         String returnValue;
         if (encoded.length() > MAX_LABEL_LENGTH && encoded.length() < MAX_HOSTNAME_LENGTH) {
 
-            int labelCount = (int)(Math.ceil(encoded.length() / MAX_LABEL_LENGTH));
+            int labelCount = (int) (Math.ceil(encoded.length() / MAX_LABEL_LENGTH));
 
-            List<String> labels = IntStream.range(0,labelCount).mapToObj(i ->
-                    {int from = i * MAX_LABEL_LENGTH;
-                    int to = from + MAX_LABEL_LENGTH;
-                    return encoded.substring(from, Math.min(to, encoded.length()));
+            List<String> labels = IntStream.range(0, labelCount).mapToObj(i ->
+                    {
+                        int from = i * MAX_LABEL_LENGTH;
+                        int to = from + MAX_LABEL_LENGTH;
+                        return encoded.substring(from, Math.min(to, encoded.length()));
                     }
             ).collect(Collectors.toList());
 
             labels.stream().forEach(bs -> joiner.add(bs));
 
             returnValue = joiner.toString();
-        }
-        else {
+        } else {
             returnValue = encoded;
         }
 
@@ -220,7 +220,7 @@ class HostnameEncoder {
     static String decode(String toDecode) {
         StringJoiner joiner = new StringJoiner("");
         if (toDecode.contains(".")) {
-            String [] parts = toDecode.split("\\.");
+            String[] parts = toDecode.split("\\.");
             Stream.of(parts).forEach(s -> joiner.add(s));
             toDecode = joiner.toString();
         }

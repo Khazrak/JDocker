@@ -208,10 +208,9 @@ public class FileSocketFactory extends SocketFactory implements Dns {
 
     @Override
     public List<InetAddress> lookup(String hostname) throws UnknownHostException {
-        if(hostname.endsWith(FileSocket.SOCKET_MARKER)) {
-            return Arrays.asList(InetAddress.getByAddress(hostname, new byte[]{0,0,0,0}));
-        }
-        else {
+        if (hostname.endsWith(FileSocket.SOCKET_MARKER)) {
+            return Arrays.asList(InetAddress.getByAddress(hostname, new byte[]{0, 0, 0, 0}));
+        } else {
             return SYSTEM.lookup(hostname);
         }
     }

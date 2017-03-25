@@ -14,7 +14,7 @@ Most functions have recorded request-response (By Wiremock proxy to docker) and 
 
 Gradle:
 ```groovy
-compile 'com.github.khazrak:jdocker-client:1.1.5'
+compile 'com.github.khazrak:jdocker-client:2.0.0'
 ```
 
 Maven:
@@ -22,27 +22,27 @@ Maven:
 <dependency>
     <groupId>com.github.khazrak</groupId>
     <artifactId>jdocker-client</artifactId>
-    <version>1.1.5</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
 
 **Remote Unsecure tcp**
 ```java
-DockerClient client = new DefaultDockerClient("http://127.0.0.1:4243");
+DockerClient client = new DefaultDockerClient126("http://127.0.0.1:4243");
 ```
 **Remote secure tcp**
 ```java
-DockerClient client = new DefaultDockerClient("https://127.0.0.1:2376", "/path/to/ssl/certs");
+DockerClient client = new DefaultDockerClient126("https://127.0.0.1:2376", "/path/to/ssl/certs");
 ```
 **Unix socket/named Pipe**
 ```java
-DockerClient client = new DefaultDockerClient();
+DockerClient client = new DefaultDockerClient126();
 ```
 
 Wrapper classes (EasyContainer)
 ```java
-DockerClient client = new DefaultDockerClient();
+DockerClient client = new DefaultDockerClient126();
 
 EasyContainer container = new EasyContainer("mongo");
 container.net("my-net")

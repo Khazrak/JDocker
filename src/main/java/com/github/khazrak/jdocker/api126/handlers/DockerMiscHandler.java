@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.khazrak.jdocker.abstraction.DockerVersion;
 import com.github.khazrak.jdocker.abstraction.SystemInfo;
 import com.github.khazrak.jdocker.api126.DefaultDockerClient126;
-import com.github.khazrak.jdocker.api126.DockerVersion126;
+import com.github.khazrak.jdocker.api126.model.DockerVersion126;
 import com.github.khazrak.jdocker.api126.model.SystemInfo126;
 import com.github.khazrak.jdocker.utils.OkHttpExecuter;
 import okhttp3.Response;

@@ -70,7 +70,7 @@ public class ContainerStats126 implements ContainerStats {
         private Map<String, Integer> pidsStats;
 
         @JsonProperty("networks")
-        private Map<String,NetworkStats> networksStats;
+        private Map<String, NetworkStats> networksStats;
 
         @JsonDeserialize(as = MemoryStats126.class)
         @JsonProperty("memory_stats")

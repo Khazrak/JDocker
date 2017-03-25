@@ -17,10 +17,10 @@ public class NetworkingConfig126 implements NetworkingConfig {
     }
 
     @JsonProperty("EndpointsConfig")
-    private Map<String,NetworkSubConfig> endpointConfig;
+    private Map<String, NetworkSubConfig> endpointConfig;
 
     public void addEndpointConfig(String networkName, NetworkSubConfig config) {
-        endpointConfig.put(networkName,config);
+        endpointConfig.put(networkName, config);
     }
 
 }

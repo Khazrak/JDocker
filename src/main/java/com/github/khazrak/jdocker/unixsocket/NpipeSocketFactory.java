@@ -207,7 +207,7 @@ public class NpipeSocketFactory extends FileSocketFactory {
                 .host(NamedPipeSocket.encodeHostname(unixSocketPath))
                 .addPathSegment(path);
         HttpUrl url = builder.build();
-        String s = url.toString().replace("%2F","/");
+        String s = url.toString().replace("%2F", "/");
         return HttpUrl.parse(s);
     }
 
@@ -218,11 +218,11 @@ public class NpipeSocketFactory extends FileSocketFactory {
                 .host(NamedPipeSocket.encodeHostname(unixSocketPath))
                 .addPathSegment(path);
 
-        for(String key : queries.keySet()) {
+        for (String key : queries.keySet()) {
             builder = builder.addQueryParameter(key, queries.get(key));
         }
         HttpUrl url = builder.build();
-        String s = url.toString().replace("%2F","/");
+        String s = url.toString().replace("%2F", "/");
         return HttpUrl.parse(s);
     }
 

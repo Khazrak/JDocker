@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
 
 public class DockerLogsInputStream extends InputStream {
 
-    public enum LOG_TYPE{
+    public enum LOG_TYPE {
         NONE(-1), STDIN(0), STDOUT(1), STDERR(2);
 
         int header;
@@ -30,13 +30,11 @@ public class DockerLogsInputStream extends InputStream {
         }
 
         public static LOG_TYPE valueOf(int value) {
-            if(value == 0) {
+            if (value == 0) {
                 return STDIN;
-            }
-            else if(value == 1) {
+            } else if (value == 1) {
                 return STDOUT;
-            }
-            else if(value == 2) {
+            } else if (value == 2) {
                 return STDERR;
             }
             return NONE;
@@ -61,13 +59,12 @@ public class DockerLogsInputStream extends InputStream {
     public int read() throws IOException {
         int value = -1;
 
-        if(cache != null && index >= cache.length()) {
+        if (cache != null && index >= cache.length()) {
             cache = reader.readLine();
             index = 8;
             currentLogType = parseLogType(cache);
-            value = (int)'\n';
-        }
-        else if(cache != null) {
+            value = (int) '\n';
+        } else if (cache != null) {
             value = cache.charAt(index);
             index++;
         }
@@ -77,7 +74,7 @@ public class DockerLogsInputStream extends InputStream {
 
     /**
      * Returns the current lines LOG_TYPE
-     *
+     * <p>
      * This will not work with BufferedReader since it buffers Several lines
      *
      * @return
@@ -93,7 +90,7 @@ public class DockerLogsInputStream extends InputStream {
     }
 
     public static LOG_TYPE parseLogType(String line) {
-        if(line == null || line.length() == 0) {
+        if (line == null || line.length() == 0) {
             return LOG_TYPE.NONE;
         }
         return LOG_TYPE.valueOf(line.charAt(0));

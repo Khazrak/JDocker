@@ -32,7 +32,8 @@ public class ContainerList {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -110,7 +111,7 @@ public class ContainerList {
     @Test
     public void listFilterBefore() {
         Filters filters = new Filters();
-        filters.add("before","mongo");
+        filters.add("before", "mongo");
 
         ListContainerParams request = ListContainerParams126.builder().filters(filters).build();
         List<Container> containerList = client.listContainers(request);
@@ -122,7 +123,7 @@ public class ContainerList {
     @Test
     public void listFilterSince() {
         Filters filters = new Filters();
-        filters.add("since","mongo");
+        filters.add("since", "mongo");
 
         ListContainerParams request = ListContainerParams126.builder().all(true).filters(filters).build();
         List<Container> containerList = client.listContainers(request);

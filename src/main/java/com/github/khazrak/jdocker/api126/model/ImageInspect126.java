@@ -18,21 +18,21 @@ import java.util.Map;
 @JsonDeserialize(builder = ImageInspect126.ImageInspect126Builder.class)
 public class ImageInspect126 implements ImageInspect {
 
-       private String id;
-       private String parentId;
-       private List<String> repoTags;
-       private List<String> repoDigests;
-       private String created;
-       private long size;
-       private long virtualSize;
-       private Map<String,String> labels;
-       private String parent;
-       private String comment;
-       private String os;
-       private String architecture;
-       private String container;
-       private ImageInspectContainerInfo containerConfig;
-       private String dockerVersion;
+    private String id;
+    private String parentId;
+    private List<String> repoTags;
+    private List<String> repoDigests;
+    private String created;
+    private long size;
+    private long virtualSize;
+    private Map<String, String> labels;
+    private String parent;
+    private String comment;
+    private String os;
+    private String architecture;
+    private String container;
+    private ImageInspectContainerInfo containerConfig;
+    private String dockerVersion;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class ImageInspect126Builder {
@@ -59,7 +59,7 @@ public class ImageInspect126 implements ImageInspect {
         private long virtualSize;
 
         @JsonProperty("Labels")
-        private Map<String,String> labels;
+        private Map<String, String> labels;
 
         @JsonProperty("Parent")
         private String parent;
@@ -82,7 +82,6 @@ public class ImageInspect126 implements ImageInspect {
 
         @JsonProperty("DockerVersion")
         private String dockerVersion;
-
 
 
         @JsonProperty("Author")

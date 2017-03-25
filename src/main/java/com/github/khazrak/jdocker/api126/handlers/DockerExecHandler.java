@@ -41,7 +41,7 @@ public class DockerExecHandler {
             return mapper.readTree(responseBody).findValue("Id").asText();
 
         } catch (IOException e) {
-            logger.error("Exception during exec creation for container "+containerId, e);
+            logger.error("Exception during exec creation for container " + containerId, e);
         }
 
         return null;
@@ -52,14 +52,14 @@ public class DockerExecHandler {
         final String path = VERSION + "/exec/" + id + "/start";
 
         Map<String, Boolean> startRequest = new TreeMap<>();
-        startRequest.put("Detach",true);
-        startRequest.put("Tty",tty);
+        startRequest.put("Detach", true);
+        startRequest.put("Tty", tty);
 
         try {
             String json = mapper.writeValueAsString(startRequest);
             Response response = okHttpExecuter.post(path, json);
         } catch (JsonProcessingException e) {
-            logger.error("Exception during start of exec "+id+" due to json serialization problem", e);
+            logger.error("Exception during start of exec " + id + " due to json serialization problem", e);
         }
     }
 
@@ -68,15 +68,15 @@ public class DockerExecHandler {
         final String path = VERSION + "/exec/" + id + "/start";
 
         Map<String, Boolean> startRequest = new TreeMap<>();
-        startRequest.put("Detach",false);
-        startRequest.put("Tty",true);
+        startRequest.put("Detach", false);
+        startRequest.put("Tty", true);
 
         try {
             String json = mapper.writeValueAsString(startRequest);
             Response response = okHttpExecuter.post(path, json);
             return response.body().byteStream();
         } catch (IOException e) {
-            logger.error("Exception during exec start of "+id, e);
+            logger.error("Exception during exec start of " + id, e);
         }
 
         return null;
@@ -95,7 +95,7 @@ public class DockerExecHandler {
             return mapper.readValue(responseBody, ExecInfo.class);
 
         } catch (IOException e) {
-            logger.error("Exception during inspecting exec "+id, e);
+            logger.error("Exception during inspecting exec " + id, e);
         }
 
         return null;

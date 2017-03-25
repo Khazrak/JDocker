@@ -25,7 +25,7 @@ public class NetworkCreateIpam126 implements NetworkCreateIpam {
     private List<NetworkCreateIpamConfig> config;
 
     @JsonProperty("Options")
-    private Map<String,String> options;
+    private Map<String, String> options;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class NetworkCreateIpamBuilder {
@@ -37,7 +37,7 @@ public class NetworkCreateIpam126 implements NetworkCreateIpam {
         private List<NetworkCreateIpamConfig> config = new ArrayList<>();
 
         @JsonProperty("Options")
-        private Map<String,String> options = new TreeMap<>();
+        private Map<String, String> options = new TreeMap<>();
 
     }
 }

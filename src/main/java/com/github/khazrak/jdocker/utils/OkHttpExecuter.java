@@ -45,7 +45,7 @@ public class OkHttpExecuter {
     //=== GET ==========================================================================================================
 
     public Response get(String path) {
-        Request request =  new Request.Builder()
+        Request request = new Request.Builder()
                 .url(urlResolver.resolve(URL, path))
                 .get()
                 .build();
@@ -54,7 +54,7 @@ public class OkHttpExecuter {
     }
 
     public Response get(String path, Map<String, String> queries) {
-        Request request =  new Request.Builder()
+        Request request = new Request.Builder()
                 .url(urlResolver.resolve(URL, path, queries))
                 .get()
                 .build();
@@ -65,7 +65,7 @@ public class OkHttpExecuter {
     //=== POST =========================================================================================================
 
     public Response post(String path) {
-        Request request =  new Request.Builder()
+        Request request = new Request.Builder()
                 .url(urlResolver.resolve(URL, path))
                 .post(emptyRequestBody)
                 .build();
@@ -74,7 +74,7 @@ public class OkHttpExecuter {
     }
 
     public Response post(Headers headers, String path) {
-        Request request =  new Request.Builder()
+        Request request = new Request.Builder()
                 .headers(headers)
                 .url(urlResolver.resolve(URL, path))
                 .post(emptyRequestBody)
@@ -84,7 +84,7 @@ public class OkHttpExecuter {
     }
 
     public Response post(String path, Map<String, String> queries) {
-        Request request =  new Request.Builder()
+        Request request = new Request.Builder()
                 .url(urlResolver.resolve(URL, path, queries))
                 .post(emptyRequestBody)
                 .build();
@@ -93,7 +93,7 @@ public class OkHttpExecuter {
     }
 
     public Response post(Headers headers, String path, Map<String, String> queries) {
-        Request request =  new Request.Builder()
+        Request request = new Request.Builder()
                 .headers(headers)
                 .url(urlResolver.resolve(URL, path, queries))
                 .post(emptyRequestBody)
@@ -103,8 +103,8 @@ public class OkHttpExecuter {
     }
 
     public Response post(String path, String jsonBody) {
-        RequestBody body = RequestBody.create(JSON,jsonBody);
-        Request request =  new Request.Builder()
+        RequestBody body = RequestBody.create(JSON, jsonBody);
+        Request request = new Request.Builder()
                 .url(urlResolver.resolve(URL, path))
                 .post(body)
                 .build();
@@ -113,8 +113,8 @@ public class OkHttpExecuter {
     }
 
     public Response post(String path, Map<String, String> queries, String jsonBody) {
-        RequestBody body = RequestBody.create(JSON,jsonBody);
-        Request request =  new Request.Builder()
+        RequestBody body = RequestBody.create(JSON, jsonBody);
+        Request request = new Request.Builder()
                 .url(urlResolver.resolve(URL, path, queries))
                 .post(body)
                 .build();
@@ -123,7 +123,7 @@ public class OkHttpExecuter {
     }
 
     public Response post(Headers headers, String path, Map<String, String> queries, RequestStreamBody body) {
-        Request request =  new Request.Builder()
+        Request request = new Request.Builder()
                 .headers(headers)
                 .url(urlResolver.resolve(URL, path, queries))
                 .post(body)
@@ -135,7 +135,7 @@ public class OkHttpExecuter {
     //=== DELETE =======================================================================================================
 
     public Response delete(String path) {
-        Request request =  new Request
+        Request request = new Request
                 .Builder()
                 .url(urlResolver.resolve(URL, path))
                 .delete()
@@ -145,7 +145,7 @@ public class OkHttpExecuter {
     }
 
     public Response delete(String path, Map<String, String> queries) {
-        Request request =  new Request
+        Request request = new Request
                 .Builder()
                 .url(urlResolver.resolve(URL, path, queries))
                 .delete()
@@ -184,16 +184,14 @@ public class OkHttpExecuter {
             logger.debug("URL {}", request.url().toString());
             response = this.httpClient.newCall(request).execute();
 
-            if(response.code() >= 300 && response.code() < 400) {
-                logger.warn("Http Code: "+response.code() + " while doing command: " + request.url());
-            }
-            else if(response.code() >= 400 && response.code() < 500) {
-                throw new DockerClientException("Command with URL: " +request.url() + " Failed\nMessage from Docker Daemon: " +response.body().string()
-                        +"\nHTTP-Code: "+response.code());
-            }
-            else if(response.code() >= 500) {
-                throw new DockerServerException("Command with URL: " +request.url() + " Failed\nMessage from Docker Daemon: " +response.body().string()
-                        +"\nHTTP-Code: "+response.code());
+            if (response.code() >= 300 && response.code() < 400) {
+                logger.warn("Http Code: " + response.code() + " while doing command: " + request.url());
+            } else if (response.code() >= 400 && response.code() < 500) {
+                throw new DockerClientException("Command with URL: " + request.url() + " Failed\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
+            } else if (response.code() >= 500) {
+                throw new DockerServerException("Command with URL: " + request.url() + " Failed\nMessage from Docker Daemon: " + response.body().string()
+                        + "\nHTTP-Code: " + response.code());
             }
 
         } catch (IOException e) {

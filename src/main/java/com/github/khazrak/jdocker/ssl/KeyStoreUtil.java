@@ -193,15 +193,15 @@ public class KeyStoreUtil {
 
     private static Logger logger = LoggerFactory.getLogger(KeyStoreUtil.class);
 
-    static char [] KEY_STORE_PASSWORD = "docker".toCharArray();
+    static char[] KEY_STORE_PASSWORD = "docker".toCharArray();
 
     static KeyStore createDockerKeyStore(String certPath) throws IOException, GeneralSecurityException {
         PrivateKey privKey = loadPrivateKey(new File(certPath, "key.pem").getAbsolutePath());
         Collection<Certificate> certificates = loadCertificates(new File(certPath, "cert.pem").getAbsolutePath());
 
-        Certificate [] certs = new Certificate[certificates.size()];
+        Certificate[] certs = new Certificate[certificates.size()];
         int index = 0;
-        for(Certificate c : certificates) {
+        for (Certificate c : certificates) {
             certs[index] = c;
             index++;
         }
@@ -232,7 +232,7 @@ public class KeyStoreUtil {
             try {
                 keyStore.setCertificateEntry(alias, crt);
             } catch (KeyStoreException e) {
-                throw new DockerClientException("Exception during adding CA to keystore",e);
+                throw new DockerClientException("Exception during adding CA to keystore", e);
             }
         });
     }

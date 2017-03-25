@@ -28,7 +28,8 @@ public class ImageSearch {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -39,9 +40,9 @@ public class ImageSearch {
 
         System.out.println(searchResults);
 
-        for(ImageSearchInfo i : searchResults) {
+        for (ImageSearchInfo i : searchResults) {
             logger.debug(i.getName());
-            if(i.getName().equals("grafana/grafana")) {
+            if (i.getName().equals("grafana/grafana")) {
                 found = true;
             }
         }

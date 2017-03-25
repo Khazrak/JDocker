@@ -23,7 +23,7 @@ public class Network126 implements Network {
     private boolean enableIpv6;
     private NetworkIPAM ipam;
     private boolean internal;
-    private Map<String,String> options;
+    private Map<String, String> options;
     private Map<String, NetworkContainer> containers;
     private Map<String, String> labels;
     private String created;
@@ -55,7 +55,7 @@ public class Network126 implements Network {
         private boolean internal;
 
         @JsonProperty("Options")
-        private Map<String,String> options;
+        private Map<String, String> options;
 
         @JsonProperty("Containers")
         private Map<String, NetworkContainer> containers;

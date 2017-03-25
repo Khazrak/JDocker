@@ -37,10 +37,10 @@ public class NetworkCreateRequest126 implements NetworkCreateRequest {
     private boolean internal;
 
     @JsonProperty("Options")
-    private Map<String,String> options;
+    private Map<String, String> options;
 
     @JsonProperty("Labels")
-    private Map<String,String> labels;
+    private Map<String, String> labels;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class NetworkCreateRequest126Builder {
@@ -65,10 +65,10 @@ public class NetworkCreateRequest126 implements NetworkCreateRequest {
         private boolean internal = false;
 
         @JsonProperty("Options")
-        private Map<String,String> options = new TreeMap<>();
+        private Map<String, String> options = new TreeMap<>();
 
         @JsonProperty("Labels")
-        private Map<String,String> labels = new TreeMap<>();
+        private Map<String, String> labels = new TreeMap<>();
 
     }
 

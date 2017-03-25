@@ -43,11 +43,11 @@ public class HostConfig126 implements HostConfig {
     private int ioMaximumIOps;
     private int ioMaximumBandwidth;
     private int blkioWeight;
-    private List <Map<String,String>> blkioWeightDevice;
-    private List <Map<String,String>> blkioDeviceReadBps;
-    private List <Map<String,String>> blkioDeviceReadIops;
-    private List <Map<String,String>> blkioDeviceWriteBps;
-    private List <Map<String,String>> blkioDeviceWriteIops;
+    private List<Map<String, String>> blkioWeightDevice;
+    private List<Map<String, String>> blkioDeviceReadBps;
+    private List<Map<String, String>> blkioDeviceReadIops;
+    private List<Map<String, String>> blkioDeviceWriteBps;
+    private List<Map<String, String>> blkioDeviceWriteIops;
     private int memorySwappiness;
     private boolean oomKillDisable;
     private int oomScoreAdj;
@@ -68,7 +68,7 @@ public class HostConfig126 implements HostConfig {
     private RestartPolicy restartPolicy;
     private String networkMode;
     private List<String> devices;
-    private Map<String,String> sysCtls;
+    private Map<String, String> sysCtls;
     private List<Ulimit> uLimits;
     private LogConfig logConfig;
     private List<String> securityOpt;
@@ -158,19 +158,19 @@ public class HostConfig126 implements HostConfig {
         private int blkioWeight;
 
         @JsonProperty("BlkioWeightDevice")
-        private List <Map<String,String>> blkioWeightDevice;
+        private List<Map<String, String>> blkioWeightDevice;
 
         @JsonProperty("BlkioDeviceReadBps")
-        private List <Map<String,String>> blkioDeviceReadBps;
+        private List<Map<String, String>> blkioDeviceReadBps;
 
         @JsonProperty("BlkioDeviceReadIOps")
-        private List <Map<String,String>> blkioDeviceReadIops;
+        private List<Map<String, String>> blkioDeviceReadIops;
 
         @JsonProperty("BlkioDeviceWriteBps")
-        private List <Map<String,String>> blkioDeviceWriteBps;
+        private List<Map<String, String>> blkioDeviceWriteBps;
 
         @JsonProperty("BlkioDeviceWriteIOps")
-        private List <Map<String,String>> blkioDeviceWriteIops;
+        private List<Map<String, String>> blkioDeviceWriteIops;
 
         @JsonProperty("OomKillDisable")
         private boolean oomKillDisable;
@@ -222,7 +222,7 @@ public class HostConfig126 implements HostConfig {
         private List<String> devices;
 
         @JsonProperty("Sysctls")
-        private Map<String,String> sysCtls;
+        private Map<String, String> sysCtls;
 
         @JsonProperty("Ulimits")
         private List<Ulimit> uLimits;
@@ -238,14 +238,14 @@ public class HostConfig126 implements HostConfig {
 
         @JsonDeserialize(as = LogConfig126.class)
         @JsonProperty("LogConfig")
-        private LogConfig logConfig = new LogConfig126("", new TreeMap<String,String>());
+        private LogConfig logConfig = new LogConfig126("", new TreeMap<String, String>());
 
         @JsonProperty("NetworkMode")
         private String networkMode = "default";
 
         @JsonDeserialize(as = RestartPolicy126.class)
         @JsonProperty("RestartPolicy")
-        private RestartPolicy restartPolicy = new RestartPolicy126("no",0);
+        private RestartPolicy restartPolicy = new RestartPolicy126("no", 0);
 
         @JsonProperty("VolumeDriver")
         private String volumeDriver = "";

@@ -33,7 +33,8 @@ public class ImageTarballImport {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
@@ -55,8 +56,6 @@ public class ImageTarballImport {
         } catch (IOException e) {
             logger.error("Exception due to IO", e);
         }
-
-
 
 
         assertThat(output).contains("{\"stream\":\"Loaded image: busybox:latest\\n\"}");

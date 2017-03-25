@@ -16,7 +16,7 @@ public class LogConfig126 implements LogConfig {
 
     private String type;
     //TODO: replace with something better
-    private Map<String,String> config;
+    private Map<String, String> config;
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class LogConfig126Builder {
@@ -26,7 +26,7 @@ public class LogConfig126 implements LogConfig {
 
         //TODO: replace with something better
         @JsonProperty("Config")
-        private Map<String,String> config;
+        private Map<String, String> config;
 
     }
 

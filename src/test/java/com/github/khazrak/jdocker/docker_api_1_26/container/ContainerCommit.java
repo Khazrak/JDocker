@@ -31,11 +31,12 @@ public class ContainerCommit {
     @Before
     public void init() {
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("localhost", hoverflyRule.getProxyPort()));
-        client = new DefaultDockerClient126("http://127.0.0.1:4243", proxy);
+        client = new DefaultDockerClient126("http://127.0.0.1:4243");
+        client.setProxy(proxy);
     }
 
     @Test
-    public void commitContainer()  {
+    public void commitContainer() {
 
         Map<String, Object> exposedPorts = new TreeMap<>();
         exposedPorts.put("1337/tcp", new Object());
@@ -59,7 +60,7 @@ public class ContainerCommit {
     }
 
     @Test
-    public void commitContainerDockerFileCommands()  {
+    public void commitContainerDockerFileCommands() {
         Map<String, Object> exposedPorts = new TreeMap<>();
         exposedPorts.put("1337/tcp", new Object());
 

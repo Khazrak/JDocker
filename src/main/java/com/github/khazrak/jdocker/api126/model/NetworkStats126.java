@@ -37,7 +37,6 @@ public class NetworkStats126 implements NetworkStats {
     private int txPackets;
 
 
-
     @JsonPOJOBuilder(withPrefix = "")
     public static class NetworkStats126Builder {
         @JsonProperty("rx_bytes")

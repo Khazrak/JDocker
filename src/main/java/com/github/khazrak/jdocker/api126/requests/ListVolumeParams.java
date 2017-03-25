@@ -38,13 +38,13 @@ public class ListVolumeParams {
     public String toString() {
         filters = new Filters();
 
-        if(name != null) {
+        if (name != null) {
             filters.add("name", name);
         }
-        if(driver != null) {
+        if (driver != null) {
             filters.add("driver", driver);
         }
-        if(useDangling) {
+        if (useDangling) {
             filters.add("dangling", Boolean.toString(dangling));
         }
 

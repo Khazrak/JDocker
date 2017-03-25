@@ -20,6 +20,7 @@ import java.util.Map;
 public interface URLResolver {
 
     HttpUrl resolve(String host, String path);
+
     HttpUrl resolve(String host, String path, Map<String, String> queries);
 
 }

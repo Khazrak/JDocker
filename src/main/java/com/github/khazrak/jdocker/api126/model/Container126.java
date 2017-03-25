@@ -45,7 +45,7 @@ public class Container126 implements Container {
 
     @Singular
     @JsonProperty("Labels")
-    private Map<String,String> labels;
+    private Map<String, String> labels;
 
     @JsonProperty("SizeRw")
     private long sizeRw;
@@ -68,13 +68,13 @@ public class Container126 implements Container {
     public String toString() {
         String ports = this.ports.toString();
         String names = this.names.toString();
-        return id.substring(0,12) + "\t" +
+        return id.substring(0, 12) + "\t" +
                 image + "\t" +
                 command + "\t" +
                 getCreatedTime() + "\t" +
                 status + "\t" +
-                ports.substring(1,ports.length()-1) + "\t" +
-                names.substring(1,names.length()-1);
+                ports.substring(1, ports.length() - 1) + "\t" +
+                names.substring(1, names.length() - 1);
     }
 
     private String getCreatedTime() {
@@ -86,18 +86,17 @@ public class Container126 implements Container {
 
         String res = "";
 
-        if(time.toDays() > 0) {
+        if (time.toDays() > 0) {
             res += time.toDays() + " days";
         }
 
-        if(time.toHours() > 0) {
+        if (time.toHours() > 0) {
             res += time.toHours() + " hours";
-        }
-        else {
+        } else {
             res = time.toMinutes() + " minutes";
         }
 
-        if(time.getSeconds() < 60) {
+        if (time.getSeconds() < 60) {
             res = time.getSeconds() + " seconds";
         }
 

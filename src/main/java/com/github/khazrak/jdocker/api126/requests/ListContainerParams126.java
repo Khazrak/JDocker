@@ -28,19 +28,19 @@ public class ListContainerParams126 implements ListContainerParams {
     private Filters filters;
 
     public Map<String, String> getQueries() {
-        Map <String, String> queries = new TreeMap<>();
+        Map<String, String> queries = new TreeMap<>();
 
-        if(all) {
-            queries.put("all","true");
+        if (all) {
+            queries.put("all", "true");
         }
-        if(limit > 0) {
+        if (limit > 0) {
             queries.put("limit", Integer.toString(limit));
         }
-        if(size) {
-            queries.put("size","true");
+        if (size) {
+            queries.put("size", "true");
         }
-        if(filters != null) {
-            queries.put("filters",filters.toString());
+        if (filters != null) {
+            queries.put("filters", filters.toString());
         }
 
         return queries;
@@ -50,26 +50,25 @@ public class ListContainerParams126 implements ListContainerParams {
 
         StringBuilder sb = new StringBuilder();
 
-        if(all) {
+        if (all) {
             sb.append("all=true");
         }
-        if(limit > 0) {
-            append("limit="+limit,sb);
+        if (limit > 0) {
+            append("limit=" + limit, sb);
         }
-        if(size) {
-            append("size=true",sb);
+        if (size) {
+            append("size=true", sb);
         }
-        if(filters != null) {
-            sb.append("filters="+filters.toString());
+        if (filters != null) {
+            sb.append("filters=" + filters.toString());
         }
 
         return sb.toString();
     }
 
 
-
     private void append(String ap, StringBuilder sb) {
-        if(sb.length() > 0) {
+        if (sb.length() > 0) {
             sb.append('&');
         }
         sb.append(ap);

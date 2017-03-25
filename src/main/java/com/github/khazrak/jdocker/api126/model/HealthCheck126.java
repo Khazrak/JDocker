@@ -13,7 +13,7 @@ import lombok.Getter;
 public class HealthCheck126 implements HealthCheck {
 
     @JsonProperty("Test")
-    private String [] test;
+    private String[] test;
 
     @JsonProperty("Interval")
     private int interval;

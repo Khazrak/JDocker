@@ -37,7 +37,7 @@ public class EasyContainer {
     private String containerName;
     private String command;
     private String net;
-    private Map<String,List<HostPort>> ports;
+    private Map<String, List<HostPort>> ports;
     private List<String> aliases;
     private List<String> links;
     private List<String> binds;
@@ -51,7 +51,7 @@ public class EasyContainer {
         List<HostPort> portList = new ArrayList<>();
         portList.add(port);
         ports.put(containerPort + "/tcp", portList);
-        requestBuilder.exposedPort(Integer.toString(containerPort)+"/tcp", new Object());
+        requestBuilder.exposedPort(Integer.toString(containerPort) + "/tcp", new Object());
 
         return this;
     }
@@ -109,19 +109,19 @@ public class EasyContainer {
 
         requestBuilder.image(this.dockerImageName);
 
-        if(this.containerName != null) {
+        if (this.containerName != null) {
             requestBuilder.name(containerName);
         }
 
-        if(net != null) {
+        if (net != null) {
             createNetConfig();
             requestBuilder.networkingConfig(networkingConfig);
         }
-        if(ports.size() > 0) {
+        if (ports.size() > 0) {
             createHostConfig();
             requestBuilder.hostConfig(hostConfigBuilder.build());
         }
-        if(command != null) {
+        if (command != null) {
             createCommand();
         }
 
@@ -129,7 +129,7 @@ public class EasyContainer {
     }
 
     private void createCommand() {
-        String [] cmds = command.split(" ");
+        String[] cmds = command.split(" ");
         List<String> commands = Arrays.asList(cmds);
         requestBuilder.commands(commands);
     }

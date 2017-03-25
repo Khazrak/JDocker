@@ -40,7 +40,6 @@ public class ContainerInspect126 implements ContainerInspect {
     private List<Mount> mounts;
 
 
-
     @JsonPOJOBuilder(withPrefix = "")
     public static class ContainerInspect126Builder {
 

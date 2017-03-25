@@ -1,12 +1,10 @@
 package com.github.khazrak.jdocker.api126.requests;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.khazrak.jdocker.abstraction.ContainerCommit;
 import com.github.khazrak.jdocker.abstraction.ContainerCommitRequest;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -28,22 +26,22 @@ public class ContainerCommitRequest126 implements ContainerCommitRequest {
         Map<String, String> queries = new TreeMap<>();
 
         queries.put("container", containerName);
-        if(repo != null) {
+        if (repo != null) {
             queries.put("repo", repo);
         }
-        if(tag != null) {
+        if (tag != null) {
             queries.put("tag", tag);
         }
-        if(comment != null) {
+        if (comment != null) {
             queries.put("comment", comment);
         }
-        if(author != null) {
+        if (author != null) {
             queries.put("author", author);
         }
-        if(pause) {
+        if (pause) {
             queries.put("pause", Boolean.toString(true));
         }
-        if(changes != null) {
+        if (changes != null) {
             queries.put("changes", changes);
         }
 
