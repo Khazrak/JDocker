@@ -1,0 +1,73 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/images/create",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "fromImage=busybox&tag=latest",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "0" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.4.1" ],
+          "X-Registry-Auth" : [ "e30=" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"status\":\"Pulling from library/busybox\",\"id\":\"latest\"}\r\n{\"status\":\"Pulling fs layer\",\"progressDetail\":{},\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":15883,\"total\":677607},\"progress\":\"[=\\u003e                                                 ] 15.88 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":343168,\"total\":677607},\"progress\":\"[=========================\\u003e                         ] 343.2 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Download complete\",\"progressDetail\":{},\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":32768,\"total\":677607},\"progress\":\"[==\\u003e                                                ] 32.77 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":65536,\"total\":677607},\"progress\":\"[====\\u003e                                              ] 65.54 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":677607,\"total\":677607},\"progress\":\"[==================================================\\u003e] 677.6 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":677607,\"total\":677607},\"progress\":\"[==================================================\\u003e] 677.6 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Pull complete\",\"progressDetail\":{},\"id\":\"7520415ce762\"}\r\n{\"status\":\"Digest: sha256:32f093055929dbc23dec4d03e09dfe971f5973a9ca5cf059cbfb644c206aa83f\"}\r\n{\"status\":\"Status: Downloaded newer image for busybox:latest\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 18 Mar 2017 16:45:59 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/images/create",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "fromImage=localhost%3A5000%2Fbusybox&tag=1.25",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "0" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.4.1" ],
+          "X-Registry-Auth" : [ "eyJ1c2VybmFtZSI6InVzZXJuYW1lIiwicGFzc3dvcmQiOiJwYXNzd29yZCIsImVtYWlsIjoidGVzdEB0ZXN0LnNlIn0=" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"status\":\"Pulling from busybox\",\"id\":\"1.25\"}\r\n{\"status\":\"Pulling fs layer\",\"progressDetail\":{},\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":8361,\"total\":688161},\"progress\":\"[\\u003e                                                  ] 8.361 kB/688.2 kB\",\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Verifying Checksum\",\"progressDetail\":{},\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Download complete\",\"progressDetail\":{},\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":32768,\"total\":688161},\"progress\":\"[==\\u003e                                                ] 32.77 kB/688.2 kB\",\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":65536,\"total\":688161},\"progress\":\"[====\\u003e                                              ] 65.54 kB/688.2 kB\",\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":688161,\"total\":688161},\"progress\":\"[==================================================\\u003e] 688.2 kB/688.2 kB\",\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Pull complete\",\"progressDetail\":{},\"id\":\"4387fd0ebc3e\"}\r\n{\"status\":\"Digest: sha256:cdbe636b45107ebde0a6a6d3f2a7ba4cd8dd9719937579bace5139377f98c72f\"}\r\n{\"status\":\"Status: Downloaded newer image for localhost:5000/busybox:1.25\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 18 Mar 2017 16:46:00 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

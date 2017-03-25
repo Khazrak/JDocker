@@ -1,0 +1,10 @@
+[req]
+distinguished_name = req_distinguished_name
+prompt="no"
+
+[req_distinguished_name]
+C="SE"
+ST="M"
+L="A"
+O="JDocker"
+CN="localhost"

@@ -1,0 +1,42 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/build",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "labels=%7B%22LICENSE%22%3A%22GPL%22%7D&pull=true&remote=https%3A%2F%2Fgithub.com%2FSylvainLasnier%2Fecho.git&rm=true&t=busy-echo%3Alatest",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "0" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.4.1" ],
+          "X-Registry-Config" : [ "eyJsb2NhbGhvc3Q6NTAwMCI6eyJ1c2VybmFtZSI6InVzZXJuYW1lIiwicGFzc3dvcmQiOiJwYXNzd29yZCIsImVtYWlsIjpudWxsfX0=" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"stream\":\"Step 1/4 : FROM busybox\\n\"}\r\n{\"status\":\"Pulling from library/busybox\",\"id\":\"latest\"}\r\n{\"status\":\"Pulling fs layer\",\"progressDetail\":{},\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":16384,\"total\":677607},\"progress\":\"[=\\u003e                                                 ] 16.38 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":49726,\"total\":677607},\"progress\":\"[===\\u003e                                               ] 49.73 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":68182,\"total\":677607},\"progress\":\"[=====\\u003e                                             ] 68.18 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":206398,\"total\":677607},\"progress\":\"[===============\\u003e                                   ] 206.4 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":259670,\"total\":677607},\"progress\":\"[===================\\u003e                               ] 259.7 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":378454,\"total\":677607},\"progress\":\"[===========================\\u003e                       ] 378.5 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":451158,\"total\":677607},\"progress\":\"[=================================\\u003e                 ] 451.2 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":517718,\"total\":677607},\"progress\":\"[======================================\\u003e            ] 517.7 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":639198,\"total\":677607},\"progress\":\"[===============================================\\u003e   ] 639.2 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":676438,\"total\":677607},\"progress\":\"[=================================================\\u003e ] 676.4 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Verifying Checksum\",\"progressDetail\":{},\"id\":\"7520415ce762\"}\r\n{\"status\":\"Download complete\",\"progressDetail\":{},\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":32768,\"total\":677607},\"progress\":\"[==\\u003e                                                ] 32.77 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":65536,\"total\":677607},\"progress\":\"[====\\u003e                                              ] 65.54 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":677607,\"total\":677607},\"progress\":\"[==================================================\\u003e] 677.6 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":677607,\"total\":677607},\"progress\":\"[==================================================\\u003e] 677.6 kB/677.6 kB\",\"id\":\"7520415ce762\"}\r\n{\"status\":\"Pull complete\",\"progressDetail\":{},\"id\":\"7520415ce762\"}\r\n{\"status\":\"Digest: sha256:32f093055929dbc23dec4d03e09dfe971f5973a9ca5cf059cbfb644c206aa83f\"}\r\n{\"status\":\"Status: Downloaded newer image for busybox:latest\"}\r\n{\"stream\":\" ---\\u003e 00f017a8c2a6\\n\"}\r\n{\"stream\":\"Step 2/4 : MAINTAINER Sylvain Lasnier \\u003csylvain.lasnier@gmail.com\\u003e\\n\"}\r\n{\"stream\":\" ---\\u003e Running in db1f7ad9f70a\\n\"}\r\n{\"stream\":\" ---\\u003e fe250c7e28b5\\n\"}\r\n{\"stream\":\"Removing intermediate container db1f7ad9f70a\\n\"}\r\n{\"stream\":\"Step 3/4 : ENTRYPOINT /bin/echo\\n\"}\r\n{\"stream\":\" ---\\u003e Running in 76f91f283782\\n\"}\r\n{\"stream\":\" ---\\u003e 35019c00df59\\n\"}\r\n{\"stream\":\"Removing intermediate container 76f91f283782\\n\"}\r\n{\"stream\":\"Step 4/4 : LABEL \\\"LICENSE\\\" 'GPL'\\n\"}\r\n{\"stream\":\" ---\\u003e Running in c06fbd2675bb\\n\"}\r\n{\"stream\":\" ---\\u003e a59766bb01ff\\n\"}\r\n{\"stream\":\"Removing intermediate container c06fbd2675bb\\n\"}\r\n{\"stream\":\"Successfully built a59766bb01ff\\n\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Mon, 20 Mar 2017 20:44:16 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

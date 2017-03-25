@@ -1,0 +1,39 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/info",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.4.1" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"ID\":\"IOCD:Y7FK:RDB6:43I7:QLCF:OBP5:LKJR:QLYD:NC6U:V7GA:ROQA:TCVE\",\"Containers\":0,\"ContainersRunning\":0,\"ContainersPaused\":0,\"ContainersStopped\":0,\"Images\":5,\"Driver\":\"devicemapper\",\"DriverStatus\":[[\"Pool Name\",\"docker-254:1-10223820-pool\"],[\"Pool Blocksize\",\"65.54 kB\"],[\"Base Device Size\",\"10.74 GB\"],[\"Backing Filesystem\",\"xfs\"],[\"Data file\",\"/dev/loop0\"],[\"Metadata file\",\"/dev/loop1\"],[\"Data Space Used\",\"1.732 GB\"],[\"Data Space Total\",\"107.4 GB\"],[\"Data Space Available\",\"105.6 GB\"],[\"Metadata Space Used\",\"2.597 MB\"],[\"Metadata Space Total\",\"2.147 GB\"],[\"Metadata Space Available\",\"2.145 GB\"],[\"Thin Pool Minimum Free Space\",\"10.74 GB\"],[\"Udev Sync Supported\",\"true\"],[\"Deferred Removal Enabled\",\"false\"],[\"Deferred Deletion Enabled\",\"false\"],[\"Deferred Deleted Device Count\",\"0\"],[\"Data loop file\",\"/var/lib/docker/devicemapper/devicemapper/data\"],[\"Metadata loop file\",\"/var/lib/docker/devicemapper/devicemapper/metadata\"],[\"Library Version\",\"1.02.137 (2016-11-30)\"]],\"SystemStatus\":null,\"Plugins\":{\"Volume\":[\"local\"],\"Network\":[\"bridge\",\"host\",\"macvlan\",\"null\",\"overlay\"],\"Authorization\":null},\"MemoryLimit\":true,\"SwapLimit\":true,\"KernelMemory\":true,\"CpuCfsPeriod\":true,\"CpuCfsQuota\":true,\"CPUShares\":true,\"CPUSet\":true,\"IPv4Forwarding\":true,\"BridgeNfIptables\":true,\"BridgeNfIp6tables\":true,\"Debug\":false,\"NFd\":16,\"OomKillDisable\":true,\"NGoroutines\":23,\"SystemTime\":\"2017-03-15T21:42:59.142660436+01:00\",\"LoggingDriver\":\"json-file\",\"CgroupDriver\":\"cgroupfs\",\"NEventsListener\":0,\"KernelVersion\":\"4.10.2-1-ARCH\",\"OperatingSystem\":\"Arch Linux\",\"OSType\":\"linux\",\"Architecture\":\"x86_64\",\"IndexServerAddress\":\"https://index.docker.io/v1/\",\"RegistryConfig\":{\"InsecureRegistryCIDRs\":[\"127.0.0.0/8\"],\"IndexConfigs\":{\"docker.io\":{\"Name\":\"docker.io\",\"Mirrors\":null,\"Secure\":true,\"Official\":true}},\"Mirrors\":[]},\"NCPU\":8,\"MemTotal\":25219899392,\"DockerRootDir\":\"/var/lib/docker\",\"HttpProxy\":\"\",\"HttpsProxy\":\"\",\"NoProxy\":\"\",\"Name\":\"karl_rog\",\"Labels\":null,\"ExperimentalBuild\":false,\"ServerVersion\":\"17.03.0-ce\",\"ClusterStore\":\"\",\"ClusterAdvertise\":\"\",\"Runtimes\":{\"runc\":{\"path\":\"docker-runc\"}},\"DefaultRuntime\":\"runc\",\"Swarm\":{\"NodeID\":\"\",\"NodeAddr\":\"\",\"LocalNodeState\":\"inactive\",\"ControlAvailable\":false,\"Error\":\"\",\"RemoteManagers\":null,\"Nodes\":0,\"Managers\":0,\"Cluster\":{\"ID\":\"\",\"Version\":{},\"CreatedAt\":\"0001-01-01T00:00:00Z\",\"UpdatedAt\":\"0001-01-01T00:00:00Z\",\"Spec\":{\"Orchestration\":{},\"Raft\":{\"ElectionTick\":0,\"HeartbeatTick\":0},\"Dispatcher\":{},\"CAConfig\":{},\"TaskDefaults\":{},\"EncryptionConfig\":{\"AutoLockManagers\":false}}}},\"LiveRestoreEnabled\":false,\"Isolation\":\"\",\"InitBinary\":\"docker-init\",\"ContainerdCommit\":{\"ID\":\"977c511eda0925a723debdc94d09459af49d082a\",\"Expected\":\"977c511eda0925a723debdc94d09459af49d082a\"},\"RuncCommit\":{\"ID\":\"a01dafd48bc1c7cc12bdb01206f9fea7dd6feb70\",\"Expected\":\"a01dafd48bc1c7cc12bdb01206f9fea7dd6feb70\"},\"InitCommit\":{\"ID\":\"949e6fa\",\"Expected\":\"949e6fa\"},\"SecurityOptions\":[\"name=seccomp,profile=default\"]}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Wed, 15 Mar 2017 20:42:59 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

@@ -1,1 +1,0 @@
-{"ID":"35149c4cf8055c5cd524e109c8abff3b03d54e558e0633426860907cf793c714","Running":false,"ExitCode":null,"ProcessConfig":{"tty":false,"entrypoint":"date","arguments":[],"privileged":false},"OpenStdin":false,"OpenStderr":false,"OpenStdout":false,"CanRemove":false,"ContainerID":"bd76acba62689a25887c69bcba662b6d615709997a29401b453c161601cd7f3a","DetachKeys":""}

@@ -1,0 +1,96 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/containers/mongo/rename",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "name=mongo_new",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "0" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 204,
+        "body" : "",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Date" : [ "Sat, 25 Mar 2017 14:04:27 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/containers/mongo_new/json",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "size=false",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Id\":\"035c75a0096ae534bd2e5049c8c65f2e990fcba8af36d750086bc24eede4722e\",\"Created\":\"2017-03-25T13:17:47.096185588Z\",\"Path\":\"/entrypoint.sh\",\"Args\":[\"mongod\"],\"State\":{\"Status\":\"running\",\"Running\":true,\"Paused\":false,\"Restarting\":false,\"OOMKilled\":false,\"Dead\":false,\"Pid\":22198,\"ExitCode\":0,\"Error\":\"\",\"StartedAt\":\"2017-03-25T13:56:11.70238737Z\",\"FinishedAt\":\"2017-03-25T13:56:10.744383857Z\"},\"Image\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"ResolvConfPath\":\"/var/lib/docker/containers/035c75a0096ae534bd2e5049c8c65f2e990fcba8af36d750086bc24eede4722e/resolv.conf\",\"HostnamePath\":\"/var/lib/docker/containers/035c75a0096ae534bd2e5049c8c65f2e990fcba8af36d750086bc24eede4722e/hostname\",\"HostsPath\":\"/var/lib/docker/containers/035c75a0096ae534bd2e5049c8c65f2e990fcba8af36d750086bc24eede4722e/hosts\",\"LogPath\":\"/var/lib/docker/containers/035c75a0096ae534bd2e5049c8c65f2e990fcba8af36d750086bc24eede4722e/035c75a0096ae534bd2e5049c8c65f2e990fcba8af36d750086bc24eede4722e-json.log\",\"Name\":\"/mongo_new\",\"RestartCount\":0,\"Driver\":\"devicemapper\",\"MountLabel\":\"\",\"ProcessLabel\":\"\",\"AppArmorProfile\":\"\",\"ExecIDs\":null,\"HostConfig\":{\"Binds\":null,\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"default\",\"PortBindings\":{},\"RestartPolicy\":{\"Name\":\"no\",\"MaximumRetryCount\":0},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"CapAdd\":null,\"CapDrop\":null,\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":false,\"PublishAllPorts\":false,\"ReadonlyRootfs\":false,\"SecurityOpt\":null,\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"ConsoleSize\":[0,0],\"Isolation\":\"\",\"CpuShares\":2,\"Memory\":0,\"NanoCpus\":0,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":null,\"BlkioDeviceReadBps\":null,\"BlkioDeviceWriteBps\":null,\"BlkioDeviceReadIOps\":null,\"BlkioDeviceWriteIOps\":null,\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"\",\"CpusetMems\":\"\",\"Devices\":[],\"DiskQuota\":0,\"KernelMemory\":0,\"MemoryReservation\":0,\"MemorySwap\":0,\"MemorySwappiness\":-1,\"OomKillDisable\":false,\"PidsLimit\":0,\"Ulimits\":null,\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0},\"GraphDriver\":{\"Name\":\"devicemapper\",\"Data\":{\"DeviceId\":\"867\",\"DeviceName\":\"docker-254:1-10223820-a3fdac7c0cfcaeba43aeddedc42cc1bda210e2ab02bf2af3f66997e5888b6fa8\",\"DeviceSize\":\"10737418240\"}},\"Mounts\":[{\"Type\":\"volume\",\"Name\":\"41d2a0fa54263e0703c988a4fe1a24211cf80d8d6ce78d01a00fdfda3bc93b4b\",\"Source\":\"/var/lib/docker/volumes/41d2a0fa54263e0703c988a4fe1a24211cf80d8d6ce78d01a00fdfda3bc93b4b/_data\",\"Destination\":\"/data/db\",\"Driver\":\"local\",\"Mode\":\"\",\"RW\":true,\"Propagation\":\"\"},{\"Type\":\"volume\",\"Name\":\"37ce12f57321a508bd1ef389faddf9511ca10011420d913172ea168b01cf8451\",\"Source\":\"/var/lib/docker/volumes/37ce12f57321a508bd1ef389faddf9511ca10011420d913172ea168b01cf8451/_data\",\"Destination\":\"/data/configdb\",\"Driver\":\"local\",\"Mode\":\"\",\"RW\":true,\"Propagation\":\"\"}],\"Config\":{\"Hostname\":\"035c75a0096a\",\"Domainname\":\"\",\"User\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"27017/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"GOSU_VERSION=1.7\",\"GPG_KEYS=0C49F3730359A14518585931BC711F9BA15703C6\",\"MONGO_MAJOR=3.4\",\"MONGO_VERSION=3.4.2\",\"MONGO_PACKAGE=mongodb-org\"],\"Cmd\":[\"mongod\"],\"ArgsEscaped\":true,\"Image\":\"mongo\",\"Volumes\":{\"/data/configdb\":{},\"/data/db\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"/entrypoint.sh\"],\"OnBuild\":null,\"Labels\":{}},\"NetworkSettings\":{\"Bridge\":\"\",\"SandboxID\":\"5eecc58cc8c0b25181aa8e3a2db204c1326fbff808a6bfa0d449c4757b099898\",\"HairpinMode\":false,\"LinkLocalIPv6Address\":\"\",\"LinkLocalIPv6PrefixLen\":0,\"Ports\":{\"27017/tcp\":null},\"SandboxKey\":\"/var/run/docker/netns/5eecc58cc8c0\",\"SecondaryIPAddresses\":null,\"SecondaryIPv6Addresses\":null,\"EndpointID\":\"dc2c6307c44ce994b6cd5c2a89c002faa6152ec5840417a3915426b833d16a35\",\"Gateway\":\"172.17.0.1\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"IPAddress\":\"172.17.0.3\",\"IPPrefixLen\":16,\"IPv6Gateway\":\"\",\"MacAddress\":\"02:42:ac:11:00:03\",\"Networks\":{\"bridge\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"NetworkID\":\"ebb6a44cea6146e2a1131cde9fa9f14058678e5e9814bbdd75505c0d3adae595\",\"EndpointID\":\"dc2c6307c44ce994b6cd5c2a89c002faa6152ec5840417a3915426b833d16a35\",\"Gateway\":\"172.17.0.1\",\"IPAddress\":\"172.17.0.3\",\"IPPrefixLen\":16,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"MacAddress\":\"02:42:ac:11:00:03\"}}}}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 14:04:27 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/containers/json",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Id\":\"035c75a0096ae534bd2e5049c8c65f2e990fcba8af36d750086bc24eede4722e\",\"Names\":[\"/mongo\"],\"Image\":\"mongo\",\"ImageID\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"Command\":\"/entrypoint.sh mongod\",\"Created\":1490447867,\"Ports\":[{\"PrivatePort\":27017,\"Type\":\"tcp\"}],\"Labels\":{},\"State\":\"running\",\"Status\":\"Up 8 minutes\",\"HostConfig\":{\"NetworkMode\":\"default\"},\"NetworkSettings\":{\"Networks\":{\"bridge\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"NetworkID\":\"ebb6a44cea6146e2a1131cde9fa9f14058678e5e9814bbdd75505c0d3adae595\",\"EndpointID\":\"dc2c6307c44ce994b6cd5c2a89c002faa6152ec5840417a3915426b833d16a35\",\"Gateway\":\"172.17.0.1\",\"IPAddress\":\"172.17.0.3\",\"IPPrefixLen\":16,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"MacAddress\":\"02:42:ac:11:00:03\"}}},\"Mounts\":[{\"Type\":\"volume\",\"Name\":\"41d2a0fa54263e0703c988a4fe1a24211cf80d8d6ce78d01a00fdfda3bc93b4b\",\"Source\":\"/var/lib/docker/volumes/41d2a0fa54263e0703c988a4fe1a24211cf80d8d6ce78d01a00fdfda3bc93b4b/_data\",\"Destination\":\"/data/db\",\"Driver\":\"local\",\"Mode\":\"\",\"RW\":true,\"Propagation\":\"\"},{\"Type\":\"volume\",\"Name\":\"37ce12f57321a508bd1ef389faddf9511ca10011420d913172ea168b01cf8451\",\"Source\":\"/var/lib/docker/volumes/37ce12f57321a508bd1ef389faddf9511ca10011420d913172ea168b01cf8451/_data\",\"Destination\":\"/data/configdb\",\"Driver\":\"local\",\"Mode\":\"\",\"RW\":true,\"Propagation\":\"\"}]},{\"Id\":\"83d4aa391dd3887191d4e153c51cee26b47da9346000413e294bfafde630451c\",\"Names\":[\"/mongo2\"],\"Image\":\"mongo\",\"ImageID\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"Command\":\"/entrypoint.sh mongod\",\"Created\":1490447863,\"Ports\":[{\"PrivatePort\":27017,\"Type\":\"tcp\"}],\"Labels\":{},\"State\":\"running\",\"Status\":\"Up 8 minutes\",\"HostConfig\":{\"NetworkMode\":\"default\"},\"NetworkSettings\":{\"Networks\":{\"bridge\":{\"IPAMConfig\":null,\"Links\":null,\"Aliases\":null,\"NetworkID\":\"ebb6a44cea6146e2a1131cde9fa9f14058678e5e9814bbdd75505c0d3adae595\",\"EndpointID\":\"1a4aa57790163c8367cd71baaa624a74cda7d9146a2a6236f880f5692e6ca4e8\",\"Gateway\":\"172.17.0.1\",\"IPAddress\":\"172.17.0.2\",\"IPPrefixLen\":16,\"IPv6Gateway\":\"\",\"GlobalIPv6Address\":\"\",\"GlobalIPv6PrefixLen\":0,\"MacAddress\":\"02:42:ac:11:00:02\"}}},\"Mounts\":[{\"Type\":\"volume\",\"Name\":\"dc37b00ace7d6c0387aa0497e338d316a19ba01b6a93a93b59380c2ace707977\",\"Source\":\"/var/lib/docker/volumes/dc37b00ace7d6c0387aa0497e338d316a19ba01b6a93a93b59380c2ace707977/_data\",\"Destination\":\"/data/configdb\",\"Driver\":\"local\",\"Mode\":\"\",\"RW\":true,\"Propagation\":\"\"},{\"Type\":\"volume\",\"Name\":\"5f68bb8ca0445d211c955d5d893baa41f62e857bf170595aa7c3048886572307\",\"Source\":\"/var/lib/docker/volumes/5f68bb8ca0445d211c955d5d893baa41f62e857bf170595aa7c3048886572307/_data\",\"Destination\":\"/data/db\",\"Driver\":\"local\",\"Mode\":\"\",\"RW\":true,\"Propagation\":\"\"}]}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 14:04:26 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

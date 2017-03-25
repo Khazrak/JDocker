@@ -1,0 +1,39 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/images/load",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "quiet=false",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Type" : [ "application/tar" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "template"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"stream\":\"Loaded image: busybox:latest\\n\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Wed, 22 Mar 2017 17:30:22 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

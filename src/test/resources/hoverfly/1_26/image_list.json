@@ -1,0 +1,98 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/images/json",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "all=false&filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.4.1" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Containers\":-1,\"Created\":1481677467,\"Id\":\"sha256:ca01b33b859af5f405aa3ea5030a15246bb970058ac71295eae258527abc8819\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"mongo@sha256:c20800f787af2d6bddfbfc884fe436aa7a3992bfd2d181b55c57c7ff04b84b87\"],\"RepoTags\":null,\"SharedSize\":-1,\"Size\":401942292,\"VirtualSize\":401942292}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "315" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Thu, 16 Mar 2017 18:46:55 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/images/json",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "all=false&filters=%7B%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.4.1" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Containers\":-1,\"Created\":1486590104,\"Id\":\"sha256:ad974e767ec4f06945b1e7ffdfc57bd10e06baf66cdaf5a003e0e6a36924e30b\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"mongo@sha256:0d4453308cc7f0fff863df2ecb7aae226ee7fe0c5257f857fd892edf6d2d9057\"],\"RepoTags\":[\"mongo:latest\"],\"SharedSize\":-1,\"Size\":402128400,\"VirtualSize\":402128400},{\"Containers\":-1,\"Created\":1482504017,\"Id\":\"sha256:02d17f607a744dd810392bfb19272a9dc9857cd444f6c3a88bebad3e5e289667\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"webcenter/activemq@sha256:92acd2fb473f99801559c222df11e83fa9e927c2fdee5bffca9ae8b57cf9800e\"],\"RepoTags\":[\"webcenter/activemq:latest\"],\"SharedSize\":-1,\"Size\":534291193,\"VirtualSize\":534291193},{\"Containers\":-1,\"Created\":1481677467,\"Id\":\"sha256:ca01b33b859af5f405aa3ea5030a15246bb970058ac71295eae258527abc8819\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"mongo@sha256:c20800f787af2d6bddfbfc884fe436aa7a3992bfd2d181b55c57c7ff04b84b87\"],\"RepoTags\":null,\"SharedSize\":-1,\"Size\":401942292,\"VirtualSize\":401942292},{\"Containers\":-1,\"Created\":1475874238,\"Id\":\"sha256:e02e811dd08fd49e7f6032625495118e63f597eb150403d02e3238af1df240ba\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":null,\"RepoTags\":[\"busybox:latest\"],\"SharedSize\":-1,\"Size\":1093484,\"VirtualSize\":1093484},{\"Containers\":-1,\"Created\":1471905046,\"Id\":\"sha256:4ae5150aaa03abf86d18b80ce330d0d779f932d16bc960d39d3f4fdbec38ba48\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"ekino/wiremock@sha256:ddaec290e252f5f6035582ea60828d6cbc43ac66b7e019876c3c3f836261a58c\"],\"RepoTags\":[\"ekino/wiremock:2.1.11\"],\"SharedSize\":-1,\"Size\":134975825,\"VirtualSize\":134975825}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "1580" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Thu, 16 Mar 2017 18:46:55 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/images/json",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "all=false&filters=%7B%22before%22%3A%7B%22mongo%22%3Atrue%7D%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.4.1" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Containers\":-1,\"Created\":1482504017,\"Id\":\"sha256:02d17f607a744dd810392bfb19272a9dc9857cd444f6c3a88bebad3e5e289667\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"webcenter/activemq@sha256:92acd2fb473f99801559c222df11e83fa9e927c2fdee5bffca9ae8b57cf9800e\"],\"RepoTags\":[\"webcenter/activemq:latest\"],\"SharedSize\":-1,\"Size\":534291193,\"VirtualSize\":534291193},{\"Containers\":-1,\"Created\":1481677467,\"Id\":\"sha256:ca01b33b859af5f405aa3ea5030a15246bb970058ac71295eae258527abc8819\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"mongo@sha256:c20800f787af2d6bddfbfc884fe436aa7a3992bfd2d181b55c57c7ff04b84b87\"],\"RepoTags\":null,\"SharedSize\":-1,\"Size\":401942292,\"VirtualSize\":401942292},{\"Containers\":-1,\"Created\":1475874238,\"Id\":\"sha256:e02e811dd08fd49e7f6032625495118e63f597eb150403d02e3238af1df240ba\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":null,\"RepoTags\":[\"busybox:latest\"],\"SharedSize\":-1,\"Size\":1093484,\"VirtualSize\":1093484},{\"Containers\":-1,\"Created\":1471905046,\"Id\":\"sha256:4ae5150aaa03abf86d18b80ce330d0d779f932d16bc960d39d3f4fdbec38ba48\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"ekino/wiremock@sha256:ddaec290e252f5f6035582ea60828d6cbc43ac66b7e019876c3c3f836261a58c\"],\"RepoTags\":[\"ekino/wiremock:2.1.11\"],\"SharedSize\":-1,\"Size\":134975825,\"VirtualSize\":134975825}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "1255" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Thu, 16 Mar 2017 18:46:55 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

@@ -22,7 +22,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.8.2'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.2'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.2'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 
     //PEM support
     compile 'org.bouncycastle:bcpkix-jdk15on:1.55'
@@ -36,7 +36,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile "com.github.tomakehurst:wiremock:2.1.12"
     testCompile 'org.assertj:assertj-core:3.5.2'
-    testCompile 'org.slf4j:slf4j-simple:1.7.21'
+    //testCompile 'org.slf4j:slf4j-simple:1.7.21'
+
+    testCompile "io.specto:hoverfly-java:0.4.3"
 
 }
 

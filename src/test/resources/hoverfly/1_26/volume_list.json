@@ -1,0 +1,96 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/volumes",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Volumes\":[{\"Driver\":\"local\",\"Labels\":{},\"Mountpoint\":\"/var/lib/docker/volumes/vol1/_data\",\"Name\":\"vol1\",\"Options\":{},\"Scope\":\"local\"}],\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "154" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 09:42:03 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/volumes",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Volumes\":[{\"Driver\":\"local\",\"Labels\":{},\"Mountpoint\":\"/var/lib/docker/volumes/vol2/_data\",\"Name\":\"vol2\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/a0a127b99cdc5025c492bc1dff8a470fe24d37ffbb488b03f731ebe39f1b6327/_data\",\"Name\":\"a0a127b99cdc5025c492bc1dff8a470fe24d37ffbb488b03f731ebe39f1b6327\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ac1dbc3f05f4454110bdafe095d3162f50de7e3faf7b886683448cd616550d43/_data\",\"Name\":\"ac1dbc3f05f4454110bdafe095d3162f50de7e3faf7b886683448cd616550d43\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":{},\"Mountpoint\":\"/var/lib/docker/volumes/vol1/_data\",\"Name\":\"vol1\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/7d09ef6bcfa97334c957a4e41d679a0e76ee4678e46da607e857fc4125b27818/_data\",\"Name\":\"7d09ef6bcfa97334c957a4e41d679a0e76ee4678e46da607e857fc4125b27818\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/1f35a62a925e9853a8015896688b7e26578a24e7f191147bca9e1e1758a30d7b/_data\",\"Name\":\"1f35a62a925e9853a8015896688b7e26578a24e7f191147bca9e1e1758a30d7b\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/66108df50b0f0109d1d1024325b9f6373f4b2f1b0d50837aa667fc23bd857a4f/_data\",\"Name\":\"66108df50b0f0109d1d1024325b9f6373f4b2f1b0d50837aa667fc23bd857a4f\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ae5ff723672728206056204fd2e382198348f9f9e69fa065b31b6ffa1f54f154/_data\",\"Name\":\"ae5ff723672728206056204fd2e382198348f9f9e69fa065b31b6ffa1f54f154\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/a3224f1d3f1f091f47c4a51b624d8a4b52d31a228f8f5244a11f403081024a1e/_data\",\"Name\":\"a3224f1d3f1f091f47c4a51b624d8a4b52d31a228f8f5244a11f403081024a1e\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/486854eaaa5af974d85738e73dfa176d89d5baaf740d0a04d39b4609dc78db64/_data\",\"Name\":\"486854eaaa5af974d85738e73dfa176d89d5baaf740d0a04d39b4609dc78db64\",\"Options\":{},\"Scope\":\"local\"}],\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 09:42:03 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/volumes",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Volumes\":[{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/7d09ef6bcfa97334c957a4e41d679a0e76ee4678e46da607e857fc4125b27818/_data\",\"Name\":\"7d09ef6bcfa97334c957a4e41d679a0e76ee4678e46da607e857fc4125b27818\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/a0a127b99cdc5025c492bc1dff8a470fe24d37ffbb488b03f731ebe39f1b6327/_data\",\"Name\":\"a0a127b99cdc5025c492bc1dff8a470fe24d37ffbb488b03f731ebe39f1b6327\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ac1dbc3f05f4454110bdafe095d3162f50de7e3faf7b886683448cd616550d43/_data\",\"Name\":\"ac1dbc3f05f4454110bdafe095d3162f50de7e3faf7b886683448cd616550d43\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ae5ff723672728206056204fd2e382198348f9f9e69fa065b31b6ffa1f54f154/_data\",\"Name\":\"ae5ff723672728206056204fd2e382198348f9f9e69fa065b31b6ffa1f54f154\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/1f35a62a925e9853a8015896688b7e26578a24e7f191147bca9e1e1758a30d7b/_data\",\"Name\":\"1f35a62a925e9853a8015896688b7e26578a24e7f191147bca9e1e1758a30d7b\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/66108df50b0f0109d1d1024325b9f6373f4b2f1b0d50837aa667fc23bd857a4f/_data\",\"Name\":\"66108df50b0f0109d1d1024325b9f6373f4b2f1b0d50837aa667fc23bd857a4f\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/a3224f1d3f1f091f47c4a51b624d8a4b52d31a228f8f5244a11f403081024a1e/_data\",\"Name\":\"a3224f1d3f1f091f47c4a51b624d8a4b52d31a228f8f5244a11f403081024a1e\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/486854eaaa5af974d85738e73dfa176d89d5baaf740d0a04d39b4609dc78db64/_data\",\"Name\":\"486854eaaa5af974d85738e73dfa176d89d5baaf740d0a04d39b4609dc78db64\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":{},\"Mountpoint\":\"/var/lib/docker/volumes/vol2/_data\",\"Name\":\"vol2\",\"Options\":{},\"Scope\":\"local\"}],\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 09:42:03 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/containers/mongo/changes",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Path\":\"/tmp\",\"Kind\":0},{\"Path\":\"/tmp/mongodb-27017.sock\",\"Kind\":1},{\"Path\":\"/root\",\"Kind\":0},{\"Path\":\"/root/test1.txt\",\"Kind\":1},{\"Path\":\"/root/test2.txt\",\"Kind\":1}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "169" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 15:03:05 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

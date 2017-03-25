@@ -1,0 +1,69 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/build",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "pull=true&rm=true&t=test_buntu%3A1.0",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Type" : [ "application/tar" ],
+          "User-Agent" : [ "okhttp/3.6.0" ],
+          "X-Registry-Config" : [ "eyJsb2NhbGhvc3Q6NTAwMCI6eyJ1c2VybmFtZSI6InVzZXJuYW1lIiwicGFzc3dvcmQiOiJwYXNzd29yZCIsImVtYWlsIjpudWxsfX0=" ]
+        },
+        "requestType" : "template"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"stream\":\"Step 1/3 : FROM ubuntu:14.04\\n\"}\r\n{\"status\":\"Pulling from library/ubuntu\",\"id\":\"14.04\"}\r\n{\"status\":\"Digest: sha256:62a5dce5ceccd7f1cb2672a571ebee52cad1f08eec9b57fe4965fb0968a9602e\"}\r\n{\"status\":\"Status: Image is up to date for ubuntu:14.04\"}\r\n{\"stream\":\" ---\\u003e 7c09e61e9035\\n\"}\r\n{\"stream\":\"Step 2/3 : COPY test.sh /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e 18b5f6097cec\\n\"}\r\n{\"stream\":\"Removing intermediate container 4a41bb31e745\\n\"}\r\n{\"stream\":\"Step 3/3 : CMD /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e Running in 8a44d443938a\\n\"}\r\n{\"stream\":\" ---\\u003e 8238504f4c47\\n\"}\r\n{\"stream\":\"Removing intermediate container 8a44d443938a\\n\"}\r\n{\"stream\":\"Successfully built 8238504f4c47\\n\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 21:28:45 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/build",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "pull=true&rm=true&t=test_buntu%3A2.0",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Type" : [ "application/tar" ],
+          "User-Agent" : [ "okhttp/3.6.0" ],
+          "X-Registry-Config" : [ "eyJsb2NhbGhvc3Q6NTAwMCI6eyJ1c2VybmFtZSI6InVzZXJuYW1lIiwicGFzc3dvcmQiOiJwYXNzd29yZCIsImVtYWlsIjpudWxsfX0=" ]
+        },
+        "requestType" : "template"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"stream\":\"Step 1/3 : FROM localhost:5000/mongo:latest\\n\"}\r\n{\"status\":\"Pulling from mongo\",\"id\":\"latest\"}\r\n{\"status\":\"Digest: sha256:a88d54caf7ab4074220046f357744cf17f3300756145f49b282dcb13fbc0a9b3\"}\r\n{\"status\":\"Status: Image is up to date for localhost:5000/mongo:latest\"}\r\n{\"stream\":\" ---\\u003e 686238c7a975\\n\"}\r\n{\"stream\":\"Step 2/3 : COPY test.sh /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e 47b0257b80b5\\n\"}\r\n{\"stream\":\"Removing intermediate container 3457566cc97f\\n\"}\r\n{\"stream\":\"Step 3/3 : CMD /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e Running in f154844b9013\\n\"}\r\n{\"stream\":\" ---\\u003e 2154da77cc82\\n\"}\r\n{\"stream\":\"Removing intermediate container f154844b9013\\n\"}\r\n{\"stream\":\"Successfully built 2154da77cc82\\n\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 21:28:54 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

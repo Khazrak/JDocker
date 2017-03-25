@@ -1,0 +1,42 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/networks/create",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "{\"Name\":\"test1\",\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":null,\"Config\":null,\"Options\":null},\"Internal\":false,\"Options\":{},\"Labels\":{}}",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "169" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"5ce416bdf3fffb566b08b5b18268552b8c57df2f78f25eaaeeedd798b1377296\",\"Warning\":\"\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "87" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Wed, 22 Mar 2017 17:55:18 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

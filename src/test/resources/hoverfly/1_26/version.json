@@ -1,0 +1,40 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/version",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.4.1" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Version\":\"17.03.0-ce\",\"ApiVersion\":\"1.26\",\"MinAPIVersion\":\"1.12\",\"GitCommit\":\"60ccb2265b\",\"GoVersion\":\"go1.8\",\"Os\":\"linux\",\"Arch\":\"amd64\",\"KernelVersion\":\"4.10.2-1-ARCH\",\"BuildTime\":\"2017-03-05T13:38:03.014761935+01:00\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "223" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Wed, 15 Mar 2017 19:36:39 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

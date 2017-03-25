@@ -2,7 +2,8 @@
 Java Docker Client
 
 Docker client in Java that uses tcp or socket. It mapps domain-objects to json and follow Docker Remote API.
-Currently only implemented API version 1.24 (Docker 1.12)
+Currently only implemented API version 1.26 (Docker 1.13.1 & 17.03.0) (Earlier 1.24 but after refactoring the new baseline will be 1.26)
+A new structure have been implemented to make backwards compatibility better (new things will throw Exceptions if used on old API versions)
 
 The client have support for tcp, unixsocket and Windows namedpipe (holy ship!), test of OSX socket will come (it might already work).
 

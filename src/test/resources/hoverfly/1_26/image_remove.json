@@ -1,0 +1,41 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/images/mongo:latest",
+        "method" : "DELETE",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "force=false&noprune=false",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "0" ],
+          "User-Agent" : [ "okhttp/3.4.1" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Untagged\":\"mongo:latest\"},{\"Untagged\":\"mongo@sha256:0d4453308cc7f0fff863df2ecb7aae226ee7fe0c5257f857fd892edf6d2d9057\"},{\"Deleted\":\"sha256:ad974e767ec4f06945b1e7ffdfc57bd10e06baf66cdaf5a003e0e6a36924e30b\"},{\"Deleted\":\"sha256:3e1e25d1b058ee2db0e9a863082292f6e8927e7d99772f8307451aba440de514\"},{\"Deleted\":\"sha256:ec0a37d662127f204e1a27c33716b01013ebbe9813b88e9e3ef65cbd5e61ae1f\"},{\"Deleted\":\"sha256:b0b6ea2828d23b6274c7e5fa6f85392147a3a7dbf417af21df9f68f903334c00\"},{\"Deleted\":\"sha256:dc2c8adc2f5eadff2f3553b11b15b07da5efbf602de16505a43b50657392bfa4\"},{\"Deleted\":\"sha256:4feb0317f579756907d870ad234135fde43d0e672286d3fc829a7dc21e307e68\"},{\"Deleted\":\"sha256:345a9fa68c952a1a22dee13b0cf646c3f535ed04f63385c81cd675eee4fad599\"},{\"Deleted\":\"sha256:4038a7470e8a952cd9ce2ebf1a7ce3af549ce2591d590db70a1a5b9db1f05d51\"},{\"Deleted\":\"sha256:4519735c33f1e617d6feab7ffa09c8f8accbacebc544dc878376c137966e0bfa\"},{\"Deleted\":\"sha256:a2ae92ffcd29f7ededa0320f4a4fd709a723beae9a4e681696874932db7aee2c\"}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "983" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 18 Mar 2017 18:21:39 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

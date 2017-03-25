@@ -1,0 +1,40 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/networks/test1",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Name\":\"test1\",\"Id\":\"3a34ab9677c11dfcc363821bbfe147e0b9b35374837a397668dfd84c5edef1ad\",\"Created\":\"2017-03-22T20:22:53.169982581+01:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":{},\"Config\":[{\"Subnet\":\"172.18.0.0/16\",\"Gateway\":\"172.18.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "369" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Wed, 22 Mar 2017 19:25:12 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

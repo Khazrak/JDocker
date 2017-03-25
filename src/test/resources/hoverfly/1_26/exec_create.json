@@ -1,0 +1,73 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/containers/mongo/exec",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "{\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":false,\"Tty\":false,\"DetachKeys\":null,\"Cmd\":[\"date\"]}",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "107" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"d01746eb585d5f7b8b1124d24071c44cd96e2697dc8aeb20dc149f4d77c9054a\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "74" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 13:34:04 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/containers/mongo/exec",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "{\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":false,\"Tty\":true,\"DetachKeys\":null,\"Cmd\":[\"date\"]}",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "106" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"628c5a19347ead186224b3b0bdbbb0593b05e0479c72435f88d903a7b663b105\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "74" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 13:34:04 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

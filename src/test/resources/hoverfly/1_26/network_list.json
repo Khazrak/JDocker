@@ -1,0 +1,98 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/networks",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "filters=%7B%22driver%22%3A%7B%22bridge%22%3Atrue%7D%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Name\":\"test1\",\"Id\":\"3788581412ea2fa6972870505ada9d8ab6ba1b096970739bd9c5deb6e793f0aa\",\"Created\":\"2017-03-24T11:08:42.596785398+01:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":{},\"Config\":[{\"Subnet\":\"172.18.0.0/16\",\"Gateway\":\"172.18.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}},{\"Name\":\"bridge\",\"Id\":\"fa9da807bcb6170fc04f0b0e63017db9c558183087d4b804d59fffc80103f8d9\",\"Created\":\"2017-03-24T09:22:01.512387137+01:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[{\"Subnet\":\"172.17.0.0/16\",\"Gateway\":\"172.17.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{\"com.docker.network.bridge.default_bridge\":\"true\",\"com.docker.network.bridge.enable_icc\":\"true\",\"com.docker.network.bridge.enable_ip_masquerade\":\"true\",\"com.docker.network.bridge.host_binding_ipv4\":\"0.0.0.0\",\"com.docker.network.bridge.name\":\"docker0\",\"com.docker.network.driver.mtu\":\"1500\"},\"Labels\":{}}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "1032" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 10:08:53 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/networks",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "filters=%7B%22name%22%3A%7B%22test1%22%3Atrue%7D%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Name\":\"test1\",\"Id\":\"3788581412ea2fa6972870505ada9d8ab6ba1b096970739bd9c5deb6e793f0aa\",\"Created\":\"2017-03-24T11:08:42.596785398+01:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":{},\"Config\":[{\"Subnet\":\"172.18.0.0/16\",\"Gateway\":\"172.18.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "371" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 10:08:53 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/networks",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Name\":\"bridge\",\"Id\":\"fa9da807bcb6170fc04f0b0e63017db9c558183087d4b804d59fffc80103f8d9\",\"Created\":\"2017-03-24T09:22:01.512387137+01:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[{\"Subnet\":\"172.17.0.0/16\",\"Gateway\":\"172.17.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{\"com.docker.network.bridge.default_bridge\":\"true\",\"com.docker.network.bridge.enable_icc\":\"true\",\"com.docker.network.bridge.enable_ip_masquerade\":\"true\",\"com.docker.network.bridge.host_binding_ipv4\":\"0.0.0.0\",\"com.docker.network.bridge.name\":\"docker0\",\"com.docker.network.driver.mtu\":\"1500\"},\"Labels\":{}},{\"Name\":\"none\",\"Id\":\"d695b71f3718a3d4381ac11999ad20aea50993627e48be0d0db25cfa26f91e13\",\"Created\":\"0001-01-01T00:00:00Z\",\"Scope\":\"local\",\"Driver\":\"null\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}},{\"Name\":\"host\",\"Id\":\"0453989cc48fd43fdd86a531d01b67f6830d2a5a2ae6cbef6a99006ffcce22b5\",\"Created\":\"0001-01-01T00:00:00Z\",\"Scope\":\"local\",\"Driver\":\"host\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}},{\"Name\":\"test1\",\"Id\":\"3788581412ea2fa6972870505ada9d8ab6ba1b096970739bd9c5deb6e793f0aa\",\"Created\":\"2017-03-24T11:08:42.596785398+01:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":{},\"Config\":[{\"Subnet\":\"172.18.0.0/16\",\"Gateway\":\"172.18.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "1640" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 24 Mar 2017 10:08:53 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

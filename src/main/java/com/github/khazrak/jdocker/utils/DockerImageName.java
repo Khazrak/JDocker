@@ -21,6 +21,10 @@ public class DockerImageName {
 
     public static final String regexp = "[a-zA-Z0-9][a-zA-Z0-9_.-]";
 
+    public static DockerImageName of(String name) {
+        return new DockerImageName(name);
+    }
+
     public DockerImageName(String image) {
         String[] parts = image.split("/");
         if (parts.length == 3) {

@@ -1,0 +1,73 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/commit",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "changes=CMD+echo+%27kasnke%27&container=mongo&pause=true&repo=test%2Fmongo&tag=my_version",
+        "body" : "{\"Hostname\":null,\"Domainname\":null,\"User\":null,\"AttachStdin\":false,\"AttachStdout\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":null,\"Mounts\":null,\"Labels\":null,\"WorkingDir\":null,\"NetworkDisabled\":false,\"ExposedPorts\":{\"1337/tcp\":{}}}",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "259" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"sha256:13c68b5d76e11623d82d0e0c4cc0e44c21b3ce90f28d8f10f26d6d3ff59f1488\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "81" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 14:56:23 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/commit",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "container=mongo&pause=true&repo=test&tag=my_version",
+        "body" : "{\"Hostname\":null,\"Domainname\":null,\"User\":null,\"AttachStdin\":false,\"AttachStdout\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":null,\"Mounts\":null,\"Labels\":null,\"WorkingDir\":null,\"NetworkDisabled\":false,\"ExposedPorts\":{\"1337/tcp\":{}}}",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "259" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"sha256:b6311d2f212a73ea82db79f44bd21f4b4ede7ceac7054587392580d31e68155a\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "81" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 14:56:21 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

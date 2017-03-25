@@ -1,0 +1,42 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/containers/create",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "name=test_container",
+        "body" : "{\"name\":\"test_container\",\"Hostname\":\"\",\"Domainname\":\"\",\"User\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"HealthCheck\":{\"Test\":[\"CMD-SHELL\",\"ls\"],\"Interval\":5,\"Timeout\":0,\"Retries\":2},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[],\"Cmd\":null,\"Entrypoint\":null,\"Image\":\"mongo:latest\",\"Labels\":{},\"Volumes\":{},\"WorkingDir\":\"\",\"NetworkDisabled\":false,\"MacAddress\":null,\"ExposedPorts\":{},\"StopSignal\":\"SIGTERM\",\"HostConfig\":{\"autoRemove\":false,\"ipcMode\":null,\"cgroup\":null,\"utsMode\":null,\"usernsMode\":null,\"runtime\":null,\"consoleSize\":null,\"isolation\":null,\"diskQuota\":0,\"cpuCount\":0,\"nanoCpus\":0,\"containerIdFile\":null,\"binds\":null,\"links\":null,\"memory\":0,\"memorySwap\":0,\"memoryReservation\":0,\"kernelMemory\":0,\"cpuPercent\":0,\"cpuShares\":0,\"cpuPeriod\":0,\"cpuQuota\":0,\"cpuSetCpus\":\"\",\"cpuSetMems\":\"\",\"ioMaximumIOps\":0,\"ioMaximumBandwidth\":0,\"blkioWeight\":0,\"blkioWeightDevice\":null,\"blkioDeviceReadBps\":null,\"blkioDeviceReadIops\":null,\"blkioDeviceWriteBps\":null,\"blkioDeviceWriteIops\":null,\"memorySwappiness\":-1,\"oomKillDisable\":false,\"oomScoreAdj\":0,\"pidMode\":\"\",\"pidsLimit\":0,\"portBindings\":null,\"publishAllPorts\":false,\"privileged\":false,\"readOnlyRootfs\":false,\"dns\":null,\"dnsOptions\":null,\"dnsSearch\":null,\"extraHosts\":null,\"volumesFrom\":null,\"capAdd\":null,\"capDrop\":null,\"groupAdd\":null,\"restartPolicy\":{\"name\":\"no\",\"maximumRetryCount\":0},\"networkMode\":\"default\",\"devices\":null,\"sysCtls\":null,\"logConfig\":{\"type\":\"\",\"config\":{}},\"securityOpt\":null,\"storageOpt\":null,\"cgroupParent\":\"\",\"volumeDriver\":\"\",\"shmSize\":0,\"cpuRealtimePeriod\":0,\"cpuRealtimeRuntime\":0,\"ulimits\":null},\"NetworkingConfig\":{\"EndpointsConfig\":{}}}",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "1649" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"78531d4df5797359494c2b36d428756256fa02fe91a4b61f1ebc1d3ee2f4402b\",\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "90" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 20:54:10 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}

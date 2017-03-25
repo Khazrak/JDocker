@@ -1,0 +1,98 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : "/v1.26/images/json",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "all=true&filters=%7B%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Containers\":-1,\"Created\":1490453783,\"Id\":\"sha256:13c68b5d76e11623d82d0e0c4cc0e44c21b3ce90f28d8f10f26d6d3ff59f1488\",\"Labels\":{},\"ParentId\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"RepoDigests\":null,\"RepoTags\":[\"test/mongo:my_version\"],\"SharedSize\":-1,\"Size\":402143858,\"VirtualSize\":402143858},{\"Containers\":-1,\"Created\":1490453781,\"Id\":\"sha256:b6311d2f212a73ea82db79f44bd21f4b4ede7ceac7054587392580d31e68155a\",\"Labels\":{},\"ParentId\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"RepoDigests\":null,\"RepoTags\":[\"test:my_version\"],\"SharedSize\":-1,\"Size\":402143858,\"VirtualSize\":402143858},{\"Containers\":-1,\"Created\":1488584036,\"Id\":\"sha256:047218491f8cef3987c8a248b8a4ebc46025b04d7b700f711c320a290959a8a6\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"registry@sha256:28be0609f90ef53e86e1872a11d672434ce1361711760cf1fe059efd222f8d37\"],\"RepoTags\":[\"registry:2\"],\"SharedSize\":-1,\"Size\":33174034,\"VirtualSize\":33174034},{\"Containers\":-1,\"Created\":1488294908,\"Id\":\"sha256:6b914bbcb89e49851990e064568dceee4d53a462f316ec36207599c12ae9ba65\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"nginx@sha256:52a189e49c0c797cfc5cbfe578c68c225d160fb13a42954144b29af3fe4fe335\"],\"RepoTags\":[\"nginx:latest\"],\"SharedSize\":-1,\"Size\":181789025,\"VirtualSize\":181789025},{\"Containers\":-1,\"Created\":1488261885,\"Id\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"localhost:5000/mongo@sha256:a88d54caf7ab4074220046f357744cf17f3300756145f49b282dcb13fbc0a9b3\",\"mongo@sha256:3d4537f996bc28a6c6b694e22f46316c0629703420de60e8f46285ce1fe69260\"],\"RepoTags\":[\"localhost:5000/mongo:latest\",\"mongo:latest\",\"mongo:mytag\"],\"SharedSize\":-1,\"Size\":402143846,\"VirtualSize\":402143846},{\"Containers\":-1,\"Created\":1488224466,\"Id\":\"sha256:7c09e61e90350e8f5c0cba2979003bdfe32c2d027b68b4f0cf9063cdd7b4bafd\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"ubuntu@sha256:62a5dce5ceccd7f1cb2672a571ebee52cad1f08eec9b57fe4965fb0968a9602e\"],\"RepoTags\":[\"ubuntu:14.04\"],\"SharedSize\":-1,\"Size\":187937249,\"VirtualSize\":187937249},{\"Containers\":-1,\"Created\":1482504017,\"Id\":\"sha256:02d17f607a744dd810392bfb19272a9dc9857cd444f6c3a88bebad3e5e289667\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"webcenter/activemq@sha256:92acd2fb473f99801559c222df11e83fa9e927c2fdee5bffca9ae8b57cf9800e\"],\"RepoTags\":[\"webcenter/activemq:latest\"],\"SharedSize\":-1,\"Size\":534291193,\"VirtualSize\":534291193},{\"Containers\":-1,\"Created\":1481677467,\"Id\":\"sha256:ca01b33b859af5f405aa3ea5030a15246bb970058ac71295eae258527abc8819\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"mongo@sha256:c20800f787af2d6bddfbfc884fe436aa7a3992bfd2d181b55c57c7ff04b84b87\"],\"RepoTags\":null,\"SharedSize\":-1,\"Size\":401942292,\"VirtualSize\":401942292},{\"Containers\":-1,\"Created\":1475874238,\"Id\":\"sha256:e02e811dd08fd49e7f6032625495118e63f597eb150403d02e3238af1df240ba\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":null,\"RepoTags\":[\"busybox:latest\"],\"SharedSize\":-1,\"Size\":1093484,\"VirtualSize\":1093484},{\"Containers\":-1,\"Created\":1471905046,\"Id\":\"sha256:4ae5150aaa03abf86d18b80ce330d0d779f932d16bc960d39d3f4fdbec38ba48\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"ekino/wiremock@sha256:ddaec290e252f5f6035582ea60828d6cbc43ac66b7e019876c3c3f836261a58c\"],\"RepoTags\":[\"ekino/wiremock:2.1.11\"],\"SharedSize\":-1,\"Size\":134975825,\"VirtualSize\":134975825}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 20:52:45 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/images/mongo:latest/tag",
+        "method" : "POST",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "repo=mongo&tag=mytag",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "Content-Length" : [ "0" ],
+          "Content-Type" : [ "application/json; charset=utf-8" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Length" : [ "0" ],
+          "Content-Type" : [ "text/plain; charset=utf-8" ],
+          "Date" : [ "Sat, 25 Mar 2017 20:52:45 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : "/v1.26/images/json",
+        "method" : "GET",
+        "destination" : "127.0.0.1:4243",
+        "scheme" : "http",
+        "query" : "all=false&filters=%7B%7D",
+        "body" : "",
+        "headers" : {
+          "Accept-Encoding" : [ "gzip" ],
+          "Connection" : [ "Keep-Alive" ],
+          "User-Agent" : [ "okhttp/3.6.0" ]
+        },
+        "requestType" : "recording"
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Containers\":-1,\"Created\":1490453783,\"Id\":\"sha256:13c68b5d76e11623d82d0e0c4cc0e44c21b3ce90f28d8f10f26d6d3ff59f1488\",\"Labels\":{},\"ParentId\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"RepoDigests\":null,\"RepoTags\":[\"test/mongo:my_version\"],\"SharedSize\":-1,\"Size\":402143858,\"VirtualSize\":402143858},{\"Containers\":-1,\"Created\":1490453781,\"Id\":\"sha256:b6311d2f212a73ea82db79f44bd21f4b4ede7ceac7054587392580d31e68155a\",\"Labels\":{},\"ParentId\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"RepoDigests\":null,\"RepoTags\":[\"test:my_version\"],\"SharedSize\":-1,\"Size\":402143858,\"VirtualSize\":402143858},{\"Containers\":-1,\"Created\":1488584036,\"Id\":\"sha256:047218491f8cef3987c8a248b8a4ebc46025b04d7b700f711c320a290959a8a6\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"registry@sha256:28be0609f90ef53e86e1872a11d672434ce1361711760cf1fe059efd222f8d37\"],\"RepoTags\":[\"registry:2\"],\"SharedSize\":-1,\"Size\":33174034,\"VirtualSize\":33174034},{\"Containers\":-1,\"Created\":1488294908,\"Id\":\"sha256:6b914bbcb89e49851990e064568dceee4d53a462f316ec36207599c12ae9ba65\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"nginx@sha256:52a189e49c0c797cfc5cbfe578c68c225d160fb13a42954144b29af3fe4fe335\"],\"RepoTags\":[\"nginx:latest\"],\"SharedSize\":-1,\"Size\":181789025,\"VirtualSize\":181789025},{\"Containers\":-1,\"Created\":1488261885,\"Id\":\"sha256:686238c7a975c9dcb154be65a2ea761b79e4401990860ab11549281e92f2e442\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"localhost:5000/mongo@sha256:a88d54caf7ab4074220046f357744cf17f3300756145f49b282dcb13fbc0a9b3\",\"mongo@sha256:3d4537f996bc28a6c6b694e22f46316c0629703420de60e8f46285ce1fe69260\"],\"RepoTags\":[\"localhost:5000/mongo:latest\",\"mongo:latest\"],\"SharedSize\":-1,\"Size\":402143846,\"VirtualSize\":402143846},{\"Containers\":-1,\"Created\":1488224466,\"Id\":\"sha256:7c09e61e90350e8f5c0cba2979003bdfe32c2d027b68b4f0cf9063cdd7b4bafd\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"ubuntu@sha256:62a5dce5ceccd7f1cb2672a571ebee52cad1f08eec9b57fe4965fb0968a9602e\"],\"RepoTags\":[\"ubuntu:14.04\"],\"SharedSize\":-1,\"Size\":187937249,\"VirtualSize\":187937249},{\"Containers\":-1,\"Created\":1482504017,\"Id\":\"sha256:02d17f607a744dd810392bfb19272a9dc9857cd444f6c3a88bebad3e5e289667\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"webcenter/activemq@sha256:92acd2fb473f99801559c222df11e83fa9e927c2fdee5bffca9ae8b57cf9800e\"],\"RepoTags\":[\"webcenter/activemq:latest\"],\"SharedSize\":-1,\"Size\":534291193,\"VirtualSize\":534291193},{\"Containers\":-1,\"Created\":1481677467,\"Id\":\"sha256:ca01b33b859af5f405aa3ea5030a15246bb970058ac71295eae258527abc8819\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"mongo@sha256:c20800f787af2d6bddfbfc884fe436aa7a3992bfd2d181b55c57c7ff04b84b87\"],\"RepoTags\":null,\"SharedSize\":-1,\"Size\":401942292,\"VirtualSize\":401942292},{\"Containers\":-1,\"Created\":1475874238,\"Id\":\"sha256:e02e811dd08fd49e7f6032625495118e63f597eb150403d02e3238af1df240ba\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":null,\"RepoTags\":[\"busybox:latest\"],\"SharedSize\":-1,\"Size\":1093484,\"VirtualSize\":1093484},{\"Containers\":-1,\"Created\":1471905046,\"Id\":\"sha256:4ae5150aaa03abf86d18b80ce330d0d779f932d16bc960d39d3f4fdbec38ba48\",\"Labels\":{},\"ParentId\":\"\",\"RepoDigests\":[\"ekino/wiremock@sha256:ddaec290e252f5f6035582ea60828d6cbc43ac66b7e019876c3c3f836261a58c\"],\"RepoTags\":[\"ekino/wiremock:2.1.11\"],\"SharedSize\":-1,\"Size\":134975825,\"VirtualSize\":134975825}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.26" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Sat, 25 Mar 2017 20:52:45 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v1"
+  }
+}
