@@ -1,0 +1,83 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/containers/mongo/exec"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : "{\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":false,\"Tty\":true,\"DetachKeys\":null,\"Cmd\":[\"date\"]}"
+        }
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"e0cc62a43e6dd10bf62be55f72b1cb7dc87d36fa4e93565b8b960c121c57a921\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "74" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 14:36:06 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/containers/mongo/exec"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : "{\"AttachStdin\":false,\"AttachStdout\":true,\"AttachStderr\":false,\"Tty\":false,\"DetachKeys\":null,\"Cmd\":[\"date\"]}"
+        }
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"2f1ec5af98ee7343e281eb771869850deab5e05fc8e19d108790bce579544e33\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "74" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 14:36:06 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

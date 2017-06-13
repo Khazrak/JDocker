@@ -1,0 +1,26 @@
+group 'com.github.khazrak'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile project(':base-api')
+    testCompile 'org.assertj:assertj-core:3.8.0'
+    testCompile "io.specto:hoverfly-java:0.6.1"
+}
+group 'com.github.khazrak'
+version '2.0.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

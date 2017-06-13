@@ -1,0 +1,75 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/build"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "pull=true&rm=true&t=test_buntu%3A1.0"
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"stream\":\"Step 1/3 : FROM ubuntu:14.04\\n\"}\r\n{\"status\":\"Pulling from library/ubuntu\",\"id\":\"14.04\"}\r\n{\"status\":\"Digest: sha256:30204139c6ab96ebd75d72f34db390f28c4decd5e563488b4e485bf979397b67\"}\r\n{\"status\":\"Status: Image is up to date for ubuntu:14.04\"}\r\n{\"stream\":\" ---\\u003e 132b7427a3b4\\n\"}\r\n{\"stream\":\"Step 2/3 : COPY test.sh /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e Using cache\\n\"}\r\n{\"stream\":\" ---\\u003e e2b2c05c96bc\\n\"}\r\n{\"stream\":\"Step 3/3 : CMD /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e Using cache\\n\"}\r\n{\"stream\":\" ---\\u003e c58b829c851e\\n\"}\r\n{\"stream\":\"Successfully built c58b829c851e\\n\"}\r\n{\"stream\":\"Successfully tagged test_buntu:1.0\\n\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:08:19 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/build"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "pull=true&rm=true&t=test_buntu%3A2.0"
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"stream\":\"Step 1/3 : FROM localhost:5000/mongo:latest\\n\"}\r\n{\"status\":\"Pulling from mongo\",\"id\":\"latest\"}\r\n{\"status\":\"Digest: sha256:62a33484258e328756be8fe387c86a4b6a417f23afd3e565a7a464994c1be28d\"}\r\n{\"status\":\"Status: Image is up to date for localhost:5000/mongo:latest\"}\r\n{\"stream\":\" ---\\u003e 34ba9aead272\\n\"}\r\n{\"stream\":\"Step 2/3 : COPY test.sh /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e f09ea630c006\\n\"}\r\n{\"stream\":\"Removing intermediate container d3834eb3a363\\n\"}\r\n{\"stream\":\"Step 3/3 : CMD /test.sh\\n\"}\r\n{\"stream\":\" ---\\u003e Running in c38cf8249e3e\\n\"}\r\n{\"stream\":\" ---\\u003e 9e115e686314\\n\"}\r\n{\"stream\":\"Removing intermediate container c38cf8249e3e\\n\"}\r\n{\"stream\":\"Successfully built 9e115e686314\\n\"}\r\n{\"stream\":\"Successfully tagged test_buntu:2.0\\n\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:08:20 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

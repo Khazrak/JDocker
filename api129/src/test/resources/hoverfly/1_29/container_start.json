@@ -1,0 +1,118 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/containers/already_started/start"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 204,
+        "body" : "",
+        "encodedBody" : false,
+
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "109" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 14:16:22 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/containers/none_existing/start"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 400,
+        "body" : "{\"message\":\"starting container with non-empty request body was deprecated since v1.10 and removed in v1.12\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "109" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 14:16:22 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/containers/mongo/start"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 304,
+        "body" : "",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Date" : [ "Tue, 13 Jun 2017 14:16:22 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

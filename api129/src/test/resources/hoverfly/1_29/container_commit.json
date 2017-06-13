@@ -1,0 +1,83 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/commit"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "container=mongo&pause=true&repo=test&tag=my_version"
+        },
+        "body" : {
+          "exactMatch" : "{\"Hostname\":null,\"Domainname\":null,\"User\":null,\"AttachStdin\":false,\"AttachStdout\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":null,\"Mounts\":null,\"Labels\":null,\"WorkingDir\":null,\"NetworkDisabled\":false,\"ExposedPorts\":{\"1337/tcp\":{}}}"
+        }
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"sha256:e4e2aef613f084b98603c7aa4739a15ce8020c892df60e843fd1ddbbab790c53\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "81" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 13:04:10 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/commit"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "changes=CMD+echo+%27kasnke%27&container=mongo&pause=true&repo=test%2Fmongo&tag=my_version"
+        },
+        "body" : {
+          "exactMatch" : "{\"Hostname\":null,\"Domainname\":null,\"User\":null,\"AttachStdin\":false,\"AttachStdout\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":null,\"Cmd\":null,\"Mounts\":null,\"Labels\":null,\"WorkingDir\":null,\"NetworkDisabled\":false,\"ExposedPorts\":{\"1337/tcp\":{}}}"
+        }
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"sha256:404c1735f5ad8c36c2d8e4357649f390c62b34bd5460654a83fbbad16af159c6\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "81" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 13:04:11 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

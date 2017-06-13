@@ -1,0 +1,46 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/images/mongo:latest/json"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Id\":\"sha256:34ba9aead2724ad9eb51c629bd66e66d9394f5a071855abe1d25226bf07487f9\",\"RepoTags\":[\"mongo:latest\",\"mongo:mytag\"],\"RepoDigests\":[\"mongo@sha256:c4bc4644b967a4b58022a79cf5c9afcd25ed08180c958a74df57b7753cfc8649\"],\"Parent\":\"\",\"Comment\":\"\",\"Created\":\"2017-05-23T22:39:42.146945883Z\",\"Container\":\"b31278a2861c5b085280fbcb2dae9009c064a4b71b85984f7365606000118245\",\"ContainerConfig\":{\"Hostname\":\"3160d2e63219\",\"Domainname\":\"\",\"User\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"27017/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"GOSU_VERSION=1.7\",\"GPG_KEYS=0C49F3730359A14518585931BC711F9BA15703C6\",\"MONGO_MAJOR=3.4\",\"MONGO_VERSION=3.4.4\",\"MONGO_PACKAGE=mongodb-org\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"#(nop) \",\"CMD [\\\"mongod\\\"]\"],\"ArgsEscaped\":true,\"Image\":\"sha256:2082cf5247203fcd3ba0e4da2d2258661f9180eb580de69d762225b879cd9b41\",\"Volumes\":{\"/data/configdb\":{},\"/data/db\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"docker-entrypoint.sh\"],\"OnBuild\":[],\"Labels\":{}},\"DockerVersion\":\"17.03.1-ce\",\"Author\":\"\",\"Config\":{\"Hostname\":\"3160d2e63219\",\"Domainname\":\"\",\"User\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"27017/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"GOSU_VERSION=1.7\",\"GPG_KEYS=0C49F3730359A14518585931BC711F9BA15703C6\",\"MONGO_MAJOR=3.4\",\"MONGO_VERSION=3.4.4\",\"MONGO_PACKAGE=mongodb-org\"],\"Cmd\":[\"mongod\"],\"ArgsEscaped\":true,\"Image\":\"sha256:2082cf5247203fcd3ba0e4da2d2258661f9180eb580de69d762225b879cd9b41\",\"Volumes\":{\"/data/configdb\":{},\"/data/db\":{}},\"WorkingDir\":\"\",\"Entrypoint\":[\"docker-entrypoint.sh\"],\"OnBuild\":[],\"Labels\":{}},\"Architecture\":\"amd64\",\"Os\":\"linux\",\"Size\":359819412,\"VirtualSize\":359819412,\"GraphDriver\":{\"Data\":{\"DeviceId\":\"4187\",\"DeviceName\":\"docker-254:1-10223820-b4ba534257f3fe5f6fa551652b73ad1c41664511997826efe25899723a9993b4\",\"DeviceSize\":\"10737418240\"},\"Name\":\"devicemapper\"},\"RootFS\":{\"Type\":\"layers\",\"Layers\":[\"sha256:5d924e3b1efdcda770bc33e6d7563f5ca2411dcc6b7368c8a30356bed474ae5a\",\"sha256:fd8327dd66d019a21d689d559349a70dc3d148df73bf4638c99aa818eae5137e\",\"sha256:8e6a26855f49aef5d4523c422292a580490916cf5422c8c22d9ee8bc86a31823\",\"sha256:705659f730e178e4453a872e185affab26b53440fc7c91f70c27595eb9b3ec1f\",\"sha256:9c81fe3232b68e15c4c630570bb6f6a065dbc6d0640b631e14ab4ba1d327b54a\",\"sha256:44db3d8ca1fc1af1db8c95921e4ad2b772b1ddbd3179c475a5893c5e79c83eff\",\"sha256:150e181957c58be02aed3d4f100102c3aacaa103da0ded340e453b8f202da020\",\"sha256:a4c29d8f7c32c0e7aa6fb168c5216f9983123d30e2bfe9a27a0fabda5fd7a700\",\"sha256:1e47a8096f322cca87662114e3ac474e28f72e1cbf0587645878bfcc049d5472\",\"sha256:0f72a1bcdbc684504df89b447bfbb86bc500e3ba555b0ad86ef785aec17324da\",\"sha256:7db625cfb46b0f7ba9ab622e8c1197dffb510dab0117842c4b2e88a366ee0f53\"]}}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:00:35 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

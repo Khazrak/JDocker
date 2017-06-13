@@ -1,0 +1,43 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/images/load"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "quiet=false"
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"status\":\"Loading layer\",\"progressDetail\":{\"current\":32768,\"total\":1293824},\"progress\":\"[=\\u003e                                                 ]  32.77kB/1.294MB\",\"id\":\"e88b3f82283b\"}\r\n{\"status\":\"Loading layer\",\"progressDetail\":{\"current\":65536,\"total\":1293824},\"progress\":\"[==\\u003e                                                ]  65.54kB/1.294MB\",\"id\":\"e88b3f82283b\"}\r\n{\"status\":\"Loading layer\",\"progressDetail\":{\"current\":1293824,\"total\":1293824},\"progress\":\"[==================================================\\u003e]  1.294MB/1.294MB\",\"id\":\"e88b3f82283b\"}\r\n{\"status\":\"Loading layer\",\"progressDetail\":{\"current\":1293824,\"total\":1293824},\"progress\":\"[==================================================\\u003e]  1.294MB/1.294MB\",\"id\":\"e88b3f82283b\"}\r\n{\"stream\":\"The image busybox:latest already exists, renaming the old one with ID sha256:c75bebcdd211f41b3a460c7bf82970ed6c75acaab9cd4c9a4e125b03ca113798 to empty string\\n\"}\r\n{\"stream\":\"Loaded image: busybox:latest\\n\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 11:54:21 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

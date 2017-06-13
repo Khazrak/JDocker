@@ -1,0 +1,46 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/images/mongo:latest/history"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Comment\":\"\",\"Created\":1495579182,\"CreatedBy\":\"/bin/sh -c #(nop)  CMD [\\\"mongod\\\"]\",\"Id\":\"sha256:34ba9aead2724ad9eb51c629bd66e66d9394f5a071855abe1d25226bf07487f9\",\"Size\":0,\"Tags\":[\"mongo:latest\",\"mongo:mytag\"]},{\"Comment\":\"\",\"Created\":1495579181,\"CreatedBy\":\"/bin/sh -c #(nop)  EXPOSE 27017/tcp\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1495579180,\"CreatedBy\":\"/bin/sh -c #(nop)  ENTRYPOINT [\\\"docker-entrypoint.sh\\\"]\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1495579179,\"CreatedBy\":\"/bin/sh -c ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1495579178,\"CreatedBy\":\"/bin/sh -c #(nop) COPY file:dbebaf4376a8d615e05b80e0bc26a2dfc5f8f8687b16ab47e64928fb5a00498d in /usr/local/bin/ \",\"Id\":\"<missing>\",\"Size\":7681,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351185,\"CreatedBy\":\"/bin/sh -c #(nop)  VOLUME [/data/db /data/configdb]\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351184,\"CreatedBy\":\"/bin/sh -c mkdir -p /data/db /data/configdb \\t&& chown -R mongodb:mongodb /data/db /data/configdb\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351182,\"CreatedBy\":\"/bin/sh -c set -x \\t&& apt-get update \\t&& apt-get install -y \\t\\t${MONGO_PACKAGE}=$MONGO_VERSION \\t\\t${MONGO_PACKAGE}-server=$MONGO_VERSION \\t\\t${MONGO_PACKAGE}-shell=$MONGO_VERSION \\t\\t${MONGO_PACKAGE}-mongos=$MONGO_VERSION \\t\\t${MONGO_PACKAGE}-tools=$MONGO_VERSION \\t&& rm -rf /var/lib/apt/lists/* \\t&& rm -rf /var/lib/mongodb \\t&& mv /etc/mongod.conf /etc/mongod.conf.orig\",\"Id\":\"<missing>\",\"Size\":269586367,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351165,\"CreatedBy\":\"/bin/sh -c echo \\\"deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/$MONGO_MAJOR main\\\" > /etc/apt/sources.list.d/mongodb-org.list\",\"Id\":\"<missing>\",\"Size\":67,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351164,\"CreatedBy\":\"/bin/sh -c #(nop)  ENV MONGO_PACKAGE=mongodb-org\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351163,\"CreatedBy\":\"/bin/sh -c #(nop)  ENV MONGO_VERSION=3.4.4\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351162,\"CreatedBy\":\"/bin/sh -c #(nop)  ENV MONGO_MAJOR=3.4\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351162,\"CreatedBy\":\"/bin/sh -c set -ex; \\texport GNUPGHOME=\\\"$(mktemp -d)\\\"; \\tfor key in $GPG_KEYS; do \\t\\tgpg --keyserver ha.pool.sks-keyservers.net --recv-keys \\\"$key\\\"; \\tdone; \\tgpg --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \\trm -r \\\"$GNUPGHOME\\\"; \\tapt-key list\",\"Id\":\"<missing>\",\"Size\":1162,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351159,\"CreatedBy\":\"/bin/sh -c #(nop)  ENV GPG_KEYS=0C49F3730359A14518585931BC711F9BA15703C6\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351158,\"CreatedBy\":\"/bin/sh -c mkdir /docker-entrypoint-initdb.d\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351157,\"CreatedBy\":\"/bin/sh -c set -x \\t&& apt-get update && apt-get install -y --no-install-recommends wget && rm -rf /var/lib/apt/lists/* \\t&& wget -O /usr/local/bin/gosu \\\"https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)\\\" \\t&& wget -O /usr/local/bin/gosu.asc \\\"https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc\\\" \\t&& export GNUPGHOME=\\\"$(mktemp -d)\\\" \\t&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \\t&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \\t&& rm -r \\\"$GNUPGHOME\\\" /usr/local/bin/gosu.asc \\t&& chmod +x /usr/local/bin/gosu \\t&& gosu nobody true \\t&& apt-get purge -y --auto-remove wget\",\"Id\":\"<missing>\",\"Size\":3005670,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351140,\"CreatedBy\":\"/bin/sh -c #(nop)  ENV GOSU_VERSION=1.7\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351139,\"CreatedBy\":\"/bin/sh -c apt-get update \\t&& apt-get install -y --no-install-recommends \\t\\tca-certificates \\t\\tjq \\t\\tnumactl \\t&& rm -rf /var/lib/apt/lists/*\",\"Id\":\"<missing>\",\"Size\":6462367,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494351127,\"CreatedBy\":\"/bin/sh -c groupadd -r mongodb && useradd -r -g mongodb mongodb\",\"Id\":\"<missing>\",\"Size\":330382,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494286139,\"CreatedBy\":\"/bin/sh -c #(nop)  CMD [\\\"/bin/bash\\\"]\",\"Id\":\"<missing>\",\"Size\":0,\"Tags\":null},{\"Comment\":\"\",\"Created\":1494286138,\"CreatedBy\":\"/bin/sh -c #(nop) ADD file:7dc8fe041ca97fe00af650b41599e0b8d68188f7586ec0009b2cbe7d66896ba8 in / \",\"Id\":\"<missing>\",\"Size\":80425716,\"Tags\":null}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:00:55 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

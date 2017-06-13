@@ -1,0 +1,81 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/images/create"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "fromImage=busybox&tag=latest"
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"status\":\"Pulling from library/busybox\",\"id\":\"latest\"}\r\n{\"status\":\"Pulling fs layer\",\"progressDetail\":{},\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":15883,\"total\":699311},\"progress\":\"[=\\u003e                                                 ]  15.88kB/699.3kB\",\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Downloading\",\"progressDetail\":{\"current\":654464,\"total\":699311},\"progress\":\"[==============================================\\u003e    ]  654.5kB/699.3kB\",\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Download complete\",\"progressDetail\":{},\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":32768,\"total\":699311},\"progress\":\"[==\\u003e                                                ]  32.77kB/699.3kB\",\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":65536,\"total\":699311},\"progress\":\"[====\\u003e                                              ]  65.54kB/699.3kB\",\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":699311,\"total\":699311},\"progress\":\"[==================================================\\u003e]  699.3kB/699.3kB\",\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Extracting\",\"progressDetail\":{\"current\":699311,\"total\":699311},\"progress\":\"[==================================================\\u003e]  699.3kB/699.3kB\",\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Pull complete\",\"progressDetail\":{},\"id\":\"1cae461a1479\"}\r\n{\"status\":\"Digest: sha256:c79345819a6882c31b41bc771d9a94fc52872fa651b36771fbe0c8461d7ee558\"}\r\n{\"status\":\"Status: Downloaded newer image for busybox:latest\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 11:53:41 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/images/create"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "fromImage=localhost%3A5000%2Fbusybox&tag=1.25"
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"status\":\"Pulling from busybox\",\"id\":\"1.25\"}\r\n{\"status\":\"Digest: sha256:44a7302fe5977d50d341c47ddf38bb3458d724ad7dd1adcaed28d3c3e8dc33b1\"}\r\n{\"status\":\"Status: Downloaded newer image for localhost:5000/busybox:1.25\"}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 11:53:42 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/containers/mongo2/update"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : "{\"BlkioWeight\":0,\"CpuShares\":3,\"CpuPeriod\":0,\"CpuQuota\":0,\"CpusetCpus\":null,\"CpusetMems\":null,\"Memory\":0,\"MemorySwap\":0,\"MemoryReservation\":0,\"KernelMemory\":0,\"RestartPolicy\":{\"name\":\"\",\"maximumRetryCount\":0}}"
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Warnings\":[\"This is a test warning\"]}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 14:30:27 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/containers/mongo/update"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : "{\"BlkioWeight\":0,\"CpuShares\":2,\"CpuPeriod\":0,\"CpuQuota\":0,\"CpusetCpus\":null,\"CpusetMems\":null,\"Memory\":0,\"MemorySwap\":0,\"MemoryReservation\":0,\"KernelMemory\":0,\"RestartPolicy\":{\"name\":\"\",\"maximumRetryCount\":0}}"
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "18" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 14:30:27 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/networks/create"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : "{\"Name\":\"test1\",\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":null,\"Config\":[{\"Subnet\":\"171.19.1.0/8\",\"IPRange\":null,\"Gateway\":null}],\"Options\":null},\"Internal\":false,\"Attachable\":true,\" Ingress \":false,\"Options\":{},\"Labels\":{}}"
+        }
+      },
+      "response" : {
+        "status" : 201,
+        "body" : "{\"Id\":\"0c49ac3ee9edb294ed5b977e206d5204e4b664100c070c48867fbf9fc8810754\",\"Warning\":\"\"}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "87" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:45:39 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

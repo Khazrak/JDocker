@@ -1,0 +1,46 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/images/localhost:5000/busybox/push"
+        },
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "tag=1.25"
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"status\":\"The push refers to a repository [localhost:5000/busybox]\"}\r\n{\"status\":\"Preparing\",\"progressDetail\":{},\"id\":\"4ac76077f2c7\"}\r\n{\"status\":\"Pushing\",\"progressDetail\":{\"current\":33792,\"total\":1106304},\"progress\":\"[=\\u003e                                                 ]  33.79kB/1.106MB\",\"id\":\"4ac76077f2c7\"}\r\n{\"status\":\"Pushing\",\"progressDetail\":{\"current\":1308672,\"total\":1106304},\"progress\":\"[==================================================\\u003e]  1.309MB\",\"id\":\"4ac76077f2c7\"}\r\n{\"status\":\"Pushed\",\"progressDetail\":{},\"id\":\"4ac76077f2c7\"}\r\n{\"status\":\"1.25: digest: sha256:44a7302fe5977d50d341c47ddf38bb3458d724ad7dd1adcaed28d3c3e8dc33b1 size: 527\"}\r\n{\"progressDetail\":{},\"aux\":{\"Tag\":\"1.25\",\"Digest\":\"sha256:44a7302fe5977d50d341c47ddf38bb3458d724ad7dd1adcaed28d3c3e8dc33b1\",\"Size\":527}}\r\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 11:52:18 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

@@ -1,14 +1,37 @@
-group 'com.github.khazrak'
-//name 'docker-client'
+allprojects {
+    apply plugin: 'java'
+    group 'com.github.khazrak'
+    version '2.0.0'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-version '2.0.0'
+    dependencies {
+        testCompile 'junit:junit:4.12'
+        compile 'org.slf4j:slf4j-api:1.7.25'
+        compileOnly 'org.projectlombok:lombok:1.16.16'
+    }
 
-apply plugin: 'java'
+    tasks.withType(Test) {
+        reports.html.destination = file("${reporting.baseDir}/${name}")
+    }
+}
+
+project(':api126') {
+    dependencies {
+        compile project(':base-api')
+        
+    }
+}
+
+project(':api129') {
+    dependencies {
+        compile project(':base-api')
+
+    }
+}
+
 apply plugin: 'maven'
 apply plugin: 'signing'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 archivesBaseName = "jdocker-client"
 
@@ -16,55 +39,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.8.2'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.2'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.2'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-
-    //PEM support
-    compile 'org.bouncycastle:bcpkix-jdk15on:1.55'
-
-    compile 'com.github.jnr:jnr-unixsocket:0.12'
-
-   
-
-
-    compileOnly 'org.projectlombok:lombok:1.16.10'
-    testCompile 'junit:junit:4.12'
-    testCompile "com.github.tomakehurst:wiremock:2.1.12"
-    testCompile 'org.assertj:assertj-core:3.5.2'
-    //testCompile 'org.slf4j:slf4j-simple:1.7.21'
-
-    testCompile "io.specto:hoverfly-java:0.4.3"
-
-}
-
-// Integration Test Support
-sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-            srcDir file('src/integration-test/java')
-        }
-        resources.srcDir file('src/integration-test/resources')
-    }
-}
-configurations {
-    integrationTestCompile.extendsFrom testCompile
-    integrationTestRuntime.extendsFrom testRuntime
-
-}
-task integrationTest(type: Test) {
-    testClassesDir = sourceSets.integrationTest.output.classesDir
-    classpath = sourceSets.integrationTest.runtimeClasspath
-}
-tasks.withType(Test) {
-    reports.html.destination = file("${reporting.baseDir}/${name}")
-}
 task wrapper(type: Wrapper) {
     gradleVersion = '3.1'
 }

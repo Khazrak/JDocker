@@ -1,0 +1,46 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/images/search"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "term=grafana"
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"star_count\":478,\"is_official\":false,\"name\":\"grafana/grafana\",\"is_automated\":false,\"description\":\"The official Grafana docker container\"},{\"star_count\":0,\"is_official\":false,\"name\":\"rplan/grafana\",\"is_automated\":true,\"description\":\"customized grafana docker image\"},{\"star_count\":0,\"is_official\":false,\"name\":\"matisq/grafana\",\"is_automated\":true,\"description\":\"TIG Stack - Grafana\"},{\"star_count\":45,\"is_official\":false,\"name\":\"monitoringartist/grafana-xxl\",\"is_automated\":true,\"description\":\"Dockerized Grafana 4.x/3.x with all preinstalled (community) plugins from grafana.net\"},{\"star_count\":3,\"is_official\":false,\"name\":\"luzifer/grafana\",\"is_automated\":true,\"description\":\"Automated build from Grafana Debian package\"},{\"star_count\":1,\"is_official\":false,\"name\":\"vrtsystems/grafana\",\"is_automated\":true,\"description\":\"Grafana with singlestat-image patch, built on vrsystems/baseimage.\"},{\"star_count\":55,\"is_official\":false,\"name\":\"tutum/grafana\",\"is_automated\":true,\"description\":\"Grafana dashboard for InfluxDB. Please set \\\"INFLUXDB_HOST\\\", \\\"INFLUXDB_NAME\\\", \\\"INFLUXDB_USER\\\", and \\\"INFLUXDB_PASS\\\" before launching.\"},{\"star_count\":2,\"is_official\":false,\"name\":\"freenas/grafana\",\"is_automated\":true,\"description\":\"Grafana container + FreeNAS 10 metadata\"},{\"star_count\":2,\"is_official\":false,\"name\":\"appcelerator/grafana\",\"is_automated\":true,\"description\":\"Grafana image based on Alpine linux\"},{\"star_count\":0,\"is_official\":false,\"name\":\"hanmanhui/grafana\",\"is_automated\":true,\"description\":\"Docker image for grafana\"},{\"star_count\":1,\"is_official\":false,\"name\":\"travix/grafana\",\"is_automated\":true,\"description\":\"Grafana dashboard\"},{\"star_count\":0,\"is_official\":false,\"name\":\"mbed/alpine-grafana\",\"is_automated\":true,\"description\":\"Docker image for Grafana based on the Alpine linux distribution\"},{\"star_count\":0,\"is_official\":false,\"name\":\"basi/grafana\",\"is_automated\":true,\"description\":\"Grafana with some limited automated data sources creation.\\n\"},{\"star_count\":0,\"is_official\":false,\"name\":\"marvambass/grafana\",\"is_automated\":true,\"description\":\"grafana container\"},{\"star_count\":0,\"is_official\":false,\"name\":\"vimagick/grafana\",\"is_automated\":true,\"description\":\"A leading open source application for visualizing large-scale measurement data.\"},{\"star_count\":0,\"is_official\":false,\"name\":\"visity/grafana\",\"is_automated\":true,\"description\":\"Fronts the visity/carbon docker with statsd functionality.\"},{\"star_count\":2,\"is_official\":false,\"name\":\"bbinet/grafana\",\"is_automated\":true,\"description\":\"\"},{\"star_count\":0,\"is_official\":false,\"name\":\"rusn/grafana\",\"is_automated\":true,\"description\":\"Lightweight Grafana image\"},{\"star_count\":0,\"is_official\":false,\"name\":\"steigr/grafana\",\"is_automated\":true,\"description\":\"Grafana - Beautiful metric & analytic dashboards\"},{\"star_count\":1,\"is_official\":false,\"name\":\"fabric8/grafana\",\"is_automated\":true,\"description\":\"\"},{\"star_count\":1,\"is_official\":false,\"name\":\"ajsmith/grafana\",\"is_automated\":true,\"description\":\"Grafana on Fedora\"},{\"star_count\":0,\"is_official\":false,\"name\":\"tianon/grafana\",\"is_automated\":true,\"description\":\"Gorgeous metric viz, dashboards & editors for Graphite, InfluxDB & Prometheus\"},{\"star_count\":1,\"is_official\":false,\"name\":\"micahhausler/grafana-extras\",\"is_automated\":true,\"description\":\"A Docker image for Grafana with extra plugins\"},{\"star_count\":0,\"is_official\":false,\"name\":\"airdock/grafana\",\"is_automated\":true,\"description\":\"\"},{\"star_count\":0,\"is_official\":false,\"name\":\"yfix/grafana\",\"is_automated\":true,\"description\":\"Dockerized grafana\"}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 11:56:30 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

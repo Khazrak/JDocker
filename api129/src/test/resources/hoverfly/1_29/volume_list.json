@@ -1,0 +1,117 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/volumes"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "filters=%7B%22dangling%22%3A%7B%22false%22%3Atrue%7D%7D"
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Volumes\":[{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/6e628aa0ba10143d1ea7786f3b1f3f0cbdac2114affd5f4a109e60e5ac8a320d/_data\",\"Name\":\"6e628aa0ba10143d1ea7786f3b1f3f0cbdac2114affd5f4a109e60e5ac8a320d\",\"Options\":{},\"Scope\":\"local\"}],\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "276" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:52:33 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/volumes"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Volumes\":[{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/316f98dc36adfb5faba9ffa5310ea34de361d5bffaea2f3f96a1628b1d08064d/_data\",\"Name\":\"316f98dc36adfb5faba9ffa5310ea34de361d5bffaea2f3f96a1628b1d08064d\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/8acc4c9ab8dabb5a1c21463b65c9ba7728dc741b896ce626d816db5c84154f1d/_data\",\"Name\":\"8acc4c9ab8dabb5a1c21463b65c9ba7728dc741b896ce626d816db5c84154f1d\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/a0a1ee9a16b8a3081b36328efbb0454833562dc5bf3e7c4b7dbe0a0de260de37/_data\",\"Name\":\"a0a1ee9a16b8a3081b36328efbb0454833562dc5bf3e7c4b7dbe0a0de260de37\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ae7c98de6d1e4f2c736bdcd50843b55494d30edfbd2aed4a3497537230601d6c/_data\",\"Name\":\"ae7c98de6d1e4f2c736bdcd50843b55494d30edfbd2aed4a3497537230601d6c\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/005ed15747f1830f888400cd8215e75673d97791c864a801131026a9fca03e2c/_data\",\"Name\":\"005ed15747f1830f888400cd8215e75673d97791c864a801131026a9fca03e2c\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/c381f75c91dd6446d790de5b589fc971cf5470d3b1ced406bde9bc8b1d831d7e/_data\",\"Name\":\"c381f75c91dd6446d790de5b589fc971cf5470d3b1ced406bde9bc8b1d831d7e\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/289596dcfac9df71abb405a695ac845f03f9d81250c61c7f9a14f98cec8bcc7a/_data\",\"Name\":\"289596dcfac9df71abb405a695ac845f03f9d81250c61c7f9a14f98cec8bcc7a\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/c9006cbed429eb411a5b02f5cfff1c1121f4b700d0bfd761360f737175dd2d10/_data\",\"Name\":\"c9006cbed429eb411a5b02f5cfff1c1121f4b700d0bfd761360f737175dd2d10\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/1cfc0f523add273eaed1aacc22365b2fb7ce36a65d18be31e702c7cf1475dc3a/_data\",\"Name\":\"1cfc0f523add273eaed1aacc22365b2fb7ce36a65d18be31e702c7cf1475dc3a\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/9816503c8d285f525b41730ad1893d2c1a530a54db4e342a9cc6489397659719/_data\",\"Name\":\"9816503c8d285f525b41730ad1893d2c1a530a54db4e342a9cc6489397659719\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/eac3b7ce4c60f84b08cb35d76f51404ffe872cd686ee827b31c33112ee44662c/_data\",\"Name\":\"eac3b7ce4c60f84b08cb35d76f51404ffe872cd686ee827b31c33112ee44662c\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/00682d13e6b44853db61783d259dcd2849e3fa89abe17374e8bcaafa15d89631/_data\",\"Name\":\"00682d13e6b44853db61783d259dcd2849e3fa89abe17374e8bcaafa15d89631\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/6c34034efffd4a421ca9f8a96b9696545673473ebd610a0eb1a5a0ace9f8b567/_data\",\"Name\":\"6c34034efffd4a421ca9f8a96b9696545673473ebd610a0eb1a5a0ace9f8b567\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/6e628aa0ba10143d1ea7786f3b1f3f0cbdac2114affd5f4a109e60e5ac8a320d/_data\",\"Name\":\"6e628aa0ba10143d1ea7786f3b1f3f0cbdac2114affd5f4a109e60e5ac8a320d\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/46bb7493b037ae1a0fd5d9dbf3043c7f46eb29cda8d3fe703c6680579fa03640/_data\",\"Name\":\"46bb7493b037ae1a0fd5d9dbf3043c7f46eb29cda8d3fe703c6680579fa03640\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/25f3d7705a9417721fc25e00e9d268043f69fb7ff5fb9827276263318f1e9049/_data\",\"Name\":\"25f3d7705a9417721fc25e00e9d268043f69fb7ff5fb9827276263318f1e9049\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/my_vol/_data\",\"Name\":\"my_vol\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/7361d9ce8fafb542386304c4672d8f13aaefc768a2c3c36650801cadc2cf6942/_data\",\"Name\":\"7361d9ce8fafb542386304c4672d8f13aaefc768a2c3c36650801cadc2cf6942\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ebbaa59b8248ee0bea8efaa5e6ef4d0d1697c4554c391c1e5831bea85d359e22/_data\",\"Name\":\"ebbaa59b8248ee0bea8efaa5e6ef4d0d1697c4554c391c1e5831bea85d359e22\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/325870c274e1ba2aedd1b5981944c560f5e818935855e55d0897d6c8c36bce44/_data\",\"Name\":\"325870c274e1ba2aedd1b5981944c560f5e818935855e55d0897d6c8c36bce44\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/351322a384824b68838649d7dcc314406a5e9e092beabe73ba9c562621cfe313/_data\",\"Name\":\"351322a384824b68838649d7dcc314406a5e9e092beabe73ba9c562621cfe313\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/7e34661dc25663457313309943dfca4802586a555e79246f881111aaf49e632f/_data\",\"Name\":\"7e34661dc25663457313309943dfca4802586a555e79246f881111aaf49e632f\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/5aa6f5ddb460ed7ea3a869b893d16176b5123928fcdb8f4f80fb91d9d3c93d1b/_data\",\"Name\":\"5aa6f5ddb460ed7ea3a869b893d16176b5123928fcdb8f4f80fb91d9d3c93d1b\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/2d66eba3dee11553f6fcd710ade20d65c66d1d92e49e39021100e43b456dde1b/_data\",\"Name\":\"2d66eba3dee11553f6fcd710ade20d65c66d1d92e49e39021100e43b456dde1b\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/d6040be2dd412824ac38a466b803fb4d292e79e3111a5277241fc2d17770362a/_data\",\"Name\":\"d6040be2dd412824ac38a466b803fb4d292e79e3111a5277241fc2d17770362a\",\"Options\":{},\"Scope\":\"local\"}],\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:52:33 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/volumes"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "filters=%7B%22dangling%22%3A%7B%22true%22%3Atrue%7D%7D"
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"Volumes\":[{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/316f98dc36adfb5faba9ffa5310ea34de361d5bffaea2f3f96a1628b1d08064d/_data\",\"Name\":\"316f98dc36adfb5faba9ffa5310ea34de361d5bffaea2f3f96a1628b1d08064d\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/8acc4c9ab8dabb5a1c21463b65c9ba7728dc741b896ce626d816db5c84154f1d/_data\",\"Name\":\"8acc4c9ab8dabb5a1c21463b65c9ba7728dc741b896ce626d816db5c84154f1d\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/a0a1ee9a16b8a3081b36328efbb0454833562dc5bf3e7c4b7dbe0a0de260de37/_data\",\"Name\":\"a0a1ee9a16b8a3081b36328efbb0454833562dc5bf3e7c4b7dbe0a0de260de37\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ae7c98de6d1e4f2c736bdcd50843b55494d30edfbd2aed4a3497537230601d6c/_data\",\"Name\":\"ae7c98de6d1e4f2c736bdcd50843b55494d30edfbd2aed4a3497537230601d6c\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/005ed15747f1830f888400cd8215e75673d97791c864a801131026a9fca03e2c/_data\",\"Name\":\"005ed15747f1830f888400cd8215e75673d97791c864a801131026a9fca03e2c\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/c381f75c91dd6446d790de5b589fc971cf5470d3b1ced406bde9bc8b1d831d7e/_data\",\"Name\":\"c381f75c91dd6446d790de5b589fc971cf5470d3b1ced406bde9bc8b1d831d7e\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/289596dcfac9df71abb405a695ac845f03f9d81250c61c7f9a14f98cec8bcc7a/_data\",\"Name\":\"289596dcfac9df71abb405a695ac845f03f9d81250c61c7f9a14f98cec8bcc7a\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/c9006cbed429eb411a5b02f5cfff1c1121f4b700d0bfd761360f737175dd2d10/_data\",\"Name\":\"c9006cbed429eb411a5b02f5cfff1c1121f4b700d0bfd761360f737175dd2d10\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/1cfc0f523add273eaed1aacc22365b2fb7ce36a65d18be31e702c7cf1475dc3a/_data\",\"Name\":\"1cfc0f523add273eaed1aacc22365b2fb7ce36a65d18be31e702c7cf1475dc3a\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/9816503c8d285f525b41730ad1893d2c1a530a54db4e342a9cc6489397659719/_data\",\"Name\":\"9816503c8d285f525b41730ad1893d2c1a530a54db4e342a9cc6489397659719\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/eac3b7ce4c60f84b08cb35d76f51404ffe872cd686ee827b31c33112ee44662c/_data\",\"Name\":\"eac3b7ce4c60f84b08cb35d76f51404ffe872cd686ee827b31c33112ee44662c\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/00682d13e6b44853db61783d259dcd2849e3fa89abe17374e8bcaafa15d89631/_data\",\"Name\":\"00682d13e6b44853db61783d259dcd2849e3fa89abe17374e8bcaafa15d89631\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/6c34034efffd4a421ca9f8a96b9696545673473ebd610a0eb1a5a0ace9f8b567/_data\",\"Name\":\"6c34034efffd4a421ca9f8a96b9696545673473ebd610a0eb1a5a0ace9f8b567\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/46bb7493b037ae1a0fd5d9dbf3043c7f46eb29cda8d3fe703c6680579fa03640/_data\",\"Name\":\"46bb7493b037ae1a0fd5d9dbf3043c7f46eb29cda8d3fe703c6680579fa03640\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/25f3d7705a9417721fc25e00e9d268043f69fb7ff5fb9827276263318f1e9049/_data\",\"Name\":\"25f3d7705a9417721fc25e00e9d268043f69fb7ff5fb9827276263318f1e9049\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/my_vol/_data\",\"Name\":\"my_vol\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/7361d9ce8fafb542386304c4672d8f13aaefc768a2c3c36650801cadc2cf6942/_data\",\"Name\":\"7361d9ce8fafb542386304c4672d8f13aaefc768a2c3c36650801cadc2cf6942\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/ebbaa59b8248ee0bea8efaa5e6ef4d0d1697c4554c391c1e5831bea85d359e22/_data\",\"Name\":\"ebbaa59b8248ee0bea8efaa5e6ef4d0d1697c4554c391c1e5831bea85d359e22\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/325870c274e1ba2aedd1b5981944c560f5e818935855e55d0897d6c8c36bce44/_data\",\"Name\":\"325870c274e1ba2aedd1b5981944c560f5e818935855e55d0897d6c8c36bce44\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/351322a384824b68838649d7dcc314406a5e9e092beabe73ba9c562621cfe313/_data\",\"Name\":\"351322a384824b68838649d7dcc314406a5e9e092beabe73ba9c562621cfe313\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/7e34661dc25663457313309943dfca4802586a555e79246f881111aaf49e632f/_data\",\"Name\":\"7e34661dc25663457313309943dfca4802586a555e79246f881111aaf49e632f\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/5aa6f5ddb460ed7ea3a869b893d16176b5123928fcdb8f4f80fb91d9d3c93d1b/_data\",\"Name\":\"5aa6f5ddb460ed7ea3a869b893d16176b5123928fcdb8f4f80fb91d9d3c93d1b\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/2d66eba3dee11553f6fcd710ade20d65c66d1d92e49e39021100e43b456dde1b/_data\",\"Name\":\"2d66eba3dee11553f6fcd710ade20d65c66d1d92e49e39021100e43b456dde1b\",\"Options\":{},\"Scope\":\"local\"},{\"Driver\":\"local\",\"Labels\":null,\"Mountpoint\":\"/var/lib/docker/volumes/d6040be2dd412824ac38a466b803fb4d292e79e3111a5277241fc2d17770362a/_data\",\"Name\":\"d6040be2dd412824ac38a466b803fb4d292e79e3111a5277241fc2d17770362a\",\"Options\":{},\"Scope\":\"local\"}],\"Warnings\":null}\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:52:33 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}

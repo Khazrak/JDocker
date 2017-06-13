@@ -1,0 +1,116 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/networks"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : "filters=%7B%7D"
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Name\":\"host\",\"Id\":\"0453989cc48fd43fdd86a531d01b67f6830d2a5a2ae6cbef6a99006ffcce22b5\",\"Created\":\"0001-01-01T00:00:00Z\",\"Scope\":\"local\",\"Driver\":\"host\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[]},\"Internal\":false,\"Attachable\":false,\"Ingress\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}},{\"Name\":\"bridge\",\"Id\":\"04b0d51788a0a9518cb686709ade4c284497291570c4e73204b38af147f2af34\",\"Created\":\"2017-06-13T13:30:40.986555325+02:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[{\"Subnet\":\"172.17.0.0/16\",\"Gateway\":\"172.17.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Ingress\":false,\"Containers\":{},\"Options\":{\"com.docker.network.bridge.default_bridge\":\"true\",\"com.docker.network.bridge.enable_icc\":\"true\",\"com.docker.network.bridge.enable_ip_masquerade\":\"true\",\"com.docker.network.bridge.host_binding_ipv4\":\"0.0.0.0\",\"com.docker.network.bridge.name\":\"docker0\",\"com.docker.network.driver.mtu\":\"1500\"},\"Labels\":{}},{\"Name\":\"none\",\"Id\":\"d695b71f3718a3d4381ac11999ad20aea50993627e48be0d0db25cfa26f91e13\",\"Created\":\"0001-01-01T00:00:00Z\",\"Scope\":\"local\",\"Driver\":\"null\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[]},\"Internal\":false,\"Attachable\":false,\"Ingress\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}},{\"Name\":\"test1\",\"Id\":\"0c49ac3ee9edb294ed5b977e206d5204e4b664100c070c48867fbf9fc8810754\",\"Created\":\"2017-06-13T14:45:24.215012552+02:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[{\"Subnet\":\"171.19.1.0/8\"}]},\"Internal\":false,\"Attachable\":true,\"Ingress\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "1681" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:50:26 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/networks"
+        },
+        "method" : {
+          "exactMatch" : "GET"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"Name\":\"none\",\"Id\":\"d695b71f3718a3d4381ac11999ad20aea50993627e48be0d0db25cfa26f91e13\",\"Created\":\"0001-01-01T00:00:00Z\",\"Scope\":\"local\",\"Driver\":\"null\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[]},\"Internal\":false,\"Attachable\":false,\"Ingress\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}},{\"Name\":\"host\",\"Id\":\"0453989cc48fd43fdd86a531d01b67f6830d2a5a2ae6cbef6a99006ffcce22b5\",\"Created\":\"0001-01-01T00:00:00Z\",\"Scope\":\"local\",\"Driver\":\"host\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[]},\"Internal\":false,\"Attachable\":false,\"Ingress\":false,\"Containers\":{},\"Options\":{},\"Labels\":{}},{\"Name\":\"bridge\",\"Id\":\"04b0d51788a0a9518cb686709ade4c284497291570c4e73204b38af147f2af34\",\"Created\":\"2017-06-13T13:30:40.986555325+02:00\",\"Scope\":\"local\",\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Options\":null,\"Config\":[{\"Subnet\":\"172.17.0.0/16\",\"Gateway\":\"172.17.0.1\"}]},\"Internal\":false,\"Attachable\":false,\"Ingress\":false,\"Containers\":{},\"Options\":{\"com.docker.network.bridge.default_bridge\":\"true\",\"com.docker.network.bridge.enable_icc\":\"true\",\"com.docker.network.bridge.enable_ip_masquerade\":\"true\",\"com.docker.network.bridge.host_binding_ipv4\":\"0.0.0.0\",\"com.docker.network.bridge.name\":\"docker0\",\"com.docker.network.driver.mtu\":\"1500\"},\"Labels\":{}}]\n",
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Content-Length" : [ "1319" ],
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:50:26 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : {
+          "exactMatch" : "/v1.29/networks/test1"
+        },
+        "method" : {
+          "exactMatch" : "DELETE"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : ""
+        }
+      },
+      "response" : {
+        "status" : 204,
+        "encodedBody" : false,
+        "headers" : {
+          "Api-Version" : [ "1.29" ],
+          "Date" : [ "Tue, 13 Jun 2017 12:50:26 GMT" ],
+          "Docker-Experimental" : [ "false" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v2"
+  }
+}
