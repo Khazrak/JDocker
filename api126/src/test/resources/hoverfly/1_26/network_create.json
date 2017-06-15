@@ -2,33 +2,38 @@
   "data" : {
     "pairs" : [ {
       "request" : {
-        "path" : "/v1.26/networks/create",
-        "method" : "POST",
-        "destination" : "127.0.0.1:4243",
-        "scheme" : "http",
-        "query" : "",
-        "body" : "{\"Name\":\"test1\",\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":null,\"Config\":null,\"Options\":null},\"Internal\":false,\"Options\":{},\"Labels\":{}}",
-        "headers" : {
-          "Accept-Encoding" : [ "gzip" ],
-          "Connection" : [ "Keep-Alive" ],
-          "Content-Length" : [ "169" ],
-          "Content-Type" : [ "application/json; charset=utf-8" ],
-          "User-Agent" : [ "okhttp/3.6.0" ]
+        "path" : {
+          "exactMatch" : "/v1.26/networks/create"
         },
-        "requestType" : "recording"
+        "method" : {
+          "exactMatch" : "POST"
+        },
+        "destination" : {
+          "exactMatch" : "127.0.0.1:4243"
+        },
+        "scheme" : {
+          "exactMatch" : "http"
+        },
+        "query" : {
+          "exactMatch" : ""
+        },
+        "body" : {
+          "exactMatch" : "{\"Name\":\"test1\",\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Config\":[],\"Options\":{}},\"Internal\":false,\"Options\":{},\"Labels\":{}}"
+        }
       },
       "response" : {
         "status" : 201,
-        "body" : "{\"Id\":\"5ce416bdf3fffb566b08b5b18268552b8c57df2f78f25eaaeeedd798b1377296\",\"Warning\":\"\"}\n",
+        "body" : "{\"Id\":\"8d3c2a8083e330f5240bebc6bf79820cff55fb901eec33cd9c9c7a34763e2a58\",\"Warning\":\"\"}\n",
         "encodedBody" : false,
         "headers" : {
-          "Api-Version" : [ "1.26" ],
+          "Api-Version" : [ "1.29" ],
           "Content-Length" : [ "87" ],
           "Content-Type" : [ "application/json" ],
-          "Date" : [ "Wed, 22 Mar 2017 17:55:18 GMT" ],
+          "Date" : [ "Thu, 15 Jun 2017 14:01:25 GMT" ],
           "Docker-Experimental" : [ "false" ],
           "Hoverfly" : [ "Was-Here" ],
-          "Server" : [ "Docker/17.03.0-ce (linux)" ]
+          "Ostype" : [ "linux" ],
+          "Server" : [ "Docker/17.05.0-ce (linux)" ]
         }
       }
     } ],
@@ -37,6 +42,6 @@
     }
   },
   "meta" : {
-    "schemaVersion" : "v1"
+    "schemaVersion" : "v2"
   }
 }

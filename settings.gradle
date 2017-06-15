@@ -3,5 +3,5 @@ rootProject.name = 'docker-client'
 include 'base-api'
 include 'api126'
 include 'api129'
-include 'api129'
+include 'jdocker-client'
 

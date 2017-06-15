@@ -1,7 +1,7 @@
 allprojects {
     apply plugin: 'java'
     group 'com.github.khazrak'
-    version '2.0.0'
+    version '3.0.0'
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
@@ -30,88 +30,10 @@ project(':api129') {
     }
 }
 
-apply plugin: 'maven'
-apply plugin: 'signing'
-
-archivesBaseName = "jdocker-client"
-
-repositories {
-    mavenCentral()
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.1'
-}
-
-
-
-// Maven
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
-}
-
-signing {
-    sign configurations.archives
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                def ossrU = project.findProperty("ossrhUsername") ?: ""
-                def ossrP = project.findProperty("ossrhPassword") ?: ""
-              
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                def ossrU = project.findProperty("ossrhUsername") ?: ""
-                def ossrP = project.findProperty("ossrhPassword") ?: ""
-
-                authentication(userName: ossrU, password: ossrP)
-            }
-
-            pom.project {
-                name 'Docker Java Client'
-                packaging 'jar'
-                // optionally artifactId can be defined here
-                description 'Docker Java Client for Remote API v1.24'
-                url 'http://www.example.com/example-application'
-
-                scm {
-                    connection 'scm:git@github.com:Khazrak/JDocker.git'
-                    developerConnection 'scm:git@github.com:Khazrak/JDocker.git'
-                    url 'https://github.com/Khazrak/JDocker.git'
-                }
-
-                licenses {
-                    license {
-                        name 'The Apache License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'Khazrak'
-                        name 'Karl Andersson'
-                        email 'karl.andersson1987@gmail.com'
-                    }
-                }
-            }.writeTo("${project.buildDir}/poms/pom.xml")
-        }
+project(':jdocker-client') {
+    dependencies {
+        compile project(':api126')
+        compile project(':api129')
     }
 }
 

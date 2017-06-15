@@ -45,6 +45,6 @@ public class NetworkCreate {
 
         String id = client.createNetwork(request);
 
-        assertThat(id).isEqualTo("0c49ac3ee9edb294ed5b977e206d5204e4b664100c070c48867fbf9fc8810754");
+        assertThat(id).isEqualTo("d406c15cff8ed9ddd028317fc41459ce3a31482a2027874218f4fe9ffa56a81d");
     }
 }

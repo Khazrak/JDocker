@@ -22,7 +22,7 @@ public class NetworkCreateIpamConfig129 implements NetworkCreateIpamConfig {
     private String gateway;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class NetworkCreateIpamConfigBuilder {
+    public static class NetworkCreateIpamConfig129Builder {
 
         @JsonProperty("Subnet")
         private String subnet;

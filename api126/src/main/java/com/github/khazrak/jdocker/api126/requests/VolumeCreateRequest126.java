@@ -27,7 +27,7 @@ public class VolumeCreateRequest126 implements VolumeCreateRequest {
     private Map<String, String> driverOpts;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class VolumeCreateRequestBuilder {
+    public static class VolumeCreateRequest126Builder {
 
     }
 

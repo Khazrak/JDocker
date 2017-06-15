@@ -28,7 +28,7 @@ public class NetworkCreateIpam126 implements NetworkCreateIpam {
     private Map<String, String> options;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class NetworkCreateIpamBuilder {
+    public static class NetworkCreateIpam126Builder {
 
         @JsonProperty("Driver")
         private String driver = "default";

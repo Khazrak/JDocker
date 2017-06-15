@@ -18,18 +18,18 @@
           "exactMatch" : ""
         },
         "body" : {
-          "exactMatch" : "{\"Name\":\"test1\",\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":null,\"Config\":[{\"Subnet\":\"171.19.1.0/8\",\"IPRange\":null,\"Gateway\":null}],\"Options\":null},\"Internal\":false,\"Attachable\":true,\" Ingress \":false,\"Options\":{},\"Labels\":{}}"
+          "exactMatch" : "{\"Name\":\"test1\",\"CheckDuplicate\":true,\"Driver\":\"bridge\",\"EnableIPv6\":false,\"IPAM\":{\"Driver\":\"default\",\"Config\":[{\"Subnet\":\"171.19.1.0/8\",\"IPRange\":null,\"Gateway\":null}],\"Options\":{}},\"Internal\":false,\"Attachable\":true,\" Ingress \":false,\"Options\":{},\"Labels\":{}}"
         }
       },
       "response" : {
         "status" : 201,
-        "body" : "{\"Id\":\"0c49ac3ee9edb294ed5b977e206d5204e4b664100c070c48867fbf9fc8810754\",\"Warning\":\"\"}\n",
+        "body" : "{\"Id\":\"d406c15cff8ed9ddd028317fc41459ce3a31482a2027874218f4fe9ffa56a81d\",\"Warning\":\"\"}\n",
         "encodedBody" : false,
         "headers" : {
           "Api-Version" : [ "1.29" ],
           "Content-Length" : [ "87" ],
           "Content-Type" : [ "application/json" ],
-          "Date" : [ "Tue, 13 Jun 2017 12:45:39 GMT" ],
+          "Date" : [ "Thu, 15 Jun 2017 14:04:40 GMT" ],
           "Docker-Experimental" : [ "false" ],
           "Hoverfly" : [ "Was-Here" ],
           "Ostype" : [ "linux" ],
