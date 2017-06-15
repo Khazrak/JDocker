@@ -171,6 +171,7 @@ package com.github.khazrak.jdocker.unixsocket;
 
 import jnr.unixsocket.UnixSocketAddress;
 import jnr.unixsocket.UnixSocketChannel;
+import jnr.unixsocket.UnixSocketOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -187,8 +188,6 @@ final class JnrUnixSocket extends FileSocket {
     private volatile boolean outputShutdown;
 
     public static final String SOCKER_CLOSED = "Socket is closed";
-
-    public static final SocketOption<Integer> SO_TIMEOUT = new StdSocketOption<>("SO_TIMEOUT", Integer.class);
 
     private final UnixSocketChannel channel;
 
@@ -320,9 +319,9 @@ final class JnrUnixSocket extends FileSocket {
     @Override
     public void setSoTimeout(int timeout) {
         try {
-            channel.setOption(SO_TIMEOUT, timeout);
+            channel.setOption(UnixSocketOptions.SO_RCVTIMEO, timeout);
         } catch (IOException e) {
-            logger.error("Problem setting SO_TIMEOUT", e);
+            logger.error("Problem setting SO_RCVTIMEO", e);
         }
     }
 
@@ -330,9 +329,9 @@ final class JnrUnixSocket extends FileSocket {
     public int getSoTimeout() throws SocketException {
 
         try {
-            return channel.getOption(SO_TIMEOUT);
+            return channel.getOption(UnixSocketOptions.SO_RCVTIMEO);
         } catch (IOException e) {
-            logger.error("Problem getting SO_TIMEOUT value", e);
+            logger.error("Problem getting SO_RCVTIMEO value", e);
         }
 
         return -1;
